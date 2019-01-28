@@ -109,4 +109,40 @@ public class Internationalization implements Serializable {
     public String getGenres(){
         return language.equals("English")? "Genres": "Categories";
     }
+    
+    public String getAlbumtitle(){
+        return language.equals("English")? "Album Title": "Nom de l'album";
+    }
+    
+    public String getAlbumdate(){
+        return language.equals("English")? "Release Date": "Date de Sortie";
+    }
+    
+    public String getArtist(){
+        return language.equals("English")? "Artist": "Artiste";
+    }
+    
+    public String getNumberSongs(){
+        return language.equals("English")? "# of Tracks": "# de Pistes";
+    }
+    
+    public String getCost(){
+        return language.equals("English")? "Price": "Prix";
+    }
+    
+    public String getSongtitle(){
+        return language.equals("English")? "Track Title": "Nom de la chanson";
+    }
+    
+    public String getSongdate(){
+        return language.equals("English")? "Release Date": "Date de Sortie";
+    }
+    
+    public String getPlaylength(){
+        return language.equals("English")? "Play Length": "Duree de la chanson";
+    }
+    
+    public String getAlbumimage(){
+        return language.equals("English")? "Album Cover": "Image Album";
+    }
 }

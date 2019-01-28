@@ -49,7 +49,7 @@
                                 <f:selectItem itemValue="en" itemLabel="#{internationalization.english}" />
                                 <f:selectItem itemValue="fr" itemLabel="#{internationalization.french}" />
                             </h:selectOneMenu>
-                            <h:commandButton class="btn btn-outline-primary btn-sm" value = "Change" action = "index" /> 
+                            <h:commandButton class="btn btn-outline-primary btn-sm" value = "Change" action = "albums" /> 
                          </h:form>
                          
                       </div>
@@ -63,7 +63,38 @@
         </nav>
         
         
-        
+        <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">#{internationalization.albumimage}</th>
+                <th scope="col">#{internationalization.albumtitle}</th>
+                <th scope="col">#{internationalization.artist}</th>
+                <th scope="col">#{internationalization.albumdate}</th>
+                <th scope="col">#{internationalization.numberSongs}</th>
+                <th scope="col">#{internationalization.cost}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="table-light">
+                <th scope="row">Light</th>
+                <td>Column content</td>
+                <td>Column content</td>
+                <td>Column content</td>
+                <td>Column content</td>
+                <td>Column content</td>
+                <td>Column content</td>
+              </tr>
+              <tr class="table-dark">
+                <th scope="row">Dark</th>
+                <td>Column content</td>
+                <td>Column content</td>
+                <td>Column content</td>
+                <td>Column content</td>
+                <td>Column content</td>
+                <td>Column content</td>
+              </tr>
+            </tbody>
+        </table> 
 
     </h:body>
 </html>

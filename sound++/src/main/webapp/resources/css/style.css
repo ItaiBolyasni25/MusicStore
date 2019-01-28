@@ -48,3 +48,9 @@ a{
 .card-title{
     text-align: center;
 }
+
+.table{
+    margin: 5%;
+    width: 90%;
+}
+
