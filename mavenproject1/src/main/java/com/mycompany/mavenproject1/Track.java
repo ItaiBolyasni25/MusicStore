@@ -13,18 +13,18 @@ import javax.persistence.*;
  * @author 1633867
  */
 @Entity
-@Table(name="Tracks")
-public class Track {
+@Table(name="Track")
+public class Track implements EntityModel{
     @Id
     @GeneratedValue( strategy=GenerationType.AUTO )
-    private int track_id;
+    private int trackId;
     private int selection_number;
     private String title;
     private String songwriter;
     private Timestamp play_length;
     private String genre;
     @ManyToOne(cascade = {CascadeType.ALL})
-    @JoinColumn(name = "albumId")
+    @JoinColumn(name = "album_Id", referencedColumnName="albumId")
     private Album album;
     private double cost;
     private double list_price;
@@ -34,12 +34,12 @@ public class Track {
     private boolean removal_status;
     private Timestamp removal_date;
 
-    public int getTrack_id() {
-        return track_id;
+    public int getId() {
+        return trackId;
     }
 
-    public void setTrack_id(int track_id) {
-        this.track_id = track_id;
+    public void setId(int track_id) {
+        this.trackId = track_id;
     }
 
     public int getSelection_number() {

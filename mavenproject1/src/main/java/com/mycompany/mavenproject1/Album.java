@@ -13,8 +13,8 @@ import javax.persistence.*;
  * @author 1633867
  */
 @Entity
-@Table(name="Albums")
-public class Album {
+@Table(name="Album")
+public class Album implements EntityModel{
     @Id
     @GeneratedValue( strategy=GenerationType.AUTO )
     private int albumId;
