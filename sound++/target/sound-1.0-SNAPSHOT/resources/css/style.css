@@ -32,6 +32,7 @@ a{
     width: 30%;
     margin-left: 2%;
     margin-top: 5%;
+    border: 0px;
 }
 
 #ads{
@@ -54,3 +55,31 @@ a{
     width: 90%;
 }
 
+.table-secondary{
+    cursor: pointer;
+}
+
+.genresimg{
+    height: 60%;
+    width: 60%;
+    display: block;
+    margin-left: 20%;
+    margin-top: 5%;
+}
+
+.navcenter{
+    margin-left: 35%;
+}
+
+.navlogin{
+    width: 15%;
+}
+
+.formbutton{
+    margin-left: 30%;
+    width: 40%;
+}
+
+.centerform{
+    margin-left: 33%;
+}

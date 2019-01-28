@@ -23,10 +23,10 @@
             <div class="collapse navbar-collapse" id="navbarColor03">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                      <h:link class="nav-link" value="#{internationalization.home}" outcome="index"/>
+                        <h:link class="nav-link" value="#{internationalization.home}" outcome="index"/>
                     </li>
                     <li class="nav-item">
-                      <h:link class="nav-link" value="#{internationalization.albums}" outcome="albums"/>
+                        <h:link class="nav-link" value="#{internationalization.albums}" outcome="albums"/>
                     </li>
                     <li class="nav-item">
                         <h:link class="nav-link" value="#{internationalization.tracks}" outcome="tracks"/>
@@ -43,24 +43,152 @@
                 </ul>
 
                 <li class="nav-item dropdown">
-                     <div class="form-group">
-                         <h:form>
+                    <div class="form-group">
+                        <h:form>
                             <h:selectOneMenu class="custom-select" value="#{internationalization.language}">
                                 <f:selectItem itemValue="en" itemLabel="#{internationalization.english}" />
                                 <f:selectItem itemValue="fr" itemLabel="#{internationalization.french}" />
                             </h:selectOneMenu>
-                            <h:commandButton class="btn btn-outline-primary btn-sm" value = "Change" action = "index" /> 
-                         </h:form>
-                         
-                      </div>
+                            <h:commandButton class="btn btn-outline-primary btn-sm" value = "Change" action = "login" /> 
+                        </h:form>
+
+                    </div>
                 </li>
-                
+
                 <h:form class="form-inline my-2 my-lg-0">
                     <h:inputText class="form-control mr-sm-2" value="#{internationalization.search}"/>
                     <h:commandButton class="btn btn-outline-primary" value="#{internationalization.search}" action="search"/>
                 </h:form>
             </div>
         </nav>
+
+        <ul class="nav nav-tabs">
+            <li class="nav-item navcenter navlogin">
+                <a class="nav-link active" data-toggle="tab" href="#signup">#{internationalization.signup}</a>
+            </li>
+            <li class="nav-item navlogin">
+                <a class="nav-link" data-toggle="tab" href="#login">#{internationalization.loginopt}</a>
+            </li>
+        </ul>
+
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade show active" id="signup">
+                <div class="row">
+                    <div class ="col-md-12">
+                        <div class="col-md-4 centerform">
+                            <form>
+                                <fieldset>
+                                    <legend>#{internationalization.signup}</legend>
+                                    
+                                    <div class="form-group">
+                                        <label class="col-form-label" for="inputDefault">#{internationalization.firstname}</label>
+                                        <input type="text" class="form-control" placeholder="Default input" id="inputDefault"/>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="col-form-label" for="inputDefault">#{internationalization.lastname}</label>
+                                        <input type="text" class="form-control" placeholder="Default input" id="inputDefault"/>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">#{internationalization.email}</label>
+                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"/>
+                                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">#{internationalization.password}</label>
+                                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"/>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="col-form-label" for="inputDefault">#{internationalization.company}</label>
+                                        <input type="text" class="form-control" placeholder="Default input" id="inputDefault"/>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="col-form-label" for="inputDefault">#{internationalization.address} 1</label>
+                                        <input type="text" class="form-control" placeholder="Default input" id="inputDefault"/>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="col-form-label" for="inputDefault">#{internationalization.postalcode}</label>
+                                        <input type="text" class="form-control" placeholder="Default input" id="inputDefault"/>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="col-form-label" for="inputDefault">#{internationalization.address} 2</label>
+                                        <input type="text" class="form-control" placeholder="Default input" id="inputDefault"/>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="col-form-label" for="inputDefault">#{internationalization.city}</label>
+                                        <input type="text" class="form-control" placeholder="Default input" id="inputDefault"/>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="col-form-label" for="inputDefault">#{internationalization.province}</label>
+                                        <input type="text" class="form-control" placeholder="Default input" id="inputDefault"/>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="col-form-label" for="inputDefault">#{internationalization.country}</label>
+                                        <input type="text" class="form-control" placeholder="Default input" id="inputDefault"/>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="col-form-label" for="inputDefault">#{internationalization.cellphone}</label>
+                                        <input type="text" class="form-control" placeholder="Default input" id="inputDefault"/>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="col-form-label" for="inputDefault">#{internationalization.hometel}</label>
+                                        <input type="text" class="form-control" placeholder="Default input" id="inputDefault"/>
+                                    </div>
+
+                                    
+                                    <button type="submit" class="btn btn-primary formbutton">#{internationalization.signup}</button>
+                                </fieldset>
+                            </form>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="login">
+                <div class="row">
+                    <div class ="col-md-12">
+                        <div class="col-md-4 centerform">
+                            <form>
+                                <fieldset>
+                                    <legend>#{internationalization.loginopt}</legend>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">#{internationalization.email}</label>
+                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"/>
+                                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">#{internationalization.password}</label>
+                                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"/>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary formbutton">#{internationalization.loginopt}</button>
+                                </fieldset>
+                            </form>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
 
     </h:body>
 </html>
