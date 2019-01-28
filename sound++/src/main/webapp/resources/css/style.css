@@ -54,3 +54,24 @@ a{
     width: 90%;
 }
 
+#registration {
+    float: left;
+    margin-left: 20%;
+}
+
+#login {
+    float: right;
+    margin-right: 20%;
+}
+
+caption {
+    caption-side: top;
+    font-weight: bold;
+    font-size: 35px;
+}
+
+.inline {
+    display: inline;
+    margin-bottom: 5%;
+}
+

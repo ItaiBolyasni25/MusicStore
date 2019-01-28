@@ -23,10 +23,10 @@
             <div class="collapse navbar-collapse" id="navbarColor03">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                      <h:link class="nav-link" value="#{internationalization.home}" outcome="index"/>
+                        <h:link class="nav-link" value="#{internationalization.home}" outcome="index"/>
                     </li>
                     <li class="nav-item">
-                      <h:link class="nav-link" value="#{internationalization.albums}" outcome="albums"/>
+                        <h:link class="nav-link" value="#{internationalization.albums}" outcome="albums"/>
                     </li>
                     <li class="nav-item">
                         <h:link class="nav-link" value="#{internationalization.tracks}" outcome="tracks"/>
@@ -43,24 +43,127 @@
                 </ul>
 
                 <li class="nav-item dropdown">
-                     <div class="form-group">
-                         <h:form>
+                    <div class="form-group">
+                        <h:form>
                             <h:selectOneMenu class="custom-select" value="#{internationalization.language}">
                                 <f:selectItem itemValue="en" itemLabel="#{internationalization.english}" />
                                 <f:selectItem itemValue="fr" itemLabel="#{internationalization.french}" />
                             </h:selectOneMenu>
                             <h:commandButton class="btn btn-outline-primary btn-sm" value = "Change" action = "index" /> 
-                         </h:form>
-                         
-                      </div>
+                        </h:form>
+
+                    </div>
                 </li>
-                
+
                 <h:form class="form-inline my-2 my-lg-0">
                     <h:inputText class="form-control mr-sm-2" value="#{internationalization.search}"/>
                     <h:commandButton class="btn btn-outline-primary" value="#{internationalization.search}" action="search"/>
                 </h:form>
             </div>
         </nav>
+        <div>
+            <table id="registration" class="inline">
+                <caption>Register</caption>
+                <h:form>  
+                    <tr> 
+                        <td><h:outputLabel for="title">Title</h:outputLabel></td> 
+                        <td><h:inputText id="title" required="true" requiredMessage="Title is required"/></td>
+                    </tr>
 
+                    <tr>
+                        <td><h:outputLabel for="fname">First name</h:outputLabel></td>  
+                        <td><h:inputText id="fname" required="true" requiredMessage="First name is required"/></td>
+                    </tr>
+
+                    <tr>
+                        <td><h:outputLabel for="lname">Last Name</h:outputLabel></td>  
+                        <td><h:inputText id="lname" required="true" requiredMessage="Last name is required"/></td>
+                    </tr>
+
+                    <tr>
+                        <td><h:outputLabel for="company">Company name</h:outputLabel></td>  
+                        <td><h:inputText id="company"/></td>
+                    </tr>
+
+                    <tr>
+                        <td><h:outputLabel for="address1">Address</h:outputLabel></td>  
+                        <td><h:inputText id="address1" required="true" requiredMessage="Address is required"/><br/></td>
+                    </tr>
+
+                    <tr>
+                        <td><h:outputLabel for="address2">Address 2 (optional)</h:outputLabel></td>  
+                        <td><h:inputText id="address2"/></td>
+                    </tr>
+
+                    <tr>
+                        <td><h:outputLabel for="city">City</h:outputLabel></td>  
+                        <td><h:inputText id="city" required="true" requiredMessage="City is required"/></td>
+                    </tr>
+
+                    <tr>
+                        <td><h:outputLabel for="province">Province</h:outputLabel></td>  
+                        <td><h:inputText id="province" required="true" requiredMessage="Province is required"/></td>
+                    </tr>
+
+                    <tr>
+                        <td><h:outputLabel for="country">Country</h:outputLabel></td>  
+                        <td><h:inputText id="country" required="true" requiredMessage="Country is required"/></td>
+                    </tr>
+
+                    <tr>
+                        <td><h:outputLabel for="postalcode">Postal code</h:outputLabel></td>  
+                        <td><h:inputText id="postalcode" required="true" requiredMessage="Postal code is required"/></td>
+                    </tr>
+
+                    <tr>
+                        <td><h:outputLabel for="cellphone">Cell phone (optional)</h:outputLabel></td>  
+                        <td><h:inputText id="cellphone"/></td>
+                    </tr>
+
+                    <tr>
+                        <td><h:outputLabel for="homephone">Home phone (optional)</h:outputLabel></td>  
+                        <td><h:inputText id="homephone"/></td>
+                    </tr>
+
+                    <tr>
+                        <td><h:outputLabel for="email">Email</h:outputLabel></td>  
+                        <td><h:inputText id="email" required="true" requiredMessage="Email is required"/></td>  
+                    </tr>
+
+                    <tr>
+                        <td><h:outputLabel for="password">Password</h:outputLabel></td>  
+                        <td><h:inputText id="password" required="true" requiredMessage="Password is required"/></td>
+                    </tr>
+
+                    <tr>
+                        <td><h:outputLabel for="confirm">Confirm password</h:outputLabel></td>  
+                        <td><h:inputText id="confirm" required="true" requiredMessage="Must confirm password"/></td>
+                    </tr>
+
+                    <tr>
+                        <td><h:commandButton value="Submit" action="index"/></td>
+                    </tr>
+                </h:form>    
+            </table>
+  
+            <table id="login" class="inline">
+                <caption>Log in</caption>
+                <h:form>  
+                    <tr>
+                        <td><h:outputLabel for="existing_email">Email</h:outputLabel></td>  
+                        <td><h:inputText id="existing_email" required="true" requiredMessage="Email is required"/></td>  
+                    </tr>
+
+                    <tr>
+                        <td><h:outputLabel for="existing_password">Password</h:outputLabel></td>  
+                        <td><h:inputText id="existing_password" required="true" requiredMessage="Password is required"/></td>
+                    </tr>
+
+                    <tr>
+                        <td><h:commandButton value="Submit" action="index"/></td>
+                    </tr>
+                </h:form>    
+            </table>
+        </div>
     </h:body>
 </html>
