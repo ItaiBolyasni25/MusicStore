@@ -1,0 +1,85 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jan 24, 2019, 1:54:17 PM
+    Author     : 1635547
+*/
+#logo{
+    max-width: 40%;
+    max-height: 30%;
+    margin-left: 30%;
+}
+
+.navbar-brand{
+    margin: 0px;
+    padding: 0px;
+}
+
+a{
+    font-size: 1.2em;
+}
+
+.cards{
+    width: 25rem;
+    display:inline-block;
+}
+
+.displayinline{
+    display:inline-block;
+    width: 30%;
+    margin-left: 2%;
+    margin-top: 5%;
+    border: 0px;
+}
+
+#ads{
+    width: 70%;
+    height: 10%;
+    margin-left: 15%;
+    float: left;
+}
+
+#genretitle{
+    color : #000;
+}
+
+.card-title{
+    text-align: center;
+}
+
+.table{
+    margin: 5%;
+    width: 90%;
+}
+
+.table-secondary{
+    cursor: pointer;
+}
+
+.genresimg{
+    height: 60%;
+    width: 60%;
+    display: block;
+    margin-left: 20%;
+    margin-top: 5%;
+}
+
+.navcenter{
+    margin-left: 35%;
+}
+
+.navlogin{
+    width: 15%;
+}
+
+.formbutton{
+    margin-left: 30%;
+    width: 40%;
+}
+
+.centerform{
+    margin-left: 33%;
+}
