@@ -1,0 +1,169 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.2.1/lux/bootstrap.min.css" />
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+        <h:outputStylesheet library="css" name="style.css"  />
+        <title>Sound++</title>
+    </h:head>
+    <h:body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+            <a class="navbar-brand" href="#"><img id="logo" src="assets/logo.png" alt="Logo of online music store Sound++"></img></a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarColor03">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <h:link class="nav-link" value="#{internationalization.home}" outcome="index"/>
+                    </li>
+                    <li class="nav-item">
+                        <h:link class="nav-link" value="#{internationalization.albums}" outcome="albums"/>
+                    </li>
+                    <li class="nav-item">
+                        <h:link class="nav-link" value="#{internationalization.tracks}" outcome="tracks"/>
+                    </li>
+                    <li class="nav-item">
+                        <h:link class="nav-link" value="#{internationalization.about}" outcome="about"/>
+                    </li>
+                    <li class="nav-item">
+                        <h:link class="nav-link" value="#{internationalization.login}" outcome="login"/>
+                    </li>
+                    <li class="nav-item">
+                        <h:link class="nav-link" value="#{internationalization.cart}" outcome="cart"/>
+                    </li>
+                </ul>
+
+                <li class="nav-item dropdown">
+                    <div class="form-group">
+                        <h:form>
+                            <h:selectOneMenu class="custom-select" value="#{internationalization.language}">
+                                <f:selectItem itemValue="en" itemLabel="#{internationalization.english}" />
+                                <f:selectItem itemValue="fr" itemLabel="#{internationalization.french}" />
+                            </h:selectOneMenu>
+                            <h:commandButton class="btn btn-outline-primary btn-sm" value = "Change" action = "index" /> 
+                        </h:form>
+
+                    </div>
+                </li>
+
+                <h:form class="form-inline my-2 my-lg-0">
+                    <h:inputText class="form-control mr-sm-2" value="#{internationalization.search}"/>
+                    <h:commandButton class="btn btn-outline-primary" value="#{internationalization.search}" action="search"/>
+                </h:form>
+            </div>
+        </nav>
+        <div>
+            <table id="registration" class="inline">
+                <h3 id="register_header">Register</h3>
+                <h:form>  
+                    <tr> 
+                        <td><h:outputLabel for="title">Title</h:outputLabel></td> 
+                        <td><h:inputText id="title" required="true" requiredMessage="Title is required"/></td>
+                    </tr>
+
+                    <tr>
+                        <td><h:outputLabel for="fname">First name</h:outputLabel></td>  
+                        <td><h:inputText id="fname" required="true" requiredMessage="First name is required"/></td>
+                    </tr>
+
+                    <tr>
+                        <td><h:outputLabel for="lname">Last Name</h:outputLabel></td>  
+                        <td><h:inputText id="lname" required="true" requiredMessage="Last name is required"/></td>
+                    </tr>
+
+                    <tr>
+                        <td><h:outputLabel for="company">Company name</h:outputLabel></td>  
+                        <td><h:inputText id="company"/></td>
+                    </tr>
+
+                    <tr>
+                        <td><h:outputLabel for="address1">Address</h:outputLabel></td>  
+                        <td><h:inputText id="address1" required="true" requiredMessage="Address is required"/><br/></td>
+                    </tr>
+
+                    <tr>
+                        <td><h:outputLabel for="address2">Address 2 (optional)</h:outputLabel></td>  
+                        <td><h:inputText id="address2"/></td>
+                    </tr>
+
+                    <tr>
+                        <td><h:outputLabel for="city">City</h:outputLabel></td>  
+                        <td><h:inputText id="city" required="true" requiredMessage="City is required"/></td>
+                    </tr>
+
+                    <tr>
+                        <td><h:outputLabel for="province">Province</h:outputLabel></td>  
+                        <td><h:inputText id="province" required="true" requiredMessage="Province is required"/></td>
+                    </tr>
+
+                    <tr>
+                        <td><h:outputLabel for="country">Country</h:outputLabel></td>  
+                        <td><h:inputText id="country" required="true" requiredMessage="Country is required"/></td>
+                    </tr>
+
+                    <tr>
+                        <td><h:outputLabel for="postalcode">Postal code</h:outputLabel></td>  
+                        <td><h:inputText id="postalcode" required="true" requiredMessage="Postal code is required"/></td>
+                    </tr>
+
+                    <tr>
+                        <td><h:outputLabel for="cellphone">Cell phone (optional)</h:outputLabel></td>  
+                        <td><h:inputText id="cellphone"/></td>
+                    </tr>
+
+                    <tr>
+                        <td><h:outputLabel for="homephone">Home phone (optional)</h:outputLabel></td>  
+                        <td><h:inputText id="homephone"/></td>
+                    </tr>
+
+                    <tr>
+                        <td><h:outputLabel for="email">Email</h:outputLabel></td>  
+                        <td><h:inputText id="email" required="true" requiredMessage="Email is required"/></td>  
+                    </tr>
+
+                    <tr>
+                        <td><h:outputLabel for="password">Password</h:outputLabel></td>  
+                        <td><h:inputText id="password" required="true" requiredMessage="Password is required"/></td>
+                    </tr>
+
+                    <tr>
+                        <td><h:outputLabel for="confirm">Confirm password</h:outputLabel></td>  
+                        <td><h:inputText id="confirm" required="true" requiredMessage="Must confirm password"/></td>
+                    </tr>
+
+                    <tr>
+                        <td><h:commandButton value="Submit" action="index"/></td>
+                    </tr>
+                </h:form>    
+            </table>
+  
+            <table id="login" class="inline">
+                <h3 id="login_header">Log in</h3>
+                <h:form>  
+                    <tr>
+                        <td><h:outputLabel for="existing_email">Email</h:outputLabel></td>  
+                        <td><h:inputText id="existing_email" required="true" requiredMessage="Email is required"/></td>  
+                    </tr>
+
+                    <tr>
+                        <td><h:outputLabel for="existing_password">Password</h:outputLabel></td>  
+                        <td><h:inputText id="existing_password" required="true" requiredMessage="Password is required"/></td>
+                    </tr>
+
+                    <tr>
+                        <td><h:commandButton value="Submit" action="index"/></td>
+                    </tr>
+                </h:form>    
+            </table>
+        </div>
+    </h:body>
+</html>
