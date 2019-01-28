@@ -17,7 +17,7 @@ import javax.enterprise.context.SessionScoped;
 @SessionScoped
 public class Internationalization implements Serializable {
 
-    private String language = "French";
+    private String language = "English";
     /**
      * Creates a new instance of Internationalization
      */
@@ -144,5 +144,61 @@ public class Internationalization implements Serializable {
     
     public String getAlbumimage(){
         return language.equals("English")? "Album Cover": "Image Album";
+    }
+    
+    public String getLoginopt(){
+        return language.equals("English")? "Log In": "Se Connecter";
+    }
+    
+    public String getSignup(){
+        return language.equals("English")? "Sign up": "S'inscrire";
+    }
+    
+    public String getFirstname(){
+        return language.equals("English")? "Firstname": "Prenom";
+    }
+    
+    public String getLastname(){
+        return language.equals("English")? "Lastname": "Nom de famille";
+    }
+    
+    public String getCompany(){
+        return language.equals("English")? "Company name": "Prenom";
+    }
+    
+    public String getAddress(){
+        return language.equals("English")? "Address": "Addresse";
+    }
+    
+    public String getPostalcode(){
+        return language.equals("English")? "Postal Code": "Code Postal";
+    }
+    
+    public String getCity(){
+        return language.equals("English")? "City": "Ville";
+    }
+    
+    public String getProvince(){
+        return language.equals("English")? "Province": "Province";
+    }
+    
+    public String getCountry(){
+        return language.equals("English")? "Country": "Pays";
+    }
+    
+    public String getCellphone(){
+        return language.equals("English")? "Cell Phone": "Telephone cellulaire";
+    }
+    
+    public String getHometel(){
+        return language.equals("English")? "Home Phone": "Telephone residentielle";
+    }
+    
+    public String getEmail(){
+        return language.equals("English")? "Email": "Courriel Electronique";
+    }
+    
+    public String getPassword(){
+        return language.equals("English")? "Password": "Mot de passe";
     }
 }

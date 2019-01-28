@@ -49,7 +49,7 @@
                                 <f:selectItem itemValue="en" itemLabel="#{internationalization.english}" />
                                 <f:selectItem itemValue="fr" itemLabel="#{internationalization.french}" />
                             </h:selectOneMenu>
-                            <h:commandButton class="btn btn-outline-primary btn-sm" value = "Change" action = "index" /> 
+                            <h:commandButton class="btn btn-outline-primary btn-sm" value = "Change" action = "login" /> 
                         </h:form>
 
                     </div>
@@ -61,109 +61,134 @@
                 </h:form>
             </div>
         </nav>
-        <div>
-            <table id="registration" class="inline">
-                <caption>Register</caption>
-                <h:form>  
-                    <tr> 
-                        <td><h:outputLabel for="title">Title</h:outputLabel></td> 
-                        <td><h:inputText id="title" required="true" requiredMessage="Title is required"/></td>
-                    </tr>
 
-                    <tr>
-                        <td><h:outputLabel for="fname">First name</h:outputLabel></td>  
-                        <td><h:inputText id="fname" required="true" requiredMessage="First name is required"/></td>
-                    </tr>
+        <ul class="nav nav-tabs">
+            <li class="nav-item navcenter navlogin">
+                <a class="nav-link active" data-toggle="tab" href="#signup">#{internationalization.signup}</a>
+            </li>
+            <li class="nav-item navlogin">
+                <a class="nav-link" data-toggle="tab" href="#login">#{internationalization.loginopt}</a>
+            </li>
+        </ul>
 
-                    <tr>
-                        <td><h:outputLabel for="lname">Last Name</h:outputLabel></td>  
-                        <td><h:inputText id="lname" required="true" requiredMessage="Last name is required"/></td>
-                    </tr>
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade show active" id="signup">
+                <div class="row">
+                    <div class ="col-md-12">
+                        <div class="col-md-4 centerform">
+                            <form>
+                                <fieldset>
+                                    <legend>#{internationalization.signup}</legend>
+                                    
+                                    <div class="form-group">
+                                        <label class="col-form-label" for="inputDefault">#{internationalization.firstname}</label>
+                                        <input type="text" class="form-control" placeholder="Default input" id="inputDefault"/>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="col-form-label" for="inputDefault">#{internationalization.lastname}</label>
+                                        <input type="text" class="form-control" placeholder="Default input" id="inputDefault"/>
+                                    </div>
 
-                    <tr>
-                        <td><h:outputLabel for="company">Company name</h:outputLabel></td>  
-                        <td><h:inputText id="company"/></td>
-                    </tr>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">#{internationalization.email}</label>
+                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"/>
+                                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">#{internationalization.password}</label>
+                                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"/>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="col-form-label" for="inputDefault">#{internationalization.company}</label>
+                                        <input type="text" class="form-control" placeholder="Default input" id="inputDefault"/>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="col-form-label" for="inputDefault">#{internationalization.address} 1</label>
+                                        <input type="text" class="form-control" placeholder="Default input" id="inputDefault"/>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="col-form-label" for="inputDefault">#{internationalization.postalcode}</label>
+                                        <input type="text" class="form-control" placeholder="Default input" id="inputDefault"/>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="col-form-label" for="inputDefault">#{internationalization.address} 2</label>
+                                        <input type="text" class="form-control" placeholder="Default input" id="inputDefault"/>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="col-form-label" for="inputDefault">#{internationalization.city}</label>
+                                        <input type="text" class="form-control" placeholder="Default input" id="inputDefault"/>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="col-form-label" for="inputDefault">#{internationalization.province}</label>
+                                        <input type="text" class="form-control" placeholder="Default input" id="inputDefault"/>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="col-form-label" for="inputDefault">#{internationalization.country}</label>
+                                        <input type="text" class="form-control" placeholder="Default input" id="inputDefault"/>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="col-form-label" for="inputDefault">#{internationalization.cellphone}</label>
+                                        <input type="text" class="form-control" placeholder="Default input" id="inputDefault"/>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="col-form-label" for="inputDefault">#{internationalization.hometel}</label>
+                                        <input type="text" class="form-control" placeholder="Default input" id="inputDefault"/>
+                                    </div>
 
-                    <tr>
-                        <td><h:outputLabel for="address1">Address</h:outputLabel></td>  
-                        <td><h:inputText id="address1" required="true" requiredMessage="Address is required"/><br/></td>
-                    </tr>
+                                    
+                                    <button type="submit" class="btn btn-primary formbutton">#{internationalization.signup}</button>
+                                </fieldset>
+                            </form>
 
-                    <tr>
-                        <td><h:outputLabel for="address2">Address 2 (optional)</h:outputLabel></td>  
-                        <td><h:inputText id="address2"/></td>
-                    </tr>
+                        </div>
 
-                    <tr>
-                        <td><h:outputLabel for="city">City</h:outputLabel></td>  
-                        <td><h:inputText id="city" required="true" requiredMessage="City is required"/></td>
-                    </tr>
+                    </div>
+                </div>
+            </div>
 
-                    <tr>
-                        <td><h:outputLabel for="province">Province</h:outputLabel></td>  
-                        <td><h:inputText id="province" required="true" requiredMessage="Province is required"/></td>
-                    </tr>
+            <div class="tab-pane fade" id="login">
+                <div class="row">
+                    <div class ="col-md-12">
+                        <div class="col-md-4 centerform">
+                            <form>
+                                <fieldset>
+                                    <legend>#{internationalization.loginopt}</legend>
 
-                    <tr>
-                        <td><h:outputLabel for="country">Country</h:outputLabel></td>  
-                        <td><h:inputText id="country" required="true" requiredMessage="Country is required"/></td>
-                    </tr>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">#{internationalization.email}</label>
+                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"/>
+                                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
 
-                    <tr>
-                        <td><h:outputLabel for="postalcode">Postal code</h:outputLabel></td>  
-                        <td><h:inputText id="postalcode" required="true" requiredMessage="Postal code is required"/></td>
-                    </tr>
 
-                    <tr>
-                        <td><h:outputLabel for="cellphone">Cell phone (optional)</h:outputLabel></td>  
-                        <td><h:inputText id="cellphone"/></td>
-                    </tr>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">#{internationalization.password}</label>
+                                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"/>
+                                    </div>
 
-                    <tr>
-                        <td><h:outputLabel for="homephone">Home phone (optional)</h:outputLabel></td>  
-                        <td><h:inputText id="homephone"/></td>
-                    </tr>
+                                    <button type="submit" class="btn btn-primary formbutton">#{internationalization.loginopt}</button>
+                                </fieldset>
+                            </form>
 
-                    <tr>
-                        <td><h:outputLabel for="email">Email</h:outputLabel></td>  
-                        <td><h:inputText id="email" required="true" requiredMessage="Email is required"/></td>  
-                    </tr>
+                        </div>
 
-                    <tr>
-                        <td><h:outputLabel for="password">Password</h:outputLabel></td>  
-                        <td><h:inputText id="password" required="true" requiredMessage="Password is required"/></td>
-                    </tr>
+                    </div>
+                </div>
 
-                    <tr>
-                        <td><h:outputLabel for="confirm">Confirm password</h:outputLabel></td>  
-                        <td><h:inputText id="confirm" required="true" requiredMessage="Must confirm password"/></td>
-                    </tr>
 
-                    <tr>
-                        <td><h:commandButton value="Submit" action="index"/></td>
-                    </tr>
-                </h:form>    
-            </table>
-  
-            <table id="login" class="inline">
-                <caption>Log in</caption>
-                <h:form>  
-                    <tr>
-                        <td><h:outputLabel for="existing_email">Email</h:outputLabel></td>  
-                        <td><h:inputText id="existing_email" required="true" requiredMessage="Email is required"/></td>  
-                    </tr>
-
-                    <tr>
-                        <td><h:outputLabel for="existing_password">Password</h:outputLabel></td>  
-                        <td><h:inputText id="existing_password" required="true" requiredMessage="Password is required"/></td>
-                    </tr>
-
-                    <tr>
-                        <td><h:commandButton value="Submit" action="index"/></td>
-                    </tr>
-                </h:form>    
-            </table>
+            </div>
         </div>
+
     </h:body>
 </html>
