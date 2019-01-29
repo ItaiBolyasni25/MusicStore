@@ -1,3 +1,6 @@
+
+import java.util.List;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -10,6 +13,7 @@
  * @author aantoine97
  */
 public class Validator {
+    private static final DAO DAO = new DAO("User");
     
     /**
      * Will be used to validate a user trying to register
@@ -18,7 +22,8 @@ public class Validator {
      * @return boolean
      */
     public static boolean hasValidInformation(User user) {
-        return false;
+        List<User> existingUser = DAO.read(user.getEmail());
+        return existingUser.isEmpty();
     }
     
     /**
@@ -29,6 +34,11 @@ public class Validator {
      * @return boolean
      */
     public static boolean isRegistered(String email, String password) {
+        List<User> user = DAO.read(email);
+        if (user.size() == 1) {
+            return user.get(0).getPassword().equals(password);
+        }
+        
         return false;
     }
 }
