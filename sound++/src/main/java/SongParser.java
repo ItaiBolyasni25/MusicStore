@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 
-
 import java.io.IOException;
 import java.net.URI;
 import java.nio.charset.StandardCharsets;
@@ -13,11 +12,14 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -25,35 +27,18 @@ import javax.persistence.Query;
  */
 public class SongParser {
 
-    public static void main(String[] args) throws IOException {
+    private final static Logger LOG = LoggerFactory.getLogger(SongParser.class);
 
-        Path p = Paths.get("dataPoints.csv");
-        List<String> list = Files.readAllLines(p, StandardCharsets.UTF_8);
-        for (int i = 1; i < list.size(); i++) {
-            String[] splittedCsv = list.get(i).split(",");
-            /*
-                0 - album title
-                1 - album number
-                2 - track title
-                3 - artist
-                4 - songwriter
-                5 - play length
-                6 - selection number
-                7 - category
-                8 - album cover img
-                9 - cost price
-                10 - list price
-                11 - sale price
-                12 - date entered
-                13 - sold as 
-                14 - removal status
-                15 - removal date
-             */
-            EntityManagerFactory emf = Persistence.createEntityManagerFactory("songstore");
+    public static void main(String[] args) throws IOException {
+       readCSVFile("dataPoints.csv");
+    }
+    private static void populateDatabase(String[] splittedCsv){
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("songstore");
             EntityManager em = emf.createEntityManager();
             em.getTransaction().begin();
-            Query query = em.createQuery("FROM Album a WHERE a.title = '" + splittedCsv[0] + "'", Album.class);
-            List<Album> albums = (List<Album>)query.getResultList();
+             Query query = em.createQuery("FROM Album a WHERE a.title = '" + splittedCsv[0] + "'", Album.class);
+            List<Album> albums = (List<Album>) query.getResultList();
+
             Album album = new Album();
             if (albums.size() < 1) {
                 album.setTitle(splittedCsv[0]);
@@ -69,12 +54,12 @@ public class SongParser {
             } else {
                 album = albums.get(0);
             }
-            
             Track track = new Track();
             track.setSelection_number(Integer.parseInt(splittedCsv[6]));
             track.setTitle(splittedCsv[2]);
-            track.setSongwriter(splittedCsv[4]);
-            track.setPlay_length(null);
+            track.setSongwriter(splittedCsv[4]); 
+            String[] play_length = splittedCsv[5].split(":"); 
+            track.setPlay_length(Integer.parseInt(play_length[0]) + ":" + ""+Integer.parseInt(play_length[1]));
             track.setGenre(splittedCsv[7]);
             track.setAlbum(album);
             track.setCost(Double.parseDouble(splittedCsv[9]));
@@ -84,11 +69,20 @@ public class SongParser {
             track.setIndividual(!(splittedCsv[13]).equals("Album"));
             track.setRemoval_status(false);
             track.setRemoval_date(null);
-            
+
             em.persist(track);
             em.getTransaction().commit();
 
         }
-
+    private static void readCSVFile(String filename) throws IOException{
+       Path p = Paths.get(filename);
+        List<String> list = Files.readAllLines(p, StandardCharsets.UTF_8);
+        for (int i = 1; i < list.size(); i++) {
+           String[] splittedCsv = list.get(i).split(",");   
+             if (splittedCsv[0].contains("'")){
+                splittedCsv[0] = splittedCsv[0].replace("'","''");
+            }
+             populateDatabase(splittedCsv);
+        }
     }
 }
