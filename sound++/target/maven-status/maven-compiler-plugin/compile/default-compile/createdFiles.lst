@@ -1,1 +1,10 @@
+Validator.class
+RegisterBean.class
+Track.class
+DAO.class
 Internationalization.class
+User.class
+EntityModel.class
+LoginBean.class
+Album.class
+SongParser.class

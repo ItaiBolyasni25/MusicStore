@@ -13,7 +13,7 @@ import javax.faces.bean.SessionScoped;
  * 
  * @author aantoine97
  */
-@ManagedBean(name = "loginbean", eager = true) 
+@ManagedBean(name = "loginBean", eager = true) 
 @SessionScoped 
 public class LoginBean {
     private String email;

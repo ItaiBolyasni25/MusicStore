@@ -11,14 +11,14 @@ import javax.faces.bean.*;
  * @author aantoine97
  */
 
-@ManagedBean(name = "registerbean", eager = true) 
+@ManagedBean(name = "registerBean", eager = true) 
 @SessionScoped 
 public class RegisterBean {
     private String firstName;
     private String lastName;
     private String email;
+    // Have to figure out how we're going to use password
     private String password;
-    // Need to discuss password with teammates
     private String companyName;
     private String address1;
     private String postalCode;
@@ -136,16 +136,21 @@ public class RegisterBean {
     
     /**
      * If credentials are valid, add the newly registered user to the database
+     * 
+     * @return boolean
      */
-    public void addUser() {
+    public boolean addUser() {
         User user = new User(firstName, lastName, email, password, companyName, 
             address1, postalCode, address2, city, province, country, cellphone, 
             homephone);
         
+        System.out.println(firstName + " " + lastName);
+        
         if (Validator.hasValidInformation(user)) {
-           DAO.write(user); 
+           DAO.write(user);
+           return true;
         } else {
-            // Find out what to do if user is invalid
+            return false;        
         }
     }
 }

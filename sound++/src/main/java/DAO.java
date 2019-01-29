@@ -36,7 +36,7 @@ public class DAO {
     public <E extends EntityModel> List<E> read(E entityModel, int id) {
         em.getTransaction().begin();
         String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
-        Query q = em.createQuery("FROM " + className + " WHERE " + className + "Id = '" + id + "'");
+        Query q = em.createQuery("FROM " + className + " WHERE " + className + "_id = '" + id + "'");
 
         return q.getResultList();
     }
