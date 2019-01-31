@@ -21,10 +21,10 @@ public class Track implements EntityModel{
     private int selection_number;
     private String title;
     private String songwriter;
-    private Timestamp play_length;
+    private String play_length;
     private String genre;
     @ManyToOne(cascade = {CascadeType.ALL})
-    @JoinColumn(name = "album_Id", referencedColumnName="albumId")
+    @JoinColumn(name = "albumId", referencedColumnName="albumId")
     private Album album;
     private double cost;
     private double list_price;
@@ -66,11 +66,11 @@ public class Track implements EntityModel{
         this.songwriter = songwriter;
     }
 
-    public Timestamp getPlay_length() {
+    public String getPlay_length() {
         return play_length;
     }
 
-    public void setPlay_length(Timestamp play_length) {
+    public void setPlay_length(String play_length) {
         this.play_length = play_length;
     }
 

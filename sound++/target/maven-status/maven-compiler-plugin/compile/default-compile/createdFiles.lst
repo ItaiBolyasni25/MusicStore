@@ -1,1 +1,6 @@
+Track.class
+DAO.class
 Internationalization.class
+EntityModel.class
+Album.class
+SongParser.class
