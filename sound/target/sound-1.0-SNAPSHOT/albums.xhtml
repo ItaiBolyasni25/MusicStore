@@ -78,8 +78,9 @@
             <tbody>
                 <ui:repeat var="album" value="#{albumBean.all}" > 
                            <tr class="table-secondary">
-                        <th scope="row">Secondary</th>
+                        <th><h:graphicImage value="#{album.image}" title="Album's cover" class="albumPic"/></th>
                         <td>#{album.title}</td>
+                        <td>Updating</td>
                         <td>#{album.releaseDate}</td>
                         <td>#{album.numberOfSong}</td>
                         <td>#{album.cost}</td>

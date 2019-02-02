@@ -36,7 +36,7 @@ public class Album implements EntityModel{
     private double sale_price;
     private boolean removal_status;
     private Timestamp removal_date;
-    private byte[] image;
+    private String image;
 
     public int getId() {
         return albumId;
@@ -118,12 +118,12 @@ public class Album implements EntityModel{
         this.removal_date = removalDate;
     }
 
-    public byte[] getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(byte[] image) {
+    public void setImage(String image) {
         this.image = image;
     }
-    
+
 }

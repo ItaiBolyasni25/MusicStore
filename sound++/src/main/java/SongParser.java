@@ -18,6 +18,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,21 +37,21 @@ public class SongParser {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("songstore");
             EntityManager em = emf.createEntityManager();
             em.getTransaction().begin();
-             Query query = em.createQuery("FROM Album a WHERE a.title = '" + splittedCsv[0] + "'", Album.class);
+            TypedQuery query = em.createQuery("FROM Album a WHERE a.title = '" + splittedCsv[0] + "'", Album.class);
             List<Album> albums = (List<Album>) query.getResultList();
 
-            Album album = new Album();
+           Album album = new Album();
             if (albums.size() < 1) {
                 album.setTitle(splittedCsv[0]);
                 album.setReleaseDate(new Timestamp(System.currentTimeMillis()));
                 album.setLabel(splittedCsv[3]);
                 album.setAddedDate(new Timestamp(System.currentTimeMillis()));
-                album.setCost(20);
-                album.setListPrice(20);
-                album.setSalePrice(0);
+                album.setCost(Double.parseDouble(splittedCsv[9]));
+                album.setListPrice(Double.parseDouble(splittedCsv[10]));
+                album.setSalePrice(0.0);
                 album.setRemovalStatus(false);
                 album.setRemovalDate(null);
-                album.setImage(null);
+                album.setImage(splittedCsv[8]);
             } else {
                 album = albums.get(0);
             }
@@ -79,9 +80,6 @@ public class SongParser {
         List<String> list = Files.readAllLines(p, StandardCharsets.UTF_8);
         for (int i = 1; i < list.size(); i++) {
            String[] splittedCsv = list.get(i).split(",");   
-             if (splittedCsv[0].contains("'")){
-                splittedCsv[0] = splittedCsv[0].replace("'","''");
-            }
              populateDatabase(splittedCsv);
         }
     }
