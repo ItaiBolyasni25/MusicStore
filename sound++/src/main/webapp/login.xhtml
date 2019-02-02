@@ -98,7 +98,7 @@
 
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">#{internationalization.password}</label>
-                                        <h:inputText type="password" value="#{registerBean.password}" class="form-control" id="registerPassword" placeholder="Password"/>
+                                        <h:inputSecret value="#{registerBean.password}" class="form-control" id="registerPassword" placeholder="Password"/>
                                     </div>
 
                                     <div class="form-group">
@@ -173,10 +173,10 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">#{internationalization.password}</label>
-                                        <input type="password" value="#{loginBean.password}" class="form-control" id="loginPassword" placeholder="Password"/>
+                                        <h:inputSecret value="#{loginBean.password}" class="form-control" id="loginPassword" placeholder="Password"/>
                                     </div>
 
-                                    <h:commandButton type="submit" class="btn btn-primary formbutton" value="#{internationalization.loginopt}" action="#{loginBean.canLogin}"/>
+                                    <h:commandButton type="submit" class="btn btn-primary formbutton" value="#{internationalization.loginopt}" action="#{loginBean.canLogIn}"/>
                                 </fieldset>
                             </h:form>
 
