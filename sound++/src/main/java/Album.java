@@ -125,4 +125,5 @@ public class Album implements EntityModel{
     public void setImage(byte[] image) {
         this.image = image;
     }
+    
 }
