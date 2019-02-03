@@ -5,6 +5,7 @@
  */
 
 
+import java.sql.Date;
 import java.sql.Timestamp;
 import javax.persistence.*;
 
@@ -19,14 +20,14 @@ public class Album implements EntityModel{
     @GeneratedValue( strategy=GenerationType.AUTO )
     private int albumId;
     private String title;
-    private Timestamp release_date;
-    private Timestamp date_added;
+    private Date release_date;
+    private Date date_added;
 
-    public Timestamp getAddedDate() {
+    public Date getAddedDate() {
         return date_added;
     }
 
-    public void setAddedDate(Timestamp addedDate) {
+    public void setAddedDate(Date addedDate) {
         this.date_added = addedDate;
     }
     private String recording_label;
@@ -54,11 +55,11 @@ public class Album implements EntityModel{
         this.title = title;
     }
 
-    public Timestamp getReleaseDate() {
+    public Date getReleaseDate() {
         return release_date;
     }
 
-    public void setReleaseDate(Timestamp releaseDate) {
+    public void setReleaseDate(Date releaseDate) {
         this.release_date = releaseDate;
     }
 

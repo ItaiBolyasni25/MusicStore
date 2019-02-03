@@ -1,0 +1,8 @@
+#surefire
+#Sun Feb 03 01:07:34 EST 2019
+maven.ext.class.path=C\:\\Program Files\\NetBeans 8.2\\java\\maven-nblib\\netbeans-eventspy.jar
+user.dir=C\:\\Users\\maian\\Desktop\\csdmusicstore\\sound++
+file.encoding=UTF-8
+localRepository=C\:\\Users\\maian\\.m2\\repository
+netbeans.deploy=true
+basedir=C\:\\Users\\maian\\Desktop\\csdmusicstore\\sound++
