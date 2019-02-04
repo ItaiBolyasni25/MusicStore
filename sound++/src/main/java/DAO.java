@@ -18,7 +18,7 @@ import javax.persistence.Query;
 public class DAO {
 
 
-    private EntityManager em;
+    protected EntityManager em;
 
     public DAO(String databaseName) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory(databaseName);

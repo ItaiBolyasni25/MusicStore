@@ -1,6 +1,10 @@
+TrackBean.class
+Internationalization.class
+Album.class
+TrackDAO.class
+SongParser.class
 Track.class
 DAO.class
-Internationalization.class
+AlbumDao.class
 EntityModel.class
-Album.class
-SongParser.class
+AlbumBean.class
