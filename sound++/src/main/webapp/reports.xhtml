@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.2.1/lux/bootstrap.min.css" />
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+        <h:outputStylesheet library="css" name="style.css"  />
+        <title>Sound++</title>
+    </h:head>
+    <h:body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+            <a class="navbar-brand" href="#"><img id="logo" src="assets/logo.png" alt="Logo of online music store Sound++"></img></a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarColor03">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <h:link class="nav-link" value="Menu" outcome="manager"/>
+                    </li>
+
+                </ul>
+
+                <li class="nav-item dropdown">
+                    <h:form> 
+                        <h:selectOneMenu class="custom-select" value="#{internationalization.language}">
+                            <f:selectItem itemValue="en" itemLabel="#{internationalization.english}" />
+                            <f:selectItem itemValue="fr" itemLabel="#{internationalization.french}" />
+                        </h:selectOneMenu>
+                        <h:commandButton class="btn btn-outline-primary btn-sm languagebutton" value = "#{internationalization.change}" action = "reports" /> 
+                    </h:form>
+                </li>
+
+                <h:form class="form-inline my-2 my-lg-0">
+                    <h:inputText class="form-control mr-sm-2" value="#{internationalization.search}"/>
+                    <h:commandButton class="btn btn-outline-primary" value="#{internationalization.search}" action="search"/>
+                </h:form>
+
+
+
+            </div>
+        </nav>
+
+        <p>
+            From this page a manager can request a number of reports on the inventory, orders, and clients. All reports accept a range of dates in addition to any details specific to the type of report. A report may just consist of a summary or as a detailed report. All sales report will show the total sales, total cost, and total profit. Any item that was valid during the report time frame but is now removed should indicate this fact. The required reports are:
+            <br></br><br></br>
+            Total Sales
+            <br></br>
+            Within the defined date range this report displays either the total sales for all items or displays a list of every item sold ordered by date in addition to the totals. 
+            <br></br>
+            <br></br>
+            Sales by Client
+            <br></br>
+            For a chosen client and within the defined date range this report displays either the total sales or displays a list ordered by date of every item purchased in addition to the totals.
+            <br></br>
+            <br></br>
+            Sales by Artist
+            <br></br>
+            For a chosen artist and within the defined date range this report displays the total sales for all items or displays a list of every item sold in addition to the totals.
+            <br></br><br></br>
+            Sales by Track
+            <br></br>
+            For a chosen track and within the defined date range this report displays either the total sales and downloads or displays a list ordered by date of every purchase in addition to the totals.
+            <br></br><br></br>
+            Sales by Album
+            <br></br>
+            For a chosen album and within the defined date range this report displays either the total sales and downloads or displays a list ordered by date of every purchase in addition to the totals.
+            <br></br><br></br>
+            Top Sellers
+            <br></br>
+            Within the defined date range this report displays the inventory in order of total sales. Items that have never been sold are not included.
+            <br></br><br></br>
+            Top Clients
+            <br></br>
+            Within the defined date range this report displays a list of clients in order of value of their total purchases. Clients who have never made a purchase are not included.
+            <br></br><br></br>
+            Zero Tracks
+            <br></br>
+            Within the defined date range this report displays all tracks that have never sold.
+            <br></br><br></br>
+            Zero Clients
+            <br></br>
+            Within the defined date range this report displays all clients that have never made a purchase.
+
+        </p>
+
+
+
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="table-secondary">
+                    <th scope="row">Total sales</th>
+                </tr>
+                <tr class="table-secondary">
+                    <th scope="row">Sales by Clients</th>
+                </tr>
+                <tr class="table-secondary">
+                    <th scope="row">Sales by Artist</th>
+                </tr>
+                <tr class="table-secondary">
+                    <th scope="row">Sales by Tracks</th>
+                </tr>
+                <tr class="table-secondary">
+                    <th scope="row">Sales by Album</th>
+                </tr>
+                <tr class="table-secondary">
+                    <th scope="row">Top Sellers</th>
+                </tr>
+                <tr class="table-secondary">
+                    <th scope="row">Top Clients</th>
+                </tr>
+                <tr class="table-secondary">
+                    <th scope="row">Zero Tracks</th>
+                </tr>
+                <tr class="table-secondary">
+                    <th scope="row">Zero Clients</th>
+                </tr>
+            </tbody>
+        </table> 
+
+    </h:body>
+</html>
