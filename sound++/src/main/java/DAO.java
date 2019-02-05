@@ -40,11 +40,23 @@ public class DAO {
 
         return q.getResultList();
     }
+    
+    public <E extends EntityModel> List<E> findAll(E entityModel) {
+        String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
+        Query q = em.createQuery("FROM " + className);
+        return q.getResultList();
+    }
    
 
     public <E extends EntityModel> boolean delete(E entityModel) {
         em.remove(entityModel);
         return true;
+    }
+    
+    public <E extends EntityModel> List<E> find(E entityModel, String whereClause) {
+        String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
+        Query q = em.createQuery("FROM " + className + " WHERE " + whereClause);
+        return q.getResultList();
     }
 
 }
