@@ -1,3 +1,5 @@
+
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -36,7 +38,7 @@ public class DAO {
     public <E extends EntityModel> List<E> read(E entityModel, int id) {
         em.getTransaction().begin();
         String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
-        Query q = em.createQuery("FROM " + className + " WHERE " + className + "Id = '" + id + "'");
+        Query q = em.createQuery("FROM " + className + " WHERE " + className + "_id = '" + id + "'");
 
         return q.getResultList();
     }
@@ -46,8 +48,7 @@ public class DAO {
         Query q = em.createQuery("FROM " + className);
         return q.getResultList();
     }
-   
-
+  
     public <E extends EntityModel> boolean delete(E entityModel) {
         em.remove(entityModel);
         return true;

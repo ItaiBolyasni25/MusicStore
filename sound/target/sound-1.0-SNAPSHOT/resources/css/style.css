@@ -94,6 +94,15 @@ a{
     height: 150px;
     width: auto;
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+.trackPic{
+    height: 60px;
+    width: auto;
+}
+=======
+>>>>>>> 9656f57b6e21202a54b30daba6dd8cdccf8a21ff
 .languagebutton{
     width: 40%;
     margin-left: 30%;
@@ -111,6 +120,7 @@ a{
 .inventorychoices{
     margin-left: 28.5%;
 }
+<<<<<<< HEAD
 
 @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 section {
@@ -193,3 +203,6 @@ section .section-title {
     margin-bottom: 10px;
 }
 }
+=======
+>>>>>>> staging
+>>>>>>> 9656f57b6e21202a54b30daba6dd8cdccf8a21ff

@@ -16,12 +16,12 @@ import javax.faces.bean.ManagedBean;
 
 @ManagedBean(name = "albumBean", eager = true)
 public class AlbumBean implements Serializable {
-   private AlbumDao dao;
+   private DAO dao;
    public AlbumBean(){
-       dao = new AlbumDao("songstore");
+       dao = new DAO("songstore");
    }
    public List<Album> getAll(){
-       return dao.getAll();
+       return dao.findAll(new Album());
    }
    
 }

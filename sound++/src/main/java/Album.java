@@ -1,9 +1,10 @@
+
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -18,7 +19,7 @@ import javax.persistence.*;
 public class Album implements EntityModel{
     @Id
     @GeneratedValue( strategy=GenerationType.AUTO )
-    private int albumId;
+    private int album_id;
     private String title;
     private Date release_date;
     private Date date_added;
@@ -39,13 +40,14 @@ public class Album implements EntityModel{
     private Timestamp removal_date;
     private String image;
 
-    public int getId() {
-        return albumId;
+    public int getAlbum_id() {
+        return album_id;
     }
 
-    public void setId(int id) {
-        this.albumId = id;
+    public void setAlbum_id(int album_id) {
+        this.album_id = album_id;
     }
+
 
     public String getTitle() {
         return title;
