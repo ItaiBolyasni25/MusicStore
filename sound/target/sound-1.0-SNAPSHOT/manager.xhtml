@@ -23,6 +23,7 @@
             <div class="collapse navbar-collapse" id="navbarColor03">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
+<<<<<<< HEAD
                       <h:link class="nav-link" value="#{internationalization.home}" outcome="index"/>
                     </li>
                     <li class="nav-item">
@@ -55,6 +56,23 @@
                       </div>
                 </li>
                 
+=======
+                        <h:link class="nav-link" value="Menu" outcome="manager"/>
+                    </li>
+
+                </ul>
+
+                <li class="nav-item dropdown">
+                    <h:form> 
+                        <h:selectOneMenu class="custom-select" value="#{internationalization.language}">
+                            <f:selectItem itemValue="en" itemLabel="#{internationalization.english}" />
+                            <f:selectItem itemValue="fr" itemLabel="#{internationalization.french}" />
+                        </h:selectOneMenu>
+                        <h:commandButton class="btn btn-outline-primary btn-sm languagebutton" value = "#{internationalization.change}" action = "manager" /> 
+                    </h:form>
+                </li>
+
+>>>>>>> staging
                 <h:form class="form-inline my-2 my-lg-0">
                     <h:inputText class="form-control mr-sm-2" value="#{internationalization.search}"/>
                     <h:commandButton class="btn btn-outline-primary" value="#{internationalization.search}" action="search"/>
@@ -62,5 +80,101 @@
             </div>
         </nav>
 
+<<<<<<< HEAD
+=======
+        <div >
+
+            <div class="card mb-3 manageroptions ">
+                <h:link class="nav-link" outcome="inventory">
+                    <div class="card-body">
+                        <div class="card-title"><h6>#{internationalization.inventory}</h6></div>
+                        <img class="genresimg" src="assets/manager/box.png" alt="Card image"/>  
+                    </div>
+                </h:link> 
+            </div>
+
+
+            <div class="card mb-3 manageroptions ">
+                <h:link class="nav-link" outcome="sales">
+                    <div class="card-body">
+                        <div class="card-title"><h6>#{internationalization.sales}</h6></div>
+                        <img class="genresimg" src="assets/manager/sales.png" alt="Card image"/>  
+                    </div>
+                </h:link>
+            </div>
+
+            <div class="card mb-3 manageroptions ">
+                <h:link class="nav-link" outcome="clientmngt">
+                    <div class="card-body">
+                        <div class="card-title"><h6>#{internationalization.clientmngt}</h6></div>
+                        <img class="genresimg" src="assets/manager/clients.png" alt="Card image"/>   
+                    </div>
+                </h:link>
+
+            </div>
+
+            <div class="card mb-3 manageroptions ">
+                <h:link class="nav-link" outcome="ordermngt">
+                    <div class="card-body">
+                        <div class="card-title"><h6>#{internationalization.ordermngt}</h6></div>
+                        <img class="genresimg" src="assets/manager/orders.png" alt="Card image"/>  
+                    </div> 
+                </h:link>
+
+            </div>
+
+            <div class="card mb-3 manageroptions ">
+                <h:link class="nav-link" outcome="reviewmngt">
+                    <div class="card-body">
+                        <div class="card-title"><h6>#{internationalization.reviewmngt}</h6></div>
+                        <img class="genresimg" src="assets/manager/reviews.png" alt="Card image"/> 
+                    </div>
+                </h:link>
+
+            </div>
+
+            <div class="card mb-3 manageroptions" style="margin-left: 10%;">
+                <h:link class="nav-link" outcome="reports">
+                    <div class="card-body">
+                        <div class="card-title"><h6>#{internationalization.reporting}</h6></div>
+                        <img class="genresimg" src="assets/manager/reports.png" alt="Card image"/> 
+                    </div>
+                </h:link>
+
+            </div>
+
+            <div class="card mb-3 manageroptions ">
+                <h:link class="nav-link" outcome="newsmngt">
+                    <div class="card-body">
+                        <div class="card-title"><h6>#{internationalization.newsmngt}</h6></div>
+                        <img class="genresimg" src="assets/manager/news.png" alt="Card image"/> 
+                    </div>
+                </h:link>
+
+            </div>
+
+            <div class="card mb-3 manageroptions ">
+                <h:link class="nav-link" outcome="surveymngt">
+                    <div class="card-body">
+                        <div class="card-title"><h6>#{internationalization.surveymngt}</h6></div>
+                        <img class="genresimg" src="assets/manager/surveys.png" alt="Card image"/> 
+                    </div>
+                </h:link>
+
+            </div>
+
+            <div class="card mb-3 manageroptions ">
+                <h:link class="nav-link" outcome="bannerad">
+                    <div class="card-body">
+                        <div class="card-title"><h6>#{internationalization.bannerad}</h6></div>
+                        <img class="genresimg" src="assets/manager/ad.png" alt="Card image"/> 
+                    </div>
+                </h:link>
+
+            </div>
+
+        </div>
+
+>>>>>>> staging
     </h:body>
 </html>

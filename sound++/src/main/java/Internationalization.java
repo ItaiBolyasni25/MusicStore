@@ -1,3 +1,5 @@
+
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -201,4 +203,57 @@ public class Internationalization implements Serializable {
     public String getPassword(){
         return language.equals("English")? "Password": "Mot de passe";
     }
+    
+    public String getChange(){
+        return language.equals("English")? "Change": "Changer";
+    }
+    
+    public String getInventory(){
+        return language.equals("English")? "Inventory": "Inventaire";
+    }
+    
+    public String getSales(){
+        return language.equals("English")? "Sales": "Ventes";
+    }
+    
+    public String getClientmngt(){
+        return language.equals("English")? "Client Management": "Gestion des clients";
+    }
+    
+    public String getOrdermngt(){
+        return language.equals("English")? "Order Management": "Gestion des orders";
+    }
+    
+    public String getReviewmngt(){
+        return language.equals("English")? "Review Management": "Gestion des commentaires";
+    }
+    
+    public String getReporting(){
+        return language.equals("English")? "Reports": "Rapports";
+    }
+    
+    public String getNewsmngt(){
+        return language.equals("English")? "News Management": "Gestion de Nouvelles";
+    }
+    
+    public String getSurveymngt(){
+        return language.equals("English")? "Survey Management": "Gestion de questionnaires";
+    }
+    
+    public String getBannerad(){
+        return language.equals("English")? "Banner Ad Management": "Gestion de publicites";
+    }
+    
+    public String getInventoryadd(){
+        return language.equals("English")? "Add": "Ajouter";
+    }
+    
+    public String getInventoryremove(){
+        return language.equals("English")? "Remove": "Enlever";
+    }
+    
+    public String getInventoryedit(){
+        return language.equals("English")? "Edit": "Modifier";
+    }
+
 }

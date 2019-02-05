@@ -1,3 +1,5 @@
+
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -6,7 +8,7 @@
 
 
 import java.sql.Date;
-import java.sql.Timestamp;
+import java.io.Serializable;
 import javax.persistence.*;
 
 /**
@@ -15,7 +17,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="Track")
-public class Track implements EntityModel{
+public class Track implements EntityModel, Serializable{
     @Id
     @GeneratedValue( strategy=GenerationType.AUTO )
     private int track_Id;
