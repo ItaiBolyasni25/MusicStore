@@ -19,7 +19,7 @@ import javax.persistence.*;
 public class Album implements EntityModel{
     @Id
     @GeneratedValue( strategy=GenerationType.AUTO )
-    private int albumId;
+    private int album_id;
     private String title;
     private Date release_date;
     private Date date_added;
@@ -41,11 +41,11 @@ public class Album implements EntityModel{
     private String image;
 
     public int getId() {
-        return albumId;
+        return album_id;
     }
 
     public void setId(int id) {
-        this.albumId = id;
+        this.album_id = id;
     }
 
     public String getTitle() {
