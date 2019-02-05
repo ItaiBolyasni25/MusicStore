@@ -1,4 +1,5 @@
-drop IF EXISTS database songstore;
+
+drop database if exists songstore;
 create database songstore;
 DROP USER IF EXISTS songstore@localhost;
 CREATE USER songstore@'localhost' IDENTIFIED WITH mysql_native_password BY 'dawson123' REQUIRE NONE;
@@ -9,7 +10,7 @@ CREATE TABLE Album (
     album_id int NOT NULL auto_increment,
     title varchar(256) NOT NULL,
     release_date date NOT NULL,
-    recording_label varchar(30) NOT NULL,
+    recording_label varchar(256) NOT NULL,
     number_songs int NOT NULL,
     date_added date NOT NULL,
     cost double(4,2) NOT NULL,
@@ -36,12 +37,21 @@ CREATE TABLE Artist (
     CONSTRAINT Artist_pk PRIMARY KEY (artist_id)
 );
 
--- Table: Artist_Album
-CREATE TABLE Artist_Album (
-    artist_album_id int NOT NULL auto_increment,
+-- Table: Album_Artist
+CREATE TABLE Album_Artist (
+    album_artist_id int NOT NULL auto_increment,
     artist_id int NOT NULL,
     album_id int NOT NULL,
-    CONSTRAINT Artist_Album_pk PRIMARY KEY (artist_album_id)
+    CONSTRAINT Album_Artist_pk PRIMARY KEY (album_artist_id)
+);
+
+-- Table: Cart
+CREATE TABLE Cart (
+    cart_id int NOT NULL auto_increment,
+    user_id int NOT NULL,
+    track_id int NOT NULL,
+    album_id int NOT NULL,
+    CONSTRAINT Cart_pk PRIMARY KEY (cart_id)
 );
 
 -- Table: Invoice
@@ -174,6 +184,19 @@ ALTER TABLE Album_Review ADD CONSTRAINT Album_Review_Album FOREIGN KEY Album_Rev
 ALTER TABLE Album_Review ADD CONSTRAINT Album_Review_Review FOREIGN KEY Album_Review_Review (review_id)
     REFERENCES Review (review_id);
 
+	
+-- Reference: Cart_Album (table: Cart)
+ALTER TABLE Cart ADD CONSTRAINT Cart_Album FOREIGN KEY Cart_Album (album_id)
+    REFERENCES Album (album_id);
+
+-- Reference: Cart_Track (table: Cart)
+ALTER TABLE Cart ADD CONSTRAINT Cart_Track FOREIGN KEY Cart_Track (track_id)
+    REFERENCES Track (track_id);
+
+-- Reference: Cart_User (table: Cart)
+ALTER TABLE Cart ADD CONSTRAINT Cart_User FOREIGN KEY Cart_User (user_id)
+    REFERENCES User (user_id);
+
 -- Reference: Invoice_User (table: Invoice)
 ALTER TABLE Invoice ADD CONSTRAINT Invoice_User FOREIGN KEY Invoice_User (user_id)
     REFERENCES User (user_id);
@@ -222,12 +245,12 @@ ALTER TABLE Track_Review ADD CONSTRAINT Track_Review_Review FOREIGN KEY Track_Re
 ALTER TABLE Track_Review ADD CONSTRAINT Track_Review_Track FOREIGN KEY Track_Review_Track (track_id)
     REFERENCES Track (track_id);
 
--- Reference: artist_album_Album (table: Artist_Album)
-ALTER TABLE Artist_Album ADD CONSTRAINT artist_album_Album FOREIGN KEY artist_album_Album (album_id)
+-- Reference: Album_Artist_Album (table: Album_Artist)
+ALTER TABLE Album_Artist ADD CONSTRAINT Album_Artist_Album FOREIGN KEY Album_Artist_Album (album_id)
     REFERENCES Album (album_id);
 
--- Reference: artist_album_Artist (table: Artist_Album)
-ALTER TABLE Artist_Album ADD CONSTRAINT artist_album_Artist FOREIGN KEY artist_album_Artist (artist_id)
+-- Reference: Album_Artist_Artist (table: Album_Artist)
+ALTER TABLE Album_Artist ADD CONSTRAINT Album_Artist_Artist FOREIGN KEY Album_Artist_Artist (artist_id)
     REFERENCES Artist (artist_id);
 
 -- End of file.

@@ -1,0 +1,13 @@
+Validator.class
+TrackBean.class
+Internationalization.class
+Album.class
+SongParser.class
+RegisterBean.class
+Track.class
+DAO.class
+User.class
+Artist.class
+EntityModel.class
+LoginBean.class
+AlbumBean.class

@@ -7,7 +7,7 @@
  * Author:  maian
  * Created: Jan 29, 2019
  */
-drop database songstore;
+drop database if exists songstore;
 create database songstore;
 DROP USER IF EXISTS songstore@localhost;
 CREATE USER songstore@'localhost' IDENTIFIED WITH mysql_native_password BY 'dawson123' REQUIRE NONE;
