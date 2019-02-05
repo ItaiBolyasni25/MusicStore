@@ -1,3 +1,5 @@
+
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -5,7 +7,8 @@
  */
 
 
-import java.sql.Timestamp;
+import java.sql.Date;
+import java.io.Serializable;
 import javax.persistence.*;
 
 /**
@@ -14,10 +17,10 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="Track")
-public class Track implements EntityModel{
+public class Track implements EntityModel, Serializable{
     @Id
     @GeneratedValue( strategy=GenerationType.AUTO )
-    private int trackId;
+    private int track_Id;
     private int selection_number;
     private String title;
     private String songwriter;
@@ -29,17 +32,17 @@ public class Track implements EntityModel{
     private double cost;
     private double list_price;
     private double sale_price;
-    private Timestamp date_added;
+    private Date date_added;
     private boolean individual;
     private boolean removal_status;
-    private Timestamp removal_date;
+    private Date removal_date;
 
     public int getId() {
-        return trackId;
+        return track_Id;
     }
 
     public void setId(int track_id) {
-        this.trackId = track_id;
+        this.track_Id = track_id;
     }
 
     public int getSelection_number() {
@@ -114,11 +117,11 @@ public class Track implements EntityModel{
         this.sale_price = sale_price;
     }
 
-    public Timestamp getDate_added() {
+    public Date getDate_added() {
         return date_added;
     }
 
-    public void setDate_added(Timestamp date_added) {
+    public void setDate_added(Date date_added) {
         this.date_added = date_added;
     }
 
@@ -138,11 +141,11 @@ public class Track implements EntityModel{
         this.removal_status = removal_status;
     }
 
-    public Timestamp getRemoval_date() {
+    public Date getRemoval_date() {
         return removal_date;
     }
 
-    public void setRemoval_date(Timestamp removal_date) {
+    public void setRemoval_date(Date removal_date) {
         this.removal_date = removal_date;
     }
 }
