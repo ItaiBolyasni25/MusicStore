@@ -5,9 +5,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.List;
 import javax.persistence.*;
 
 /**
@@ -15,14 +15,34 @@ import javax.persistence.*;
  * @author 1633867
  */
 @Entity
-@Table(name="Album")
-public class Album implements EntityModel{
+@Table(name = "Album")
+public class Album implements EntityModel {
+
     @Id
-    @GeneratedValue( strategy=GenerationType.AUTO )
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int album_id;
+    
+    
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(name = "album_artist",
+        joinColumns = @JoinColumn(name = "album_id"),
+        inverseJoinColumns = @JoinColumn(name = "artist_id")
+    )
+    private List<Artist> artists;
+    
+    
     private String title;
     private Date release_date;
     private Date date_added;
+    
+
+    public List<Artist> getArtists() {
+        return artists;
+    }
+
+    public void setArtists(List<Artist> artists) {
+        this.artists = artists;
+    }
 
     public Date getAddedDate() {
         return date_added;

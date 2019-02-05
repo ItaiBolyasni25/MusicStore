@@ -15,7 +15,7 @@ import java.util.List;
  * @author aantoine97
  */
 public class Validator {
-    private static final DAO DAO = new DAO("songstore");
+    private static final DAO dao = new DAO("songstore");
     
     /**
      * Will be used to validate a user trying to register
@@ -24,7 +24,7 @@ public class Validator {
      * @return boolean
      */
     public static boolean hasValidInformation(User user) {
-        List<User> existingUser = DAO.read(user.getEmail());
+        List<User> existingUser = dao.find(new User(), "email = '" + user.getEmail() + "'");
         System.out.println(user.getEmail());
         return existingUser.isEmpty();
     }
@@ -37,7 +37,7 @@ public class Validator {
      * @return boolean
      */
     public static boolean isRegistered(String email, String password) {
-        List<User> user = DAO.read(email);
+        List<User> user = dao.find(new User(), "email = '" + email + "'");
         
         if (user.size() == 1) {
             return user.get(0).getHash().equals(password);

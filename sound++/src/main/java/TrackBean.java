@@ -16,12 +16,12 @@ import javax.faces.bean.ManagedBean;
 
 @ManagedBean(name = "trackBean", eager = true)
 public class TrackBean implements Serializable {
-   private TrackDAO dao;
+   private DAO dao;
    public TrackBean(){
-       dao = new TrackDAO("songstore");
+       dao = new DAO("songstore");
    }
    public List<Track> getAll(){
-       return dao.getAll();
+       return dao.findAll(new Track());
    }
    
 }
