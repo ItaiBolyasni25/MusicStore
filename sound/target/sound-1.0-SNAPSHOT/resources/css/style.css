@@ -88,6 +88,12 @@ a{
     height: 150px;
     width: auto;
 }
+<<<<<<< HEAD
+.trackPic{
+    height: 60px;
+    width: auto;
+}
+=======
 .languagebutton{
     width: 40%;
     margin-left: 30%;
@@ -105,3 +111,4 @@ a{
 .inventorychoices{
     margin-left: 28.5%;
 }
+>>>>>>> staging
