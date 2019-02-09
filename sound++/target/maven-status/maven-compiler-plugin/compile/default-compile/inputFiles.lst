@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Users\1633867\Desktop\P\sound++\src\main\java\com\mycompany\Model\Track.java
 C:\Users\1633867\Desktop\P\sound++\src\main\java\TrackPaginationBean.java
 C:\Users\1633867\Desktop\P\sound++\src\main\java\AlbumBean.java
@@ -18,3 +19,18 @@ C:\Users\1633867\Desktop\P\sound++\src\main\java\com\mycompany\Interface\EntityM
 C:\Users\1633867\Desktop\P\sound++\src\main\java\getTracks.java
 C:\Users\1633867\Desktop\P\sound++\src\main\java\com\mycompany\Controller\RegisterBean.java
 C:\Users\1633867\Desktop\P\sound++\src\main\java\getTrackInfo.java
+=======
+C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\Album.java
+C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\Internationalization.java
+C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\LoginBean.java
+C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\EntityModel.java
+C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\AlbumBean.java
+C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\RegisterBean.java
+C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\DAO.java
+C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\Track.java
+C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\TrackBean.java
+C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\User.java
+C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\Artist.java
+C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\SongParser.java
+C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\Validator.java
+>>>>>>> add slider to news feed

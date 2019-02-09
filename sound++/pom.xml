@@ -44,6 +44,12 @@
             <type>jar</type>
         </dependency>
         <dependency>
+            <groupId>com.mycompany</groupId>
+            <artifactId>1635547</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
             <version>8.0</version>
