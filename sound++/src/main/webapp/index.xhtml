@@ -6,11 +6,15 @@
     <h:head>
         <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.2.1/lux/bootstrap.min.css" />
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"></link>
-
+        <!--Library for sliding carousel -->
+        <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+        <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+        
+        <script src="js/newsfeed.js"></script>
 
         <h:outputStylesheet library="css" name="style.css"  />
         <title>Sound++</title>
@@ -27,7 +31,7 @@
             <div class="collapse navbar-collapse" id="navbarColor03">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <h:link class="nav-link" value="#{internationalization.home}" outcome="manager"/>
+                        <h:link class="nav-link" value="#{internationalization.home}" outcome="index"/>
                     </li>
                     <li class="nav-item">
                         <h:link class="nav-link" value="#{internationalization.albums}" outcome="albums"/>
@@ -90,16 +94,19 @@
 
                 <div class="row">
                     <div class="col-md-9">
-                        <div>
-                            <div class="jumbotron">
-                                <h1 class="display-5">#{internationalization.newsfeed}</h1>
-
-
+                        <h1 class="display-5">#{internationalization.newsfeed}</h1>
+                        <div class="row">
+                            
+                            <div class="col-md-1" id="prev">
+                                <button type="button" class="slick-prev emptybutton"><img class="arrows" src="assets/arrowprev.png"></img></button>
+                            </div>
+                            <div class="jumbotron multiple-items col-md-10">
+                                
                                 <div class="card mb-3 cards">
                                     <h3 class="card-header">Artist new video</h3>
                                     <div class="card-body">
                                         <h5 class="card-title">Name of new video</h5>
-                                        <img style="height: 200px; width: 100%; display: block;" src="assets/img1.jpg" alt="Card image"/>
+                                        <img style="height: 20%; width: 100%; display: block;" src="assets/img1.jpg" alt="Card image"/>
                                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                                         <a href="#" class="card-link">Card link</a>
                                     </div>
@@ -112,7 +119,7 @@
                                     <h3 class="card-header">Artist new video</h3>
                                     <div class="card-body">
                                         <h5 class="card-title">Name of new video</h5>
-                                        <img style="height: 200px; width: 100%; display: block;" src="assets/img2.jpg" alt="Card image"/>
+                                        <img style="height: 20%; width: 100%; display: block;" src="assets/img2.jpg" alt="Card image"/>
                                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                                         <a href="#" class="card-link">Card link</a>
                                     </div>
@@ -125,7 +132,7 @@
                                     <h3 class="card-header">Artist new video</h3>
                                     <div class="card-body">
                                         <h5 class="card-title">Name of new video</h5>
-                                        <img style="height: 200px; width: 100%; display: block;" src="assets/img3.jpg" alt="Card image"/>
+                                        <img style="height: 20%; width: 100%; display: block;" src="assets/img3.jpg" alt="Card image"/>
                                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                                         <a href="#" class="card-link">Card link</a>
                                     </div>
@@ -133,6 +140,48 @@
                                         2 days ago
                                     </div>
                                 </div>
+                                
+                                <div class="card mb-3 cards">
+                                    <h3 class="card-header">Artist new video</h3>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Name of new video</h5>
+                                        <img style="height: 20%; width: 100%; display: block;" src="assets/img3.jpg" alt="Card image"/>
+                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                        <a href="#" class="card-link">Card link</a>
+                                    </div>
+                                    <div class="card-footer text-muted">
+                                        2 days ago
+                                    </div>
+                                </div>
+                                
+                                <div class="card mb-3 cards">
+                                    <h3 class="card-header">Artist new video</h3>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Name of new video</h5>
+                                        <img style="height: 20%; width: 100%; display: block;" src="assets/img3.jpg" alt="Card image"/>
+                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                        <a href="#" class="card-link">Card link</a>
+                                    </div>
+                                    <div class="card-footer text-muted">
+                                        2 days ago
+                                    </div>
+                                </div>
+                                
+                                <div class="card mb-3 cards">
+                                    <h3 class="card-header">Artist new video</h3>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Name of new video</h5>
+                                        <img style="height: 20%; width: 100%; display: block;" src="assets/img3.jpg" alt="Card image"/>
+                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                        <a href="#" class="card-link">Card link</a>
+                                    </div>
+                                    <div class="card-footer text-muted">
+                                        2 days ago
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-1" id="next">
+                                <button type="button" class="slick-next emptybutton"><img class="arrows" src="assets/arrownext.png"></img></button>
                             </div>
                         </div>
                     </div>

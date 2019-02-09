@@ -116,7 +116,6 @@ a{
     margin-left: 28.5%;
 }
 
-@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 section {
     padding: 60px 0;
 }
@@ -196,4 +195,16 @@ section .section-title {
     padding-bottom: 0px;
     margin-bottom: 10px;
 }
+}
+
+.arrows{
+    height: 10%;
+    width: 80%;
+}
+
+.emptybutton{
+    padding: 0;
+    border: none;
+    background: none;
+    margin-top: 45%;
 }
