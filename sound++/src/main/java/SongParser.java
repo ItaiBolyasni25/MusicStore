@@ -12,6 +12,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Date;
 import java.sql.Timestamp;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.List;
@@ -29,13 +30,14 @@ import org.slf4j.LoggerFactory;
 public class SongParser {
 
     private final static Logger LOG = LoggerFactory.getLogger(SongParser.class);
-    private final DAO dao = new DAO("songstore");
+    private final static DAO dao = new DAO("songstore");
 
-    public static void main(String[] args) throws IOException {
-        new SongParser().readCSVFile();
+    public static void main(String[] args) throws IOException, ParseException {
+        readCSVFile();
+        AlbumBean a = new AlbumBean();
     }
 
-    private void albumParser(String[] splittedCsv) {
+    private static void albumParser(String[] splittedCsv) throws ParseException {
         List<Artist> artists = dao.find(new Artist(), "name = '" + splittedCsv[3] + "'");
         Artist artist = new Artist();
         if (artists.size() < 1) {
@@ -49,24 +51,24 @@ public class SongParser {
         if (albums.size() < 1) {
             album.setTitle(splittedCsv[1].trim());
             Date javaDate = new Date();
-            album.setReleaseDate(new java.sql.Date(javaDate.getTime()));
+            album.setReleaseDate(newDateFormat(splittedCsv[2]));
             album.setArtists(artists);
-            LOG.info(Arrays.toString(artists.toArray()));
             album.setLabel(splittedCsv[4].trim());
             album.setAddedDate(new java.sql.Date(javaDate.getTime()));
-            album.setCost(20);
-            album.setListPrice(20);
+            album.setCost(Double.parseDouble(splittedCsv[7]));
+            album.setListPrice(Double.parseDouble(splittedCsv[8]));
             album.setSalePrice(0);
             album.setRemovalStatus(false);
             album.setRemovalDate(null);
-            album.setImage(null);
+            album.setNumberOfSong(Integer.parseInt(splittedCsv[5]));
+            album.setImage(splittedCsv[12]);
         } else {
             album = albums.get(0);
         }
         dao.write(album);
     }
 
-    private void trackParser(String[] splittedCsv) {
+    private static void trackParser(String[] splittedCsv) {
 
         Track track = new Track();
         track.setSelection_number(Integer.parseInt(splittedCsv[6]));
@@ -88,7 +90,7 @@ public class SongParser {
 
     }
 
-    private void readCSVFile() throws IOException {
+    private static void readCSVFile() throws IOException, ParseException {
         Path p = Paths.get("albumData.csv");
         List<String> list = Files.readAllLines(p, StandardCharsets.UTF_8);
         String[] splittedCsv = null;
@@ -109,4 +111,14 @@ public class SongParser {
             trackParser(splittedCsv);
         }
     }
+     private static java.sql.Date newDateFormat(String date) throws ParseException{
+        String newString = "";
+        String[] elements = date.split("/");
+        newString+= elements[2] + "-" + elements[0] + "-" +elements[1];
+        SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+        Date newdate = sdf1.parse(newString);
+        java.sql.Date sqlDate = new java.sql.Date(newdate.getTime()); 
+        return sqlDate;
+    }
+
 }

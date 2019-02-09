@@ -6,6 +6,7 @@ SongParser.class
 RegisterBean.class
 Track.class
 DAO.class
+getAlbums.class
 User.class
 Artist.class
 EntityModel.class

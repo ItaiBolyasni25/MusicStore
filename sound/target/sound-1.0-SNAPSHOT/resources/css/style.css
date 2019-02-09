@@ -94,15 +94,10 @@ a{
     height: 150px;
     width: auto;
 }
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
 .trackPic{
     height: 60px;
     width: auto;
 }
-=======
->>>>>>> 9656f57b6e21202a54b30daba6dd8cdccf8a21ff
 .languagebutton{
     width: 40%;
     margin-left: 30%;
@@ -120,9 +115,7 @@ a{
 .inventorychoices{
     margin-left: 28.5%;
 }
-<<<<<<< HEAD
 
-@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 section {
     padding: 60px 0;
 }
@@ -132,6 +125,10 @@ section .section-title {
     color: black;
     margin-bottom: 50px;
     text-transform: uppercase;
+}
+#info{
+    width: 90%;
+    margin-left: 5%;
 }
 #footer {
     background: #f7f7f9 !important;
@@ -201,8 +198,9 @@ section .section-title {
     border-left: transparent;
     padding-bottom: 0px;
     margin-bottom: 10px;
+}}
+.pages{
+    width: 50%;
+    text-align: center;
 }
-}
-=======
->>>>>>> staging
->>>>>>> 9656f57b6e21202a54b30daba6dd8cdccf8a21ff
+

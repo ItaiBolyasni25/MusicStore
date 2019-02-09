@@ -12,9 +12,10 @@
 import java.io.Serializable;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.bean.ManagedBean;
+import javax.inject.Named;
 
-@ManagedBean(name = "albumBean", eager = true)
+@SessionScoped
+@Named("albumBean")
 public class AlbumBean implements Serializable {
    private DAO dao;
    public AlbumBean(){
@@ -22,6 +23,10 @@ public class AlbumBean implements Serializable {
    }
    public List<Album> getAll(){
        return dao.findAll(new Album());
+   }
+   public Album getOne(){
+       List<Album> als = dao.findAll(new Album());
+       return als.get(0);
    }
    
 }

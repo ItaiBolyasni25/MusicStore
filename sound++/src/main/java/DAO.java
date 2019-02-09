@@ -59,5 +59,15 @@ public class DAO {
         Query q = em.createQuery("FROM " + className + " WHERE " + whereClause);
         return q.getResultList();
     }
+    
+      public <E extends EntityModel> List<E> findWithLimit(E entityModel, int offset, int display) {
+        String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
+        Query q = em.createQuery("FROM " + className + " a ORDER BY a.title ASC" );
+        q.setFirstResult(offset);
+        q.setMaxResults(display);
+        return q.getResultList();
+    }
+    
+    
 
 }

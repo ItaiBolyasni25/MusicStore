@@ -12,9 +12,10 @@
 import java.io.Serializable;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.bean.ManagedBean;
+import javax.inject.Named;
 
-@ManagedBean(name = "trackBean", eager = true)
+@SessionScoped
+@Named("trackBean")
 public class TrackBean implements Serializable {
    private DAO dao;
    public TrackBean(){
