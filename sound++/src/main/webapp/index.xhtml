@@ -18,7 +18,18 @@
     </h:head>
     <h:body>
         <ui:include src="navbar.xhtml"/>
-
+        
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#home">#{internationalization.home}</a>
+            </li>
+            <li class="nav-item disabled">
+                <a class="nav-link" data-toggle="tab" href="#profile">#{internationalization.profile}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#genres">#{internationalization.genres}</a>
+            </li>
+        </ul>
         <div id="myTabContent" class="tab-content">
 
             <div class="tab-pane fade show active" id="home">
