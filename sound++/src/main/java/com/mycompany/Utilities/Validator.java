@@ -17,7 +17,7 @@ import java.util.List;
  * @author aantoine97
  */
 public class Validator {
-    private static final DAO DAO = new DAO("songstore");
+    private static final DAO DAO = new DAO();
     
     /**
      * Will be used to validate a user trying to register

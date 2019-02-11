@@ -9,6 +9,7 @@ import com.mycompany.Utilities.Validator;
 import com.mycompany.Persistence.DAO;
 import com.mycompany.Model.User;
 import javax.faces.bean.*;
+import javax.inject.Named;
 
 /**
  * ManagedBean for registering a user
@@ -16,7 +17,7 @@ import javax.faces.bean.*;
  * @author aantoine97
  */
 
-@ManagedBean(name = "registerBean", eager = true) 
+@Named() 
 @SessionScoped 
 public class RegisterBean {
     private String firstName;
@@ -32,7 +33,7 @@ public class RegisterBean {
     private String country;
     private String cellphone;
     private String homephone;
-    private final DAO DAO = new DAO("songstore");
+    private final DAO DAO = new DAO();
 
     public String getFirstName() {
         return firstName;

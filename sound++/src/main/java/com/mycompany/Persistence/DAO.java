@@ -13,6 +13,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 /**
@@ -22,13 +23,8 @@ import javax.persistence.Query;
 public class DAO {
 
 
+    @PersistenceContext(unitName = "songstore")
     private EntityManager em;
-
-    public DAO(String databaseName) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory(databaseName);
-        this.em = emf.createEntityManager();
-
-    }
 
     public <E extends EntityModel> boolean write(E entityModel) {
         em.getTransaction().begin();

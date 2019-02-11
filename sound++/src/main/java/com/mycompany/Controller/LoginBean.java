@@ -2,8 +2,8 @@ package com.mycompany.Controller;
 
 
 import com.mycompany.Utilities.Validator;
-import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.inject.Named;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -16,7 +16,7 @@ import javax.faces.bean.SessionScoped;
  * 
  * @author aantoine97
  */
-@ManagedBean(name = "loginBean", eager = true) 
+@Named
 @SessionScoped 
 public class LoginBean {
     private String email;
