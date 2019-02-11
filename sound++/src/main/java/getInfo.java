@@ -27,9 +27,9 @@ import org.json.simple.JSONObject;
  */
 @WebServlet(name = "getInfo", urlPatterns = {"/getInfo"})
 public class getInfo extends HttpServlet {
+
     @Inject
     private DAO dao;
-    
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -38,7 +38,7 @@ public class getInfo extends HttpServlet {
         JSONArray jsonArray = new JSONArray();
         int albumRequestID = Integer.parseInt(request.getParameter("id"));
         Album album = dao.read(new Album(), albumRequestID).get(0);
-        List<Album> albums = dao.findWithLimitGenre(new Album(),3,album.getGenre());
+        List<Album> albums = dao.findWithLimitGenre(new Album(), 3, album.getGenre());
         JSONObject formDetailsJson = new JSONObject();
         formDetailsJson.put("title", album.getTitle());
         formDetailsJson.put("image", album.getImage());
@@ -72,6 +72,7 @@ public class getInfo extends HttpServlet {
         }
         return artists;
     }
+
     private ArrayList<String> toArrayListAlbum(List<Album> list) {
         ArrayList<String> album = new ArrayList<String>();
         for (Album a : list) {
@@ -81,6 +82,5 @@ public class getInfo extends HttpServlet {
         }
         return album;
     }
-
 
 }

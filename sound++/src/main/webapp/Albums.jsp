@@ -186,14 +186,14 @@
                     <li class="nav-item">
                         <a class="nav-link active" data-toggle="tab" href="#details">Details</a>
                     </li>
-                  </ul>
+                </ul>
                 <div id="myTabContent" class="tab-content">
                     <div class="tab-pane fade show active" id="details">
                         <p id="releasedate"><span class="boldText">Original Release Date: </span></p>
                         <p id="addeddate"><span class="boldText">Added Date: </span></p>
                         <p id="label"><span class="boldText">Label: </span></p>                       
                     </div>
-                   </div>
+                </div>
             </div>
         </div>               
     </body>

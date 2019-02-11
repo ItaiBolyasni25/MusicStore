@@ -1,6 +1,5 @@
 package com.mycompany.Controller;
 
-
 import com.mycompany.Model.User;
 import com.mycompany.Persistence.DAO;
 import com.mycompany.Utilities.Validator;
@@ -11,19 +10,20 @@ import javax.inject.Named;
 
 /**
  * ManagedBean for determining if a user can log in
- * 
+ *
  * @author aantoine97
  */
 @Named(value = "loginBean")
 @SessionScoped
-public class LoginBean implements Serializable{
+public class LoginBean implements Serializable {
+
     private String email;
     private String password;
-    
+
     private User loggedIn;
-    
+
     private Boolean error;
-    
+
     @Inject
     private DAO DAO;
 
@@ -50,12 +50,11 @@ public class LoginBean implements Serializable{
     public Boolean getError() {
         return error;
     }
-    
-    
+
     /**
      * Determines if user can log in
-     * 
-     * @return boolean 
+     *
+     * @return boolean
      */
     public String canLogIn() {
         if (Validator.isRegistered(email, password, DAO)) {
@@ -65,6 +64,6 @@ public class LoginBean implements Serializable{
         } else {
             error = true;
             return "login.xhtml";
-        }       
+        }
     }
 }

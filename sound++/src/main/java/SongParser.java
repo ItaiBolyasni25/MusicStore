@@ -4,7 +4,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import com.mycompany.Model.Album;
 import com.mycompany.Model.Artist;
 import com.mycompany.Model.Track;
@@ -67,26 +66,27 @@ public class SongParser implements Serializable {
         } else {
             album = albums.get(0);
         }
-         Track track = new Track();
-            track.setSelection_number(Integer.parseInt(splittedCsv[6]));
-            track.setTitle(splittedCsv[2]);
-            track.setSongwriter(splittedCsv[4]);
-            String[] play_length = splittedCsv[5].split(":");
-            track.setPlay_length(Integer.parseInt(play_length[0]) + ":" + "" + Integer.parseInt(play_length[1]));
-            track.setGenre(splittedCsv[7]);
-            track.setAlbum(album);
-            track.setCost(Double.parseDouble(splittedCsv[9]));
-            track.setList_price(Double.parseDouble(splittedCsv[10]));
-            track.setSale_price(0);
-            Date javaDate = new Date();
-            track.setDate_added(new java.sql.Date(javaDate.getTime()));
-            track.setIndividual(!(splittedCsv[13]).equals("Album"));
-            track.setRemoval_status(false);
-            track.setRemoval_date(null);
+        Track track = new Track();
+        track.setSelection_number(Integer.parseInt(splittedCsv[6]));
+        track.setTitle(splittedCsv[2]);
+        track.setSongwriter(splittedCsv[4]);
+        String[] play_length = splittedCsv[5].split(":");
+        track.setPlay_length(Integer.parseInt(play_length[0]) + ":" + "" + Integer.parseInt(play_length[1]));
+        track.setGenre(splittedCsv[7]);
+        track.setAlbum(album);
+        track.setCost(Double.parseDouble(splittedCsv[9]));
+        track.setList_price(Double.parseDouble(splittedCsv[10]));
+        track.setSale_price(0);
+        Date javaDate = new Date();
+        track.setDate_added(new java.sql.Date(javaDate.getTime()));
+        track.setIndividual(!(splittedCsv[13]).equals("Album"));
+        track.setRemoval_status(false);
+        track.setRemoval_date(null);
         dao.write(track);
     }
+
     private void readCSVFile() throws IOException, ParseException {
-       Path p = Paths.get("C:\\Users\\1633867\\Desktop\\csdmusicstore\\sound++\\src\\main\\resources\\dataPoints.csv");
+        Path p = Paths.get("C:\\Users\\1633867\\Desktop\\csdmusicstore\\sound++\\src\\main\\resources\\dataPoints.csv");
         List<String> list = Files.readAllLines(p, StandardCharsets.UTF_8);
         for (int i = 1; i < list.size(); i++) {
             String[] splittedCsv = list.get(i).split(",");

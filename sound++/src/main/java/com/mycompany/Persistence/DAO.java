@@ -62,14 +62,13 @@ public class DAO {
         q.setMaxResults(display);
         return q.getResultList();
     }
-    
-        public <E extends EntityModel> List<E> findWithLimitGenre(E entityModel,int display,String genre) {
+
+    public <E extends EntityModel> List<E> findWithLimitGenre(E entityModel, int display, String genre) {
         String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
-        Query q = em.createQuery("SELECT a FROM " + className + " a WHERE a.genre = " +genre + " ORDER BY a.title ASC" );
+        Query q = em.createQuery("SELECT a FROM " + className + " a WHERE a.genre = " + genre + " ORDER BY a.title ASC");
         q.setMaxResults(display);
         return q.getResultList();
     }
-
 
     public <E extends EntityModel> List<E> find(E entityModel, String whereClause) {
         String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);

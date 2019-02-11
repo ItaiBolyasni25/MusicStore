@@ -22,9 +22,11 @@ import javax.inject.Named;
 @ViewScoped
 @Named("TrackPaginationBean")
 public class TrackPaginationBean implements Serializable {
-   @Inject
+
+    @Inject
     private DAO dao;
-    private List<Track> dataList;;
+    private List<Track> dataList;
+    ;
     private int totalRows;
     private int currentPage;
     private int itemPerPage;
@@ -33,7 +35,7 @@ public class TrackPaginationBean implements Serializable {
     public TrackPaginationBean() {
         this.itemPerPage = 10;
         this.currentPage = 1;
-        
+
     }
 
     public List<Track> getDatalist() {
@@ -90,7 +92,7 @@ public class TrackPaginationBean implements Serializable {
     public void setCurrent_page(int newCurrentPage) throws IOException {
         currentPage = newCurrentPage;
         updateView();
-       
+
     }
 
     public void updateView() {

@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 C:\Users\1633867\Desktop\P\sound++\src\main\java\com\mycompany\Model\Track.java
 C:\Users\1633867\Desktop\P\sound++\src\main\java\TrackPaginationBean.java
 C:\Users\1633867\Desktop\P\sound++\src\main\java\AlbumBean.java
@@ -34,3 +35,21 @@ C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\Artist.java
 C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\SongParser.java
 C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\Validator.java
 >>>>>>> add slider to news feed
+=======
+H:\6thSem\csdmusicstore\sound++\src\main\java\NewsFeed.java
+H:\6thSem\csdmusicstore\sound++\src\main\java\SongParser.java
+H:\6thSem\csdmusicstore\sound++\src\main\java\AlbumBean.java
+H:\6thSem\csdmusicstore\sound++\src\main\java\EntityModel.java
+H:\6thSem\csdmusicstore\sound++\src\main\java\Validator.java
+H:\6thSem\csdmusicstore\sound++\src\main\java\NewsFeeds.java
+H:\6thSem\csdmusicstore\sound++\src\main\java\TrackBean.java
+H:\6thSem\csdmusicstore\sound++\src\main\java\User.java
+H:\6thSem\csdmusicstore\sound++\src\main\java\Album.java
+H:\6thSem\csdmusicstore\sound++\src\main\java\Internationalization.java
+H:\6thSem\csdmusicstore\sound++\src\main\java\Artist.java
+H:\6thSem\csdmusicstore\sound++\src\main\java\RegisterBean.java
+H:\6thSem\csdmusicstore\sound++\src\main\java\hello.java
+H:\6thSem\csdmusicstore\sound++\src\main\java\DAO.java
+H:\6thSem\csdmusicstore\sound++\src\main\java\LoginBean.java
+H:\6thSem\csdmusicstore\sound++\src\main\java\Track.java
+>>>>>>> code form for survey management

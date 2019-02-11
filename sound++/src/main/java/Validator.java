@@ -1,6 +1,4 @@
 
-
-
 import java.util.List;
 import javax.inject.Inject;
 
@@ -9,10 +7,9 @@ import javax.inject.Inject;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  * Validates user information
- * 
+ *
  * @author aantoine97
  */
 public class Validator {
@@ -25,7 +22,7 @@ public class Validator {
      * @param user User to be registered
      * @return boolean
      */
-    /*public static boolean hasValidInformation(User user) {
+ /*public static boolean hasValidInformation(User user) {
         List<User> existingUser = dao.find(new User(), "email = '" + user.getEmail() + "'");
         System.out.println(user.getEmail());
         return existingUser.isEmpty();
@@ -38,7 +35,7 @@ public class Validator {
      * @param password User password
      * @return boolean
      */
-    /*public static boolean isRegistered(String email, String password) {
+ /*public static boolean isRegistered(String email, String password) {
         List<User> user = dao.find(new User(), "email = '" + email + "'");
         
         if (user.size() == 1) {

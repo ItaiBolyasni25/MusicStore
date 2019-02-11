@@ -77,20 +77,20 @@
         </nav>
         <div id ="trackTable">
             <table class="table table-hover">
-            <tr>
-                <th scope="col">${internationalization.albumimage}</th>
-                <th scope="col">${internationalization.albumtitle}</th>
-                <th scope="col">${internationalization.artist}</th>
-                <th scope="col">${internationalization.albumdate}</th>
-                <th scope="col">${internationalization.numberSongs}</th>
-                <th scope="col">${internationalization.cost}</th>
-           </tr>
+                <tr>
+                    <th scope="col">${internationalization.albumimage}</th>
+                    <th scope="col">${internationalization.albumtitle}</th>
+                    <th scope="col">${internationalization.artist}</th>
+                    <th scope="col">${internationalization.albumdate}</th>
+                    <th scope="col">${internationalization.numberSongs}</th>
+                    <th scope="col">${internationalization.cost}</th>
+                </tr>
 
-            <c:forEach items="${trackList}" var="track">
-                <tr class="table-secondary" id="${track.id}">
-                    <th><img src="${track.album.image}" alt="Album's cover" class="trackPic"/></th>
-                    <td>${track.title}</td>
-                     <td> <c:forEach items="${track.album.artists}" var="artist">
+                <c:forEach items="${trackList}" var="track">
+                    <tr class="table-secondary" id="${track.id}">
+                        <th><img src="${track.album.image}" alt="Album's cover" class="trackPic"/></th>
+                        <td>${track.title}</td>
+                        <td> <c:forEach items="${track.album.artists}" var="artist">
                                 <c:choose>
                                     <c:when test="${fn:length(track.album.artists)> 1}">
                                         <c:out value="${artist.name} ,"/>
@@ -100,60 +100,60 @@
                                     </c:otherwise>
                                 </c:choose>                       
                             </c:forEach></td>
-                    <td>
-                        <fmt:formatDate type="date" value ="${track.date_added}" />
-                    </td>
-                    <td>${track.play_length}</td>
-                    <td>${track.cost}</td>
-                </tr>
-            </c:forEach>
-           </table>
+                        <td>
+                            <fmt:formatDate type="date" value ="${track.date_added}" />
+                        </td>
+                        <td>${track.play_length}</td>
+                        <td>${track.cost}</td>
+                    </tr>
+                </c:forEach>
+            </table>
 
-         
-        <div class="pages">
-            <ul class="pagination">
-                <c:choose>
-                    <c:when test="${currentPage != 1}">
-                        <li class="page-item">
-                            <a class="page-link" href="getTracks?currentPage=${currentPage - 1}">&laquo;</a>
-                        </li>
-                    </c:when>    
-                    <c:otherwise>
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#">&laquo;</a>
-                        </li>
-                    </c:otherwise>
-                </c:choose>
-                <c:forEach begin="1" end="${totalPage}" var="i">
+
+            <div class="pages">
+                <ul class="pagination">
                     <c:choose>
-                        <c:when test="${currentPage eq i}">
-                            <li class="page-item active">
-                                <a class="page-link" href="#">${currentPage}</a>
-                            </li>
-                        </c:when>
-                        <c:otherwise>
+                        <c:when test="${currentPage != 1}">
                             <li class="page-item">
-                                <a class="page-link" href="getTracks?currentPage=${i}">${i}</a></li>
+                                <a class="page-link" href="getTracks?currentPage=${currentPage - 1}">&laquo;</a>
+                            </li>
+                        </c:when>    
+                        <c:otherwise>
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#">&laquo;</a>
+                            </li>
                         </c:otherwise>
                     </c:choose>
-                </c:forEach>
+                    <c:forEach begin="1" end="${totalPage}" var="i">
+                        <c:choose>
+                            <c:when test="${currentPage eq i}">
+                                <li class="page-item active">
+                                    <a class="page-link" href="#">${currentPage}</a>
+                                </li>
+                            </c:when>
+                            <c:otherwise>
+                                <li class="page-item">
+                                    <a class="page-link" href="getTracks?currentPage=${i}">${i}</a></li>
+                                </c:otherwise>
+                            </c:choose>
+                        </c:forEach>
 
 
-                <c:choose>
-                    <c:when test="${currentPage lt totalPage}">
-                        <li class="page-item">
-                            <a class="page-link" href="getTracks?currentPage=${currentPage + 1}">&raquo;</a>
-                        </li>
-                    </c:when>    
-                    <c:otherwise>
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#">&raquo;</a>
-                        </li>
-                    </c:otherwise>
-                </c:choose>
-            </ul>
-        </div></div>
-                  <div class="card border-light mb-3" id ="info">
+                    <c:choose>
+                        <c:when test="${currentPage lt totalPage}">
+                            <li class="page-item">
+                                <a class="page-link" href="getTracks?currentPage=${currentPage + 1}">&raquo;</a>
+                            </li>
+                        </c:when>    
+                        <c:otherwise>
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#">&raquo;</a>
+                            </li>
+                        </c:otherwise>
+                    </c:choose>
+                </ul>
+            </div></div>
+        <div class="card border-light mb-3" id ="info">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Track></li>
                 <li class="breadcrumb-item active" id="titleTrack">Data</li>
@@ -183,15 +183,15 @@
                     <li class="nav-item">
                         <a class="nav-link active" data-toggle="tab" href="#details">Details</a>
                     </li>
-                  </ul>
+                </ul>
                 <div id="myTabContent" class="tab-content">
                     <div class="tab-pane fade show active" id="details">
                         <p id="addeddate"><span class="boldText">Added Date: </span></p>
                         <p id="genre"><span class="boldText">Genre: </span></p>
                         <p id="songwriter"><span class="boldText">Songwriter: </span></p>
-                         <p id="playlength"><span class="boldText">Play Length:  </span></p>  
+                        <p id="playlength"><span class="boldText">Play Length:  </span></p>  
                     </div>
-                   </div>
+                </div>
             </div>
         </div>              
     </body>

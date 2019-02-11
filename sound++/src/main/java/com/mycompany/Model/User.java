@@ -1,4 +1,3 @@
-
 package com.mycompany.Model;
 
 /*
@@ -6,7 +5,6 @@ package com.mycompany.Model;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,7 +15,7 @@ import com.mycompany.Interface.EntityModel;
 
 /**
  * Entity class for a user
- * 
+ *
  * @author aantoine97
  */
 @Entity
@@ -67,12 +65,13 @@ public class User implements Serializable, EntityModel {
     private String email;
     private String hash;
     private String salt;
-    
-    public User() {}
 
-    public User(String firstName, String lastName, String email, String password, 
-            String companyName, String address1, String postalCode, String address2, 
-            String city, String province, String country, String cellphone, 
+    public User() {
+    }
+
+    public User(String firstName, String lastName, String email, String password,
+            String companyName, String address1, String postalCode, String address2,
+            String city, String province, String country, String cellphone,
             String homephone) {
         this.firstname = firstName;
         this.lastname = lastName;
@@ -120,7 +119,7 @@ public class User implements Serializable, EntityModel {
     public void setEmail(String email) {
         this.email = email;
     }
-    
+
     public String getHash() {
         return this.hash;
     }
@@ -128,6 +127,7 @@ public class User implements Serializable, EntityModel {
     public void setHash(String hash) {
         this.hash = hash;
     }
+
     public String getCompany_name() {
         return company_name;
     }
@@ -199,7 +199,7 @@ public class User implements Serializable, EntityModel {
     public void setHome_telephone(String homephone) {
         this.home_telephone = homephone;
     }
-    
+
     @Override
     public String toString() {
         return this.email;

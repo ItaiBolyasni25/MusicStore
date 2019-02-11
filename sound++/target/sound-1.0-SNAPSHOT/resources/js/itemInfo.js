@@ -1,15 +1,16 @@
 "use strict";
 $(document).ready(function () {
     var id;
-    
+
     $("tr").each(function () {
-        if($(this).attr('id')!== "header"){
-        $(this).click(function () {
-            $("#info").css('display', 'block');
-            $("#albumTable").css('display', 'none');
-            id = $(this).attr('id');
-            sendRequest(id);
-        });}
+        if ($(this).attr('id') !== "header") {
+            $(this).click(function () {
+                $("#info").css('display', 'block');
+                $("#albumTable").css('display', 'none');
+                id = $(this).attr('id');
+                sendRequest(id);
+            });
+        }
     });
     $("#albumsList").click(function () {
         $("#info").css('display', 'none');
