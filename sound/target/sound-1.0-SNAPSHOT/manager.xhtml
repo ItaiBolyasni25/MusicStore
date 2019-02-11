@@ -23,56 +23,20 @@
             <div class="collapse navbar-collapse" id="navbarColor03">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-<<<<<<< HEAD
-                      <h:link class="nav-link" value="#{internationalization.home}" outcome="index"/>
-                    </li>
-                    <li class="nav-item">
-                      <h:link class="nav-link" value="#{internationalization.albums}" outcome="albums"/>
-                    </li>
-                    <li class="nav-item">
-                        <h:link class="nav-link" value="#{internationalization.tracks}" outcome="tracks"/>
-                    </li>
-                    <li class="nav-item">
-                        <h:link class="nav-link" value="#{internationalization.about}" outcome="about"/>
-                    </li>
-                    <li class="nav-item">
-                        <h:link class="nav-link" value="#{internationalization.login}" outcome="login"/>
-                    </li>
-                    <li class="nav-item">
-                        <h:link class="nav-link" value="#{internationalization.cart}" outcome="cart"/>
-                    </li>
-                </ul>
-
-                <li class="nav-item dropdown">
-                     <div class="form-group">
-                         <h:form>
-                            <h:selectOneMenu class="custom-select" value="#{internationalization.language}">
-                                <f:selectItem itemValue="en" itemLabel="#{internationalization.english}" />
-                                <f:selectItem itemValue="fr" itemLabel="#{internationalization.french}" />
-                            </h:selectOneMenu>
-                            <h:commandButton class="btn btn-outline-primary btn-sm" value = "Change" action = "index" /> 
-                         </h:form>
-                         
-                      </div>
-                </li>
-                
-=======
                         <h:link class="nav-link" value="Menu" outcome="manager"/>
                     </li>
 
                 </ul>
 
                 <li class="nav-item dropdown">
-                    <h:form> 
-                        <h:selectOneMenu class="custom-select" value="#{internationalization.language}">
+                    <h:form class="form-inline my-2 my-lg-0 ml-2">
+                        <h:selectOneMenu onchange="submit()" valueChangeListener="#{internationalization.languageChange}"  class="custom-select mr-sm-3 ml-4">
                             <f:selectItem itemValue="en" itemLabel="#{internationalization.english}" />
                             <f:selectItem itemValue="fr" itemLabel="#{internationalization.french}" />
-                        </h:selectOneMenu>
-                        <h:commandButton class="btn btn-outline-primary btn-sm languagebutton" value = "#{internationalization.change}" action = "manager" /> 
+                        </h:selectOneMenu> 
                     </h:form>
                 </li>
 
->>>>>>> staging
                 <h:form class="form-inline my-2 my-lg-0">
                     <h:inputText class="form-control mr-sm-2" value="#{internationalization.search}"/>
                     <h:commandButton class="btn btn-outline-primary" value="#{internationalization.search}" action="search"/>
@@ -80,8 +44,6 @@
             </div>
         </nav>
 
-<<<<<<< HEAD
-=======
         <div >
 
             <div class="card mb-3 manageroptions ">
@@ -175,6 +137,5 @@
 
         </div>
 
->>>>>>> staging
     </h:body>
 </html>

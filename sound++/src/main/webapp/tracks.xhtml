@@ -24,10 +24,10 @@
             <div class="collapse navbar-collapse" id="navbarColor03">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                      <h:link class="nav-link" value="#{internationalization.home}" outcome="index"/>
+                        <h:link class="nav-link" value="#{internationalization.home}" outcome="index"/>
                     </li>
                     <li class="nav-item">
-                      <h:link class="nav-link" value="#{internationalization.albums}" outcome="albums"/>
+                        <h:link class="nav-link" value="#{internationalization.albums}" outcome="albums"/>
                     </li>
                     <li class="nav-item">
                         <h:link class="nav-link" value="#{internationalization.tracks}" outcome="tracks"/>
@@ -44,18 +44,17 @@
                 </ul>
 
                 <li class="nav-item dropdown">
-                     <div class="form-group">
-                         <h:form>
-                            <h:selectOneMenu class="custom-select" value="#{internationalization.language}">
+                    <div class="form-group">
+                        <h:form class="form-inline my-2 my-lg-0 ml-2">
+                            <h:selectOneMenu onchange="submit()" valueChangeListener="#{internationalization.languageChange}"  class="custom-select mr-sm-3 ml-4">
                                 <f:selectItem itemValue="en" itemLabel="#{internationalization.english}" />
                                 <f:selectItem itemValue="fr" itemLabel="#{internationalization.french}" />
-                            </h:selectOneMenu>
-                            <h:commandButton class="btn btn-outline-primary btn-sm" value = "Change" action = "tracks" /> 
-                         </h:form>
-                         
-                      </div>
+                            </h:selectOneMenu> 
+                        </h:form>
+
+                    </div>
                 </li>
-                
+
                 <h:form class="form-inline my-2 my-lg-0">
                     <h:inputText class="form-control mr-sm-2" value="#{internationalization.search}"/>
                     <h:commandButton class="btn btn-outline-primary" value="#{internationalization.search}" action="search"/>
@@ -65,15 +64,15 @@
 
         <table class="table table-hover">
             <thead>
-              <tr>
-                <th scope="col">#{internationalization.albumimage}</th>
-                <th scope="col">#{internationalization.songtitle}</th>
-                <th scope="col">#{internationalization.albumtitle}</th>
-                <th scope="col">#{internationalization.artist}</th>
-                <th scope="col">#{internationalization.songdate}</th>
-                <th scope="col">#{internationalization.playlength}</th>
-                <th scope="col">#{internationalization.cost}</th>
-              </tr>
+                <tr>
+                    <th scope="col">#{internationalization.albumimage}</th>
+                    <th scope="col">#{internationalization.songtitle}</th>
+                    <th scope="col">#{internationalization.albumtitle}</th>
+                    <th scope="col">#{internationalization.artist}</th>
+                    <th scope="col">#{internationalization.songdate}</th>
+                    <th scope="col">#{internationalization.playlength}</th>
+                    <th scope="col">#{internationalization.cost}</th>
+                </tr>
             </thead>
             <tbody>
                 <ui:repeat var="tr" value="#{trackBean.all}" > 
@@ -93,7 +92,7 @@
                 </ui:repeat>
             </tbody>
         </table> 
-        
-        
+
+
     </h:body>
 </html>

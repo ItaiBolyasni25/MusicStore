@@ -1,23 +1,31 @@
 function news(){
-  $.ajax({
-          url: 'https://api.rss2json.com/v1/api.json',
-          method: 'GET',
-          dataType: 'json',
-          data: {
-              rss_url: encodeURI("https://abcnews.go.com/abcnews/entertainmentheadlines")
-          }
-  }).done(function (response) {
-      if(response.status != 'ok'){ throw response.message; }
+  $(document).ready(function() {
+	//feed to parse
+	var feed = "https://rss.cbc.ca/lineup/arts.xml";
+	
+	$.ajax(feed, {
+		accepts:{
+			xml:"application/xml"
+		},
+		dataType:"rss-xml",
+                crossDomain: true,
+		success:function(data) {
+			//Credit: http://stackoverflow.com/questions/10943544/how-to-parse-an-rss-feed-using-javascript
 
-      console.log('====== ' + response.feed.title + ' ======');
+			$(data).find("item").each(function () { // or "item" or whatever suits your feed
+				var el = $(this);
+				console.log("------------------------");
+				console.log("title      : " + el.find("title").text());
+				console.log("link       : " + el.find("link").text());
+				console.log("description: " + el.find("description").text());
+			});
+	
 
-      for(var i in response.items){
-          var item = response.items[i];
-          console.log(item.title);
-
-      }
-  });
-
+		}	
+	});
+	
+});
+ 
 }
 
 

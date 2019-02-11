@@ -45,12 +45,11 @@
 
                 <li class="nav-item dropdown">
                     <div class="form-group">
-                        <h:form>
-                            <h:selectOneMenu class="custom-select" value="#{internationalization.language}">
+                        <h:form class="form-inline my-2 my-lg-0 ml-2">
+                            <h:selectOneMenu onchange="submit()" valueChangeListener="#{internationalization.languageChange}"  class="custom-select mr-sm-3 ml-4">
                                 <f:selectItem itemValue="en" itemLabel="#{internationalization.english}" />
                                 <f:selectItem itemValue="fr" itemLabel="#{internationalization.french}" />
-                            </h:selectOneMenu>
-                            <h:commandButton class="btn btn-outline-primary btn-sm" value = "Change" action = "albums" /> 
+                            </h:selectOneMenu> 
                         </h:form>
 
                     </div>

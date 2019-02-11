@@ -1,9 +1,12 @@
 Validator.class
 TrackBean.class
+hello.class
 Internationalization.class
 Album.class
+NewsFeed.class
 SongParser.class
 RegisterBean.class
+NewsFeeds.class
 Track.class
 DAO.class
 User.class
