@@ -60,7 +60,7 @@ public class DAO {
         return q.getResultList();
     }
     
-      public <E extends EntityModel> List<E> findWithLimit(E entityModel, int offset, int display) {
+    public <E extends EntityModel> List<E> findWithLimit(E entityModel, int offset, int display) {
         String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
         Query q = em.createQuery("FROM " + className + " a ORDER BY a.title ASC" );
         q.setFirstResult(offset);

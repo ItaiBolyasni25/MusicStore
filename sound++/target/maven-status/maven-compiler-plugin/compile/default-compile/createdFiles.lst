@@ -11,5 +11,6 @@ getAlbums.class
 User.class
 Artist.class
 EntityModel.class
+getInfo.class
 LoginBean.class
 AlbumBean.class
