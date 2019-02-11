@@ -30,10 +30,10 @@
                         <h:link class="nav-link" value="#{internationalization.home}" outcome="manager"/>
                     </li>
                     <li class="nav-item">
-                        <h:link class="nav-link" value="#{internationalization.albums}" outcome="getAlbums"/>
+                        <a class="nav-link" href="#{pageContext.request.contextPath}/sound%20%20/getAlbums">#{internationalization.albums}</a>
                     </li>
                     <li class="nav-item">
-                        <h:link class="nav-link" value="#{internationalization.tracks}" outcome="tracks"/>
+                        <a class="nav-link" href="#{pageContext.request.contextPath}/sound%20%20/getTracks">#{internationalization.tracks}</a>
                     </li>
                     <li class="nav-item">
                         <h:link class="nav-link" value="#{internationalization.about}" outcome="about"/>

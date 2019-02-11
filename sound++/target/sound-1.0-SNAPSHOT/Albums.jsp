@@ -18,15 +18,15 @@
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-        <script src="jquery-1.12.4.js" type="text/javascript"></script>
-        <script src="itemInfo.js" type="text/javascript"></script>
+        <script src="resources/js/jquery-1.12.4.js" type="text/javascript"></script>
+        <script src="resources/js/itemInfo.js" type="text/javascript"></script>
         <link href="resources/css/style.css" rel="stylesheet" type="text/css">
             <title>Sound++</title>
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-            <a class="navbar-brand" href="#"><img id="logo" src="assets/logo.png" alt="Logo of online music store Sound++"></img></a>
+            <a class="navbar-brand" href="faces/index.xhtml"><img id="logo" src="assets/logo.png" alt="Logo of online music store Sound++"></img></a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -35,10 +35,10 @@
             <div class="collapse navbar-collapse" id="navbarColor03">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="">${internationalization.home}</a>
+                        <a class="nav-link" href="faces/index.xhtml">${internationalization.home}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">${internationalization.albums}</a>
+                        <a class="nav-link" href="${pageContext.request.contextPath}/getAlbums">${internationalization.albums}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="">${internationalization.tracks}</a>
@@ -73,8 +73,8 @@
                 </form>
             </div>
         </nav>
-
-        <table class="table table-hover" id="hey">
+                <div id="albumTable">
+        <table class="table table-hover">
             <tr>
                 <th scope="col">${internationalization.albumimage}</th>
                 <th scope="col">${internationalization.albumtitle}</th>
@@ -85,7 +85,7 @@
             </tr>
 
             <c:forEach items="${albumList}" var="album">
-                <tr class="table-secondary">
+                <tr class="table-secondary" id ="${album.id}">
                     <th><img src="${album.image}" alt="Album's cover" class="albumPic"/></th>
                     <td>${album.title}</td>
                     <td>${album.artists}</td>
@@ -123,9 +123,9 @@
                         <c:otherwise>
                             <li class="page-item">
                                 <a class="page-link" href="getAlbums?currentPage=${i}">${i}</a></li>
-                        </c:otherwise>
-                    </c:choose>
-                </c:forEach>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:forEach>
 
 
                 <c:choose>
@@ -141,6 +141,18 @@
                     </c:otherwise>
                 </c:choose>
             </ul>
-        </div>
+        </div></div>
+        <div class="card border-light mb-3" id ="info">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Library</a></li>
+                    <li class="breadcrumb-item active">Data</li>
+                </ol>
+            </div>
+            <div class="card-body">
+                <h4 class="card-title">Light card title</h4>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+        </div>>
     </body>
 </html>

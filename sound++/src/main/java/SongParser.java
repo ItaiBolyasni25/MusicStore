@@ -34,7 +34,6 @@ public class SongParser {
 
     public static void main(String[] args) throws IOException, ParseException {
         readCSVFile();
-        AlbumBean a = new AlbumBean();
     }
 
     private static void albumParser(String[] splittedCsv) throws ParseException {
