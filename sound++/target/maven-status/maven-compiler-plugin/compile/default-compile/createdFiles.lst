@@ -1,5 +1,4 @@
 TrackBean.class
-<<<<<<< HEAD
 com\mycompany\Model\Track.class
 com\mycompany\Model\User.class
 getTracks.class
@@ -17,20 +16,5 @@ com\mycompany\Utilities\Validator.class
 SongParser.class
 AlbumPaginationBean.class
 getAlbums.class
-=======
-hello.class
-Internationalization.class
-Album.class
-NewsFeed.class
-SongParser.class
-RegisterBean.class
-NewsFeeds.class
-Track.class
-DAO.class
-User.class
-Artist.class
-EntityModel.class
-LoginBean.class
->>>>>>> code form for survey management
 AlbumBean.class
 com\mycompany\Controller\LoginBean.class
