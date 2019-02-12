@@ -34,14 +34,14 @@ public class getInfo extends HttpServlet {
         JSONObject formDetailsJson = new JSONObject();
         formDetailsJson.put("title", album.getTitle());
         formDetailsJson.put("image", album.getImage());
-        formDetailsJson.put("artists", album.getArtists());
-        formDetailsJson.put("released_date", album.getReleaseDate());
+        formDetailsJson.put("artists", album.getArtists().toString());
+        formDetailsJson.put("released_date", album.getReleaseDate().toString());
         formDetailsJson.put("cost", album.getCost());
         formDetailsJson.put("label", album.getLabel());
         jsonArray.add(formDetailsJson);
-        responseDetailsJson.put("object", jsonArray);
+        responseDetailsJson.put("info", jsonArray);
         PrintWriter out = response.getWriter(); 
-        out.write(responseDetailsJson);
+        out.write(responseDetailsJson.toJSONString());
     }
 
     @Override

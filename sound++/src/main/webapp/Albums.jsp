@@ -73,86 +73,88 @@
                 </form>
             </div>
         </nav>
-                <div id="albumTable">
-        <table class="table table-hover">
-            <tr>
-                <th scope="col">${internationalization.albumimage}</th>
-                <th scope="col">${internationalization.albumtitle}</th>
-                <th scope="col">${internationalization.artist}</th>
-                <th scope="col">${internationalization.albumdate}</th>
-                <th scope="col">${internationalization.numberSongs}</th>
-                <th scope="col">${internationalization.cost}</th>
-            </tr>
-
-            <c:forEach items="${albumList}" var="album">
-                <tr class="table-secondary" id ="${album.id}">
-                    <th><img src="${album.image}" alt="Album's cover" class="albumPic"/></th>
-                    <td>${album.title}</td>
-                    <td>${album.artists}</td>
-                    <td>
-                        <fmt:formatDate type="date" value ="${album.releaseDate}" />
-                    </td>
-                    <td>${album.numberOfSong}</td>
-                    <td>${album.cost}</td>
+        <div id="albumTable">
+            <table class="table table-hover">
+                <tr>
+                    <th scope="col">${internationalization.albumimage}</th>
+                    <th scope="col">${internationalization.albumtitle}</th>
+                    <th scope="col">${internationalization.artist}</th>
+                    <th scope="col">${internationalization.albumdate}</th>
+                    <th scope="col">${internationalization.numberSongs}</th>
+                    <th scope="col">${internationalization.cost}</th>
                 </tr>
-            </c:forEach>
+
+                <c:forEach items="${albumList}" var="album">
+                    <tr class="table-secondary" id ="${album.id}">
+                        <th><img src="${album.image}" alt="Album's cover" class="albumPic"/></th>
+                        <td>${album.title}</td>
+                        <td>${album.artists}</td>
+                        <td>
+                            <fmt:formatDate type="date" value ="${album.releaseDate}" />
+                        </td>
+                        <td>${album.numberOfSong}</td>
+                        <td>${album.cost}</td>
+                    </tr>
+                </c:forEach>
 
 
-        </table> 
-        <div class="pages">
-            <ul class="pagination">
-                <c:choose>
-                    <c:when test="${currentPage != 1}">
-                        <li class="page-item">
-                            <a class="page-link" href="getAlbums?currentPage=${currentPage - 1}">&laquo;</a>
-                        </li>
-                    </c:when>    
-                    <c:otherwise>
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#">&laquo;</a>
-                        </li>
-                    </c:otherwise>
-                </c:choose>
-                <c:forEach begin="1" end="${totalPage}" var="i">
+            </table> 
+            <div class ="pages">
+                <ul class="pagination" >
                     <c:choose>
-                        <c:when test="${currentPage eq i}">
-                            <li class="page-item active">
-                                <a class="page-link" href="#">${currentPage}</a>
-                            </li>
-                        </c:when>
-                        <c:otherwise>
+                        <c:when test="${currentPage != 1}">
                             <li class="page-item">
-                                <a class="page-link" href="getAlbums?currentPage=${i}">${i}</a></li>
-                            </c:otherwise>
-                        </c:choose>
-                    </c:forEach>
+                                <a class="page-link" href="getAlbums?currentPage=${currentPage - 1}">&laquo;</a>
+                            </li>
+                        </c:when>    
+                        <c:otherwise>
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#">&laquo;</a>
+                            </li>
+                        </c:otherwise>
+                    </c:choose>
+                    <c:forEach begin="1" end="${totalPage}" var="i">
+                        <c:choose>
+                            <c:when test="${currentPage eq i}">
+                                <li class="page-item active">
+                                    <a class="page-link" href="#">${currentPage}</a>
+                                </li>
+                            </c:when>
+                            <c:otherwise>
+                                <li class="page-item">
+                                    <a class="page-link" href="getAlbums?currentPage=${i}">${i}</a></li>
+                                </c:otherwise>
+                            </c:choose>
+                        </c:forEach>
 
 
-                <c:choose>
-                    <c:when test="${currentPage lt totalPage}">
-                        <li class="page-item">
-                            <a class="page-link" href="getAlbums?currentPage=${currentPage + 1}">&raquo;</a>
-                        </li>
-                    </c:when>    
-                    <c:otherwise>
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#">&raquo;</a>
-                        </li>
-                    </c:otherwise>
-                </c:choose>
-            </ul>
-        </div></div>
+                    <c:choose>
+                        <c:when test="${currentPage lt totalPage}">
+                            <li class="page-item">
+                                <a class="page-link" href="getAlbums?currentPage=${currentPage + 1}">&raquo;</a>
+                            </li>
+                        </c:when>    
+                        <c:otherwise>
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#">&raquo;</a>
+                            </li>
+                        </c:otherwise>
+                    </c:choose>
+                </ul>
+            </div></div>
         <div class="card border-light mb-3" id ="info">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">Library</a></li>
-                    <li class="breadcrumb-item active">Data</li>
-                </ol>
-            </div>
-            <div class="card-body">
-                <h4 class="card-title">Light card title</h4>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
-        </div>>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Albums</a></li>
+                <li class="breadcrumb-item active">Data</li>
+            </ol>
+        <div class="card-body">
+            <p><img src="" alt="Album's cover" id="albumCover"></p>
+            <div>
+                <h4 class="card-title" id ="title"></h4>
+                <p class="card-text" id = "artist">Updating</p>
+                <p class="card-text" id = "released_date"> </p>
+                <p class="card-text" id = "review">Updating</p></div>
+            <p class="card-text" id = "cost"></p></div>
+        </div>
     </body>
 </html>

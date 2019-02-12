@@ -200,4 +200,11 @@ section .section-title {
         padding-bottom: 0px;
         margin-bottom: 10px;
     }}
-
+.pages{
+    text-align: center;
+}
+.pages ul{
+    width: 50%;
+    text-align: center;
+    padding: 0;
+}
