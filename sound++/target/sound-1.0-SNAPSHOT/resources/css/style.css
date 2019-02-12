@@ -216,3 +216,13 @@ section .section-title {
     margin-left: 20%;
     margin-top: 5%;
 }
+
+#logomanager{
+    height: 100%;
+    margin-top: 100%;
+}
+
+.managernav{
+   margin-top: 2%;
+    
+}
