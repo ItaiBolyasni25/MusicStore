@@ -99,7 +99,7 @@
 
 
             </table> 
-            <div class ="pages">
+            <div>
                 <ul class="pagination" >
                     <c:choose>
                         <c:when test="${currentPage != 1}">
@@ -147,14 +147,28 @@
                 <li class="breadcrumb-item"><a href="#">Albums</a></li>
                 <li class="breadcrumb-item active">Data</li>
             </ol>
-        <div class="card-body">
-            <p><img src="" alt="Album's cover" id="albumCover"></p>
-            <div>
-                <h4 class="card-title" id ="title"></h4>
-                <p class="card-text" id = "artist">Updating</p>
-                <p class="card-text" id = "released_date"> </p>
-                <p class="card-text" id = "review">Updating</p></div>
-            <p class="card-text" id = "cost"></p></div>
+            <div class="card-body">
+                <p class ="imageContainer"><img src="" alt="Album's cover" id="albumCover"></p>
+                <div class="contentContainer">
+                    <h4 class="card-title" id ="title"></h4>
+                    <p class="card-text" id = "artist">Updating</p>
+                    <p class="card-text" id = "released_date"> </p>
+                    <p class="card-text" id = "review">Updating</p>
+                    <p class="card-text" id = "cost"></p>
+                    <form class="form-inline my-2 my-lg-0">
+                        <div class="form-group" class="col-sm-2 col-form-label">
+                            <label for="quantity">Quantity</label>
+                            <select name = "quantity" class="custom-select">
+                                <option selected="1" value="1">1</option>
+                                 <c:forEach var = "i" begin = "2" end = "100">
+                                <option value="${i}">${i}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                        <button class="btn btn-secondary my-2 my-sm-0" value ="${internationalization.inventoryadd}" action = "add">${internationalization.inventoryadd}</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </body>
 </html>
