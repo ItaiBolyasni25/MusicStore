@@ -65,13 +65,7 @@ a{
     cursor: pointer;
 }
 
-.genresimg{
-    height: 60%;
-    width: 60%;
-    display: block;
-    margin-left: 20%;
-    margin-top: 5%;
-}
+
 
 .navcenter{
     margin-left: 35%;
@@ -207,4 +201,18 @@ section .section-title {
     border: none;
     background: none;
     margin-top: 45%;
+}
+
+.card-text img{
+    height: 20%;
+    width: 100%;
+    display: block;
+}
+
+.genresimg{
+    height: 60%;
+    width: 60%;
+    display: block;
+    margin-left: 20%;
+    margin-top: 5%;
 }
