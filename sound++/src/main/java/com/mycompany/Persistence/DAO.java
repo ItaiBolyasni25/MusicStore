@@ -10,26 +10,39 @@ package com.mycompany.Persistence;
 import com.mycompany.Interface.EntityModel;
 import com.mycompany.Model.User;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.enterprise.context.*;
+import javax.inject.Named;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.transaction.HeuristicMixedException;
+import javax.transaction.HeuristicRollbackException;
+import javax.transaction.NotSupportedException;
+import javax.transaction.RollbackException;
+import javax.transaction.SystemException;
+import javax.transaction.UserTransaction;
 
 /**
  *
  * @author 1633867
  */
+@Named
+@RequestScoped
 public class DAO {
 
-
-    @PersistenceContext(unitName = "songstore")
     private EntityManager em;
+    private UserTransaction userTransaction;
 
     public <E extends EntityModel> boolean write(E entityModel) {
-        em.getTransaction().begin();
-        em.persist(entityModel);
-        em.getTransaction().commit();
+        try {
+            userTransaction.begin();
+            em.persist(entityModel);
+            userTransaction.commit();
+        } catch (NotSupportedException | SystemException | RollbackException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException ex) {
+            Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         return true;
     }
 
@@ -48,8 +61,7 @@ public class DAO {
      * @return List<User> Users with that email (should be 1 or 0)
      */
     public List<User> read(String email) {
-        em.getTransaction().begin();
-        Query q = em.createQuery("SELECT everything FROM User everything WHERE email = '" + email + "'");
+        Query q = em.createQuery("SELECT everything FROM User everything WHERE everything.email = '" + email + "'");
 
         return q.getResultList();
     }
@@ -58,5 +70,12 @@ public class DAO {
         em.remove(entityModel);
         return true;
     }
-
+    
+    public void setEntityManager(EntityManager manager) {
+        this.em = manager;
+    }
+    
+    public void setUserTransaction(UserTransaction ut) {
+        this.userTransaction = ut;
+    }
 }
