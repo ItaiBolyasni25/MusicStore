@@ -38,14 +38,14 @@ public class DAO {
     public <E extends EntityModel> List<E> read(E entityModel, int id) {
         em.getTransaction().begin();
         String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
-        Query q = em.createQuery("FROM " + className + " WHERE " + className + "_id = '" + id + "'");
-
+        Query q = em.createQuery("SELECT c FROM " + className + " c WHERE c." + className + "_id = :id");
+        q.setParameter("id", id);
         return q.getResultList();
     }
     
     public <E extends EntityModel> List<E> findAll(E entityModel) {
         String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
-        Query q = em.createQuery("FROM " + className);
+        Query q = em.createNativeQuery("Select * FROM " + className + " e");
         return q.getResultList();
     }
   
@@ -62,7 +62,7 @@ public class DAO {
     
     public <E extends EntityModel> List<E> findWithLimit(E entityModel, int offset, int display) {
         String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
-        Query q = em.createQuery("FROM " + className + " a ORDER BY a.title ASC" );
+        Query q = em.createNativeQuery("SELECT * FROM " + className + " a ORDER BY a.title ASC" );
         q.setFirstResult(offset);
         q.setMaxResults(display);
         return q.getResultList();

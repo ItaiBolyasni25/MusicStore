@@ -85,15 +85,17 @@
                 </tr>
 
                 <c:forEach items="${albumList}" var="album">
-                    <tr class="table-secondary" id ="${album.id}">
-                        <th><img src="${album.image}" alt="Album's cover" class="albumPic"/></th>
-                        <td>${album.title}</td>
-                        <td>${album.artists}</td>
+                    <tr class="table-secondary" id ="${album[0]}">
+
+                        <th><img src="${album[11]}" alt="Album's cover" class="albumPic"/></th>
+                        <td>${album[1]}</td>
                         <td>
-                            <fmt:formatDate type="date" value ="${album.releaseDate}" />
+                            <fmt:formatDate type="date" value ="${album[2]}" />
                         </td>
-                        <td>${album.numberOfSong}</td>
-                        <td>${album.cost}</td>
+                        <td>${album[5]}</td>
+                        <td>${album[6]}</td>
+                        <td></td>
+
                     </tr>
                 </c:forEach>
 
@@ -160,8 +162,8 @@
                             <label for="quantity">Quantity</label>
                             <select name = "quantity" class="custom-select">
                                 <option selected="1" value="1">1</option>
-                                 <c:forEach var = "i" begin = "2" end = "100">
-                                <option value="${i}">${i}</option>
+                                <c:forEach var = "i" begin = "2" end = "100">
+                                    <option value="${i}">${i}</option>
                                 </c:forEach>
                             </select>
                         </div>

@@ -30,6 +30,7 @@ public class getAlbums extends HttpServlet {
         int totalPages;
         if (request.getParameter("currentPage") != null) {
             currentPage = Integer.parseInt(request.getParameter("currentPage"));
+            currentPage = 2;
             offset = (currentPage - 1) * itemPerPage;
         } else {
             currentPage = 1;
