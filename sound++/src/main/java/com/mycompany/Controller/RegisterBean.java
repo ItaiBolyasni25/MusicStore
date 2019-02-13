@@ -153,8 +153,9 @@ public class RegisterBean implements Serializable{
     /**
      * If credentials are valid, add the newly registered user to the database
      * 
+     * @return String page to redirect to
      */
-    public void addUser() {
+    public String addUser() {
         User user = new User(firstName, lastName, email, password, companyName, 
             address1, postalCode, address2, city, province, country, cellphone, 
             homephone);
@@ -162,13 +163,10 @@ public class RegisterBean implements Serializable{
         if (Validator.hasValidInformation(user, DAO)) {
            DAO.write(user);
            loggedIn = user.getFirstname();
-            try {
-                FacesContext.getCurrentInstance().getExternalContext().redirect("index.html");
-            } catch (IOException ex) {
-                Logger.getLogger(RegisterBean.class.getName()).log(Level.SEVERE, null, ex);
-            }
+           return "index.xhtml";
         } else {
-            loggedIn = "That account already exists";        
+            loggedIn = "That account already exists";
+            return "index.html";
         }
     }
 }
