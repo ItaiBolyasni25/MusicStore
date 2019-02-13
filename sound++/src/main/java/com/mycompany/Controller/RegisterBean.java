@@ -1,20 +1,18 @@
 package com.mycompany.Controller;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 import com.mycompany.Utilities.Validator;
 import com.mycompany.Persistence.DAO;
 import com.mycompany.Model.User;
+import java.io.IOException;
 import java.io.Serializable;
-import javax.annotation.Resource;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.transaction.UserTransaction;
 
 /**
  * ManagedBean for registering a user
@@ -38,13 +36,11 @@ public class RegisterBean implements Serializable{
     private String country;
     private String cellphone;
     private String homephone;
-    private final DAO DAO = new DAO();
-
-    @PersistenceContext(unitName = "usersPU")
-    private EntityManager em;
     
-    @Resource
-    private UserTransaction userTransaction;
+    private String loggedIn = "";
+    
+    @Inject
+    private DAO DAO;
     
     public String getFirstName() {
         return firstName;
@@ -150,23 +146,29 @@ public class RegisterBean implements Serializable{
         this.homephone = homephone;
     }
     
+    public String getLoggedIn() {
+        return loggedIn;
+    }
+    
     /**
      * If credentials are valid, add the newly registered user to the database
      * 
-     * @return boolean
      */
-    public boolean addUser() {
+    public void addUser() {
         User user = new User(firstName, lastName, email, password, companyName, 
             address1, postalCode, address2, city, province, country, cellphone, 
             homephone);
 
-        if (Validator.hasValidInformation(user, em)) {
-           DAO.setEntityManager(em);
-           DAO.setUserTransaction(userTransaction);
+        if (Validator.hasValidInformation(user, DAO)) {
            DAO.write(user);
-           return true;
+           loggedIn = user.getFirstname();
+            try {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("index.html");
+            } catch (IOException ex) {
+                Logger.getLogger(RegisterBean.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } else {
-            return false;        
+            loggedIn = "That account already exists";        
         }
     }
 }

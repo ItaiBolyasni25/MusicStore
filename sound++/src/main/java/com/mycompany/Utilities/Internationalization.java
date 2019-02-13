@@ -8,7 +8,6 @@ package com.mycompany.Utilities;
 
 import java.io.Serializable;
 import javax.inject.Named;
-import javax.enterprise.context.Dependent;
 import javax.enterprise.context.SessionScoped;
 
 /**
@@ -83,7 +82,7 @@ public class Internationalization implements Serializable {
     }
     
     public String getWelcome(){
-        return language.equals("English")? "Welcome!": "Bienvenue!";
+        return language.equals("English")? "Welcome": "Bienvenue";
     }
     
     public String getDescription(){

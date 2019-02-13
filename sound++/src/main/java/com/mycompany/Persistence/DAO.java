@@ -12,9 +12,11 @@ import com.mycompany.Model.User;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.Resource;
 import javax.enterprise.context.*;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.HeuristicMixedException;
 import javax.transaction.HeuristicRollbackException;
@@ -31,7 +33,10 @@ import javax.transaction.UserTransaction;
 @RequestScoped
 public class DAO {
 
+    @PersistenceContext(unitName = "usersPU")
     private EntityManager em;
+    
+    @Resource
     private UserTransaction userTransaction;
 
     public <E extends EntityModel> boolean write(E entityModel) {
