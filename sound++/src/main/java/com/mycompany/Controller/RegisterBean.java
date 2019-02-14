@@ -3,16 +3,10 @@ package com.mycompany.Controller;
 import com.mycompany.Utilities.Validator;
 import com.mycompany.Persistence.DAO;
 import com.mycompany.Model.User;
-import java.io.IOException;
 import java.io.Serializable;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 /**
  * ManagedBean for registering a user
@@ -37,7 +31,11 @@ public class RegisterBean implements Serializable{
     private String cellphone;
     private String homephone;
     
+    // Holds logged in user's name
     private String loggedIn = "";
+    
+    // Will be set to true if user tries to register with existing email
+    private boolean invalidEmail;
     
     @Inject
     private DAO DAO;
@@ -150,6 +148,10 @@ public class RegisterBean implements Serializable{
         return loggedIn;
     }
     
+    public boolean getInvalidEmail() {
+        return invalidEmail;
+    }
+    
     /**
      * If credentials are valid, add the newly registered user to the database
      * 
@@ -160,13 +162,14 @@ public class RegisterBean implements Serializable{
             address1, postalCode, address2, city, province, country, cellphone, 
             homephone);
 
-        if (Validator.hasValidInformation(user, DAO)) {
+        if (!Validator.emailExists(user, DAO)) {
            DAO.write(user);
            loggedIn = user.getFirstname();
+           invalidEmail = false;
            return "index.xhtml";
         } else {
-            loggedIn = "That account already exists";
-            return "index.html";
-        }
+            invalidEmail = true;
+            return "login.xhtml";
+        } 
     }
 }

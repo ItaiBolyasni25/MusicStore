@@ -17,12 +17,12 @@ public class Validator {
      * Will be used to validate a user trying to register
      * 
      * @param user User to be registered
+     * @param DAO DAO
      * @return boolean
      */
-    public static boolean hasValidInformation(User user, DAO DAO) {
-        List<User> existingUser = DAO.read(user.getEmail());
-        System.out.println(user.getEmail());
-        return existingUser.isEmpty();
+    public static boolean emailExists(User user, DAO DAO) {
+        List<User> existingUser = DAO.find(user, "identifier.email = '" + user.getEmail() +"'");
+        return !existingUser.isEmpty();
     }
     
     /**
@@ -30,15 +30,26 @@ public class Validator {
      * 
      * @param email User email
      * @param password User password
+     * @param DAO DAO
      * @return boolean
      */
     public static boolean isRegistered(String email, String password, DAO DAO) {
-        List<User> user = DAO.read(email);
+        List<User> user = DAO.find(new User(), "identifier.email = '" + email + "'");
         
         if (user.size() == 1) {
             return user.get(0).getHash().equals(password);
         }
         
         return false;
+    }
+    
+    /**
+     * 
+     * @param password
+     * @param DAO
+     * @return 
+     */
+    public static boolean passwordExists(String password, DAO DAO) {
+        return !DAO.find(new User(), "identifier.hash = '" + password + "'").isEmpty();
     }
 }

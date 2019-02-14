@@ -79,7 +79,7 @@
 
             <div class="tab-pane fade show active" id="home">
                 <div class="jumbotron">
-                    <h:outputText class="display-4" value="#{registerBean.loggedIn == '' ? internationalization.welcome : internationalization.welcome.concat(' ').concat(registerBean.loggedIn)}" /> 
+                    <h:outputText class="display-4" value="#{registerBean.loggedIn != '' || loginBean.loggedIn != ''?  (registerBean.loggedIn != ''? internationalization.welcome.concat(' ').concat(registerBean.loggedIn) : internationalization.welcome.concat(' ').concat(loginBean.loggedIn)) : internationalization.welcome }" /> 
                     <p class="lead">#{internationalization.description}</p>
                     <hr class="my-4"/>
                 </div>

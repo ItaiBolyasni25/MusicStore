@@ -79,41 +79,45 @@
                             <h:form>
                                 <fieldset>
                                     <legend>#{internationalization.signup}</legend>
-
+                                 
+                                    <h:panelGroup layout="block" class="alert alert-danger" rendered="#{registerBean.invalidEmail == true}">
+                                        <h:outputText class="text-danger" value="#{internationalization.invalidEmail}" />
+                                    </h:panelGroup>
+                              
                                     <div class="form-group">
                                         <label class="col-form-label" for="inputDefault">#{internationalization.firstname}</label>
-                                        <h:inputText value="#{registerBean.firstName}" class="form-control" placeholder="Default input" id="firstname"/>
+                                        <h:inputText value="#{registerBean.firstName}" class="form-control" placeholder="Default input" id="firstname" required="true"/>
                                     </div>
 
                                     <div class="form-group">
                                         <label class="col-form-label" for="inputDefault">#{internationalization.lastname}</label>
-                                        <h:inputText value="#{registerBean.lastName}" class="form-control" placeholder="Default input" id="lastname"/>
+                                        <h:inputText value="#{registerBean.lastName}" class="form-control" placeholder="Default input" id="lastname" required="true"/>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">#{internationalization.email}</label>
-                                        <h:inputText value="#{registerBean.email}" class="form-control" id="registerEmail" aria-describedby="emailHelp" placeholder="Enter email"/>
+                                        <h:inputText value="#{registerBean.email}" class="form-control" id="registerEmail" aria-describedby="emailHelp" placeholder="Enter email" required="true"/>
                                         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">#{internationalization.password}</label>
-                                        <h:inputSecret value="#{registerBean.password}" class="form-control" id="registerPassword" placeholder="Password"/>
+                                        <h:inputSecret value="#{registerBean.password}" class="form-control" id="registerPassword" placeholder="Password" required="true"/>
                                     </div>
 
                                     <div class="form-group">
                                         <label class="col-form-label" for="inputDefault">#{internationalization.company}</label>
-                                        <h:inputText value="#{registerBean.companyName}" class="form-control" placeholder="Default input" id="companyName"/>
+                                        <h:inputText value="#{registerBean.companyName}" class="form-control" placeholder="Default input" id="companyName" required="true"/>
                                     </div>
 
                                     <div class="form-group">
                                         <label class="col-form-label" for="inputDefault">#{internationalization.address} 1</label>
-                                        <h:inputText value="#{registerBean.address1}" class="form-control" placeholder="Default input" id="address1"/>
+                                        <h:inputText value="#{registerBean.address1}" class="form-control" placeholder="Default input" id="address1" required="true"/>
                                     </div>
 
                                     <div class="form-group">
                                         <label class="col-form-label" for="inputDefault">#{internationalization.postalcode}</label>
-                                        <h:inputText value="#{registerBean.postalCode}" class="form-control" placeholder="Default input" id="postalCode"/>
+                                        <h:inputText value="#{registerBean.postalCode}" class="form-control" placeholder="Default input" id="postalCode" required="true"/>
                                     </div>
 
                                     <div class="form-group">
@@ -123,17 +127,17 @@
 
                                     <div class="form-group">
                                         <label class="col-form-label" for="inputDefault">#{internationalization.city}</label>
-                                        <h:inputText value="#{registerBean.city}" class="form-control" placeholder="Default input" id="city"/>
+                                        <h:inputText value="#{registerBean.city}" class="form-control" placeholder="Default input" id="city" required="true"/>
                                     </div>
 
                                     <div class="form-group">
                                         <label class="col-form-label" for="inputDefault">#{internationalization.province}</label>
-                                        <h:inputText value="#{registerBean.province}" class="form-control" placeholder="Default input" id="province"/>
+                                        <h:inputText value="#{registerBean.province}" class="form-control" placeholder="Default input" id="province" required="true"/>
                                     </div>
 
                                     <div class="form-group">
                                         <label class="col-form-label" for="inputDefault">#{internationalization.country}</label>
-                                        <h:inputText value="#{registerBean.country}" class="form-control" placeholder="Default input" id="country"/>
+                                        <h:inputText value="#{registerBean.country}" class="form-control" placeholder="Default input" id="country" required="true"/>
                                     </div>
 
                                     <div class="form-group">
@@ -163,17 +167,21 @@
                             <h:form>
                                 <fieldset>
                                     <legend>#{internationalization.loginopt}</legend>
-
+                                    
+                                    <h:panelGroup layout="block" class="alert alert-danger" rendered="#{loginBean.error == true}">
+                                        <h:outputText class="text-danger" value="#{internationalization.loginError}" />
+                                    </h:panelGroup>
+                                    
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">#{internationalization.email}</label>
-                                        <h:inputText type="email" value="#{LoginBean.email}" class="form-control" id="loginEmail" aria-describedby="emailHelp" placeholder="Enter email"/>
+                                        <h:inputText type="email" value="#{loginBean.email}" class="form-control" id="loginEmail" aria-describedby="emailHelp" placeholder="Enter email" required="true"/>
                                         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
 
 
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">#{internationalization.password}</label>
-                                        <h:inputSecret value="#{LoginBean.password}" class="form-control" id="loginPassword" placeholder="Password"/>
+                                        <h:inputSecret value="#{loginBean.password}" class="form-control" id="loginPassword" placeholder="Password" required="true"/>
                                     </div>
 
                                     <h:commandButton type="submit" class="btn btn-primary formbutton" value="#{internationalization.loginopt}" action="#{loginBean.canLogIn}"/>

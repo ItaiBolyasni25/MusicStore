@@ -202,4 +202,12 @@ public class Internationalization implements Serializable {
     public String getPassword(){
         return language.equals("English")? "Password": "Mot de passe";
     }
+    
+    public String getInvalidEmail(){
+        return language.equals("English")? "There's already an existing account with that email address": "Il y a déjà un compte existant avec cet courriel";
+    }
+    
+    public String getLoginError(){
+        return language.equals("English")? "There was a problem logging you in": "Il y a eu un problème pour vous connecter";
+    }
 }

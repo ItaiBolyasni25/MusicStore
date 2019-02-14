@@ -14,7 +14,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.enterprise.context.*;
-import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -29,7 +28,6 @@ import javax.transaction.UserTransaction;
  *
  * @author 1633867
  */
-@Named
 @RequestScoped
 public class DAO {
 
@@ -59,17 +57,18 @@ public class DAO {
         return q.getResultList();
     }
     
-    /**
-     * Method for finding a user in the database based on their email address
-     * 
-     * @param email Email to search for
-     * @return List<User> Users with that email (should be 1 or 0)
-     */
-    public List<User> read(String email) {
-        Query q = em.createQuery("SELECT everything FROM User everything WHERE everything.email = '" + email + "'");
-
+    public <E extends EntityModel> List<E> find(E entityModel, String whereClause) {
+        String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
+        Query q = em.createQuery("FROM " + className + " identifier WHERE " + whereClause);
         return q.getResultList();
     }
+
+    public <E extends EntityModel> List<E> findAll(E entityModel) {
+        String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
+        Query q = em.createQuery("FROM " + className);
+        return q.getResultList();
+    }
+
   
     public <E extends EntityModel> boolean delete(E entityModel) {
         em.remove(entityModel);
