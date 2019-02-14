@@ -11,6 +11,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 /**
@@ -19,7 +20,7 @@ import javax.persistence.Query;
  */
 public class DAO {
 
-
+   @PersistenceContext(unitName = "songstore")
     protected EntityManager em;
 
     public DAO(String databaseName) {
@@ -36,16 +37,16 @@ public class DAO {
     }
 
     public <E extends EntityModel> List<E> read(E entityModel, int id) {
-        em.getTransaction().begin();
+        //em.getTransaction().begin();
         String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
-        Query q = em.createQuery("SELECT c FROM " + className + " c WHERE c." + className + "_id = :id");
+        Query q = em.createQuery("SELECT c FROM " + className + " c WHERE c." + className.toLowerCase() + "_id = :id");
         q.setParameter("id", id);
         return q.getResultList();
     }
     
     public <E extends EntityModel> List<E> findAll(E entityModel) {
         String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
-        Query q = em.createNativeQuery("Select * FROM " + className + " e");
+        Query q = em.createQuery("Select e FROM " + className + " e");
         return q.getResultList();
     }
   
@@ -62,11 +63,18 @@ public class DAO {
     
     public <E extends EntityModel> List<E> findWithLimit(E entityModel, int offset, int display) {
         String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
-        Query q = em.createNativeQuery("SELECT * FROM " + className + " a ORDER BY a.title ASC" );
+        Query q = em.createQuery("SELECT a FROM " + className + " a ORDER BY a.title ASC" );
         q.setFirstResult(offset);
         q.setMaxResults(display);
         return q.getResultList();
     }
+    /* public <E extends EntityModel> List<E> findWithJoin(E entityModel, String whereClause) {
+        String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
+        Query q = em.createQuery("SELECT a FROM " + className + "a JOIN a.track WHERE c." + className.toLowerCase() + "title = :whereClause");
+        q.setParameter("whereClause", whereClause);
+        return q.getResultList();
+     }*/
+   
     
     
 

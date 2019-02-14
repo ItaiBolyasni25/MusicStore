@@ -76,11 +76,11 @@ public class Album implements EntityModel {
         this.title = title;
     }
 
-    public Date getReleaseDate() {
+    public Date getReleasedate() {
         return release_date;
     }
 
-    public void setReleaseDate(Date releaseDate) {
+    public void setReleasedate(Date releaseDate) {
         this.release_date = releaseDate;
     }
 
@@ -92,11 +92,11 @@ public class Album implements EntityModel {
         this.recording_label = label;
     }
 
-    public int getNumberOfSong() {
+    public int getNumberofsong() {
         return number_songs;
     }
 
-    public void setNumberOfSong(int numberOfSong) {
+    public void setNumberofsong(int numberOfSong) {
         this.number_songs = numberOfSong;
     }
 
@@ -112,31 +112,31 @@ public class Album implements EntityModel {
         return list_price;
     }
 
-    public void setListPrice(double listPrice) {
+    public void setListprice(double listPrice) {
         this.list_price = listPrice;
     }
 
-    public double getSalePrice() {
+    public double getSaleprice() {
         return sale_price;
     }
 
-    public void setSalePrice(double salePrice) {
+    public void setSaleprice(double salePrice) {
         this.sale_price = salePrice;
     }
 
-    public boolean isRemovalStatus() {
+    public boolean isRemovalstatus() {
         return removal_status;
     }
 
-    public void setRemovalStatus(boolean removalStatus) {
+    public void setRemovalstatus(boolean removalStatus) {
         this.removal_status = removalStatus;
     }
 
-    public Timestamp getRemovalDate() {
+    public Timestamp getRemovaldate() {
         return removal_date;
     }
 
-    public void setRemovalDate(Timestamp removalDate) {
+    public void setRemovaldate(Timestamp removalDate) {
         this.removal_date = removalDate;
     }
 

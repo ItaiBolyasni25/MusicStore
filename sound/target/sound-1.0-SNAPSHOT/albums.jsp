@@ -7,6 +7,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html
     xmlns="http://www.w3.org/1999/xhtml"
@@ -85,15 +87,25 @@
                 </tr>
 
                 <c:forEach items="${albumList}" var="album">
-                    <tr class="table-secondary" id ="${album[0]}">
+                    <tr class="table-secondary" id ="${album.id}">
 
-                        <th><img src="${album[11]}" alt="Album's cover" class="albumPic"/></th>
-                        <td>${album[1]}</td>
+                        <th><img src="${album.image}" alt="Album's cover" class="albumPic"/></th>
+                        <td>${album.title}</td>
+                        <td> <c:forEach items="${album.artists}" var="artist">
+                                <c:choose>
+                                    <c:when test="${fn:length(album.artists)> 1}">
+                                        <c:out value="${artist.name} ,"/>
+                                    </c:when>    
+                                    <c:otherwise>
+                                        <c:out value="${artist.name}"/>
+                                    </c:otherwise>
+                                </c:choose>                       
+                            </c:forEach></td>
                         <td>
-                            <fmt:formatDate type="date" value ="${album[2]}" />
+                            <fmt:formatDate type="date" value ="${album.releasedate}" />
                         </td>
-                        <td>${album[5]}</td>
-                        <td>${album[6]}</td>
+                        <td>${album.numberofsong}</td>
+                        <td>${album.cost}</td>
                         <td></td>
 
                     </tr>
@@ -147,30 +159,42 @@
         <div class="card border-light mb-3" id ="info">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Albums</a></li>
-                <li class="breadcrumb-item active">Data</li>
+                <li class="breadcrumb-item active" id="titleAlbum">Data</li>
             </ol>
             <div class="card-body">
                 <p class ="imageContainer"><img src="" alt="Album's cover" id="albumCover"></p>
                 <div class="contentContainer">
                     <h4 class="card-title" id ="title"></h4>
-                    <p class="card-text" id = "artist">Updating</p>
-                    <p class="card-text" id = "released_date"> </p>
-                    <p class="card-text" id = "review">Updating</p>
-                    <p class="card-text" id = "cost"></p>
-                    <form class="form-inline my-2 my-lg-0">
-                        <div class="form-group" class="col-sm-2 col-form-label">
-                            <label for="quantity">Quantity</label>
+                    <p class="card-text" id = "artist"></p>
+                    <p class="card-text" id = "review"></p>
+                    <hr>
+                        <p class="card-text" id = "cost"></p>
+                        <form class="form-inline my-2 my-lg-0" id="quantityContainer">
+                            <label for="quantity" class="quantity">Quantity</label>
                             <select name = "quantity" class="custom-select">
                                 <option selected="1" value="1">1</option>
                                 <c:forEach var = "i" begin = "2" end = "100">
                                     <option value="${i}">${i}</option>
                                 </c:forEach>
                             </select>
-                        </div>
-                        <button class="btn btn-secondary my-2 my-sm-0" value ="${internationalization.inventoryadd}" action = "add">${internationalization.inventoryadd}</button>
-                    </form>
+                            <button class="btn btn-secondary my-2 my-sm-0" value ="${internationalization.inventoryadd}" action = "add">${internationalization.inventoryadd}</button>
+                        </form>
                 </div>
             </div>
-        </div>
+            <div class = "detailInfo">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#details">Details</a>
+                    </li>
+                  </ul>
+                <div id="myTabContent" class="tab-content">
+                    <div class="tab-pane fade show active" id="details">
+                        <p id="releasedate"><span class="boldText">Original Release Date: </span></p>
+                        <p id="addeddate"><span class="boldText">Added Date: </span></p>
+                        <p id="label"><span class="boldText">Label: </span></p>                       
+                    </div>
+                   </div>
+            </div>
+        </div>               
     </body>
 </html>

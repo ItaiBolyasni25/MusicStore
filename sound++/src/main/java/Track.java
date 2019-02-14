@@ -20,7 +20,7 @@ import javax.persistence.*;
 public class Track implements EntityModel, Serializable{
     @Id
     @GeneratedValue( strategy=GenerationType.AUTO )
-    private int track_Id;
+    private int track_id;
     private int selection_number;
     private String title;
     private String songwriter;
@@ -38,11 +38,11 @@ public class Track implements EntityModel, Serializable{
     private Date removal_date;
 
     public int getId() {
-        return track_Id;
+        return track_id;
     }
 
     public void setId(int track_id) {
-        this.track_Id = track_id;
+        this.track_id = track_id;
     }
 
     public int getSelection_number() {

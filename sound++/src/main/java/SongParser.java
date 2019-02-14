@@ -50,16 +50,16 @@ public class SongParser {
         if (albums.size() < 1) {
             album.setTitle(splittedCsv[1].trim());
             Date javaDate = new Date();
-            album.setReleaseDate(newDateFormat(splittedCsv[2]));
+            album.setReleasedate(newDateFormat(splittedCsv[2]));
             album.setArtists(artists);
             album.setLabel(splittedCsv[4].trim());
             album.setAddedDate(new java.sql.Date(javaDate.getTime()));
             album.setCost(Double.parseDouble(splittedCsv[7]));
-            album.setListPrice(Double.parseDouble(splittedCsv[8]));
-            album.setSalePrice(0);
-            album.setRemovalStatus(false);
-            album.setRemovalDate(null);
-            album.setNumberOfSong(Integer.parseInt(splittedCsv[5]));
+            album.setListprice(Double.parseDouble(splittedCsv[8]));
+            album.setSaleprice(0);
+            album.setRemovalstatus(false);
+            album.setRemovaldate(null);
+            album.setNumberofsong(Integer.parseInt(splittedCsv[5]));
             album.setImage(splittedCsv[12]);
         } else {
             album = albums.get(0);

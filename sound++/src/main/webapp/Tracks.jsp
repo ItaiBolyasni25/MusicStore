@@ -7,6 +7,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html
     xmlns="http://www.w3.org/1999/xhtml"
@@ -18,8 +20,8 @@
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-        <script src="jquery-1.12.4.js" type="text/javascript"></script>
-        <script src="itemInfo.js" type="text/javascript"></script>
+        <script src="resources/js/jquery-1.12.4.js" type="text/javascript"></script>
+        <script src="resources/js/trackInfo.js" type="text/javascript"></script>
         <link href="resources/css/style.css" rel="stylesheet" type="text/css">
             <title>Sound++</title>
     </head>
@@ -73,8 +75,8 @@
                 </form>
             </div>
         </nav>
-
-        <table class="table table-hover" id="hey">
+        <div id ="trackTable">
+            <table class="table table-hover">
             <tr>
                 <th scope="col">${internationalization.albumimage}</th>
                 <th scope="col">${internationalization.albumtitle}</th>
@@ -82,13 +84,22 @@
                 <th scope="col">${internationalization.albumdate}</th>
                 <th scope="col">${internationalization.numberSongs}</th>
                 <th scope="col">${internationalization.cost}</th>
-            </tr>
+           </tr>
 
             <c:forEach items="${trackList}" var="track">
-                <tr class="table-secondary">
-                    <th><img src="${track.album.image}" alt="Album's cover" class="albumPic"/></th>
+                <tr class="table-secondary" id="${track.id}">
+                    <th><img src="${track.album.image}" alt="Album's cover" class="trackPic"/></th>
                     <td>${track.title}</td>
-                    <td>${track.album.artists}</td>
+                     <td> <c:forEach items="${track.album.artists}" var="artist">
+                                <c:choose>
+                                    <c:when test="${fn:length(track.album.artists)> 1}">
+                                        <c:out value="${artist.name} ,"/>
+                                    </c:when>    
+                                    <c:otherwise>
+                                        <c:out value="${artist.name}"/>
+                                    </c:otherwise>
+                                </c:choose>                       
+                            </c:forEach></td>
                     <td>
                         <fmt:formatDate type="date" value ="${track.date_added}" />
                     </td>
@@ -96,9 +107,9 @@
                     <td>${track.cost}</td>
                 </tr>
             </c:forEach>
+           </table>
 
-
-        </table> 
+         
         <div class="pages">
             <ul class="pagination">
                 <c:choose>
@@ -141,6 +152,47 @@
                     </c:otherwise>
                 </c:choose>
             </ul>
-        </div>
+        </div></div>
+                  <div class="card border-light mb-3" id ="info">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Track></li>
+                <li class="breadcrumb-item active" id="titleTrack">Data</li>
+            </ol>
+            <div class="card-body">
+                <p class ="imageContainer"><img src="" alt="Album's cover" id="albumCover"></p>
+                <div class="contentContainer">
+                    <h4 class="card-title" id ="title"></h4>
+                    <p class="card-text" id = "artist"></p>
+                    <p class="card-text" id = "review"></p>
+                    <hr>
+                        <p class="card-text" id = "cost"></p>
+                        <form class="form-inline my-2 my-lg-0" id="quantityContainer">
+                            <label for="quantity" class="quantity">Quantity</label>
+                            <select name = "quantity" class="custom-select">
+                                <option selected="1" value="1">1</option>
+                                <c:forEach var = "i" begin = "2" end = "100">
+                                    <option value="${i}">${i}</option>
+                                </c:forEach>
+                            </select>
+                            <button class="btn btn-secondary my-2 my-sm-0" value ="${internationalization.inventoryadd}" action = "add">${internationalization.inventoryadd}</button>
+                        </form>
+                </div>
+            </div>
+            <div class = "detailInfo">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#details">Details</a>
+                    </li>
+                  </ul>
+                <div id="myTabContent" class="tab-content">
+                    <div class="tab-pane fade show active" id="details">
+                        <p id="addeddate"><span class="boldText">Added Date: </span></p>
+                        <p id="genre"><span class="boldText">Genre: </span></p>
+                        <p id="songwriter"><span class="boldText">Songwriter: </span></p>
+                         <p id="playlength"><span class="boldText">Play Length:  </span></p>  
+                    </div>
+                   </div>
+            </div>
+        </div>              
     </body>
 </html>

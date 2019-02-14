@@ -95,7 +95,8 @@ a{
     width: auto;
 }
 .trackPic{
-    height: 60px;
+    height: 100px;
+    border-radius: 50%;
     width: auto;
 }
 .languagebutton{
@@ -128,8 +129,9 @@ section .section-title {
 }
 #info {
     width: 90%;
-    margin-left: 5%;
+    height: 40%;
     display: none;
+    margin-left: 5%;
 }
 #footer {
     background: #f7f7f9 !important;
@@ -207,12 +209,12 @@ section .section-title {
 }
 .imageContainer{
     float: left;
-    padding-left: 10%;
+    padding-left: 5%;
     width: 40%;
     height: auto;
 }
 .imageContainer img{
-    width: 270px;
+    width: 350px;
     height: auto;
 }
 #title{
@@ -222,10 +224,26 @@ section .section-title {
 }
 .contentContainer{
     width: 60%;
-    padding-left: 10%;
     height: auto;
     float: left;
+    padding-left: 8%;
 }
 .custom-select{
-    width: 20%;
+    width: 10%;
+    margin-right: 2%;
+}
+.quantity{
+    padding-right: 2%;
+}
+.detailInfo{
+    width: 100%;
+    margin-top: 35%;
+}
+.boldText{
+    font-weight: bold;
+}
+#details{
+    margin-top: 5%;
+    margin-left: 5%;
+    color: black;
 }
