@@ -7,7 +7,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 
 @Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-02-13T19:22:13")
 @StaticMetamodel(Album.class)
-public class Album_ { 
+public class Album { 
 
     public static volatile SingularAttribute<Album, Timestamp> date_added;
     public static volatile SingularAttribute<Album, byte[]> image;

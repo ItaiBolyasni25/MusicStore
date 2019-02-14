@@ -1,10 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="usersPU" transaction-type="JTA">
     <jta-data-source>jdbc/mySongstore</jta-data-source>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.schema-generation.database.action" value="create"/>
+=======
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+  <persistence-unit name="songstore">
+    <provider>org.hibernate.ejb.HibernatePersistence</provider>
+<<<<<<< HEAD
+    <properties>
+      <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/songstore?useSSL=false"/>
+      <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+      <property name="hibernate.connection.username" value="songstore"/>
+      <property name="hibernate.connection.password" value="dawson123"/>
+=======
+	<class>com.mycompany.Model.User</class>
+    <properties>
+      <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/songstore?allowPublicKeyRetrieval=true&amp;useSSL=false"/>
+      <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+      <property name="hibernate.connection.username" value="root"/>
+      <property name="hibernate.connection.password" value="Aus2541!"/>
+>>>>>>> authentication
+      <property name="hibernate.archive.autodetection" value="class"/>
+      <property name="hibernate.show_sql" value="true"/>
+      <property name="hibernate.format_sql" value="true"/>
+      <property name="hbm2ddl.auto" value="update"/>
+      <property name="javax.persistence.validation.mode" value="none"/>
+>>>>>>> a8e25b088dde354ebc22a97e044d7e11e308ccaa
     </properties>
   </persistence-unit>
 </persistence>
