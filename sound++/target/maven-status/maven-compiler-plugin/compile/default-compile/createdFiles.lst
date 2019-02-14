@@ -1,5 +1,6 @@
 Validator.class
 TrackBean.class
+UserBean.class
 Internationalization.class
 Album.class
 SongParser.class

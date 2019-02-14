@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.2.1/lux/bootstrap.min.css" />
@@ -16,56 +17,8 @@
         <title>Sound++</title>
     </h:head>
     <h:body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-
-            <a class="navbar-brand" href="#"><img id="logo" src="assets/logo.png" alt="Logo of online music store Sound++"></img></a>
-
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarColor03">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <h:link class="nav-link" value="#{internationalization.home}" outcome="manager"/>
-                    </li>
-                    <li class="nav-item">
-                        <h:link class="nav-link" value="#{internationalization.albums}" outcome="albums"/>
-                    </li>
-                    <li class="nav-item">
-                        <h:link class="nav-link" value="#{internationalization.tracks}" outcome="tracks"/>
-                    </li>
-                    <li class="nav-item">
-                        <h:link class="nav-link" value="#{internationalization.about}" outcome="about"/>
-                    </li>
-                    <li class="nav-item">
-                        <h:link class="nav-link" value="#{internationalization.login}" outcome="login"/>
-                    </li>
-                    <li class="nav-item">
-                        <h:link class="nav-link" value="#{internationalization.cart}" outcome="cart"/>
-                    </li>
-                </ul>
-
-                <div class="form-group mt-3">
-                    <h:form class="form-inline my-2 my-lg-0 mr-sm-2">
-                        <h:inputText class="form-control mr-sm-3" value="#{internationalization.search}"/>
-                        <h:commandButton class="btn btn-outline-primary my-2 my-sm-0" value="#{internationalization.search}" action="search"/>
-                    </h:form>
-                </div>
-                <div class="form-group">
-                    <small class="ml-4 pl-3">Language</small>
-                    <h:form class="form-inline my-2 my-lg-0 ml-2">
-                        <h:selectOneMenu onchange="submit()" valueChangeListener="#{internationalization.languageChange}"  class="custom-select mr-sm-3 ml-4">
-                            <f:selectItem itemValue="en" itemLabel="#{internationalization.english}" />
-                            <f:selectItem itemValue="fr" itemLabel="#{internationalization.french}" />
-                        </h:selectOneMenu> 
-                    </h:form>
-                </div>
-
-            </div>
-        </nav>
-
-
+        <ui:include src="navbar.xhtml"/>
+        
         <ul class="nav nav-tabs">
             <li class="nav-item">
                 <a class="nav-link active" data-toggle="tab" href="#home">#{internationalization.home}</a>
@@ -77,7 +30,6 @@
                 <a class="nav-link" data-toggle="tab" href="#genres">#{internationalization.genres}</a>
             </li>
         </ul>
-
         <div id="myTabContent" class="tab-content">
 
             <div class="tab-pane fade show active" id="home">
@@ -247,58 +199,9 @@
                     </div>
                 </div>
             </div>
-            <!-- Footer -->
-            <section id="footer">
-                <div class="container">
-                    <div class="row text-center text-xs-center text-sm-left text-md-left">
-                        <div class="col-xs-12 col-sm-4 col-md-4">
-                            <a class="navbar-brand" href="#"><img id="logoFooter" src="assets/footerLogo.png" alt="Logo of online music store Sound++"></img></a>
-                        </div>
-                        <div class="col-xs-12 col-sm-4 col-md-4">
-                            <h5>Quick links</h5>
-                            <ul class="list-unstyled quick-links">
-                                <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Home</a></li>
-                                <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>About</a></li>
-                                <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>FAQ</a></li>
-                                <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Get Started</a></li>
-                                <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Videos</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-xs-12 col-sm-4 col-md-4">
-                            <h5>Quick links</h5>
-                            <ul class="list-unstyled quick-links">
-                                <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Home</a></li>
-                                <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>About</a></li>
-                                <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>FAQ</a></li>
-                                <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Get Started</a></li>
-                                <li><a href="https://wwwe.sunlimetech.com" title="Design and developed by"><i class="fa fa-angle-double-right"></i>Imprint</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
-                            <ul class="list-unstyled list-inline social text-center">
-                                <li class="list-inline-item"><a href="javascript:void();"><i class="fab fa-facebook-f"></i></a></li>
-                                <li class="list-inline-item"><a href="javascript:void();"><i class="fab fa-twitter"></i></a></li>
-                                <li class="list-inline-item"><a href="javascript:void();"><i class="fab fa-instagram"></i></a></li>
-                                <li class="list-inline-item"><a href="javascript:void();"><i class="fab fa-google-plus-g"></i></a></li>
-                                <li class="list-inline-item"><a href="javascript:void();" target="_blank"><i class="fa fa-envelope"></i></a></li>
-                            </ul>
-                        </div>
-                        <hr/>
-                    </div>	
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-black">
-                            <p><u><a href="https://www.nationaltransaction.com/">Sound++</a></u> is a Registered MSP/ISO of Elavon, Inc. Georgia [a wholly owned subsidiary of U.S. Bancorp, Minneapolis, MN]</p>
 
-                        </div>
-                        <hr/>
-                    </div>	
-                </div>
-            </section>
         </div>
-
-
+        <ui:include src="footer.xhtml" />
 
     </h:body>
 </html>
