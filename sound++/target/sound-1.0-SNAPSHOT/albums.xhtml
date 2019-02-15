@@ -18,55 +18,7 @@
         <title>Sound++</title>
     </h:head>
     <h:body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-
-            <a class="navbar-brand" href="#"><img id="logo" src="assets/logo.png" alt="Logo of online music store Sound++"></img></a>
-
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarColor03">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <h:link class="nav-link" value="#{internationalization.home}" outcome="index"/>
-                    </li>
-                    <li class="nav-item">
-                        <h:link class="nav-link" value="#{internationalization.albums}" outcome="albums"/>
-                    </li>
-                    <li class="nav-item">
-                        <h:link class="nav-link" value="#{internationalization.tracks}" outcome="tracks"/>
-                    </li>
-                    <li class="nav-item">
-                        <h:link class="nav-link" value="#{internationalization.about}" outcome="about"/>
-                    </li>
-                    <li class="nav-item">
-                        <h:link class="nav-link" value="#{internationalization.login}" outcome="login"/>
-                    </li>
-                    <li class="nav-item">
-                        <h:link class="nav-link" value="#{internationalization.cart}" outcome="cart"/>
-                    </li>
-                </ul>
-
-                <li class="nav-item dropdown">
-                    <div class="form-group">
-                        <h:form>
-                            <h:selectOneMenu class="custom-select" value="#{internationalization.language}">
-                                <f:selectItem itemValue="en" itemLabel="#{internationalization.english}" />
-                                <f:selectItem itemValue="fr" itemLabel="#{internationalization.french}" />
-                            </h:selectOneMenu>
-                            <h:commandButton class="btn btn-outline-primary btn-sm" value = "Change" action = "albums" /> 
-                        </h:form>
-
-                    </div>
-                </li>
-
-                <h:form class="form-inline my-2 my-lg-0">
-                    <h:inputText class="form-control mr-sm-2" value="#{internationalization.search}"/>
-                    <h:commandButton class="btn btn-outline-primary" value="#{internationalization.search}" action="search"/>
-                </h:form>
-            </div>
-        </nav>
+        <ui:include src="navbar.xhtml" />
 
         <div id="albumTable">
             <table class="table table-hover">
@@ -97,7 +49,7 @@
                     </ui:repeat>
                 </tbody>
             </table> 
-            <form>
+            <h:form>
                 <ul class="pagination" >
                     <c:if test="#{AlbumPaginationBean.current_page != 1}">
                         <li class="page-item">
@@ -125,7 +77,7 @@
                         </c:if>
                     </c:forEach> 
                 </ul>
-            </form>
+            </h:form>
         </div>
         <div class="card border-light mb-3" id ="info">
             <ol class="breadcrumb">
@@ -174,5 +126,6 @@
                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
              </div>
          </div> -->
+        <ui:include src="footer.xhtml" />
     </h:body>
 </html>

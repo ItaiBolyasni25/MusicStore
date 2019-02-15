@@ -174,6 +174,7 @@ CREATE TABLE User (
     salt varchar(300) NULL,
     CONSTRAINT User_pk PRIMARY KEY (user_id)
 );
+INSERT INTO User VALUES (1, 'itai', 'itai','itai','itai','itai','itai','itai','itai','itai','itai','itai','itai','itai','itai',true,'itai','itai','itai');
 
 -- foreign keys
 -- Reference: Album_Review_Album (table: Album_Review)
