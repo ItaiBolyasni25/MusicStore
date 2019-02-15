@@ -17,7 +17,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="Track")
-public class Track implements EntityModel, Serializable{
+public class Track extends Model implements EntityModel, Serializable{
     @Id
     @GeneratedValue( strategy=GenerationType.AUTO )
     private int track_id;
@@ -37,6 +37,9 @@ public class Track implements EntityModel, Serializable{
     private boolean removal_status;
     private Date removal_date;
 
+    public Track(){
+        super();
+    }
     public int getId() {
         return track_id;
     }

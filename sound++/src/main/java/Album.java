@@ -16,7 +16,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "Album")
-public class Album implements EntityModel {
+public class Album extends Model implements EntityModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -34,6 +34,9 @@ public class Album implements EntityModel {
     private String title;
     private Date release_date;
     private Date date_added;
+    public Album(){
+        super();
+    }
     
 
     public List<Artist> getArtists() {
