@@ -30,7 +30,7 @@ public class getInfo extends HttpServlet {
         response.setContentType("application/json");
         JSONObject responseDetailsJson = new JSONObject();
         JSONArray jsonArray = new JSONArray();
-        DAO dao = new DAO("songstore");
+        DAO dao = new DAO();
         int albumRequestID = Integer.parseInt(request.getParameter("id"));
         Album album = dao.read(new Album(), albumRequestID).get(0);
         //List<Track> tracksofAlbum = dao.find(new Track(), album.getTitle());

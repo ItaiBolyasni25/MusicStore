@@ -6,6 +6,7 @@
  * and open the template in the editor.
  */
 import javax.faces.bean.*;
+import javax.inject.Inject;
 
 /**
  * ManagedBean for registering a user
@@ -16,7 +17,7 @@ import javax.faces.bean.*;
 @ManagedBean(name = "registerBean", eager = true) 
 @SessionScoped 
 public class RegisterBean {
-    private String firstName;
+   /* private String firstName;
     private String lastName;
     private String email;
     private String password;
@@ -29,7 +30,8 @@ public class RegisterBean {
     private String country;
     private String cellphone;
     private String homephone;
-    private final DAO DAO = new DAO("songstore");
+   @Inject
+   private DAO DAO; 
 
     public String getFirstName() {
         return firstName;
@@ -139,7 +141,7 @@ public class RegisterBean {
      * If credentials are valid, add the newly registered user to the database
      * 
      * @return boolean
-     */
+     *
     public boolean addUser() {
         User user = new User(firstName, lastName, email, password, companyName, 
             address1, postalCode, address2, city, province, country, cellphone, 
@@ -151,5 +153,5 @@ public class RegisterBean {
         } else {
             return false;        
         }
-    }
+    }*/
 }

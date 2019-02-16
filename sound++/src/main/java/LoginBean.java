@@ -18,7 +18,7 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean(name = "loginBean", eager = true) 
 @SessionScoped 
 public class LoginBean {
-    private String email;
+   /* private String email;
     private String password;
 
     public String getEmail() {
@@ -41,8 +41,8 @@ public class LoginBean {
      * Determines if user can log in
      * 
      * @return boolean 
-     */
+     
     public boolean canLogIn() {
         return Validator.isRegistered(email, password);           
-    }
+    }*/
 }

@@ -1,5 +1,4 @@
-
-drop database if exists songstore;
+drop database songstore;
 create database songstore;
 DROP USER IF EXISTS songstore@localhost;
 CREATE USER songstore@'localhost' IDENTIFIED WITH mysql_native_password BY 'dawson123' REQUIRE NONE;
@@ -18,7 +17,8 @@ CREATE TABLE Album (
     sale_price double(4,2) NULL,
     removal_status bool NOT NULL,
     removal_date date NULL,
-    image blob NULL,
+    image varchar(250) NULL,
+    genre varchar(256) NOT NULL,
     CONSTRAINT Album_pk PRIMARY KEY (album_id)
 );
 
@@ -37,12 +37,12 @@ CREATE TABLE Artist (
     CONSTRAINT Artist_pk PRIMARY KEY (artist_id)
 );
 
--- Table: Album_Artist
-CREATE TABLE Album_Artist (
+-- Table: album_artist
+CREATE TABLE album_artist (
     album_artist_id int NOT NULL auto_increment,
     artist_id int NOT NULL,
     album_id int NOT NULL,
-    CONSTRAINT Album_Artist_pk PRIMARY KEY (album_artist_id)
+    CONSTRAINT album_artist_pk PRIMARY KEY (album_artist_id)
 );
 
 -- Table: Cart
@@ -131,7 +131,7 @@ CREATE TABLE Track (
     title varchar(256) NOT NULL,
     songwriter varchar(256) NOT NULL,
     play_length varchar(256) NOT NULL,
-    genre varchar(30) NOT NULL,
+    genre varchar(256) NOT NULL,
     album_id int NOT NULL,
     cost double(4,2) NOT NULL,
     list_price double(4,2) NULL,
@@ -174,7 +174,6 @@ CREATE TABLE User (
     salt varchar(300) NULL,
     CONSTRAINT User_pk PRIMARY KEY (user_id)
 );
-INSERT INTO User VALUES (1, 'itai', 'itai','itai','itai','itai','itai','itai','itai','itai','itai','itai','itai','itai','itai',true,'itai','itai','itai');
 
 -- foreign keys
 -- Reference: Album_Review_Album (table: Album_Review)
@@ -184,7 +183,6 @@ ALTER TABLE Album_Review ADD CONSTRAINT Album_Review_Album FOREIGN KEY Album_Rev
 -- Reference: Album_Review_Review (table: Album_Review)
 ALTER TABLE Album_Review ADD CONSTRAINT Album_Review_Review FOREIGN KEY Album_Review_Review (review_id)
     REFERENCES Review (review_id);
-
 	
 -- Reference: Cart_Album (table: Cart)
 ALTER TABLE Cart ADD CONSTRAINT Cart_Album FOREIGN KEY Cart_Album (album_id)
@@ -246,12 +244,12 @@ ALTER TABLE Track_Review ADD CONSTRAINT Track_Review_Review FOREIGN KEY Track_Re
 ALTER TABLE Track_Review ADD CONSTRAINT Track_Review_Track FOREIGN KEY Track_Review_Track (track_id)
     REFERENCES Track (track_id);
 
--- Reference: Album_Artist_Album (table: Album_Artist)
-ALTER TABLE Album_Artist ADD CONSTRAINT Album_Artist_Album FOREIGN KEY Album_Artist_Album (album_id)
+-- Reference: album_artist_Album (table: album_artist)
+ALTER TABLE album_artist ADD CONSTRAINT album_artist_Album FOREIGN KEY album_artist_Album (album_id)
     REFERENCES Album (album_id);
 
--- Reference: Album_Artist_Artist (table: Album_Artist)
-ALTER TABLE Album_Artist ADD CONSTRAINT Album_Artist_Artist FOREIGN KEY Album_Artist_Artist (artist_id)
+-- Reference: album_artist_Artist (table: album_artist)
+ALTER TABLE album_artist ADD CONSTRAINT album_artist_Artist FOREIGN KEY album_artist_Artist (artist_id)
     REFERENCES Artist (artist_id);
 
 -- End of file.

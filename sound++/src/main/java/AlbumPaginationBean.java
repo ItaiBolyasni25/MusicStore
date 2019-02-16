@@ -7,6 +7,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 /*
@@ -22,7 +23,8 @@ import javax.inject.Named;
 @Named("AlbumPaginationBean")
 public class AlbumPaginationBean implements Serializable {
 
-    DAO dao = new DAO("songstore");
+    @Inject
+   private DAO dao; 
     private List<Album> dataList;
     private int totalRows;
     private int currentPage;
@@ -33,14 +35,6 @@ public class AlbumPaginationBean implements Serializable {
         this.itemPerPage = 5;
         this.currentPage = 1;
         this.totalRows = dao.findAll(new Album()).size();
-    }
-
-    public DAO getDao() {
-        return dao;
-    }
-
-    public void setDao(DAO dao) {
-        this.dao = dao;
     }
 
     public List<Album> getDatalist() {

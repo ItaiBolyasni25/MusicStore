@@ -12,14 +12,16 @@
 import java.io.Serializable;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 @SessionScoped
 @Named("albumBean")
 public class AlbumBean implements Serializable {
-   private DAO dao;
+   @Inject
+   private DAO dao; 
    public AlbumBean(){
-       dao = new DAO("songstore");
+      
    }
    public List<Album> getAll(){
        return dao.findAll(new Album());

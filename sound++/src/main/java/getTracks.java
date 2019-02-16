@@ -26,7 +26,7 @@ public class getTracks extends HttpServlet {
         int currentPage;
         int offset;
         int itemPerPage = 15;
-        DAO dao = new DAO("songstore");
+        DAO dao = new DAO();
         int totalPages;
         if (request.getParameter("currentPage") != null) {
             currentPage = Integer.parseInt(request.getParameter("currentPage"));

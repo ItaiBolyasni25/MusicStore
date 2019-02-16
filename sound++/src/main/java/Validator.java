@@ -2,6 +2,7 @@
 
 
 import java.util.List;
+import javax.inject.Inject;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -15,7 +16,8 @@ import java.util.List;
  * @author aantoine97
  */
 public class Validator {
-    private static final DAO dao = new DAO("songstore");
+    /*@Inject
+    private DAO dao = new DAO("songstore");
     
     /**
      * Will be used to validate a user trying to register
@@ -23,7 +25,7 @@ public class Validator {
      * @param user User to be registered
      * @return boolean
      */
-    public static boolean hasValidInformation(User user) {
+    /*public static boolean hasValidInformation(User user) {
         List<User> existingUser = dao.find(new User(), "email = '" + user.getEmail() + "'");
         System.out.println(user.getEmail());
         return existingUser.isEmpty();
@@ -36,7 +38,7 @@ public class Validator {
      * @param password User password
      * @return boolean
      */
-    public static boolean isRegistered(String email, String password) {
+    /*public static boolean isRegistered(String email, String password) {
         List<User> user = dao.find(new User(), "email = '" + email + "'");
         
         if (user.size() == 1) {
@@ -44,5 +46,5 @@ public class Validator {
         }
         
         return false;
-    }
+    }*/
 }

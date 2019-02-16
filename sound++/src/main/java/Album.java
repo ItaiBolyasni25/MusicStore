@@ -62,6 +62,7 @@ public class Album extends Model implements EntityModel {
     private boolean removal_status;
     private Timestamp removal_date;
     private String image;
+    private String genre;
 
     public int getId() {
         return album_id;
@@ -149,6 +150,14 @@ public class Album extends Model implements EntityModel {
 
     public void setImage(String image) {
         this.image = image;
+    }
+    
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 
 }

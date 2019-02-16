@@ -23,10 +23,7 @@ public class DAO {
    @PersistenceContext(unitName = "songstore")
     protected EntityManager em;
 
-    public DAO(String databaseName) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory(databaseName);
-        this.em = emf.createEntityManager();
-
+    public DAO() {
     }
 
     public <E extends EntityModel> boolean write(E entityModel) {
@@ -75,7 +72,10 @@ public class DAO {
         return q.getResultList();
      }*/
    
-    
+    public void setEntityManager(EntityManager manager) {
+        this.em = manager;
+    }
+
     
 
 }

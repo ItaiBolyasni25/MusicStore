@@ -33,18 +33,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <ui:repeat var="album" value="#{AlbumPaginationBean.datalist}" > 
+                    <ui:repeat var="album" value="#{AlbumPaginationBean.datalist}" id="repeateId"> 
                         <tr class="table-secondary" id ="${album.id}">
                             <th><h:graphicImage value="#{album.image}" title="Album's cover" class="albumPic"/></th>
-                        <td>#{album.title}</td>
-                        <td>Updating</td>
-                        <td>
-                            <h:outputText value="#{album.releasedate}">
-                                <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
-                            </h:outputText>
-                        </td>
-                        <td>#{album.numberofsong}</td>
-                        <td>#{album.cost}</td>
+                            <td>#{album.title}</td>
+                            <td>Updating</td>
+                            <td>
+                                <h:outputText value="#{album.releasedate}">
+                                    <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
+                                </h:outputText>
+                            </td>
+                            <td>#{album.numberofsong}</td>
+                            <td>#{album.cost}</td>
                         </tr>
                     </ui:repeat>
                 </tbody>
@@ -67,13 +67,13 @@
 
                         <c:if test="#{AlbumPaginationBean.current_page == i.index}">
                             <li class="page-item active">
-                                <h:commandLink class="page-link" value="#{i.index}"/>
+                                <h:commandLink class="page-link" value="#{i.count}"/>
                             </li>
                         </c:if>
                         <c:if test="#{AlbumPaginationBean.current_page != i.index}">
                             <li class="page-item">
-                                <h:commandLink class="page-link" value="#{i.index}" actionListener="#{AlbumPaginationBean.setCurrent_page(i.index)}" />
-                            </li>
+                                <h:commandLink class="page-link" value="#{i.count}" actionListener="#{AlbumPaginationBean.setCurrent_page(i.count)}" />
+                            </li>                                                
                         </c:if>
                     </c:forEach> 
                 </ul>
@@ -91,25 +91,23 @@
                     <p class="card-text" id = "artist"></p>
                     <p class="card-text" id = "review"></p>
                     <hr></hr>
-                        <p class="card-text" id = "cost"></p>
-                        <form class="form-inline my-2 my-lg-0" id="quantityContainer">
-                            <label for="quantity" class="quantity">Quantity</label>
-                            <select name = "quantity" class="custom-select">
-                                <option selected="1" value="1">1</option>
-                                <c:forEach var = "i" begin = "2" end = "100">
-                                    <option value="${i}">${i}</option>
-                                </c:forEach>
-                            </select>
-                            <button class="btn btn-secondary my-2 my-sm-0" value ="${internationalization.inventoryadd}" action = "add">${internationalization.inventoryadd}</button>
-                        </form>
+                    <p class="card-text" id = "cost"></p>
+                    <form class="form-inline my-2 my-lg-0" id="quantityContainer">
+                        <label for="quantity" class="quantity">Quantity</label>
+                        <select name = "quantity" class="custom-select">
+                            <option selected="1" value="1">1</option>
+                            <c:forEach var = "i" begin = "2" end = "100">
+                                <option value="${i}">${i}</option>
+                            </c:forEach>
+                        </select>
+                        <button class="btn btn-secondary my-2 my-sm-0" value ="${internationalization.inventoryadd}" action = "add">${internationalization.inventoryadd}</button>
+                    </form>
                 </div>
             </div>
+           
             <div class = "detailInfo">
-                <ul class="nav nav-tabs">
-                    <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#details">Details</a>
-                    </li>
-                </ul>
+                 <h5 class="detail">DESCRIPTION</h5>
+                 <hr class="style"></hr>
                 <div id="myTabContent" class="tab-content">
                     <div class="tab-pane fade show active" id="details">
                         <p id="releasedate"><span class="boldText">Original Release Date: </span></p>
