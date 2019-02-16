@@ -8,6 +8,7 @@
 
 
 import java.util.List;
+import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -18,6 +19,7 @@ import javax.persistence.Query;
  *
  * @author 1633867
  */
+@RequestScoped
 public class DAO {
 
    @PersistenceContext(unitName = "songstore")

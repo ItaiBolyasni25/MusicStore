@@ -32,6 +32,9 @@ public class SongParser {
     }
 
     private void albumParser(String[] splittedCsv) throws ParseException {
+        if(dao == null){
+            System.out.println("+++++++++++++++++ hhihihihi");
+        }
         List<Artist> artists = dao.find(new Artist(), "name = '" + splittedCsv[3] + "'");
         Artist artist = new Artist();
         if (artists.size() < 1) {
