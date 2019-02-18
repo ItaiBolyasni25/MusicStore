@@ -13,7 +13,12 @@ import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
-import javax.inject.Inject;
+import javax.enterprise.context.RequestScoped;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,21 +26,19 @@ import org.slf4j.LoggerFactory;
  *
  * @author 1633867
  */
-public class SongParser {
+public class SongParser extends DAO{
 
-    private final static Logger LOG = LoggerFactory.getLogger(SongParser.class);
-   @Inject
-   private DAO dao; 
+    private final static Logger LOG = LoggerFactory.getLogger(SongParser.class); 
 
     public static void main(String[] args) throws IOException, ParseException {
+      
        new SongParser().readCSVFile();
     }
 
-    private void albumParser(String[] splittedCsv) throws ParseException {
-        if(dao == null){
-            System.out.println("+++++++++++++++++ hhihihihi");
-        }
-        List<Artist> artists = dao.find(new Artist(), "name = '" + splittedCsv[3] + "'");
+    private void albumParser(String[] splittedCsv) throws ParseException  {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("songstore"); 
+        this.setEntityManager(emf.createEntityManager()); 
+        List<Artist> artists = this.find(new Artist(), "name = '" + splittedCsv[3] + "'");
         Artist artist = new Artist();
         if (artists.size() < 1) {
             artist.setName(splittedCsv[3]);
@@ -44,7 +47,7 @@ public class SongParser {
         }
         artists.add(0, artist);
         Album album = new Album();
-        List<Album> albums = dao.find(new Album(), "title = '" + splittedCsv[1] + "'");
+        List<Album> albums = this.find(new Album(), "title = '" + splittedCsv[1] + "'");
         if (albums.size() < 1) {
             album.setTitle(splittedCsv[1].trim());
             Date javaDate = new Date();
@@ -63,7 +66,7 @@ public class SongParser {
         } else {
             album = albums.get(0);
         }
-        dao.write(album);
+        this.write(album);
     }
 
     private  void trackParser(String[] splittedCsv) {
@@ -75,7 +78,7 @@ public class SongParser {
         String[] play_length = splittedCsv[5].split(":");
         track.setPlay_length(Integer.parseInt(play_length[0]) + ":" + "" + Integer.parseInt(play_length[1]));
         track.setGenre(splittedCsv[7]);
-        track.setAlbum(dao.find(new Album(), "title = '" + splittedCsv[0].trim() + "'").get(0));
+        track.setAlbum(this.find(new Album(), "title = '" + splittedCsv[0].trim() + "'").get(0));
         track.setCost(Double.parseDouble(splittedCsv[9]));
         track.setList_price(Double.parseDouble(splittedCsv[10]));
         track.setSale_price(0);
@@ -84,7 +87,7 @@ public class SongParser {
         track.setIndividual(!(splittedCsv[13]).equals("Album"));
         track.setRemoval_status(false);
         track.setRemoval_date(null);
-        dao.write(track);
+        this.write(track);
 
     }
 
