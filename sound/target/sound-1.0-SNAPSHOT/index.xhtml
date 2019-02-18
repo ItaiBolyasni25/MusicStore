@@ -12,6 +12,10 @@
         <title>Sound++</title>
     </h:head>
     <h:body>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 596370d6db81b9a4c1dce588170d595f6343a3d6
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
             <a class="navbar-brand" href="#"><img id="logo" src="assets/logo.png" alt="Logo of online music store Sound++"></img></a>
@@ -23,6 +27,7 @@
             <div class="collapse navbar-collapse" id="navbarColor03">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
+<<<<<<< HEAD
                       <h:link class="nav-link" value="#{internationalization.home}" outcome="manager"/>
                     </li>
                     <li class="nav-item">
@@ -30,6 +35,15 @@
                     </li>
                     <li class="nav-item">
                         <h:link class="nav-link" value="#{internationalization.tracks}" outcome="tracks"/>
+=======
+                        <h:link class="nav-link" value="#{internationalization.home}" outcome="manager"/>
+                    </li>
+                    <li class="nav-item">
+                          <h:link class="nav-link" value="#{internationalization.albums}" outcome="albums"/>
+                    </li>
+                     <li class="nav-item">
+                         <h:link class="nav-link" value="#{internationalization.tracks}" outcome="tracks"/>
+>>>>>>> 596370d6db81b9a4c1dce588170d595f6343a3d6
                     </li>
                     <li class="nav-item">
                         <h:link class="nav-link" value="#{internationalization.about}" outcome="about"/>
@@ -42,6 +56,7 @@
                     </li>
                 </ul>
 
+<<<<<<< HEAD
                 <li class="nav-item dropdown">
                      <div class="form-group">
                          <h:form>
@@ -59,10 +74,35 @@
                     <h:inputText class="form-control mr-sm-2" value="#{internationalization.search}"/>
                     <h:commandButton class="btn btn-outline-primary" value="#{internationalization.search}" action="search"/>
                 </h:form>
+=======
+                <div class="form-group mt-3">
+                    <h:form class="form-inline my-2 my-lg-0 mr-sm-2">
+                        <h:inputText class="form-control mr-sm-3" value="#{internationalization.search}"/>
+                        <h:commandButton class="btn btn-outline-primary my-2 my-sm-0" value="#{internationalization.search}" action="search"/>
+                    </h:form>
+                </div>
+                <div class="form-group">
+                    <small class="ml-4 pl-3">Language</small>
+                    <h:form class="form-inline my-2 my-lg-0 ml-2">
+                        <h:selectOneMenu onchange="submit()" valueChangeListener="#{internationalization.languageChange}"  class="custom-select mr-sm-3 ml-4">
+                            <f:selectItem itemValue="en" itemLabel="#{internationalization.english}" />
+                            <f:selectItem itemValue="fr" itemLabel="#{internationalization.french}" />
+                        </h:selectOneMenu> 
+                    </h:form>
+                </div>
+
+>>>>>>> 596370d6db81b9a4c1dce588170d595f6343a3d6
             </div>
         </nav>
 
 
+<<<<<<< HEAD
+=======
+=======
+        <ui:include src="navbar.xhtml"/>
+        
+>>>>>>> staging
+>>>>>>> 596370d6db81b9a4c1dce588170d595f6343a3d6
         <ul class="nav nav-tabs">
             <li class="nav-item">
                 <a class="nav-link active" data-toggle="tab" href="#home">#{internationalization.home}</a>

@@ -16,7 +16,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="Album")
-public class Album implements EntityModel{
+public class Album implements EntityModel {
     @Id
     @GeneratedValue( strategy=GenerationType.AUTO )
     private int albumId;
