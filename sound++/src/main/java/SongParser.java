@@ -4,22 +4,24 @@
  * and open the template in the editor.
  */
 
+import com.mycompany.Model.Album;
+import com.mycompany.Persistence.DAO;
 import java.io.IOException;
-import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Date;
-import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.List;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
+import javax.persistence.PersistenceContext;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,14 +31,15 @@ import org.slf4j.LoggerFactory;
  */
 public class SongParser {
 
-    private final static Logger LOG = LoggerFactory.getLogger(SongParser.class);
-    private final static DAO dao = new DAO("songstore");
-
+    private final static Logger LOG = LoggerFactory.getLogger(SongParser.class); 
+    private static DAO dao;
     public static void main(String[] args) throws IOException, ParseException {
-        readCSVFile();
+      
+       dao = new DAO();
+       new SongParser().readCSVFile();
     }
 
-    private static void albumParser(String[] splittedCsv) throws ParseException {
+    private void albumParser(String[] splittedCsv) throws ParseException  {
         List<Artist> artists = dao.find(new Artist(), "name = '" + splittedCsv[3] + "'");
         Artist artist = new Artist();
         if (artists.size() < 1) {
@@ -61,13 +64,14 @@ public class SongParser {
             album.setRemovaldate(null);
             album.setNumberofsong(Integer.parseInt(splittedCsv[5]));
             album.setImage(splittedCsv[12]);
+            album.setGenre(splittedCsv[13]);
         } else {
             album = albums.get(0);
         }
         dao.write(album);
     }
 
-    private static void trackParser(String[] splittedCsv) {
+    private  void trackParser(String[] splittedCsv) {
 
         Track track = new Track();
         track.setSelection_number(Integer.parseInt(splittedCsv[6]));
@@ -89,7 +93,7 @@ public class SongParser {
 
     }
 
-    private static void readCSVFile() throws IOException, ParseException {
+    private void readCSVFile() throws IOException, ParseException {
         Path p = Paths.get("albumData.csv");
         List<String> list = Files.readAllLines(p, StandardCharsets.UTF_8);
         String[] splittedCsv = null;
@@ -110,7 +114,7 @@ public class SongParser {
             trackParser(splittedCsv);
         }
     }
-     private static java.sql.Date newDateFormat(String date) throws ParseException{
+     private java.sql.Date newDateFormat(String date) throws ParseException{
         String newString = "";
         String[] elements = date.split("/");
         newString+= elements[2] + "-" + elements[0] + "-" +elements[1];

@@ -38,7 +38,8 @@ public class Album implements EntityModel {
     private double sale_price;
     private boolean removal_status;
     private Timestamp removal_date;
-    private byte[] image;
+    private String image;
+    private String genre;
 
     public int getId() {
         return albumId;
@@ -50,6 +51,86 @@ public class Album implements EntityModel {
 
     public String getTitle() {
         return title;
+    }
+
+    public int getAlbumId() {
+        return albumId;
+    }
+
+    public void setAlbumId(int albumId) {
+        this.albumId = albumId;
+    }
+
+    public Timestamp getRelease_date() {
+        return release_date;
+    }
+
+    public void setRelease_date(Timestamp release_date) {
+        this.release_date = release_date;
+    }
+
+    public Timestamp getDate_added() {
+        return date_added;
+    }
+
+    public void setDate_added(Timestamp date_added) {
+        this.date_added = date_added;
+    }
+
+    public String getRecording_label() {
+        return recording_label;
+    }
+
+    public void setRecording_label(String recording_label) {
+        this.recording_label = recording_label;
+    }
+
+    public int getNumber_songs() {
+        return number_songs;
+    }
+
+    public void setNumber_songs(int number_songs) {
+        this.number_songs = number_songs;
+    }
+
+    public double getList_price() {
+        return list_price;
+    }
+
+    public void setList_price(double list_price) {
+        this.list_price = list_price;
+    }
+
+    public double getSale_price() {
+        return sale_price;
+    }
+
+    public void setSale_price(double sale_price) {
+        this.sale_price = sale_price;
+    }
+
+    public boolean isRemoval_status() {
+        return removal_status;
+    }
+
+    public void setRemoval_status(boolean removal_status) {
+        this.removal_status = removal_status;
+    }
+
+    public Timestamp getRemoval_date() {
+        return removal_date;
+    }
+
+    public void setRemoval_date(Timestamp removal_date) {
+        this.removal_date = removal_date;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public void setTitle(String title) {
@@ -119,12 +200,12 @@ public class Album implements EntityModel {
     public void setRemovalDate(Timestamp removalDate) {
         this.removal_date = removalDate;
     }
-
-    public byte[] getImage() {
-        return image;
+    
+    public String getGenre() {
+        return genre;
     }
 
-    public void setImage(byte[] image) {
-        this.image = image;
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 }

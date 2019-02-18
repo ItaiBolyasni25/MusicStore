@@ -27,7 +27,7 @@ public class getAlbums extends HttpServlet {
         int offset;
         int itemPerPage = 5;
         int totalPages;
-        DAO dao = new DAO("songstore");
+        DAO dao = new DAO();
        
         if (request.getParameter("currentPage") != null) {
             currentPage = Integer.parseInt(request.getParameter("currentPage"));

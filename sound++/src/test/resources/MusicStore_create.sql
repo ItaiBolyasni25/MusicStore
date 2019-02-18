@@ -18,6 +18,7 @@ CREATE TABLE Album (
     removal_status bool NOT NULL,
     removal_date date NULL,
     image varchar(250) NULL,
+     genre varchar(256) NOT NULL,
     CONSTRAINT Album_pk PRIMARY KEY (album_id)
 );
 
@@ -130,7 +131,7 @@ CREATE TABLE Track (
     title varchar(256) NOT NULL,
     songwriter varchar(256) NOT NULL,
     play_length varchar(256) NOT NULL,
-    genre varchar(30) NOT NULL,
+    genre varchar(256) NOT NULL,
     album_id int NOT NULL,
     cost double(4,2) NOT NULL,
     list_price double(4,2) NULL,

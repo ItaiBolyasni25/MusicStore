@@ -29,6 +29,30 @@ public class User implements Serializable, EntityModel {
     private Integer user_id;
     private String title;
     private String lastname;
+
+    public Integer getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(Integer user_id) {
+        this.user_id = user_id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
     private String firstname;
     private String company_name;
     private String address1;

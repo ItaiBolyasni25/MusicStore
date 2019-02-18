@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 /*
@@ -19,9 +20,9 @@ import javax.inject.Named;
 @ViewScoped
 @Named("TrackPaginationBean")
 public class TrackPaginationBean implements Serializable {
-
-    DAO dao = new DAO("songstore");
-    private List<Track> dataList;
+    @Inject
+   private DAO dao;
+    private List<Track> dataList;;
     private int totalRows;
     private int currentPage;
     private int itemPerPage;
@@ -98,13 +99,6 @@ public class TrackPaginationBean implements Serializable {
     }
 
     public void updateView() {
-        /* FacesContext fc = FacesContext.getCurrentInstance();
-        Map<String, String> params
-                = fc.getExternalContext().getRequestParameterMap();
-        if (!params.get("currentPage").isEmpty() || params.get("currentPage") != null) {
-            currentPage = Integer.parseInt(params.get("currentPage"));
-        }*/
-
         int offset = getOffset();
         setDatalist(dao.findWithLimit(new Track(), offset, itemPerPage));
     }

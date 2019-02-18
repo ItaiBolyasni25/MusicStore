@@ -17,8 +17,14 @@ CREATE TABLE Album (
     sale_price double(4,2) NULL,
     removal_status bool NOT NULL,
     removal_date date NULL,
+<<<<<<< HEAD
     image blob NULL,
     CONSTRAINT Album_pk PRIMARY KEY (albumId)
+=======
+    image varchar(250) NULL,
+    genre varchar(256) NOT NULL,
+    CONSTRAINT Album_pk PRIMARY KEY (album_id)
+>>>>>>> 6af446d1ee7967f7aef2c18d6d293b6435e8e6f0
 );
 
 -- Table: Album_Review
@@ -36,12 +42,21 @@ CREATE TABLE Artist (
     CONSTRAINT Artist_pk PRIMARY KEY (artist_id)
 );
 
+<<<<<<< HEAD
 -- Table: Artist_Album
 CREATE TABLE Artist_Album (
     artist_albumId int NOT NULL auto_increment,
     artist_id int NOT NULL,
     albumId int NOT NULL,
     CONSTRAINT Artist_Album_pk PRIMARY KEY (artist_albumId)
+=======
+-- Table: album_artist
+CREATE TABLE album_artist (
+    album_artist_id int NOT NULL auto_increment,
+    artist_id int NOT NULL,
+    album_id int NOT NULL,
+    CONSTRAINT album_artist_pk PRIMARY KEY (album_artist_id)
+>>>>>>> 6af446d1ee7967f7aef2c18d6d293b6435e8e6f0
 );
 
 -- Table: Cart
@@ -130,8 +145,13 @@ CREATE TABLE Track (
     title varchar(256) NOT NULL,
     songwriter varchar(256) NOT NULL,
     play_length varchar(256) NOT NULL,
+<<<<<<< HEAD
     genre varchar(30) NOT NULL,
     albumId int NOT NULL,
+=======
+    genre varchar(256) NOT NULL,
+    album_id int NOT NULL,
+>>>>>>> 6af446d1ee7967f7aef2c18d6d293b6435e8e6f0
     cost double(4,2) NOT NULL,
     list_price double(4,2) NULL,
     sale_price double(4,2) NULL,
@@ -243,12 +263,21 @@ ALTER TABLE Track_Review ADD CONSTRAINT Track_Review_Review FOREIGN KEY Track_Re
 ALTER TABLE Track_Review ADD CONSTRAINT Track_Review_Track FOREIGN KEY Track_Review_Track (track_id)
     REFERENCES Track (track_id);
 
+<<<<<<< HEAD
 -- Reference: artist_album_Album (table: Artist_Album)
 ALTER TABLE Artist_Album ADD CONSTRAINT artist_album_Album FOREIGN KEY artist_album_Album (albumId)
     REFERENCES Album (albumId);
 
 -- Reference: artist_album_Artist (table: Artist_Album)
 ALTER TABLE Artist_Album ADD CONSTRAINT artist_album_Artist FOREIGN KEY artist_album_Artist (artist_id)
+=======
+-- Reference: album_artist_Album (table: album_artist)
+ALTER TABLE album_artist ADD CONSTRAINT album_artist_Album FOREIGN KEY album_artist_Album (album_id)
+    REFERENCES Album (album_id);
+
+-- Reference: album_artist_Artist (table: album_artist)
+ALTER TABLE album_artist ADD CONSTRAINT album_artist_Artist FOREIGN KEY album_artist_Artist (artist_id)
+>>>>>>> 6af446d1ee7967f7aef2c18d6d293b6435e8e6f0
     REFERENCES Artist (artist_id);
 
 -- End of file.

@@ -19,7 +19,7 @@ public class getTrackInfo extends HttpServlet {
         response.setContentType("application/json");
         JSONObject responseDetailsJson = new JSONObject();
         JSONArray jsonArray = new JSONArray();
-        DAO dao = new DAO("songstore");
+        DAO dao = new DAO();
         int trackRequestID = Integer.parseInt(request.getParameter("id"));
         Track track = dao.read(new Track(), trackRequestID).get(0);
         JSONObject formDetailsJson = new JSONObject();

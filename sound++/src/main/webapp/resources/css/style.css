@@ -238,9 +238,22 @@ section .section-title {
 .boldText{
     font-weight: bold;
 }
+.detail{
+    font-weight: bold;
+    color: black;
+    font-size: 1.1em;
+    text-align: center;
+}
+.style{
+    border-top: 1px solid;
+}
 #details{
-    margin-top: 5%;
+    margin-top: 2%;
     margin-left: 5%;
     color: black;
+<<<<<<< HEAD
 >>>>>>> 596370d6db81b9a4c1dce588170d595f6343a3d6
 }
+=======
+}
+>>>>>>> 6af446d1ee7967f7aef2c18d6d293b6435e8e6f0

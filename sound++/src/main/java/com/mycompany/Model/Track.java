@@ -149,4 +149,12 @@ public class Track implements EntityModel, Serializable{
     public void setRemoval_date(Timestamp removal_date) {
         this.removal_date = removal_date;
     }
+
+    public int getTrackId() {
+        return trackId;
+    }
+
+    public void setTrackId(int trackId) {
+        this.trackId = trackId;
+    }
 }

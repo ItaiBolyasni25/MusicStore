@@ -5,8 +5,6 @@ package com.mycompany.Persistence;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
 import com.mycompany.Interface.EntityModel;
 import com.mycompany.Model.User;
 import java.util.List;
@@ -33,7 +31,7 @@ public class DAO {
 
     @PersistenceContext(unitName = "usersPU")
     private EntityManager em;
-    
+
     @Resource
     private UserTransaction userTransaction;
 
@@ -45,7 +43,7 @@ public class DAO {
         } catch (NotSupportedException | SystemException | RollbackException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException ex) {
             Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return true;
     }
 
@@ -56,7 +54,15 @@ public class DAO {
 
         return q.getResultList();
     }
-    
+
+    public <E extends EntityModel> List<E> findWithLimit(E entityModel, int offset, int display) {
+        String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
+        Query q = em.createQuery("SELECT a FROM " + className + " a ORDER BY a.title ASC");
+        q.setFirstResult(offset);
+        q.setMaxResults(display);
+        return q.getResultList();
+    }
+
     public <E extends EntityModel> List<E> find(E entityModel, String whereClause) {
         String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
         Query q = em.createQuery("FROM " + className + " identifier WHERE " + whereClause);
@@ -69,16 +75,15 @@ public class DAO {
         return q.getResultList();
     }
 
-  
     public <E extends EntityModel> boolean delete(E entityModel) {
         em.remove(entityModel);
         return true;
     }
-    
+
     public void setEntityManager(EntityManager manager) {
         this.em = manager;
     }
-    
+
     public void setUserTransaction(UserTransaction ut) {
         this.userTransaction = ut;
     }
