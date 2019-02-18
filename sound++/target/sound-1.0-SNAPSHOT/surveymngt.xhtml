@@ -43,41 +43,50 @@
                 </h:form>
             </div>
         </nav>
-
+        <!--
         <p>
             From this page a manager can define the survey presented on the front page. Previous surveys must be saved so that they may be reused.
         </p>
-
+        -->
         <h:form>
-            <div class ="col-md-12">
-                <div class="col-md-4 centerform">
-                    <div class="form-group row">
-                        <h:outputLabel class="col-form-label" for="question">Question</h:outputLabel>
-                        <h:inputText id="question" class="form-control" value="" required="true" requiredMessage="Question is required"/><br/>
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-4 ">
+                    <h1>#{internationalization.addSurvey}</h1>
+                    <div class="form-group">
+                        <h:form>
+                            <h:outputLabel class="col-form-label" for="question">#{internationalization.question}</h:outputLabel>
+                            <h:inputText id="question" class="form-control" value="" required="true" requiredMessage="#{internationalization.questionRequired}"/><br/>
 
-                        <h:outputLabel for="option1">Option 1</h:outputLabel>
-                        <h:inputText id="option1" class="form-control" value="" required="true" requiredMessage="Question is required"/><br/>
+                            <h:outputLabel for="option1">#{internationalization.option} 1</h:outputLabel>
+                            <h:inputText id="option1" class="form-control" value="" required="true" requiredMessage="#{internationalization.optionRequired}"/><br/>
 
-                        <h:outputLabel for="option2">Option 2</h:outputLabel>
-                        <h:inputText id="option2" class="form-control" value="" required="true" requiredMessage="Question is required"/><br/>
-
-
-                        <h:outputLabel for="option3">Option 3</h:outputLabel>
-                        <h:inputText id="option3" class="form-control" value="" required="true" requiredMessage="Question is required"/><br/>
+                            <h:outputLabel for="option2">#{internationalization.option} 2</h:outputLabel>
+                            <h:inputText id="option2" class="form-control" value="" required="true" requiredMessage="#{internationalization.optionRequired}"/><br/>
 
 
-                        <h:outputLabel for="option4">Option 4</h:outputLabel>
-                        <h:inputText id="option4" class="form-control" value="" required="true" requiredMessage="Question is required"/><br/>
+                            <h:outputLabel for="option3">#{internationalization.option} 3</h:outputLabel>
+                            <h:inputText id="option3" class="form-control" value="" /><br/>
 
-                        <h:outputLabel for="option5">Option 5</h:outputLabel>
-                        <h:inputText id="option5" class="form-control" value="" required="true" requiredMessage="Question is required"/><br/>
 
-                        <h:commandButton id="submit-button" value="Submit" action="savesurvey"/>
+                            <h:outputLabel for="option4">#{internationalization.option} 4</h:outputLabel>
+                            <h:inputText id="option4" class="form-control" value="" /><br/>
+
+                            <h:outputLabel for="option5">#{internationalization.option} 5</h:outputLabel>
+                            <h:inputText id="option5" class="form-control" value="" /><br/>
+
+                            <h:commandButton id="submit-button" value="#{internationalization.add}" class="btn btn-primary" action="savesurvey"/>
+                        </h:form>
+
 
                     </div>
                 </div>
-            </div>
+                <div class="col-md-2"></div>
+                <div class="col-md-5"> 
+                    <h1>#{internationalization.pastSurvey}</h1>
+                </div>
 
+            </div>
 
 
 

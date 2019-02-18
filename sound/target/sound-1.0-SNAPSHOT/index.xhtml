@@ -15,7 +15,7 @@
         <!--Library for sliding carousel -->
         <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
         <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-        
+
         <script src="js/newsfeed.js"></script>
 
 >>>>>>> add slider to news feed
@@ -27,8 +27,8 @@
 
     </h:head>
     <h:body>
-<<<<<<< HEAD
         <ui:include src="navbar.xhtml"/>
+<<<<<<< HEAD
 =======
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
@@ -81,6 +81,9 @@
 >>>>>>> add slider to news feed
 
 
+=======
+
+>>>>>>> change layout survey management and index
         <ul class="nav nav-tabs">
             <li class="nav-item">
                 <a class="nav-link active" data-toggle="tab" href="#home">#{internationalization.home}</a>
@@ -107,24 +110,12 @@
                     <div class="col-md-9">
                         <h1 class="display-5">#{internationalization.newsfeed}</h1>
                         <div class="row">
-                            
+
                             <div class="col-md-1" id="prev">
                                 <button type="button" class="slick-prev emptybutton"><img class="arrows" src="assets/arrowprev.png"></img></button>
                             </div>
-                            <div class="jumbotron multiple-items col-md-10" id="newsfeed">
-                                
-                                
-
-                                
-
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                            </div>
+                            <div class="jumbotron multiple-items col-md-10" id="newsfeed"></div>
+                            
                             <div class="col-md-1" id="next">
                                 <button type="button" class="slick-next emptybutton"><img class="arrows" src="assets/arrownext.png"></img></button>
                             </div>
@@ -153,7 +144,20 @@
                                     </ul>
                                 </div>
                             </div>
-                        </div>          
+                        </div> 
+                        
+                        <div id="newreleases">
+                            <h1 class="display-5">#{internationalization.survey}</h1>
+                            <div class="card border-primary mb-3">
+                                <h3 class="card-header">#{internationalization.newsongs}</h3>
+                                <div class="card-body">
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item"><a href="#" class="card-link">Hello by gab</a></li>
+                                        <li class="list-group-item"> <a href="#" class="card-link">Hello by gab</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div> 
                     </div>
 
                 </div>

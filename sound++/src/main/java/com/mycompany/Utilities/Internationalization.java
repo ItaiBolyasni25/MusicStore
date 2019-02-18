@@ -294,5 +294,4 @@ public class Internationalization implements Serializable {
     public String getSurvey() {
         return language.equals("English") ? "Surveys" : "Sondages";
     }
-
 }

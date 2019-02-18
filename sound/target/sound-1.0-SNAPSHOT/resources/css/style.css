@@ -191,6 +191,7 @@ section .section-title {
         border-left: transparent;
         padding-bottom: 0px;
         margin-bottom: 10px;
+<<<<<<< HEAD
     }}
 .pages ul{
     width: 50%;
@@ -253,6 +254,10 @@ section .section-title {
 }
 >>>>>>> 6af446d1ee7967f7aef2c18d6d293b6435e8e6f0
 =======
+=======
+    }
+}
+>>>>>>> change layout survey management and index
 
 .arrows{
     height: 10%;
@@ -282,4 +287,22 @@ section .section-title {
     margin-left: 20%;
     margin-top: 5%;
 }
+<<<<<<< HEAD
 >>>>>>> finish news feed
+=======
+
+#logomanager{
+    height: 100%;
+    margin-top: 100%;
+}
+
+.managernav{
+    margin-top: 2%;
+
+}
+
+.addsurvey{
+    width: 40%;
+    margin-left: 30%;
+}
+>>>>>>> change layout survey management and index
