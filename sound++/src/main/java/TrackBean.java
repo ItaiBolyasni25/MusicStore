@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 
-
 /**
  *
  * @author maian
@@ -16,12 +15,15 @@ import javax.faces.bean.ManagedBean;
 
 @ManagedBean(name = "trackBean", eager = true)
 public class TrackBean implements Serializable {
-   private DAO dao;
-   public TrackBean(){
-       dao = new DAO("songstore");
-   }
-   public List<Track> getAll(){
-       return dao.findAll(new Track());
-   }
-   
+
+    private DAO dao;
+
+    public TrackBean() {
+        dao = new DAO("songstore");
+    }
+
+    public List<Track> getAll() {
+        return dao.findAll(new Track());
+    }
+
 }

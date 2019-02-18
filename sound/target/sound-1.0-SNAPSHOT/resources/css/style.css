@@ -65,13 +65,7 @@ a{
     cursor: pointer;
 }
 
-.genresimg{
-    height: 60%;
-    width: 60%;
-    display: block;
-    margin-left: 20%;
-    margin-top: 5%;
-}
+
 
 .navcenter{
     margin-left: 35%;
@@ -116,7 +110,6 @@ a{
     margin-left: 28.5%;
 }
 
-@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 section {
     padding: 60px 0;
 }
@@ -197,3 +190,42 @@ section .section-title {
     margin-bottom: 10px;
 }
 }
+<<<<<<< HEAD
+=======
+
+.arrows{
+    height: 10%;
+    width: 80%;
+}
+
+.emptybutton{
+    padding: 0;
+    border: none;
+    background: none;
+    margin-top: 45%;
+}
+
+.card-text img{
+    height: 20%;
+    width: 100%;
+    display: block;
+}
+
+.genresimg{
+    height: 60%;
+    width: 60%;
+    display: block;
+    margin-left: 20%;
+    margin-top: 5%;
+}
+
+#logomanager{
+    height: 100%;
+    margin-top: 100%;
+}
+
+.managernav{
+   margin-top: 2%;
+    
+}
+>>>>>>> 69ef0b16e0abf174e5f74d549254992bd1636228

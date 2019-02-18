@@ -16,16 +16,19 @@ import javax.inject.Named;
 
 @ManagedBean(name = "UserBean", eager = true)
 public class UserBean implements Serializable {
-   private final DAO dao;
-   public static void main(String[] args) {
-       System.out.println(new UserBean().getAll());
-   }
-   
-   public UserBean(){
-       dao = new DAO("songstore");
-   }
-   public List<User> getAll(){
-       return dao.findAll(new User());
-   }
-   
+
+    private final DAO dao;
+
+    public static void main(String[] args) {
+        System.out.println(new UserBean().getAll());
+    }
+
+    public UserBean() {
+        dao = new DAO("songstore");
+    }
+
+    public List<User> getAll() {
+        return dao.findAll(new User());
+    }
+
 }

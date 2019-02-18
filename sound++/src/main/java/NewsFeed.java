@@ -6,14 +6,12 @@ import java.util.List;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Gabriela
  */
 public class NewsFeed {
+
     List<String> news;
-    
-    
-    
+
 }

@@ -29,12 +29,11 @@
                 </ul>
 
                 <li class="nav-item dropdown">
-                    <h:form> 
-                        <h:selectOneMenu class="custom-select" value="#{internationalization.language}">
+                    <h:form class="form-inline my-2 my-lg-0 ml-2">
+                        <h:selectOneMenu onchange="submit()" valueChangeListener="#{internationalization.languageChange}"  class="custom-select mr-sm-3 ml-4">
                             <f:selectItem itemValue="en" itemLabel="#{internationalization.english}" />
                             <f:selectItem itemValue="fr" itemLabel="#{internationalization.french}" />
                         </h:selectOneMenu>
-                        <h:commandButton class="btn btn-outline-primary btn-sm languagebutton" value = "#{internationalization.change}" action = "surveymngt" /> 
                     </h:form>
                 </li>
 
@@ -48,6 +47,45 @@
         <p>
             From this page a manager can define the survey presented on the front page. Previous surveys must be saved so that they may be reused.
         </p>
+
+        <h:form>
+            <div class ="col-md-12">
+                <div class="col-md-4 centerform">
+                    <div class="form-group row">
+                        <h:outputLabel class="col-form-label" for="question">Question</h:outputLabel>
+                        <h:inputText id="question" class="form-control" value="" required="true" requiredMessage="Question is required"/><br/>
+
+                        <h:outputLabel for="option1">Option 1</h:outputLabel>
+                        <h:inputText id="option1" class="form-control" value="" required="true" requiredMessage="Question is required"/><br/>
+
+                        <h:outputLabel for="option2">Option 2</h:outputLabel>
+                        <h:inputText id="option2" class="form-control" value="" required="true" requiredMessage="Question is required"/><br/>
+
+
+                        <h:outputLabel for="option3">Option 3</h:outputLabel>
+                        <h:inputText id="option3" class="form-control" value="" required="true" requiredMessage="Question is required"/><br/>
+
+
+                        <h:outputLabel for="option4">Option 4</h:outputLabel>
+                        <h:inputText id="option4" class="form-control" value="" required="true" requiredMessage="Question is required"/><br/>
+
+                        <h:outputLabel for="option5">Option 5</h:outputLabel>
+                        <h:inputText id="option5" class="form-control" value="" required="true" requiredMessage="Question is required"/><br/>
+
+                        <h:commandButton id="submit-button" value="Submit" action="savesurvey"/>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+        </h:form>
 
     </h:body>
 </html>

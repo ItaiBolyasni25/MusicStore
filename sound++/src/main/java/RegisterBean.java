@@ -9,13 +9,13 @@ import javax.faces.bean.*;
 
 /**
  * ManagedBean for registering a user
- * 
+ *
  * @author aantoine97
  */
-
-@ManagedBean(name = "registerBean", eager = true) 
-@SessionScoped 
+@ManagedBean(name = "registerBean", eager = true)
+@SessionScoped
 public class RegisterBean {
+
     private String firstName;
     private String lastName;
     private String email;
@@ -134,22 +134,22 @@ public class RegisterBean {
     public void setHomephone(String homephone) {
         this.homephone = homephone;
     }
-    
+
     /**
      * If credentials are valid, add the newly registered user to the database
-     * 
+     *
      * @return boolean
      */
     public boolean addUser() {
-        User user = new User(firstName, lastName, email, password, companyName, 
-            address1, postalCode, address2, city, province, country, cellphone, 
-            homephone);
-                
+        User user = new User(firstName, lastName, email, password, companyName,
+                address1, postalCode, address2, city, province, country, cellphone,
+                homephone);
+
         if (Validator.hasValidInformation(user)) {
-           DAO.write(user);
-           return true;
+            DAO.write(user);
+            return true;
         } else {
-            return false;        
+            return false;
         }
     }
 }

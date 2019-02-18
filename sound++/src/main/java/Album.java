@@ -21,20 +21,17 @@ public class Album implements EntityModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int album_id;
-    
-    
+
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(name = "album_artist",
-        joinColumns = @JoinColumn(name = "album_id"),
-        inverseJoinColumns = @JoinColumn(name = "artist_id")
+            joinColumns = @JoinColumn(name = "album_id"),
+            inverseJoinColumns = @JoinColumn(name = "artist_id")
     )
     private List<Artist> artists;
-    
-    
+
     private String title;
     private Date release_date;
     private Date date_added;
-    
 
     public List<Artist> getArtists() {
         return artists;

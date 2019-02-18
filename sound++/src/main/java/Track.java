@@ -5,8 +5,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
 import java.sql.Date;
 import java.io.Serializable;
 import javax.persistence.*;
@@ -16,10 +14,11 @@ import javax.persistence.*;
  * @author 1633867
  */
 @Entity
-@Table(name="Track")
-public class Track implements EntityModel, Serializable{
+@Table(name = "Track")
+public class Track implements EntityModel, Serializable {
+
     @Id
-    @GeneratedValue( strategy=GenerationType.AUTO )
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int track_Id;
     private int selection_number;
     private String title;
@@ -27,7 +26,7 @@ public class Track implements EntityModel, Serializable{
     private String play_length;
     private String genre;
     @ManyToOne(cascade = {CascadeType.ALL})
-    @JoinColumn(name = "album_id", referencedColumnName="album_id")
+    @JoinColumn(name = "album_id", referencedColumnName = "album_id")
     private Album album;
     private double cost;
     private double list_price;

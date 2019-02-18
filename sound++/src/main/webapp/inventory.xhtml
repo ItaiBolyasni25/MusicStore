@@ -13,7 +13,37 @@
         <title>Sound++</title>
     </h:head>
     <h:body>
-        <ui:include src="navbar.xhtml"/>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+            <a class="navbar-brand" href="#"><img id="logo" src="assets/logo.png" alt="Logo of online music store Sound++"></img></a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarColor03">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <h:link class="nav-link" value="Menu" outcome="manager"/>
+                    </li>
+
+                </ul>
+
+                <li class="nav-item dropdown">
+                    <h:form class="form-inline my-2 my-lg-0 ml-2">
+                        <h:selectOneMenu onchange="submit()" valueChangeListener="#{internationalization.languageChange}"  class="custom-select mr-sm-3 ml-4">
+                            <f:selectItem itemValue="en" itemLabel="#{internationalization.english}" />
+                            <f:selectItem itemValue="fr" itemLabel="#{internationalization.french}" />
+                        </h:selectOneMenu> 
+                    </h:form>
+                </li>
+
+                <h:form class="form-inline my-2 my-lg-0">
+                    <h:inputText class="form-control mr-sm-2" value="#{internationalization.search}"/>
+                    <h:commandButton class="btn btn-outline-primary" value="#{internationalization.search}" action="search"/>
+                </h:form>
+            </div>
+        </nav>
 
         <ul class="nav nav-tabs">
             <li class="nav-item inventorychoices navlogin">
@@ -26,7 +56,7 @@
                 <a class="nav-link" data-toggle="tab" href="#remove">#{internationalization.inventoryremove}</a>
             </li>
         </ul>
-        
+
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane fade show active" id="add">
                 <p>

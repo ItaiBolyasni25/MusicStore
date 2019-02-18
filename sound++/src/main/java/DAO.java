@@ -5,8 +5,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -18,7 +16,6 @@ import javax.persistence.Query;
  * @author 1633867
  */
 public class DAO {
-
 
     protected EntityManager em;
 
@@ -42,18 +39,18 @@ public class DAO {
 
         return q.getResultList();
     }
-    
+
     public <E extends EntityModel> List<E> findAll(E entityModel) {
         String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
         Query q = em.createQuery("FROM " + className);
         return q.getResultList();
     }
-  
+
     public <E extends EntityModel> boolean delete(E entityModel) {
         em.remove(entityModel);
         return true;
     }
-    
+
     public <E extends EntityModel> List<E> find(E entityModel, String whereClause) {
         String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
         Query q = em.createQuery("FROM " + className + " WHERE " + whereClause);

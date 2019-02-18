@@ -5,7 +5,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import java.io.Serializable;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
@@ -35,7 +34,6 @@ public class Internationalization implements Serializable {
 //            language = "English";
 //        }
 //    }
-
     public void languageChange(ValueChangeEvent e) {
         String lan = e.getNewValue().toString();
         if (lan.equals("fr")) {
