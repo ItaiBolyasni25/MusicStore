@@ -269,4 +269,35 @@ public class Internationalization implements Serializable {
         return language.equals("English") ? "Edit" : "Modifier";
     }
 
+    public String getQuestion() {
+        return language.equals("English") ? "Question" : "Question";
+    }
+
+    public String getOption() {
+        return language.equals("English") ? "Option" : "Option";
+    }
+
+    public String getQuestionRequired() {
+        return language.equals("English") ? "Question is required" : "Question est un champ obligatoire";
+    }
+    
+    public String getOptionRequired() {
+        return language.equals("English") ? "Option 1 and 2 are required" : "Les options 1 et 2 sont obligatoires";
+    }
+    
+    public String getAdd() {
+        return language.equals("English") ? "Add" : "Ajouter";
+    }
+    
+    public String getAddSurvey() {
+        return language.equals("English") ? "Add New Survey" : "Ajouter Nouveau Sondage";
+    }
+    
+    public String getPastSurvey() {
+        return language.equals("English") ? "Past Surveys" : "Sondages passees";
+    }
+    
+    public String getSurvey() {
+        return language.equals("English") ? "Surveys" : "Sondages";
+    }
 }
