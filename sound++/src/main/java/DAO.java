@@ -22,7 +22,7 @@ import javax.transaction.UserTransaction;
  *
  * @author 1633867
  */
-
+@RequestScoped
 public class DAO {
 
    @PersistenceContext(unitName = "songstore")
@@ -31,6 +31,10 @@ public class DAO {
     private UserTransaction userTransaction;
 
     public DAO() {
+        if(em == null){
+            EntityManagerFactory emf = Persistence.createEntityManagerFactory("songstore"); 
+            em = emf.createEntityManager(); 
+        }
     }
     public <E extends EntityModel> boolean write(E entityModel) {
         em.getTransaction().begin();
