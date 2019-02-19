@@ -82,6 +82,7 @@ a{
 
 .centerform{
     margin-left: 33%;
+    margin-top: 4%;
 }
 
 .albumPic{
@@ -200,7 +201,8 @@ section .section-title {
     padding: 0;
     border: none;
     background: none;
-    margin-top: 45%;
+    position: relative;
+    top: calc(50% - 25px);
 }
 
 .card-text img{
