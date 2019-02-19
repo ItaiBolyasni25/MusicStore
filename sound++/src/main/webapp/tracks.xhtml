@@ -2,15 +2,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-<<<<<<< HEAD
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-=======
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
->>>>>>> 596370d6db81b9a4c1dce588170d595f6343a3d6
     <h:head>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.2.1/lux/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"></link>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
@@ -20,55 +17,7 @@
         <title>Sound++</title>
     </h:head>
     <h:body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-
-            <a class="navbar-brand" href="#"><img id="logo" src="assets/logo.png" alt="Logo of online music store Sound++"></img></a>
-
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarColor03">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                      <h:link class="nav-link" value="#{internationalization.home}" outcome="index"/>
-                    </li>
-                    <li class="nav-item">
-                      <h:link class="nav-link" value="#{internationalization.albums}" outcome="albums"/>
-                    </li>
-                    <li class="nav-item">
-                        <h:link class="nav-link" value="#{internationalization.tracks}" outcome="tracks"/>
-                    </li>
-                    <li class="nav-item">
-                        <h:link class="nav-link" value="#{internationalization.about}" outcome="about"/>
-                    </li>
-                    <li class="nav-item">
-                        <h:link class="nav-link" value="#{internationalization.login}" outcome="login"/>
-                    </li>
-                    <li class="nav-item">
-                        <h:link class="nav-link" value="#{internationalization.cart}" outcome="cart"/>
-                    </li>
-                </ul>
-
-                <li class="nav-item dropdown">
-                     <div class="form-group">
-                         <h:form>
-                            <h:selectOneMenu class="custom-select" value="#{internationalization.language}">
-                                <f:selectItem itemValue="en" itemLabel="#{internationalization.english}" />
-                                <f:selectItem itemValue="fr" itemLabel="#{internationalization.french}" />
-                            </h:selectOneMenu>
-                            <h:commandButton class="btn btn-outline-primary btn-sm" value = "Change" action = "tracks" /> 
-                         </h:form>
-                         
-                      </div>
-                </li>
-                
-                <h:form class="form-inline my-2 my-lg-0">
-                    <h:inputText class="form-control mr-sm-2" value="#{internationalization.search}"/>
-                    <h:commandButton class="btn btn-outline-primary" value="#{internationalization.search}" action="search"/>
-                </h:form>
-            </div>
-        </nav>
+        <ui:include src="navbar.xhtml" />
 
          <div id ="trackTable">
         <table class="table table-hover">
@@ -81,29 +30,10 @@
                 <th scope="col">#{internationalization.songdate}</th>
                 <th scope="col">#{internationalization.playlength}</th>
                 <th scope="col">#{internationalization.cost}</th>
+                <th>Add to cart</th>
               </tr>
             </thead>
             <tbody>
-<<<<<<< HEAD
-              <tr class="table-secondary">
-                <th scope="row">Light</th>
-                <td>Column content</td>
-                <td>Column content</td>
-                <td>Column content</td>
-                <td>Column content</td>
-                <td>Column content</td>
-                <td>Column content</td>
-              </tr>
-              <tr class="table-secondary">
-                <th scope="row">Dark</th>
-                <td>Column content</td>
-                <td>Column content</td>
-                <td>Column content</td>
-                <td>Column content</td>
-                <td>Column content</td>
-                <td>Column content</td>
-              </tr>
-=======
                 <ui:repeat var="tr" value="#{TrackPaginationBean.datalist}" > 
                     <tr class="table-secondary" id="${tr.id}">
                         <th><h:graphicImage value="#{tr.album.image}" title="Album's cover" class="trackPic"/></th>
@@ -120,7 +50,6 @@
                         <td><a href="#" class="btn btn-success btn-sm ml-3" style="width: 8em"><i class="fas fa-cart-plus fa-2x"></i></a></td>
                     </tr>
                 </ui:repeat>
->>>>>>> 596370d6db81b9a4c1dce588170d595f6343a3d6
             </tbody>
         </table> 
         <h:form>
@@ -174,7 +103,7 @@
                                     <option value="${i}">${i}</option>
                                 </c:forEach>
                             </select>
-                            <button class="btn btn-secondary my-2 my-sm-0" value ="${internationalization.inventoryadd}" action = "add">${internationalization.inventoryadd}</button>
+                            <button class="btn btn-secondary my-2 my-sm-0" value ="Add" action = "add">Add</button>
                         </form>
                 </div>
             </div>
@@ -195,6 +124,6 @@
             </div>
         </div>              
         
-        
+        <ui:include src="footer.xhtml" />
     </h:body>
 </html>

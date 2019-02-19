@@ -22,8 +22,8 @@ import javax.inject.Named;
 @ViewScoped
 @Named("TrackPaginationBean")
 public class TrackPaginationBean implements Serializable {
-    @Inject
-   private DAO dao;
+   @Inject
+    private DAO dao;
     private List<Track> dataList;;
     private int totalRows;
     private int currentPage;
@@ -33,15 +33,7 @@ public class TrackPaginationBean implements Serializable {
     public TrackPaginationBean() {
         this.itemPerPage = 10;
         this.currentPage = 1;
-        this.totalRows = dao.findAll(new Track()).size();
-    }
-
-    public DAO getDao() {
-        return dao;
-    }
-
-    public void setDao(DAO dao) {
-        this.dao = dao;
+        
     }
 
     public List<Track> getDatalist() {
@@ -82,6 +74,7 @@ public class TrackPaginationBean implements Serializable {
 
     @PostConstruct
     public void init() {
+        this.totalRows = dao.findAll(new Track()).size();
         if (totalRows > itemPerPage) {
             totalPages = (int) Math.ceil((totalRows * 1.0) / itemPerPage);
         } else {

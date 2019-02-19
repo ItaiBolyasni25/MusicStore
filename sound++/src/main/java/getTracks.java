@@ -1,6 +1,10 @@
 
+import com.mycompany.Model.Track;
+import com.mycompany.Persistence.DAO;
+import com.mycompany.Utilities.Internationalization;
 import java.io.IOException;
 import java.util.List;
+import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,6 +23,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "getTracks", urlPatterns = {"/getTracks"})
 public class getTracks extends HttpServlet {
+    @Inject
+    private DAO dao;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -26,7 +32,6 @@ public class getTracks extends HttpServlet {
         int currentPage;
         int offset;
         int itemPerPage = 15;
-        DAO dao = new DAO();
         int totalPages;
         if (request.getParameter("currentPage") != null) {
             currentPage = Integer.parseInt(request.getParameter("currentPage"));

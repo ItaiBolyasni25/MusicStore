@@ -1,9 +1,12 @@
 
+import com.mycompany.Model.Album;
 import com.mycompany.Persistence.DAO;
+import com.mycompany.Utilities.Internationalization;
 import java.io.IOException;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,9 +23,12 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author maian
  */
+@Named
 @RequestScoped
 @WebServlet(name = "getAlbums", urlPatterns = {"/getAlbums"})
 public class getAlbums extends HttpServlet {
+        @Inject
+        private DAO dao;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -31,9 +37,8 @@ public class getAlbums extends HttpServlet {
         int offset;
         int itemPerPage = 5;
         int totalPages;
-        @Inject
-        DAO dao;
-       
+
+
         if (request.getParameter("currentPage") != null) {
             currentPage = Integer.parseInt(request.getParameter("currentPage"));
             currentPage = 2;

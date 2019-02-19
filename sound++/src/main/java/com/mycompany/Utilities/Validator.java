@@ -21,7 +21,7 @@ public class Validator {
      * @return boolean
      */
     public static boolean emailExists(User user, DAO DAO) {
-        List<User> existingUser = DAO.find(user, "identifier.email = '" + user.getEmail() +"'");
+        List<User> existingUser = DAO.find(user, "email = '" + user.getEmail() +"'");
         return !existingUser.isEmpty();
     }
     
@@ -34,7 +34,7 @@ public class Validator {
      * @return boolean
      */
     public static boolean isRegistered(String email, String password, DAO DAO) {
-        List<User> user = DAO.find(new User(), "identifier.email = '" + email + "'");
+        List<User> user = DAO.find(new User(), "email = '" + email + "'");
         
         if (user.size() == 1) {
             return user.get(0).getHash().equals(password);
@@ -50,6 +50,6 @@ public class Validator {
      * @return 
      */
     public static boolean passwordExists(String password, DAO DAO) {
-        return !DAO.find(new User(), "identifier.hash = '" + password + "'").isEmpty();
+        return !DAO.find(new User(), "hash = '" + password + "'").isEmpty();
     }
 }
