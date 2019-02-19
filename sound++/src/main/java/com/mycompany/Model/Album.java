@@ -1,13 +1,16 @@
 package com.mycompany.Model;
 
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import com.mycompany.Interface.EntityModel;
+import java.io.Serializable;
+import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.List;
 import javax.persistence.*;
 
 /**
@@ -15,20 +18,46 @@ import javax.persistence.*;
  * @author 1633867
  */
 @Entity
-@Table(name="Album")
-public class Album implements EntityModel{
-    @Id
-    @GeneratedValue( strategy=GenerationType.AUTO )
-    private int albumId;
-    private String title;
-    private Timestamp release_date;
-    private Timestamp date_added;
+@Table(name = "Album")
+public class Album implements EntityModel, Serializable {
 
-    public Timestamp getAddedDate() {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int album_id;
+    
+    
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(name = "album_artist",
+        joinColumns = @JoinColumn(name = "album_id"),
+        inverseJoinColumns = @JoinColumn(name = "artist_id")
+    )
+    private List<Artist> artists;
+    
+    
+    private String title;
+    private Date release_date;
+    private Date date_added;
+    public Album(){
+        super();
+    }
+    
+
+    public List<Artist> getArtists() {
+        for(Artist a : artists){
+            System.out.println("++++++++++++++++++"+a.getName());
+        }
+        return artists;
+    }
+
+    public void setArtists(List<Artist> artists) {
+        this.artists = artists;
+    }
+
+    public Date getAddedDate() {
         return date_added;
     }
 
-    public void setAddedDate(Timestamp addedDate) {
+    public void setAddedDate(Date addedDate) {
         this.date_added = addedDate;
     }
     private String recording_label;
@@ -38,14 +67,15 @@ public class Album implements EntityModel{
     private double sale_price;
     private boolean removal_status;
     private Timestamp removal_date;
-    private byte[] image;
+    private String image;
+    private String genre;
 
     public int getId() {
-        return albumId;
+        return album_id;
     }
 
     public void setId(int id) {
-        this.albumId = id;
+        this.album_id = id;
     }
 
     public String getTitle() {
@@ -56,11 +86,11 @@ public class Album implements EntityModel{
         this.title = title;
     }
 
-    public Timestamp getReleaseDate() {
+    public Date getReleasedate() {
         return release_date;
     }
 
-    public void setReleaseDate(Timestamp releaseDate) {
+    public void setReleasedate(Date releaseDate) {
         this.release_date = releaseDate;
     }
 
@@ -72,11 +102,11 @@ public class Album implements EntityModel{
         this.recording_label = label;
     }
 
-    public int getNumberOfSong() {
+    public int getNumberofsong() {
         return number_songs;
     }
 
-    public void setNumberOfSong(int numberOfSong) {
+    public void setNumberofsong(int numberOfSong) {
         this.number_songs = numberOfSong;
     }
 
@@ -88,43 +118,52 @@ public class Album implements EntityModel{
         this.cost = cost;
     }
 
-    public double getListPrice() {
+    public double getList_Price() {
         return list_price;
     }
 
-    public void setListPrice(double listPrice) {
+    public void setList_price(double listPrice) {
         this.list_price = listPrice;
     }
 
-    public double getSalePrice() {
+    public double getSale_price() {
         return sale_price;
     }
 
-    public void setSalePrice(double salePrice) {
+    public void setSale_price(double salePrice) {
         this.sale_price = salePrice;
     }
 
-    public boolean isRemovalStatus() {
+    public boolean isRemoval_status() {
         return removal_status;
     }
 
-    public void setRemovalStatus(boolean removalStatus) {
+    public void setRemoval_status(boolean removalStatus) {
         this.removal_status = removalStatus;
     }
 
-    public Timestamp getRemovalDate() {
+    public Timestamp getRemoval_date() {
         return removal_date;
     }
 
-    public void setRemovalDate(Timestamp removalDate) {
+    public void setRemoval_date(Timestamp removalDate) {
         this.removal_date = removalDate;
     }
 
-    public byte[] getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(byte[] image) {
+    public void setImage(String image) {
         this.image = image;
     }
+    
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
 }

@@ -20,7 +20,7 @@ public class LoginBean implements Serializable{
     private String email;
     private String password;
     
-    private String loggedIn;
+    private User loggedIn;
     
     private Boolean error;
     
@@ -43,7 +43,7 @@ public class LoginBean implements Serializable{
         this.password = password;
     }
 
-    public String getLoggedIn() {
+    public User getLoggedIn() {
         return loggedIn;
     }
 
@@ -59,7 +59,7 @@ public class LoginBean implements Serializable{
      */
     public String canLogIn() {
         if (Validator.isRegistered(email, password, DAO)) {
-            loggedIn = DAO.find(new User(), "identifier.email = '" + email + "'").get(0).getFirstname();
+            loggedIn = DAO.find(new User(), "email = '" + email + "'").get(0);
             error = false;
             return "index.xhtml";
         } else {

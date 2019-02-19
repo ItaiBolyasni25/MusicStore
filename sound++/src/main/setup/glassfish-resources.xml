@@ -33,7 +33,7 @@
   
     <property name="URL" value="jdbc:mysql://localhost:3306/songstore?useSSL=false"/>
     
-      <property name="User" value="root"/>
-    <property name="Password" value="Aus2541!"/>
+    <property name="User" value="songstore"/>
+    <property name="Password" value="dawson123"/>
   </jdbc-connection-pool>
 </resources>

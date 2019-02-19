@@ -32,7 +32,7 @@ public class RegisterBean implements Serializable{
     private String homephone;
     
     // Holds logged in user's name
-    private String loggedIn = "";
+    private User loggedIn;
     
     // Will be set to true if user tries to register with existing email
     private boolean invalidEmail;
@@ -144,7 +144,7 @@ public class RegisterBean implements Serializable{
         this.homephone = homephone;
     }
     
-    public String getLoggedIn() {
+    public User getLoggedIn() {
         return loggedIn;
     }
     
@@ -164,7 +164,7 @@ public class RegisterBean implements Serializable{
 
         if (!Validator.emailExists(user, DAO)) {
            DAO.write(user);
-           loggedIn = user.getFirstname();
+           loggedIn = user;
            invalidEmail = false;
            return "index.xhtml";
         } else {

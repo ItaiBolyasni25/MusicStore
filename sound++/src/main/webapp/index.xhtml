@@ -10,6 +10,10 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
         <h:outputStylesheet library="css" name="style.css"  />
         <title>Sound++</title>
+        <f:view>
+            <f:event type="preRenderView" listener="#{SongParser.onLoad()}"/>
+        </f:view>
+
     </h:head>
     <h:body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -23,10 +27,10 @@
             <div class="collapse navbar-collapse" id="navbarColor03">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                      <h:link class="nav-link" value="#{internationalization.home}" outcome="manager"/>
+                        <h:link class="nav-link" value="#{internationalization.home}" outcome="manager"/>
                     </li>
                     <li class="nav-item">
-                      <h:link class="nav-link" value="#{internationalization.albums}" outcome="albums"/>
+                        <h:link class="nav-link" value="#{internationalization.albums}" outcome="albums"/>
                     </li>
                     <li class="nav-item">
                         <h:link class="nav-link" value="#{internationalization.tracks}" outcome="tracks"/>
@@ -43,18 +47,18 @@
                 </ul>
 
                 <li class="nav-item dropdown">
-                     <div class="form-group">
-                         <h:form>
+                    <div class="form-group">
+                        <h:form>
                             <h:selectOneMenu class="custom-select" value="#{internationalization.language}">
                                 <f:selectItem itemValue="en" itemLabel="#{internationalization.english}" />
                                 <f:selectItem itemValue="fr" itemLabel="#{internationalization.french}" />
                             </h:selectOneMenu>
                             <h:commandButton class="btn btn-outline-primary btn-sm" value = "Change" action = "index" /> 
-                         </h:form>
-                         
-                      </div>
+                        </h:form>
+
+                    </div>
                 </li>
-                
+
                 <h:form class="form-inline my-2 my-lg-0">
                     <h:inputText class="form-control mr-sm-2" value="#{internationalization.search}"/>
                     <h:commandButton class="btn btn-outline-primary" value="#{internationalization.search}" action="search"/>
@@ -79,7 +83,7 @@
 
             <div class="tab-pane fade show active" id="home">
                 <div class="jumbotron">
-                    <h:outputText class="display-4" value="#{registerBean.loggedIn != '' || loginBean.loggedIn != ''?  (registerBean.loggedIn != ''? internationalization.welcome.concat(' ').concat(registerBean.loggedIn) : internationalization.welcome.concat(' ').concat(loginBean.loggedIn)) : internationalization.welcome }" /> 
+                    <h:outputText class="display-4" value="#{registerBean.loggedIn != null || loginBean.loggedIn != null?  (registerBean.loggedIn != null? internationalization.welcome.concat(' ').concat(registerBean.loggedIn.getFirstname()) : internationalization.welcome.concat(' ').concat(loginBean.loggedIn.getFirstname())) : internationalization.welcome }" /> 
                     <p class="lead">#{internationalization.description}</p>
                     <hr class="my-4"/>
                 </div>
@@ -90,8 +94,8 @@
                         <div>
                             <div class="jumbotron">
                                 <h1 class="display-5">#{internationalization.newsfeed}</h1>
-                                
-                               
+
+
                                 <div class="card mb-3 cards">
                                     <h3 class="card-header">Artist new video</h3>
                                     <div class="card-body">
@@ -171,80 +175,80 @@
             <div class="tab-pane fade" id="profile">
                 <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.</p>
             </div>
-            
+
             <div class="tab-pane fade col-md-12" id="genres">
-            
+
                 <div class="card mb-3 displayinline ">
                     <div class="card-body">
-                       <div class="card-title"><h6>Country</h6></div>
-                       <img class="genresimg" src="assets/genres/country.jpg" alt="Card image"/>  
+                        <div class="card-title"><h6>Country</h6></div>
+                        <img class="genresimg" src="assets/genres/country.jpg" alt="Card image"/>  
                     </div>
                 </div>
-            
+
                 <div class="card mb-3 displayinline ">
                     <div class="card-body">
-                       <div class="card-title"><h6>EDM</h6></div>
-                       <img class="genresimg" src="assets/genres/edm.jpg" alt="Card image"/>  
+                        <div class="card-title"><h6>EDM</h6></div>
+                        <img class="genresimg" src="assets/genres/edm.jpg" alt="Card image"/>  
                     </div>
                 </div>
-            
+
                 <div class="card mb-3 displayinline ">
                     <div class="card-body">
-                       <div class="card-title"><h6>Electro</h6></div>
-                       <img class="genresimg" src="assets/genres/electro.jpg" alt="Card image"/>   
+                        <div class="card-title"><h6>Electro</h6></div>
+                        <img class="genresimg" src="assets/genres/electro.jpg" alt="Card image"/>   
                     </div>
                 </div>
-                
+
                 <div class="card mb-3 displayinline ">
                     <div class="card-body">
-                       <div class="card-title"><h6>Hip Hop</h6></div>
-                       <img class="genresimg" src="assets/genres/hiphop.jpg" alt="Card image"/>  
+                        <div class="card-title"><h6>Hip Hop</h6></div>
+                        <img class="genresimg" src="assets/genres/hiphop.jpg" alt="Card image"/>  
                     </div>
                 </div>
-                
+
                 <div class="card mb-3 displayinline ">
                     <div class="card-body">
-                       <div class="card-title"><h6>Jazz</h6></div>
-                       <img class="genresimg" src="assets/genres/jazz.jpg" alt="Card image"/> 
+                        <div class="card-title"><h6>Jazz</h6></div>
+                        <img class="genresimg" src="assets/genres/jazz.jpg" alt="Card image"/> 
                     </div>
                 </div>
-               
+
                 <div class="card mb-3 displayinline ">
                     <div class="card-body">
-                       <div class="card-title"><h6>Kids</h6></div>
-                       <img class="genresimg" src="assets/genres/kids.jpg" alt="Card image"/> 
+                        <div class="card-title"><h6>Kids</h6></div>
+                        <img class="genresimg" src="assets/genres/kids.jpg" alt="Card image"/> 
                     </div>
                 </div>
-                
+
                 <div class="card mb-3 displayinline ">
                     <div class="card-body">
-                       <div class="card-title"><h6>Pop</h6></div>
-                       <img class="genresimg" src="assets/genres/pop.jpg" alt="Card image"/> 
+                        <div class="card-title"><h6>Pop</h6></div>
+                        <img class="genresimg" src="assets/genres/pop.jpg" alt="Card image"/> 
                     </div>
                 </div>
-                
+
                 <div class="card mb-3 displayinline ">
                     <div class="card-body">
-                       <div class="card-title"><h6>RnB</h6></div>
-                       <img class="genresimg" src="assets/genres/randb.jpg" alt="Card image"/> 
+                        <div class="card-title"><h6>RnB</h6></div>
+                        <img class="genresimg" src="assets/genres/randb.jpg" alt="Card image"/> 
                     </div>
                 </div>
-                
+
                 <div class="card mb-3 displayinline ">
                     <div class="card-body">
-                       <div class="card-title"><h6>Reggae</h6></div>
-                       <img class="genresimg" src="assets/genres/reggae.jpg" alt="Card image"/> 
+                        <div class="card-title"><h6>Reggae</h6></div>
+                        <img class="genresimg" src="assets/genres/reggae.jpg" alt="Card image"/> 
                     </div>
                 </div>
-                
+
                 <div class="card mb-3 displayinline ">
                     <div class="card-body">
-                       <div class="card-title"><h6>Rock</h6></div>
-                       <img class="genresimg" src="assets/genres/rock.jpg" alt="Card image"/> 
+                        <div class="card-title"><h6>Rock</h6></div>
+                        <img class="genresimg" src="assets/genres/rock.jpg" alt="Card image"/> 
                     </div>
                 </div>
             </div>
-            
+
         </div>
     </h:body>
 </html>

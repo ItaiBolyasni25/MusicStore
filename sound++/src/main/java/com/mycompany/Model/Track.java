@@ -1,5 +1,4 @@
 package com.mycompany.Model;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -8,8 +7,9 @@ package com.mycompany.Model;
 
 
 import com.mycompany.Interface.EntityModel;
+import com.mycompany.Model.Album;
+import java.sql.Date;
 import java.io.Serializable;
-import java.sql.Timestamp;
 import javax.persistence.*;
 
 /**
@@ -21,29 +21,32 @@ import javax.persistence.*;
 public class Track implements EntityModel, Serializable{
     @Id
     @GeneratedValue( strategy=GenerationType.AUTO )
-    private int trackId;
+    private int track_id;
     private int selection_number;
     private String title;
     private String songwriter;
-    private Timestamp play_length;
+    private String play_length;
     private String genre;
     @ManyToOne(cascade = {CascadeType.ALL})
-    @JoinColumn(name = "album_Id", referencedColumnName="albumId")
+    @JoinColumn(name = "album_id", referencedColumnName="album_id")
     private Album album;
     private double cost;
     private double list_price;
     private double sale_price;
-    private Timestamp date_added;
+    private Date date_added;
     private boolean individual;
     private boolean removal_status;
-    private Timestamp removal_date;
+    private Date removal_date;
 
+    public Track(){
+        super();
+    }
     public int getId() {
-        return trackId;
+        return track_id;
     }
 
     public void setId(int track_id) {
-        this.trackId = track_id;
+        this.track_id = track_id;
     }
 
     public int getSelection_number() {
@@ -70,11 +73,11 @@ public class Track implements EntityModel, Serializable{
         this.songwriter = songwriter;
     }
 
-    public Timestamp getPlay_length() {
+    public String getPlay_length() {
         return play_length;
     }
 
-    public void setPlay_length(Timestamp play_length) {
+    public void setPlay_length(String play_length) {
         this.play_length = play_length;
     }
 
@@ -118,11 +121,11 @@ public class Track implements EntityModel, Serializable{
         this.sale_price = sale_price;
     }
 
-    public Timestamp getDate_added() {
+    public Date getDate_added() {
         return date_added;
     }
 
-    public void setDate_added(Timestamp date_added) {
+    public void setDate_added(Date date_added) {
         this.date_added = date_added;
     }
 
@@ -142,11 +145,11 @@ public class Track implements EntityModel, Serializable{
         this.removal_status = removal_status;
     }
 
-    public Timestamp getRemoval_date() {
+    public Date getRemoval_date() {
         return removal_date;
     }
 
-    public void setRemoval_date(Timestamp removal_date) {
+    public void setRemoval_date(Date removal_date) {
         this.removal_date = removal_date;
     }
 }
