@@ -77,7 +77,11 @@ a{
 .centerform{
     margin-left: 33%;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+    margin-top: 4%;
+>>>>>>> Start survey model and controller
 }
 
 .albumPic{
@@ -268,7 +272,8 @@ section .section-title {
     padding: 0;
     border: none;
     background: none;
-    margin-top: 45%;
+    position: relative;
+    top: calc(50% - 25px);
 }
 <<<<<<< HEAD
 >>>>>>> add slider to news feed

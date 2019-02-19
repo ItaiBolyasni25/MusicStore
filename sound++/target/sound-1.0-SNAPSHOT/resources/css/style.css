@@ -255,7 +255,8 @@ section .section-title {
     padding: 0;
     border: none;
     background: none;
-    margin-top: 45%;
+    position: relative;
+    top: calc(50% - 25px);
 }
 
 .card-text img{
