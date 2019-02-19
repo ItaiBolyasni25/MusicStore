@@ -9,6 +9,8 @@
  *
  * @author maian
  */
+import com.mycompany.Model.Track;
+import com.mycompany.Persistence.DAO;
 import java.io.Serializable;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;

@@ -1,6 +1,9 @@
 
+import com.mycompany.Persistence.DAO;
 import java.io.IOException;
 import java.util.List;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author maian
  */
+@RequestScoped
 @WebServlet(name = "getAlbums", urlPatterns = {"/getAlbums"})
 public class getAlbums extends HttpServlet {
 
@@ -27,7 +31,8 @@ public class getAlbums extends HttpServlet {
         int offset;
         int itemPerPage = 5;
         int totalPages;
-        DAO dao = new DAO();
+        @Inject
+        DAO dao;
        
         if (request.getParameter("currentPage") != null) {
             currentPage = Integer.parseInt(request.getParameter("currentPage"));

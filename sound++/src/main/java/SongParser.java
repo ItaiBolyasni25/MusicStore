@@ -21,6 +21,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
+import com.mycompany.Model.Artist;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
