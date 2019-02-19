@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,13 +14,13 @@ import org.json.simple.JSONObject;
 
 @WebServlet(name = "getTrackInfo", urlPatterns = {"/getTrackInfo"})
 public class getTrackInfo extends HttpServlet {
-
+    @Inject
+    private DAO dao;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("application/json");
         JSONObject responseDetailsJson = new JSONObject();
         JSONArray jsonArray = new JSONArray();
-        DAO dao = new DAO();
         int trackRequestID = Integer.parseInt(request.getParameter("id"));
         Track track = dao.read(new Track(), trackRequestID).get(0);
         JSONObject formDetailsJson = new JSONObject();

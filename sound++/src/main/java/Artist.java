@@ -30,6 +30,8 @@ public class Artist implements EntityModel, Serializable {
     @ManyToMany(cascade = {CascadeType.ALL}, mappedBy = "artists")
     private List<Album> albums;
 
+     public Artist(){
+    }
     public List<Album> getAlbums() {
         return albums;
     }

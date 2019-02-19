@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
-import javax.json.Json;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,23 +24,28 @@ import org.json.simple.JSONObject;
  */
 @WebServlet(name = "getInfo", urlPatterns = {"/getInfo"})
 public class getInfo extends HttpServlet {
+    @Inject
+    private DAO dao;
+    
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("application/json");
         JSONObject responseDetailsJson = new JSONObject();
         JSONArray jsonArray = new JSONArray();
-        DAO dao = new DAO();
         int albumRequestID = Integer.parseInt(request.getParameter("id"));
         Album album = dao.read(new Album(), albumRequestID).get(0);
-        //List<Track> tracksofAlbum = dao.find(new Track(), album.getTitle());
+        List<Album> albums = dao.findWithLimitGenre(new Album(),3,album.getGenre());
         JSONObject formDetailsJson = new JSONObject();
         formDetailsJson.put("title", album.getTitle());
         formDetailsJson.put("image", album.getImage());
         JSONArray artists = new JSONArray();
         artists.add(toArrayList(album.getArtists()));
+        JSONArray albumsArray = new JSONArray();
+        albumsArray.add(toArrayListAlbum(albums));
         formDetailsJson.put("numberofsong", album.getNumberofsong());
         formDetailsJson.put("artists", artists);
+        formDetailsJson.put("albums", albumsArray);
         formDetailsJson.put("added_date", album.getAddedDate().toString());
         formDetailsJson.put("released_date", album.getReleasedate().toString());
         formDetailsJson.put("cost", album.getCost());
@@ -64,5 +69,15 @@ public class getInfo extends HttpServlet {
         }
         return artists;
     }
+    private ArrayList<String> toArrayListAlbum(List<Album> list) {
+        ArrayList<String> album = new ArrayList<String>();
+        for (Album a : list) {
+            album.add(a.getImage());
+            album.add(a.getTitle());
+            album.add(Double.toString(a.getCost()));
+        }
+        return album;
+    }
+
 
 }

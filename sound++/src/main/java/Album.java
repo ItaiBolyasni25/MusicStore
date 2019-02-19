@@ -5,6 +5,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
@@ -16,7 +17,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "Album")
-public class Album extends Model implements EntityModel {
+public class Album extends Model implements EntityModel, Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -40,6 +41,9 @@ public class Album extends Model implements EntityModel {
     
 
     public List<Artist> getArtists() {
+        for(Artist a : artists){
+            System.out.println("++++++++++++++++++"+a.getName());
+        }
         return artists;
     }
 

@@ -1,4 +1,3 @@
-
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
@@ -34,7 +33,7 @@ public class AlbumPaginationBean implements Serializable {
     public AlbumPaginationBean() {
         this.itemPerPage = 5;
         this.currentPage = 1;
-        this.totalRows = dao.findAll(new Album()).size();
+       
     }
 
     public List<Album> getDatalist() {
@@ -75,11 +74,13 @@ public class AlbumPaginationBean implements Serializable {
 
     @PostConstruct
     public void init() {
+        this.totalRows = dao.findAll(new Album()).size();
         if (totalRows > itemPerPage) {
             totalPages = (int) Math.ceil((totalRows * 1.0) / itemPerPage);
         } else {
             totalPages = 1;
         }
+        
         updateView();
     }
 
