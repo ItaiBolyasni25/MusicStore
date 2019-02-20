@@ -13,7 +13,9 @@ $(document).ready(function () {
                     displayData(data);
                     createTabContent(data);
                 },
-                error: function(ts) { alert(ts.responseText); }
+                error: function (ts) {
+                    alert(ts.responseText);
+                }
             });
         });
 

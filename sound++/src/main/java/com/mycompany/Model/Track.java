@@ -1,11 +1,10 @@
 package com.mycompany.Model;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
 import com.mycompany.Interface.EntityModel;
 import com.mycompany.Model.Album;
 import java.sql.Date;
@@ -17,10 +16,11 @@ import javax.persistence.*;
  * @author 1633867
  */
 @Entity
-@Table(name="Track")
-public class Track implements EntityModel, Serializable{
+@Table(name = "Track")
+public class Track implements EntityModel, Serializable {
+
     @Id
-    @GeneratedValue( strategy=GenerationType.AUTO )
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int track_id;
     private int selection_number;
     private String title;
@@ -28,7 +28,7 @@ public class Track implements EntityModel, Serializable{
     private String play_length;
     private String genre;
     @ManyToOne(cascade = {CascadeType.ALL})
-    @JoinColumn(name = "album_id", referencedColumnName="album_id")
+    @JoinColumn(name = "album_id", referencedColumnName = "album_id")
     private Album album;
     private double cost;
     private double list_price;
@@ -38,9 +38,10 @@ public class Track implements EntityModel, Serializable{
     private boolean removal_status;
     private Date removal_date;
 
-    public Track(){
+    public Track() {
         super();
     }
+
     public int getId() {
         return track_id;
     }

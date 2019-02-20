@@ -1,5 +1,4 @@
 
-
 import com.mycompany.Model.Album;
 import com.mycompany.Persistence.DAO;
 
@@ -28,7 +27,7 @@ import javax.inject.Named;
 public class AlbumPaginationBean implements Serializable {
 
     @Inject
-   private DAO dao; 
+    private DAO dao;
     private List<Album> dataList;
     private int totalRows;
     private int currentPage;
@@ -38,7 +37,7 @@ public class AlbumPaginationBean implements Serializable {
     public AlbumPaginationBean() {
         this.itemPerPage = 5;
         this.currentPage = 1;
-       
+
     }
 
     public List<Album> getDatalist() {
@@ -85,7 +84,7 @@ public class AlbumPaginationBean implements Serializable {
         } else {
             totalPages = 1;
         }
-        
+
         updateView();
     }
 
@@ -94,13 +93,13 @@ public class AlbumPaginationBean implements Serializable {
     }
 
     public void setCurrent_page(int newCurrentPage) {
-        System.out.println("aaa..."+newCurrentPage);
+        System.out.println("aaa..." + newCurrentPage);
         currentPage = newCurrentPage;
         updateView();
     }
-    
+
     public void updateView() {
-       /* FacesContext fc = FacesContext.getCurrentInstance();
+        /* FacesContext fc = FacesContext.getCurrentInstance();
         Map<String, String> params
                 = fc.getExternalContext().getRequestParameterMap();
         if (!params.get("currentPage").isEmpty() || params.get("currentPage") != null) {

@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "getTracks", urlPatterns = {"/getTracks"})
 public class getTracks extends HttpServlet {
+
     @Inject
     private DAO dao;
 

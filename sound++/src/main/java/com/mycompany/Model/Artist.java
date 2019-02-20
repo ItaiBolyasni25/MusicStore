@@ -1,7 +1,9 @@
+
 package com.mycompany.Model;
 
 import com.mycompany.Interface.EntityModel;
 import com.mycompany.Model.Album;
+
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -18,24 +20,25 @@ import javax.persistence.Table;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author 1633867
  */
 @Entity
-@Table(name="Artist")
+@Table(name = "Artist")
 public class Artist implements EntityModel, Serializable {
+
     private String name;
     @Id
-    @GeneratedValue( strategy=GenerationType.AUTO )
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int artist_id;
-    
+
     @ManyToMany(cascade = {CascadeType.ALL}, mappedBy = "artists")
     private List<Album> albums;
 
-     public Artist(){
+    public Artist() {
     }
+
     public List<Album> getAlbums() {
         return albums;
     }
@@ -43,8 +46,6 @@ public class Artist implements EntityModel, Serializable {
     public void setAlbums(List<Album> albums) {
         this.albums = albums;
     }
-
-
 
     public String getName() {
         return name;

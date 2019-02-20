@@ -27,8 +27,9 @@ import javax.servlet.http.HttpServletResponse;
 @RequestScoped
 @WebServlet(name = "getAlbums", urlPatterns = {"/getAlbums"})
 public class getAlbums extends HttpServlet {
-        @Inject
-        private DAO dao;
+
+    @Inject
+    private DAO dao;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -37,7 +38,6 @@ public class getAlbums extends HttpServlet {
         int offset;
         int itemPerPage = 5;
         int totalPages;
-
 
         if (request.getParameter("currentPage") != null) {
             currentPage = Integer.parseInt(request.getParameter("currentPage"));

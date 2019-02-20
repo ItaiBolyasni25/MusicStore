@@ -17,8 +17,10 @@ import org.json.simple.JSONObject;
 
 @WebServlet(name = "getTrackInfo", urlPatterns = {"/getTrackInfo"})
 public class getTrackInfo extends HttpServlet {
+
     @Inject
     private DAO dao;
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("application/json");

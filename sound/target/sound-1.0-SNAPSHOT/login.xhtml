@@ -12,6 +12,11 @@
         <title>Sound++</title>
     </h:head>
     <h:body>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> 5bbcbb5f9a2e78cb3053e482470ea793c07fee59
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
             <a class="navbar-brand" href="#"><img id="logo" src="assets/logo.png" alt="Logo of online music store Sound++"></img></a>
@@ -44,12 +49,11 @@
 
                 <li class="nav-item dropdown">
                     <div class="form-group">
-                        <h:form>
-                            <h:selectOneMenu class="custom-select" value="#{internationalization.language}">
+                        <h:form class="form-inline my-2 my-lg-0 ml-2">
+                            <h:selectOneMenu onchange="submit()" valueChangeListener="#{internationalization.languageChange}"  class="custom-select mr-sm-3 ml-4">
                                 <f:selectItem itemValue="en" itemLabel="#{internationalization.english}" />
                                 <f:selectItem itemValue="fr" itemLabel="#{internationalization.french}" />
-                            </h:selectOneMenu>
-                            <h:commandButton class="btn btn-outline-primary btn-sm" value = "Change" action = "login" /> 
+                            </h:selectOneMenu> 
                         </h:form>
 
                     </div>
@@ -62,6 +66,10 @@
             </div>
         </nav>
 
+<<<<<<< HEAD
+=======
+>>>>>>> 69ef0b16e0abf174e5f74d549254992bd1636228
+>>>>>>> 5bbcbb5f9a2e78cb3053e482470ea793c07fee59
         <ul class="nav nav-tabs">
             <li class="nav-item navcenter navlogin">
                 <a class="nav-link active" data-toggle="tab" href="#signup">#{internationalization.signup}</a>
@@ -86,68 +94,172 @@
                               
                                     <div class="form-group">
                                         <label class="col-form-label" for="inputDefault">#{internationalization.firstname}</label>
+<<<<<<< HEAD
+<<<<<<< HEAD
                                         <h:inputText value="#{registerBean.firstName}" class="form-control" placeholder="Default input" id="firstname" required="true"/>
+=======
+                                        <h:inputText  value="#{registerBean.firstName}" class="form-control"  id="firstname"/>
+>>>>>>> code form for survey management
+=======
+                                        <h:inputText  value="#{registerBean.firstName}" class="form-control"  id="firstname"/>
+>>>>>>> 5bbcbb5f9a2e78cb3053e482470ea793c07fee59
                                     </div>
 
                                     <div class="form-group">
                                         <label class="col-form-label" for="inputDefault">#{internationalization.lastname}</label>
+<<<<<<< HEAD
+<<<<<<< HEAD
                                         <h:inputText value="#{registerBean.lastName}" class="form-control" placeholder="Default input" id="lastname" required="true"/>
+=======
+                                        <h:inputText  value="#{registerBean.lastName}" class="form-control"  id="lastname"/>
+>>>>>>> code form for survey management
+=======
+                                        <h:inputText  value="#{registerBean.lastName}" class="form-control"  id="lastname"/>
+>>>>>>> 5bbcbb5f9a2e78cb3053e482470ea793c07fee59
                                     </div>
 
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">#{internationalization.email}</label>
+<<<<<<< HEAD
+<<<<<<< HEAD
                                         <h:inputText value="#{registerBean.email}" class="form-control" id="registerEmail" aria-describedby="emailHelp" placeholder="Enter email" required="true"/>
+=======
+                                        <h:inputText  value="#{registerBean.email}" class="form-control" id="registerEmail" />
+>>>>>>> code form for survey management
+=======
+                                        <h:inputText  value="#{registerBean.email}" class="form-control" id="registerEmail" />
+>>>>>>> 5bbcbb5f9a2e78cb3053e482470ea793c07fee59
                                         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">#{internationalization.password}</label>
+<<<<<<< HEAD
+<<<<<<< HEAD
                                         <h:inputSecret value="#{registerBean.password}" class="form-control" id="registerPassword" placeholder="Password" required="true"/>
+=======
+                                        <h:inputSecret value="#{registerBean.password}" class="form-control" id="registerPassword" />
+>>>>>>> code form for survey management
+=======
+                                        <h:inputSecret value="#{registerBean.password}" class="form-control" id="registerPassword" />
+>>>>>>> 5bbcbb5f9a2e78cb3053e482470ea793c07fee59
                                     </div>
 
                                     <div class="form-group">
                                         <label class="col-form-label" for="inputDefault">#{internationalization.company}</label>
+<<<<<<< HEAD
+<<<<<<< HEAD
                                         <h:inputText value="#{registerBean.companyName}" class="form-control" placeholder="Default input" id="companyName" required="true"/>
+=======
+                                        <h:inputText  value="#{registerBean.companyName}" class="form-control"  id="companyName"/>
+>>>>>>> code form for survey management
+=======
+                                        <h:inputText  value="#{registerBean.companyName}" class="form-control"  id="companyName"/>
+>>>>>>> 5bbcbb5f9a2e78cb3053e482470ea793c07fee59
                                     </div>
 
                                     <div class="form-group">
                                         <label class="col-form-label" for="inputDefault">#{internationalization.address} 1</label>
+<<<<<<< HEAD
+<<<<<<< HEAD
                                         <h:inputText value="#{registerBean.address1}" class="form-control" placeholder="Default input" id="address1" required="true"/>
+=======
+                                        <h:inputText  value="#{registerBean.address1}" class="form-control"  id="address1"/>
+>>>>>>> code form for survey management
+=======
+                                        <h:inputText  value="#{registerBean.address1}" class="form-control"  id="address1"/>
+>>>>>>> 5bbcbb5f9a2e78cb3053e482470ea793c07fee59
                                     </div>
 
                                     <div class="form-group">
                                         <label class="col-form-label" for="inputDefault">#{internationalization.postalcode}</label>
+<<<<<<< HEAD
+<<<<<<< HEAD
                                         <h:inputText value="#{registerBean.postalCode}" class="form-control" placeholder="Default input" id="postalCode" required="true"/>
+=======
+                                        <h:inputText  value="#{registerBean.postalCode}" class="form-control"  id="postalCode"/>
+>>>>>>> code form for survey management
+=======
+                                        <h:inputText  value="#{registerBean.postalCode}" class="form-control"  id="postalCode"/>
+>>>>>>> 5bbcbb5f9a2e78cb3053e482470ea793c07fee59
                                     </div>
 
                                     <div class="form-group">
                                         <label class="col-form-label" for="inputDefault">#{internationalization.address} 2</label>
+<<<<<<< HEAD
+<<<<<<< HEAD
                                         <h:inputText value="#{registerBean.address2}" class="form-control" placeholder="Default input" id="address2"/>
+=======
+                                        <h:inputText  value="#{registerBean.address2}" class="form-control"  id="address2"/>
+>>>>>>> code form for survey management
+=======
+                                        <h:inputText  value="#{registerBean.address2}" class="form-control"  id="address2"/>
+>>>>>>> 5bbcbb5f9a2e78cb3053e482470ea793c07fee59
                                     </div>
 
                                     <div class="form-group">
                                         <label class="col-form-label" for="inputDefault">#{internationalization.city}</label>
+<<<<<<< HEAD
+<<<<<<< HEAD
                                         <h:inputText value="#{registerBean.city}" class="form-control" placeholder="Default input" id="city" required="true"/>
+=======
+                                        <h:inputText  value="#{registerBean.city}" class="form-control"  id="city"/>
+>>>>>>> code form for survey management
+=======
+                                        <h:inputText  value="#{registerBean.city}" class="form-control"  id="city"/>
+>>>>>>> 5bbcbb5f9a2e78cb3053e482470ea793c07fee59
                                     </div>
 
                                     <div class="form-group">
                                         <label class="col-form-label" for="inputDefault">#{internationalization.province}</label>
+<<<<<<< HEAD
+<<<<<<< HEAD
                                         <h:inputText value="#{registerBean.province}" class="form-control" placeholder="Default input" id="province" required="true"/>
+=======
+                                        <h:inputText  value="#{registerBean.province}" class="form-control"  id="province"/>
+>>>>>>> code form for survey management
+=======
+                                        <h:inputText  value="#{registerBean.province}" class="form-control"  id="province"/>
+>>>>>>> 5bbcbb5f9a2e78cb3053e482470ea793c07fee59
                                     </div>
 
                                     <div class="form-group">
                                         <label class="col-form-label" for="inputDefault">#{internationalization.country}</label>
+<<<<<<< HEAD
+<<<<<<< HEAD
                                         <h:inputText value="#{registerBean.country}" class="form-control" placeholder="Default input" id="country" required="true"/>
+=======
+                                        <h:inputText  value="#{registerBean.country}" class="form-control"  id="country"/>
+>>>>>>> code form for survey management
+=======
+                                        <h:inputText  value="#{registerBean.country}" class="form-control"  id="country"/>
+>>>>>>> 5bbcbb5f9a2e78cb3053e482470ea793c07fee59
                                     </div>
 
                                     <div class="form-group">
                                         <label class="col-form-label" for="inputDefault">#{internationalization.cellphone}</label>
+<<<<<<< HEAD
+<<<<<<< HEAD
                                         <h:inputText value="#{registerBean.cellphone}" class="form-control" placeholder="Default input" id="cellphone"/>
+=======
+                                        <h:inputText  value="#{registerBean.cellphone}" class="form-control"  id="cellphone"/>
+>>>>>>> code form for survey management
+=======
+                                        <h:inputText  value="#{registerBean.cellphone}" class="form-control"  id="cellphone"/>
+>>>>>>> 5bbcbb5f9a2e78cb3053e482470ea793c07fee59
                                     </div>
 
                                     <div class="form-group">
                                         <label class="col-form-label" for="inputDefault">#{internationalization.hometel}</label>
+<<<<<<< HEAD
+<<<<<<< HEAD
                                         <h:inputText value="#{registerBean.homephone}" class="form-control" placeholder="Default input" id="homephone"/>
+=======
+                                        <h:inputText value="#{registerBean.homephone}" class="form-control"  id="homephone"/>
+>>>>>>> code form for survey management
+=======
+                                        <h:inputText value="#{registerBean.homephone}" class="form-control"  id="homephone"/>
+>>>>>>> 5bbcbb5f9a2e78cb3053e482470ea793c07fee59
                                     </div>
 
                                     <h:commandButton type="submit" class="btn btn-primary formbutton" value="#{internationalization.signup}" action="#{registerBean.addUser}"/>
@@ -174,14 +286,30 @@
                                     
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">#{internationalization.email}</label>
+<<<<<<< HEAD
+<<<<<<< HEAD
                                         <h:inputText value="#{loginBean.email}" class="form-control" id="loginEmail" aria-describedby="emailHelp" placeholder="Enter email" required="true"/>
+=======
+                                        <h:inputText  value="#{loginBean.email}" class="form-control" id="loginEmail" />
+>>>>>>> code form for survey management
+=======
+                                        <h:inputText  value="#{loginBean.email}" class="form-control" id="loginEmail" />
+>>>>>>> 5bbcbb5f9a2e78cb3053e482470ea793c07fee59
                                         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
 
 
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">#{internationalization.password}</label>
+<<<<<<< HEAD
+<<<<<<< HEAD
                                         <h:inputSecret value="#{loginBean.password}" class="form-control" id="loginPassword" placeholder="Password" required="true"/>
+=======
+                                        <h:inputSecret value="#{loginBean.password}" class="form-control" id="loginPassword" />
+>>>>>>> code form for survey management
+=======
+                                        <h:inputSecret value="#{loginBean.password}" class="form-control" id="loginPassword" />
+>>>>>>> 5bbcbb5f9a2e78cb3053e482470ea793c07fee59
                                     </div>
 
                                     <h:commandButton type="submit" class="btn btn-primary formbutton" value="#{internationalization.loginopt}" action="#{loginBean.canLogIn}"/>

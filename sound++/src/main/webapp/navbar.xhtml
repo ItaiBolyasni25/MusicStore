@@ -33,7 +33,7 @@ and open the template in the editor.
             <div class="collapse navbar-collapse" id="navbarColor03">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <h:link class="nav-link" value="#{internationalization.home}" outcome="manager"/>
+                        <h:link class="nav-link" value="#{internationalization.home}" outcome="index"/>
                     </li>
                     <li class="nav-item">
                         <h:link class="nav-link" value="#{internationalization.albums}" outcome="albums"/>
@@ -52,22 +52,22 @@ and open the template in the editor.
                     </li>
                 </ul>
 
-                <div class="form-group mt-3">
-                    <h:form class="form-inline my-2 my-lg-0 mr-sm-2">
-                        <h:inputText class="form-control mr-sm-3" value="#{internationalization.search}"/>
-                        <h:commandButton class="btn btn-outline-primary my-2 my-sm-0" value="#{internationalization.search}" action="search"/>
-                    </h:form>
-                </div>
-                <div class="form-group">
-                    <small class="ml-4 pl-3">Language</small>
-                    <h:form class="form-inline my-2 my-lg-0 ml-2">
-                        <h:selectOneMenu onchange="submit()" valueChangeListener="#{internationalization.languageChange}"  class="custom-select mr-sm-3 ml-4">
-                            <f:selectItem itemValue="en" itemLabel="#{internationalization.english}" />
-                            <f:selectItem itemValue="fr" itemLabel="#{internationalization.french}" />
-                        </h:selectOneMenu> 
-                    </h:form>
-                </div>
+                <li class="nav-item dropdown">
+                    <div class="form-group">
+                        <h:form class="form-inline my-2 my-lg-0 ml-2">
+                            <h:selectOneMenu onchange="submit()" valueChangeListener="#{internationalization.languageChange}"  class="custom-select mr-sm-3 ml-4">
+                                <f:selectItem itemValue="en" itemLabel="#{internationalization.english}" />
+                                <f:selectItem itemValue="fr" itemLabel="#{internationalization.french}" />
+                            </h:selectOneMenu> 
+                        </h:form>
 
+                    </div>
+                </li>
+
+                <h:form class="form-inline my-2 my-lg-0">
+                    <h:inputText class="form-control mr-sm-2" value="#{internationalization.search}"/>
+                    <h:commandButton class="btn btn-outline-primary" value="#{internationalization.search}" action="search"/>
+                </h:form>
             </div>
         </nav>
 
