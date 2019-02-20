@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Model\User.java
 C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\TrackPaginationBean.java
 C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Model\Track.java
@@ -11,30 +10,12 @@ C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\getTracks.java
 C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\TrackBean.java
 C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Model\Album.java
 C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Model\Artist.java
-C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\Survey.java
+C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Controller\SurveyBean.java
 C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\SongParser.java
 C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Utilities\Validator.java
+C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Model\Survey.java
 C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Interface\EntityModel.java
-C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\SurveyBean.java
 C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Controller\LoginBean.java
 C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\getInfo.java
 C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\getTrackInfo.java
-C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\Validator.java
 C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Utilities\Internationalization.java
-=======
-C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\Album.java
-C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\Internationalization.java
-C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\LoginBean.java
-C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\EntityModel.java
-C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\AlbumBean.java
-C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\RegisterBean.java
-C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\DAO.java
-C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\Track.java
-C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\TrackBean.java
-C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\User.java
-C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\Artist.java
-C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\NewsFeed.java
-C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\UserBean.java
-C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\SongParser.java
-C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\Validator.java
->>>>>>> 5bbcbb5f9a2e78cb3053e482470ea793c07fee59

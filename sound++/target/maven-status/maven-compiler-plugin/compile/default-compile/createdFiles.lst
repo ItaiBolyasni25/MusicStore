@@ -9,7 +9,6 @@ com\mycompany\Utilities\Internationalization.class
 com\mycompany\Model\Album.class
 TrackPaginationBean.class
 getInfo.class
-Validator.class
 getTrackInfo.class
 com\mycompany\Interface\EntityModel.class
 com\mycompany\Utilities\Validator.class
