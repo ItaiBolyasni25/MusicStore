@@ -1,7 +1,9 @@
+
 package com.mycompany.Model;
 
 import com.mycompany.Interface.EntityModel;
 import com.mycompany.Model.Album;
+
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;

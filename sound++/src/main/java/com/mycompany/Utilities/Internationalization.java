@@ -8,6 +8,7 @@ package com.mycompany.Utilities;
 import java.io.Serializable;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.event.ValueChangeEvent;
 
 /**
  *
@@ -25,7 +26,18 @@ public class Internationalization implements Serializable {
     public Internationalization() {
     }
 
-    public void setLanguage(String lan) {
+//    public void setLanguage(String lan) {
+//    public void setLanguage(String lan) {
+//        if (lan.equals("fr")) {
+//            language = "Francais";
+//        } else if (lan.equals("en")) {
+//            language = "English";
+//        }
+//    }
+        
+        
+    public void languageChange(ValueChangeEvent e) {
+        String lan = e.getNewValue().toString();
         if (lan.equals("fr")) {
             language = "Francais";
         } else if (lan.equals("en")) {

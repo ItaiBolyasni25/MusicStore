@@ -68,6 +68,8 @@ public class User implements Serializable, EntityModel {
 
     public User() {
     }
+    private boolean is_manager;
+    private String language;
 
     public User(String firstName, String lastName, String email, String password,
             String companyName, String address1, String postalCode, String address2,

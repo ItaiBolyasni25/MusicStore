@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+
 /**
  *
  * @author maian
@@ -19,21 +20,17 @@ import javax.inject.Named;
 @SessionScoped
 @Named("albumBean")
 public class AlbumBean implements Serializable {
-
-    @Inject
-    private DAO dao;
-
-    public AlbumBean() {
-
-    }
-
-    public List<Album> getAll() {
-        return dao.findAll(new Album());
-    }
-
-    public Album getOne() {
-        List<Album> als = dao.findAll(new Album());
-        return als.get(0);
-    }
-
+   @Inject
+   private DAO dao; 
+   public AlbumBean(){
+      
+   }
+   public List<Album> getAll(){
+       return dao.findAll(new Album());
+   }
+   public Album getOne(){
+       List<Album> als = dao.findAll(new Album());
+       return als.get(0);
+   }
+   
 }

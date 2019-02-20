@@ -287,3 +287,45 @@ section .section-title {
     width: 40%;
     margin-left: 30%;
 }
+
+.arrows{
+    height: 10%;
+    width: 80%;
+}
+
+.emptybutton{
+    padding: 0;
+    border: none;
+    background: none;
+    position: relative;
+    top: calc(50% - 25px);
+}
+
+.card-text img{
+    height: 20%;
+    width: 100%;
+    display: block;
+}
+
+.genresimg{
+    height: 60%;
+    width: 60%;
+    display: block;
+    margin-left: 20%;
+    margin-top: 5%;
+}
+
+#logomanager{
+    height: 100%;
+    margin-top: 100%;
+}
+
+.managernav{
+    margin-top: 2%;
+
+}
+
+.addsurvey{
+    width: 40%;
+    margin-left: 30%;
+}

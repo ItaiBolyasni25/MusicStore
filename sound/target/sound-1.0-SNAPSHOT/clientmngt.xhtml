@@ -12,6 +12,59 @@
         <title>Sound++</title>
     </h:head>
     <h:body>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        <ui:include src="navbar.xhtml" />
+        <div class="row">
+            <div class="col-md-1"></div>
+                
+                <div class="col-md-4 pt-4">
+                    <h2> Users Overview: </h2>
+                </div>
+            
+        </div>
+        
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">#{internationalization.albumimage}</th>
+                    <th scope="col">#{internationalization.songtitle}</th>
+                    <th scope="col">#{internationalization.albumtitle}</th>
+                    <th scope="col">#{internationalization.artist}</th>
+                    <th scope="col">#{internationalization.songdate}</th>
+                    <th scope="col">#{internationalization.playlength}</th>
+                    <th scope="col">#{internationalization.cost}</th>
+                    <th scope="col">#{internationalization.albumimage}</th>
+                    <th scope="col">#{internationalization.songtitle}</th>
+                    <th scope="col">#{internationalization.albumtitle}</th>
+                    <th scope="col">#{internationalization.artist}</th>
+                    <th scope="col">#{internationalization.songdate}</th>
+                    <th scope="col">#{internationalization.playlength}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <ui:repeat var="tr" value="#{UserBean.all}" > 
+                    <tr class="table-secondary">
+                        <th>#{tr.user_Id}</th>
+                        <td>#{tr.firstname}</td>
+                        <td>#{tr.lastname}</td>
+                        <td>#{tr.email}</td>
+                        <td>#{tr.company_name}</td>
+                        <td>#{tr.address1}</td>
+                        <td>#{tr.address2}</td>
+                        <td>#{tr.city}</td>
+                        <td>#{tr.province}</td>
+                        <td>#{tr.postal_code}</td>
+                        <td>#{tr.country}</td>
+                        <td>#{tr.cellphone}</td>
+                        <td>#{tr.home_telephone}</td>
+                    </tr>
+                </ui:repeat>
+            </tbody>
+        </table> 
+=======
+>>>>>>> 5bbcbb5f9a2e78cb3053e482470ea793c07fee59
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
             <a class="navbar-brand" href="#"><img id="logo" src="assets/logo.png" alt="Logo of online music store Sound++"></img></a>
@@ -52,6 +105,10 @@
             From this page a manager can search for any client to edit their registration information. If a search returns multiple results, then the manager can choose from the list of results. The total value of all purchases by the client is shown. 
         </p>
     
+<<<<<<< HEAD
+=======
+>>>>>>> 69ef0b16e0abf174e5f74d549254992bd1636228
+>>>>>>> 5bbcbb5f9a2e78cb3053e482470ea793c07fee59
 
     </h:body>
 </html>

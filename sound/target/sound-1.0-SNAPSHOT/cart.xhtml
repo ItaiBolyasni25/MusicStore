@@ -2,7 +2,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+<<<<<<< HEAD
       xmlns:f="http://xmlns.jcp.org/jsf/core">
+=======
+<<<<<<< HEAD
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+=======
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+>>>>>>> 69ef0b16e0abf174e5f74d549254992bd1636228
+>>>>>>> 5bbcbb5f9a2e78cb3053e482470ea793c07fee59
     <h:head>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.2.1/lux/bootstrap.min.css" />
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -12,6 +21,108 @@
         <title>Sound++</title>
     </h:head>
     <h:body>
+<<<<<<< HEAD
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+=======
+<<<<<<< HEAD
+      <ui:include src="navbar.xhtml"/>
+      <div class="row">
+        <div class="col-md-3 order-md-2 mb-4 ml-3 mt-4" style="margin-top: 10%">
+          <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-muted">Your cart</span>
+            <span class="badge badge-secondary badge-pill">3</span>
+          </h4>
+          <ul class="list-group mb-3">
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">Product name</h6>
+                <small class="text-muted">Brief description</small>
+              </div>
+              <span class="text-muted">$12</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">Second product</h6>
+                <small class="text-muted">Brief description</small>
+              </div>
+              <span class="text-muted">$8</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">Third item</h6>
+                <small class="text-muted">Brief description</small>
+              </div>
+              <span class="text-muted">$5</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between bg-light">
+              <div class="text-success">
+                <h6 class="my-0">Promo code</h6>
+                <small>EXAMPLECODE</small>
+              </div>
+              <span class="text-success">-$5</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <span>Total (USD)</span>
+              <strong>$20</strong>
+            </li>
+          </ul>
+>>>>>>> 5bbcbb5f9a2e78cb3053e482470ea793c07fee59
+
+            <a class="navbar-brand" href="#"><img id="logo" src="assets/logo.png" alt="Logo of online music store Sound++"></img></a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarColor03">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <h:link class="nav-link" value="#{internationalization.home}" outcome="index"/>
+                    </li>
+                    <li class="nav-item">
+                        <h:link class="nav-link" value="#{internationalization.albums}" outcome="albums"/>
+                    </li>
+                    <li class="nav-item">
+                        <h:link class="nav-link" value="#{internationalization.tracks}" outcome="tracks"/>
+                    </li>
+                    <li class="nav-item">
+                        <h:link class="nav-link" value="#{internationalization.about}" outcome="about"/>
+                    </li>
+                    <li class="nav-item">
+                        <h:link class="nav-link" value="#{internationalization.login}" outcome="login"/>
+                    </li>
+                    <li class="nav-item">
+                        <h:link class="nav-link" value="#{internationalization.cart}" outcome="cart"/>
+                    </li>
+                </ul>
+
+                <li class="nav-item dropdown">
+                    <div class="form-group">
+                        <h:form class="form-inline my-2 my-lg-0 ml-2">
+                            <h:selectOneMenu onchange="submit()" valueChangeListener="#{internationalization.languageChange}"  class="custom-select mr-sm-3 ml-4">
+                                <f:selectItem itemValue="en" itemLabel="#{internationalization.english}" />
+                                <f:selectItem itemValue="fr" itemLabel="#{internationalization.french}" />
+                            </h:selectOneMenu> 
+                        </h:form>
+
+                    </div>
+                </li>
+
+                <h:form class="form-inline my-2 my-lg-0">
+                    <h:inputText class="form-control mr-sm-2" value="#{internationalization.search}"/>
+                    <h:commandButton class="btn btn-outline-primary" value="#{internationalization.search}" action="search"/>
+                </h:form>
+            </div>
+<<<<<<< HEAD
+        </nav>
+=======
+            <div class="mb-4"></div>
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+          </form>
+        </div>
+      </div>
+      <ui:include src="footer.xhtml"/>
+=======
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
             <a class="navbar-brand" href="#"><img id="logo" src="assets/logo.png" alt="Logo of online music store Sound++"></img></a>
@@ -60,6 +171,8 @@
                 </h:form>
             </div>
         </nav>
+>>>>>>> 69ef0b16e0abf174e5f74d549254992bd1636228
+>>>>>>> 5bbcbb5f9a2e78cb3053e482470ea793c07fee59
 
     </h:body>
 </html>

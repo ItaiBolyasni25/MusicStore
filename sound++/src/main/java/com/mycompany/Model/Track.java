@@ -5,7 +5,6 @@ package com.mycompany.Model;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import com.mycompany.Interface.EntityModel;
 import com.mycompany.Model.Album;
 import java.sql.Date;

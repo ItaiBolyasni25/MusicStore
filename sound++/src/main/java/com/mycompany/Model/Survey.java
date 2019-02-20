@@ -1,3 +1,5 @@
+package com.mycompany.Model;
+
 
 import com.mycompany.Interface.EntityModel;
 import java.io.Serializable;
