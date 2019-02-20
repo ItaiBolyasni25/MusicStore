@@ -86,7 +86,7 @@ public class SongParser implements Serializable {
     }
 
     private void readCSVFile() throws IOException, ParseException {
-        Path p = Paths.get("C:\\Users\\1633867\\Desktop\\csdmusicstore\\sound++\\src\\main\\resources\\dataPoints.csv");
+        Path p = Paths.get("C:\\Users\\Gabriela\\Desktop\\csdmusicstore\\sound++\\src\\main\\resources\\dataPoints.csv");
         List<String> list = Files.readAllLines(p, StandardCharsets.UTF_8);
         for (int i = 1; i < list.size(); i++) {
             String[] splittedCsv = list.get(i).split(",");
