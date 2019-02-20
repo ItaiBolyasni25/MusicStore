@@ -1,11 +1,16 @@
+package com.mycompany.Controller;
 
-import com.mycompany.Model.Track;
+
+import com.mycompany.Model.Album;
 import com.mycompany.Persistence.DAO;
-import java.io.IOException;
+
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -20,29 +25,28 @@ import javax.inject.Named;
  * @author maian
  */
 @ViewScoped
-@Named("TrackPaginationBean")
-public class TrackPaginationBean implements Serializable {
+@Named("AlbumPaginationBean")
+public class AlbumPaginationBean implements Serializable {
 
     @Inject
     private DAO dao;
-    private List<Track> dataList;
-    ;
+    private List<Album> dataList;
     private int totalRows;
     private int currentPage;
     private int itemPerPage;
     private int totalPages;
 
-    public TrackPaginationBean() {
-        this.itemPerPage = 10;
+    public AlbumPaginationBean() {
+        this.itemPerPage = 5;
         this.currentPage = 1;
 
     }
 
-    public List<Track> getDatalist() {
+    public List<Album> getDatalist() {
         return dataList;
     }
 
-    public void setDatalist(List<Track> dataList) {
+    public void setDatalist(List<Album> dataList) {
         this.dataList = dataList;
     }
 
@@ -76,12 +80,13 @@ public class TrackPaginationBean implements Serializable {
 
     @PostConstruct
     public void init() {
-        this.totalRows = dao.findAll(new Track()).size();
+        this.totalRows = dao.findAll(new Album()).size();
         if (totalRows > itemPerPage) {
             totalPages = (int) Math.ceil((totalRows * 1.0) / itemPerPage);
         } else {
             totalPages = 1;
         }
+
         updateView();
     }
 
@@ -89,15 +94,22 @@ public class TrackPaginationBean implements Serializable {
         return this.currentPage;
     }
 
-    public void setCurrent_page(int newCurrentPage) throws IOException {
+    public void setCurrent_page(int newCurrentPage) {
+        System.out.println("aaa..." + newCurrentPage);
         currentPage = newCurrentPage;
         updateView();
-
     }
 
     public void updateView() {
+        /* FacesContext fc = FacesContext.getCurrentInstance();
+        Map<String, String> params
+                = fc.getExternalContext().getRequestParameterMap();
+        if (!params.get("currentPage").isEmpty() || params.get("currentPage") != null) {
+            currentPage = Integer.parseInt(params.get("currentPage"));
+        }*/
+
         int offset = getOffset();
-        setDatalist(dao.findWithLimit(new Track(), offset, itemPerPage));
+        setDatalist(dao.findWithLimit(new Album(), offset, itemPerPage));
     }
 
     public void next() {
