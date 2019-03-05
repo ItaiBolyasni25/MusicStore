@@ -14,7 +14,7 @@
     <h:body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-            <a class="navbar-brand" href="#"><img id="logo" src="assets/logo.png" alt="Logo of online music store Sound++"></img></a>
+            <a class="navbar-brand" href="#"><img id="logo" src="../assets/logo.png" alt="Logo of online music store Sound++"></img></a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -41,11 +41,13 @@
                     <h:inputText class="form-control mr-sm-2" value="#{internationalization.search}"/>
                     <h:commandButton class="btn btn-outline-primary" value="#{internationalization.search}" action="search"/>
                 </h:form>
+
+
             </div>
         </nav>
 
         <p>
-            From this page a manager can define the current news feeds presented on the front page. Previous news feed must be saved so that they may be reused.
+            To avoid inappropriate language in a review they must be approved by a manager before they can be displayed. From this page the manager can see all reviews waiting for approval as well as those already approved. The manager may approve, not approve, or remove the approval of a review.
         </p>
 
     </h:body>

@@ -33,11 +33,7 @@ and open the template in the editor.
             <div class="collapse navbar-collapse" id="navbarColor03">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-<<<<<<< HEAD:sound/target/sound-1.0-SNAPSHOT/navbar.xhtml
-                        <h:link class="nav-link" value="#{internationalization.home}" outcome="manager"/>
-=======
                         <h:link class="nav-link" value="#{internationalization.home}" outcome="index"/>
->>>>>>> code form for survey management:sound++/target/sound-1.0-SNAPSHOT/about.xhtml
                     </li>
                     <li class="nav-item">
                         <h:link class="nav-link" value="#{internationalization.albums}" outcome="albums"/>
@@ -49,31 +45,13 @@ and open the template in the editor.
                         <h:link class="nav-link" value="#{internationalization.about}" outcome="about"/>
                     </li>
                     <li class="nav-item">
-                        <h:link class="nav-link" value="#{internationalization.login}" outcome="login"/>
+                        <h:link class="nav-link" value="#{internationalization.login}" outcome="register"/>
                     </li>
                     <li class="nav-item">
                         <h:link class="nav-link" value="#{internationalization.cart}" outcome="cart"/>
                     </li>
                 </ul>
 
-<<<<<<< HEAD:sound/target/sound-1.0-SNAPSHOT/navbar.xhtml
-                <div class="form-group mt-3">
-                    <h:form class="form-inline my-2 my-lg-0 mr-sm-2">
-                        <h:inputText class="form-control mr-sm-3" value="#{internationalization.search}"/>
-                        <h:commandButton class="btn btn-outline-primary my-2 my-sm-0" value="#{internationalization.search}" action="search"/>
-                    </h:form>
-                </div>
-                <div class="form-group">
-                    <small class="ml-4 pl-3">Language</small>
-                    <h:form class="form-inline my-2 my-lg-0 ml-2">
-                        <h:selectOneMenu onchange="submit()" valueChangeListener="#{internationalization.languageChange}"  class="custom-select mr-sm-3 ml-4">
-                            <f:selectItem itemValue="en" itemLabel="#{internationalization.english}" />
-                            <f:selectItem itemValue="fr" itemLabel="#{internationalization.french}" />
-                        </h:selectOneMenu> 
-                    </h:form>
-                </div>
-
-=======
                 <li class="nav-item dropdown">
                     <div class="form-group">
                         <h:form class="form-inline my-2 my-lg-0 ml-2">
@@ -82,6 +60,7 @@ and open the template in the editor.
                                 <f:selectItem itemValue="fr" itemLabel="#{internationalization.french}" />
                             </h:selectOneMenu> 
                         </h:form>
+
                     </div>
                 </li>
 
@@ -89,7 +68,6 @@ and open the template in the editor.
                     <h:inputText class="form-control mr-sm-2" value="#{internationalization.search}"/>
                     <h:commandButton class="btn btn-outline-primary" value="#{internationalization.search}" action="search"/>
                 </h:form>
->>>>>>> code form for survey management:sound++/target/sound-1.0-SNAPSHOT/about.xhtml
             </div>
         </nav>
 

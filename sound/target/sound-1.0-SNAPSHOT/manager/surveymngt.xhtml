@@ -14,7 +14,7 @@
     <h:body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-            <a class="navbar-brand" href="#"><img id="logo" src="assets/logo.png" alt="Logo of online music store Sound++"></img></a>
+            <a class="navbar-brand" href="#"><img id="logo" src="../assets/logo.png" alt="Logo of online music store Sound++"></img></a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -33,7 +33,7 @@
                         <h:selectOneMenu onchange="submit()" valueChangeListener="#{internationalization.languageChange}"  class="custom-select mr-sm-3 ml-4">
                             <f:selectItem itemValue="en" itemLabel="#{internationalization.english}" />
                             <f:selectItem itemValue="fr" itemLabel="#{internationalization.french}" />
-                        </h:selectOneMenu> 
+                        </h:selectOneMenu>
                     </h:form>
                 </li>
 
@@ -41,14 +41,60 @@
                     <h:inputText class="form-control mr-sm-2" value="#{internationalization.search}"/>
                     <h:commandButton class="btn btn-outline-primary" value="#{internationalization.search}" action="search"/>
                 </h:form>
-
-
             </div>
         </nav>
-
+        <!--
         <p>
-            To avoid inappropriate language in a review they must be approved by a manager before they can be displayed. From this page the manager can see all reviews waiting for approval as well as those already approved. The manager may approve, not approve, or remove the approval of a review.
+            From this page a manager can define the survey presented on the front page. Previous surveys must be saved so that they may be reused.
         </p>
+        -->
+        <h:form>
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-4 ">
+                    <h1>#{internationalization.addSurvey}</h1>
+                    <div class="form-group">
+                        <h:form>
+                            <h:outputLabel class="col-form-label" for="question">#{internationalization.question}</h:outputLabel>
+                            <h:inputText id="question" class="form-control" value="" required="true" requiredMessage="#{internationalization.questionRequired}"/><br/>
+
+                            <h:outputLabel for="option1">#{internationalization.option} 1</h:outputLabel>
+                            <h:inputText id="option1" class="form-control" value="" required="true" requiredMessage="#{internationalization.optionRequired}"/><br/>
+
+                            <h:outputLabel for="option2">#{internationalization.option} 2</h:outputLabel>
+                            <h:inputText id="option2" class="form-control" value="" required="true" requiredMessage="#{internationalization.optionRequired}"/><br/>
+
+
+                            <h:outputLabel for="option3">#{internationalization.option} 3</h:outputLabel>
+                            <h:inputText id="option3" class="form-control" value="" /><br/>
+
+
+                            <h:outputLabel for="option4">#{internationalization.option} 4</h:outputLabel>
+                            <h:inputText id="option4" class="form-control" value="" /><br/>
+
+                            <h:outputLabel for="option5">#{internationalization.option} 5</h:outputLabel>
+                            <h:inputText id="option5" class="form-control" value="" /><br/>
+
+                            <h:commandButton id="submit-button" value="#{internationalization.add}" class="btn btn-primary" action="savesurvey"/>
+                        </h:form>
+
+
+                    </div>
+                </div>
+                <div class="col-md-2"></div>
+                <div class="col-md-5"> 
+                    <h1>#{internationalization.pastSurvey}</h1>
+                </div>
+
+            </div>
+
+
+
+
+
+
+
+        </h:form>
 
     </h:body>
 </html>

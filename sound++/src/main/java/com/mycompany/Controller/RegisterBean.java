@@ -1,5 +1,6 @@
 package com.mycompany.Controller;
 
+import com.mycompany.Model.Roles;
 import com.mycompany.Utilities.Validator;
 import com.mycompany.Persistence.DAO;
 import com.mycompany.Model.User;
@@ -163,7 +164,13 @@ public class RegisterBean implements Serializable{
             homephone);
 
         if (!Validator.emailExists(user, DAO)) {
+          user.setTitle("miss");
+          user.setLanguage("english");
+          user.setIs_manager(false);
+          user.setLast_genre("country");
            DAO.write(user);
+           Roles role = new Roles(user.getEmail(), "manager");
+           DAO.write(role);
            loggedIn = user;
            invalidEmail = false;
            return "index.xhtml";

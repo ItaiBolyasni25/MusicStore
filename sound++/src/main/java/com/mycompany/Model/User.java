@@ -23,19 +23,9 @@ import com.mycompany.Interface.EntityModel;
 public class User implements Serializable, EntityModel {
 
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer user_id;
+   
     private String title;
     private String lastname;
-
-    public Integer getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
-    }
 
     public String getTitle() {
         return title;
@@ -62,9 +52,11 @@ public class User implements Serializable, EntityModel {
     private String postal_code;
     private String home_telephone;
     private String cellphone;
+    @Id
     private String email;
     private String hash;
     private String salt;
+    private String last_genre;
 
     public User() {
     }
@@ -90,14 +82,32 @@ public class User implements Serializable, EntityModel {
         this.home_telephone = homephone;
     }
 
-    public Integer getUser_Id() {
-        return user_id;
+    public String getLast_genre() {
+        return last_genre;
     }
 
-    public void setUser_Id(Integer user_id) {
-        this.user_id = user_id;
+    public void setLast_genre(String last_genre) {
+        this.last_genre = last_genre;
     }
 
+    public boolean isIs_manager() {
+        return is_manager;
+    }
+
+    public void setIs_manager(boolean is_manager) {
+        this.is_manager = is_manager;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    
+    
     public String getFirstname() {
         return firstname;
     }
