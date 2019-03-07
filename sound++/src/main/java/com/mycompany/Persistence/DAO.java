@@ -92,8 +92,10 @@ public class DAO {
     public void setUserTransaction(UserTransaction ut) {
         this.userTransaction = ut;
     }
-
-    public void saveInSession(Object object) {
-
+    
+    public <E extends EntityModel> List<E> findWithJoins(E entityModel, String joins, String where){
+        String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
+        Query q = em.createQuery("SELECT a FROM" + className + " " + joins + " " + where);
+        return q.getResultList();
     }
 }

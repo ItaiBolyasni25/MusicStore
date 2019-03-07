@@ -87,4 +87,10 @@ public class SurveyBean implements Serializable {
     public List<Survey> getPastSurveys(){
         return dao.findAll(new Survey());
     }
+    
+    public List<Survey> getSurveysperuser(){
+        String username = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("id");
+        return dao.findWithJoins(new Survey(), "JOIN survey_result s ON t.survey_id = s.survey_id", "WHERE NOT s.user_id = " + username);
+
+    }
 }

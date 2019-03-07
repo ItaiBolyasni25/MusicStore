@@ -308,4 +308,12 @@ public class Internationalization implements Serializable {
     public String getTitle() {
         return language.equals("English") ? "Title" : "Titre";
     }
+    
+    public String getSurveyuser(){
+        return language.equals("English") ? "Log In or Sign up to complete surveys about your favourites artists" : "Connectez ou enregistrez vous pour repondre a different sondages sur vos artistes favoris";
+    }
+    
+    public String getSubmit(){
+        return language.equals("English") ? "Submit": "Completer";
+    }
 }

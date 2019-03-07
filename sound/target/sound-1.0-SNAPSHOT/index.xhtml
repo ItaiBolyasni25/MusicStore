@@ -85,22 +85,28 @@
                             </div>
                         </div> 
 
-                        <div id="newreleases">
+                        <h:panelGroup rendered="#{empty user}">
                             <h1 class="display-5">#{internationalization.survey}</h1>
-                            <div class="card border-primary mb-3">
-                                <h3 class="card-header">#{internationalization.newsongs}</h3>
-                                <div class="card-body">
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item"><a href="#" class="card-link">Hello by gab</a></li>
-                                        <li class="list-group-item"> <a href="#" class="card-link">Hello by gab</a></li>
-                                    </ul>
+                            <p>#{internationalization.surveyuser}</p>
+                            <h:link value="#{internationalization.loginopt}    " outcome="login"></h:link>
+                            <h:link value="#{internationalization.signup}" outcome="register"></h:link>
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{not empty user}">
+                            <div id="surveys">
+                                <h1 class="display-5">#{internationalization.survey}</h1>
+                                <div class="card border-primary mb-3">
+                                    <h3 class="card-header">#{internationalization.newsongs}</h3>
+                                    <div class="card-body">
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item"><a href="#" class="card-link">Hello by gab</a></li>
+                                            <li class="list-group-item"> <a href="#" class="card-link">Hello by gab</a></li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
-                        </div> 
+                        </h:panelGroup>
                     </div>
-
                 </div>
-
 
                 <div id="ads" class="card mb-3">
                     <img style="height: 100px; width: 100%; display: block;" src="assets/ads.png" alt="Card image"/>
