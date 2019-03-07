@@ -333,3 +333,9 @@ section .section-title {
     width: 40%;
     margin-left: 30%;
 }
+.column{
+    margin-top: 2%;
+    margin-left: 5%;
+    padding-right: 2%;
+    width: 10%;
+}

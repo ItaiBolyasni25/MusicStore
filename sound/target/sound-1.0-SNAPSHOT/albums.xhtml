@@ -22,7 +22,7 @@
         <p id = "top"></p>
         <h:panelGroup id="table">
             <div id="albumTable">
-                <h:dataTable class="table table-hover" value="#{AlbumPaginationBean.datalist}" var="album">
+                <h:dataTable id="datatable" class="table table-hover" value="#{AlbumPaginationBean.datalist}" var="album">
                     <h:column>
                         <f:facet name="header">
                             #{internationalization.albumimage}
@@ -91,7 +91,9 @@
                         </c:forEach>
                     </ul>
                 </h:form>
-            </div></h:panelGroup>      
+            </div>
+            <script>assignEventsRows();</script>
+        </h:panelGroup>      
         <div class="card border-light mb-3" id ="info">
             <h:panelGroup id="result">
                 <ol class="breadcrumb">
@@ -123,7 +125,7 @@
 
                 <div class = "detailInfo">
                     <h5 class="detail">DESCRIPTION</h5>
-                    <hr class="style"></hr>
+                    <hr class="style"/>
                     <div id="myTabContent" class="tab-content">
                         <div class="tab-pane fade show active" id="details">
                             <p id="releasedate"><span class="boldText">Original Release Date: </span>  <h:outputText value="#{selectedAlbum.selectedAlbum.releasedate}"></h:outputText>  </p>
@@ -132,19 +134,24 @@
                         </div>
                     </div>
                     <h5 class="detail">SIMILAR ALBUMS</h5>
-                    <hr class="style"></hr>
+                    <hr class="style"/>
                     <div class="row">
                         <ui:repeat value="#{selectedAlbum.getSimilarAlbum()}" var="similarAlbum">
                         <div class="column">
                             <h:graphicImage value="#{similarAlbum.image}" title="Album's cover" class="albumPic"/>
+                            <p><h:outputText value=" #{similarAlbum.title}"></h:outputText></p>
                             <p><ui:repeat var="artist" value="#{similarAlbum.artists}">
-                            #{artist.name} 
+                            <h:outputText value="#{artist.name}"></h:outputText>     
                         </ui:repeat></p>
-                        </div></ui:repeat>
-                        
+                            <p> <h:outputText value="CAD  #{similarAlbum.cost}"></h:outputText> </p>
+                        </div></ui:repeat>                    
                     </div>
+                    <h5 class="detail">REVIEWS</h5>
+                    <hr class="style"/>
                 </div>
-            </h:panelGroup> </div>
+                <script>setAlbumList(); setAlbumVisible();</script>
+            </h:panelGroup> 
+        </div>
         <ui:include src="footer.xhtml" />
     </h:body>
 </html>
