@@ -3,7 +3,9 @@ package com.mycompany.Model;
 import com.mycompany.Interface.EntityModel;
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -121,5 +123,21 @@ public class Survey implements Serializable, EntityModel {
 
     public void setOption5(String option5) {
         this.option5 = option5;
+    }
+
+    public List<String> getOptions() {
+        List<String> options = new ArrayList<String>();
+        options.add(option1);
+        options.add(option2);
+        if(option3 != null && !option3.isEmpty()){
+            options.add(option3);
+        }
+        if(option4 != null && !option4.isEmpty()){
+            options.add(option4);
+        }
+        if(option5 != null && !option4.isEmpty()){
+            options.add(option5);
+        }
+        return options;
     }
 }

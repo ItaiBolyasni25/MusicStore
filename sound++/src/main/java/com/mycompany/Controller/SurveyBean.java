@@ -3,6 +3,7 @@ package com.mycompany.Controller;
 import com.mycompany.Model.Survey;
 import com.mycompany.Persistence.DAO;
 import java.io.Serializable;
+import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -81,5 +82,9 @@ public class SurveyBean implements Serializable {
         System.out.println(email);
         System.out.println(survey.getQuestion());
         return "survey.xhtml";
+    }
+    
+    public List<Survey> getPastSurveys(){
+        return dao.findAll(new Survey());
     }
 }
