@@ -23,25 +23,9 @@ import com.mycompany.Interface.EntityModel;
 public class User implements Serializable, EntityModel {
 
     private static final long serialVersionUID = 1L;
-   
+
     private String title;
     private String lastname;
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getSalt() {
-        return salt;
-    }
-
-    public void setSalt(String salt) {
-        this.salt = salt;
-    }
     private String firstname;
     private String company_name;
     private String address1;
@@ -64,22 +48,28 @@ public class User implements Serializable, EntityModel {
     private String language;
 
     public User(String firstName, String lastName, String email, String password,
-            String companyName, String address1, String postalCode, String address2,
-            String city, String province, String country, String cellphone,
-            String homephone) {
+            String title) {
         this.firstname = firstName;
         this.lastname = lastName;
         this.email = email;
         this.hash = password;
-        this.company_name = companyName;
-        this.address1 = address1;
-        this.postal_code = postalCode;
-        this.address2 = address2;
-        this.city = city;
-        this.province = province;
-        this.country = country;
-        this.cellphone = cellphone;
-        this.home_telephone = homephone;
+        this.title = title;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
     }
 
     public String getLast_genre() {
@@ -106,8 +96,6 @@ public class User implements Serializable, EntityModel {
         this.language = language;
     }
 
-    
-    
     public String getFirstname() {
         return firstname;
     }
@@ -216,4 +204,5 @@ public class User implements Serializable, EntityModel {
     public String toString() {
         return this.email;
     }
+
 }

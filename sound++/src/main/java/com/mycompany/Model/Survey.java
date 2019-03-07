@@ -1,6 +1,5 @@
 package com.mycompany.Model;
 
-
 import com.mycompany.Interface.EntityModel;
 import java.io.Serializable;
 import javax.persistence.Entity;
@@ -14,31 +13,30 @@ import javax.persistence.Table;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Gabriela
  */
 @Entity
-@Table(name= "Survey")
-public class Survey implements Serializable, EntityModel{
-    
+@Table(name = "Survey")
+public class Survey implements Serializable, EntityModel {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer survey_id;
 
-    
     private String question;
     private String option1;
     private String option2;
     private String option3;
     private String option4;
     private String option5;
-    
-    public Survey(){}
-    
-    public Survey(String question, String opt1, String opt2, String opt3, String opt4, String opt5){
+
+    public Survey() {
+    }
+
+    public Survey(String question, String opt1, String opt2, String opt3, String opt4, String opt5) {
         this.question = question;
         this.option1 = opt1;
         this.option2 = opt2;
@@ -54,7 +52,7 @@ public class Survey implements Serializable, EntityModel{
     public void setSurvey_id(Integer survey_id) {
         this.survey_id = survey_id;
     }
-    
+
     public String getQuestion() {
         return question;
     }

@@ -1,6 +1,5 @@
 package com.mycompany.Controller;
 
-
 import com.mycompany.Model.Album;
 import com.mycompany.Persistence.DAO;
 

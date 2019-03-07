@@ -2,7 +2,6 @@ package com.mycompany.Controller;
 
 import com.mycompany.Persistence.DAO;
 import java.io.Serializable;
-import javax.ejb.Stateless;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -11,9 +10,10 @@ import javax.inject.Named;
  *
  * @author Gabriela
  */
-@Named(value= "surveyBean")
+@Named(value = "surveyBean")
 @SessionScoped
-public class SurveyBean implements Serializable{
+public class SurveyBean implements Serializable {
+
     private String question;
     private String option1;
     private String option2;
@@ -23,7 +23,7 @@ public class SurveyBean implements Serializable{
 
     @Inject
     private DAO DAO;
-    
+
     public String getQuestion() {
         return question;
     }
@@ -71,9 +71,9 @@ public class SurveyBean implements Serializable{
     public void setOption5(String option5) {
         this.option5 = option5;
     }
-    
-    public String addSurvey(){
-        
+
+    public String addSurvey() {
+
         return "survey.xhtml";
     }
 }

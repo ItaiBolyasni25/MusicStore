@@ -34,8 +34,6 @@ public class Internationalization implements Serializable {
 //            language = "English";
 //        }
 //    }
-        
-        
     public void languageChange(ValueChangeEvent e) {
         String lan = e.getNewValue().toString();
         if (lan.equals("fr")) {
@@ -222,7 +220,7 @@ public class Internationalization implements Serializable {
     public String getLoginError() {
         return language.equals("English") ? "There was a problem logging you in" : "Il y a eu un problème pour vous connecter";
     }
-    
+
     public String getChange() {
         return language.equals("English") ? "Change" : "Changer";
     }
@@ -286,24 +284,28 @@ public class Internationalization implements Serializable {
     public String getQuestionRequired() {
         return language.equals("English") ? "Question is required" : "Question est un champ obligatoire";
     }
-    
+
     public String getOptionRequired() {
         return language.equals("English") ? "Option 1 and 2 are required" : "Les options 1 et 2 sont obligatoires";
     }
-    
+
     public String getAdd() {
         return language.equals("English") ? "Add" : "Ajouter";
     }
-    
+
     public String getAddSurvey() {
         return language.equals("English") ? "Add New Survey" : "Ajouter Nouveau Sondage";
     }
-    
+
     public String getPastSurvey() {
         return language.equals("English") ? "Past Surveys" : "Sondages passees";
     }
-    
+
     public String getSurvey() {
         return language.equals("English") ? "Surveys" : "Sondages";
+    }
+
+    public String getTitle() {
+        return language.equals("English") ? "Title" : "Titre";
     }
 }

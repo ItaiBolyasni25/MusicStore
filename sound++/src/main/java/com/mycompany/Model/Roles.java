@@ -106,5 +106,5 @@ public class Roles implements Serializable, EntityModel {
     public String toString() {
         return "com.mycompany.Model.Roles[ email=" + email + " ]";
     }
-    
+
 }

@@ -6,7 +6,6 @@ package com.mycompany.Persistence;
  * and open the template in the editor.
  */
 import com.mycompany.Interface.EntityModel;
-import com.mycompany.Model.User;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -92,5 +91,9 @@ public class DAO {
 
     public void setUserTransaction(UserTransaction ut) {
         this.userTransaction = ut;
+    }
+
+    public void saveInSession(Object object) {
+
     }
 }

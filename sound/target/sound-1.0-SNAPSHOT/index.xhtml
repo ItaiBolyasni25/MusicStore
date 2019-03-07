@@ -16,7 +16,7 @@
         <script src="resources/js/newsfeed.js"></script>
         <h:outputStylesheet library="css" name="style.css"  />
         <title>Sound++</title>
-        
+
 
     </h:head>
     <h:body>
@@ -39,7 +39,8 @@
 
             <div class="tab-pane fade show active" id="home">
                 <div class="jumbotron">
-                    <h:outputText class="display-4" value="#{registerBean.loggedIn != null || loginBean.loggedIn != null?  (registerBean.loggedIn != null? internationalization.welcome.concat(' ').concat(registerBean.loggedIn.getFirstname()) : internationalization.welcome.concat(' ').concat(loginBean.loggedIn.getFirstname())) : internationalization.welcome }" /> 
+                    <h:outputText rendered="#{empty user}" class="display-4" value="#{internationalization.welcome}" />
+                    <h:outputText rendered="#{not empty user}" class="display-4" value="#{internationalization.welcome}  #{user}" />
                     <p class="lead">#{internationalization.description}</p>
                     <hr class="my-4"/>
                 </div>
@@ -83,7 +84,7 @@
                                 </div>
                             </div>
                         </div> 
-                        
+
                         <div id="newreleases">
                             <h1 class="display-5">#{internationalization.survey}</h1>
                             <div class="card border-primary mb-3">
