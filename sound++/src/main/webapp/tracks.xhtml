@@ -39,7 +39,10 @@
                         <th><h:graphicImage value="#{tr.album.image}" title="Album's cover" class="trackPic"/></th>
                         <td>#{tr.title}</td>
                         <td>#{tr.album.title}</td>
-                        <td>Updating</td>
+                        <td><ui:repeat var="artist" value="#{album.artists}">
+                                    #{artist.name} 
+                                </ui:repeat>
+                            </td>
                         <td>
                             <h:outputText value="#{tr.date_added}">
                                 <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>

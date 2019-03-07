@@ -38,7 +38,7 @@ public class getInfo extends HttpServlet {
         JSONArray jsonArray = new JSONArray();
         int albumRequestID = Integer.parseInt(request.getParameter("id"));
         Album album = dao.read(new Album(), albumRequestID).get(0);
-        List<Album> albums = dao.findWithLimitGenre(new Album(), 3, album.getGenre());
+        List<Album> albums = dao.findWithLimitGenre(new Album(), 3, album.getGenre(), "title", album.getTitle());
         JSONObject formDetailsJson = new JSONObject();
         formDetailsJson.put("title", album.getTitle());
         formDetailsJson.put("image", album.getImage());
@@ -46,6 +46,7 @@ public class getInfo extends HttpServlet {
         artists.add(toArrayList(album.getArtists()));
         JSONArray albumsArray = new JSONArray();
         albumsArray.add(toArrayListAlbum(albums));
+        formDetailsJson.put("similarAlbums",albumsArray);
         formDetailsJson.put("numberofsong", album.getNumberofsong());
         formDetailsJson.put("artists", artists);
         formDetailsJson.put("albums", albumsArray);

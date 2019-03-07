@@ -24,15 +24,25 @@ import javax.inject.Named;
 public class AlbumBean implements Serializable {
    @Inject
    private DAO dao; 
+   private Album selectedAlbum;
    public AlbumBean(){
       
    }
-   public List<Album> getAll(){
-       return dao.findAll(new Album());
-   }
-   public Album getOne(){
-       List<Album> als = dao.findAll(new Album());
-       return als.get(0);
-   }
+
+    public Album getSelectedAlbum() {
+
+        return selectedAlbum;
+    }
+
+    public void setSelectedAlbum(Album selectedAlbum) {
+                System.out.println("hihihihihihi" + selectedAlbum.getTitle());
+        this.selectedAlbum = selectedAlbum;
+    }
+    
+    public List<Album> getSimilarAlbum(){
+         List<Album> albums = dao.findWithLimitGenre(new Album(), 3, selectedAlbum.getGenre(), "title", selectedAlbum.getTitle());
+         return albums;
+    }
+  
    
 }

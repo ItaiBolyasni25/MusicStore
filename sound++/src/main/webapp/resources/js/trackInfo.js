@@ -2,6 +2,7 @@
 $(document).ready(function () {
     $("tr").each(function () {
         $(this).click(function () {
+            $(window).scrollTop(0);
             $("#info").css('display', 'block');
             $("#trackTable").css('display', 'none');
             var id = $(this).attr('id');

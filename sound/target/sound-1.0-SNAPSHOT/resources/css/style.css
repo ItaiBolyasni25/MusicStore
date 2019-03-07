@@ -50,9 +50,8 @@ a{
     text-align: center;
 }
 
-.table{
-    margin: 5%;
-    width: 90%;
+.table {
+    width: 0;
 }
 
 .table-secondary{
@@ -76,16 +75,7 @@ a{
 
 .centerform{
     margin-left: 33%;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
     margin-top: 4%;
->>>>>>> Start survey model and controller
-=======
-    margin-top: 4%;
->>>>>>> 5bbcbb5f9a2e78cb3053e482470ea793c07fee59
 }
 
 .albumPic{
@@ -118,7 +108,13 @@ a{
 section {
     padding: 60px 0;
 }
-
+.customLink{
+    font-size: 1.0em;
+    color:grey;
+}
+.customLink :hover{
+    color:grey;
+}
 section .section-title {
     text-align: center;
     color: black;
@@ -128,8 +124,8 @@ section .section-title {
 #info {
     width: 90%;
     height: 40%;
-    display: none;
     margin-left: 5%;
+    display: none;
 }
 #footer {
     background: #f7f7f9 !important;
@@ -192,15 +188,12 @@ section .section-title {
     width: 100%;
     height: 100%;
 }
-
 @media (max-width:767px){
     #footer h5 {
         padding-left: 0;
         border-left: transparent;
         padding-bottom: 0px;
         margin-bottom: 10px;
-<<<<<<< HEAD
-<<<<<<< HEAD
     }}
 .pages ul{
     width: 50%;
@@ -255,58 +248,6 @@ section .section-title {
     margin-top: 2%;
     margin-left: 5%;
     color: black;
-<<<<<<< HEAD
->>>>>>> 596370d6db81b9a4c1dce588170d595f6343a3d6
-}
-<<<<<<< HEAD
-=======
-}
->>>>>>> 6af446d1ee7967f7aef2c18d6d293b6435e8e6f0
-=======
-=======
-    }
-}
->>>>>>> change layout survey management and index
-
-.arrows{
-    height: 10%;
-    width: 80%;
-}
-
-.emptybutton{
-    padding: 0;
-    border: none;
-    background: none;
-    position: relative;
-    top: calc(50% - 25px);
-}
-<<<<<<< HEAD
->>>>>>> add slider to news feed
-=======
-
-.card-text img{
-    height: 20%;
-    width: 100%;
-    display: block;
-}
-
-.genresimg{
-    height: 60%;
-    width: 60%;
-    display: block;
-    margin-left: 20%;
-    margin-top: 5%;
-}
-<<<<<<< HEAD
->>>>>>> finish news feed
-=======
-
-#logomanager{
-    height: 100%;
-    margin-top: 100%;
-}
-=======
-    }
 }
 
 .arrows{
@@ -340,7 +281,6 @@ section .section-title {
     height: 100%;
     margin-top: 100%;
 }
->>>>>>> 5bbcbb5f9a2e78cb3053e482470ea793c07fee59
 
 .managernav{
     margin-top: 2%;
@@ -350,9 +290,46 @@ section .section-title {
 .addsurvey{
     width: 40%;
     margin-left: 30%;
-<<<<<<< HEAD
 }
->>>>>>> change layout survey management and index
-=======
+
+.arrows{
+    height: 10%;
+    width: 80%;
 }
->>>>>>> 5bbcbb5f9a2e78cb3053e482470ea793c07fee59
+
+.emptybutton{
+    padding: 0;
+    border: none;
+    background: none;
+    position: relative;
+    top: calc(50% - 25px);
+}
+
+.card-text img{
+    height: 20%;
+    width: 100%;
+    display: block;
+}
+
+.genresimg{
+    height: 60%;
+    width: 60%;
+    display: block;
+    margin-left: 20%;
+    margin-top: 5%;
+}
+
+#logomanager{
+    height: 100%;
+    margin-top: 100%;
+}
+
+.managernav{
+    margin-top: 2%;
+
+}
+
+.addsurvey{
+    width: 40%;
+    margin-left: 30%;
+}

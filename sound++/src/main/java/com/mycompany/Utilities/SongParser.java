@@ -6,6 +6,7 @@ package com.mycompany.Utilities;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 import com.mycompany.Model.Album;
 import com.mycompany.Model.Artist;
 import com.mycompany.Model.Track;
@@ -34,23 +35,26 @@ public class SongParser implements Serializable {
 
     @Inject
     private DAO dao;
+    Album album;
+    Artist artist;
 
     public void onLoad() throws Exception {
         readCSVFile();
     }
 
     private void albumParser(String[] splittedCsv) throws ParseException {
-        List<Artist> artists = dao.find(new Artist(), "name = '" + splittedCsv[3] + "'");
-        Artist artist = new Artist();
-        if (artists.size() < 1) {
-            artist.setName(splittedCsv[3]);
-        } else {
-            artist = artists.get(0);
-        }
-        artists.add(0, artist);
-        Album album = new Album();
-        List<Album> albums = dao.find(new Album(), "title = '" + splittedCsv[0] + "'");
-        if (albums.size() < 1) {
+        List<Artist> artists = null;
+            artists = dao.find(new Artist(), "name = '" + splittedCsv[3] + "'");
+             if(artists.size()< 1){
+                 artist = new Artist();
+                 artist.setName(splittedCsv[3].trim());
+                 artists.add(artist);
+             }
+       
+        if(album != null && !album.getTitle().equals(splittedCsv[0].trim()) || album == null ){
+            List<Album> albums = dao.find(new Album(), "title = '" + splittedCsv[0] + "'");
+            if (albums.size() < 1) {
+            album = new Album();
             album.setTitle(splittedCsv[0].trim());
             Date javaDate = new Date();
             album.setReleasedate(newDateFormat(splittedCsv[12]));
@@ -65,30 +69,32 @@ public class SongParser implements Serializable {
             album.setImage(splittedCsv[8]);
             album.setGenre(splittedCsv[18]);
             album.setLabel(splittedCsv[19].trim());
-        } else {
-            album = albums.get(0);
+            dao.write(album);
         }
+        }
+        if(album !=null){
         Track track = new Track();
-        track.setSelection_number(Integer.parseInt(splittedCsv[6]));
-        track.setTitle(splittedCsv[2]);
-        track.setSongwriter(splittedCsv[4]);
-        String[] play_length = splittedCsv[5].split(":");
-        track.setPlay_length(Integer.parseInt(play_length[0]) + ":" + "" + Integer.parseInt(play_length[1]));
-        track.setGenre(splittedCsv[7]);
-        track.setAlbum(album);
-        track.setCost(Double.parseDouble(splittedCsv[9]));
-        track.setList_price(Double.parseDouble(splittedCsv[10]));
-        track.setSale_price(0);
-        Date javaDate = new Date();
-        track.setDate_added(new java.sql.Date(javaDate.getTime()));
-        track.setIndividual(!(splittedCsv[13]).equals("Album"));
-        track.setRemoval_status(false);
-        track.setRemoval_date(null);
-        dao.write(track);
+            track.setSelection_number(Integer.parseInt(splittedCsv[6]));
+            track.setTitle(splittedCsv[2]);
+            track.setSongwriter(splittedCsv[4]);
+            String[] play_length = splittedCsv[5].split(":");
+            track.setPlay_length(Integer.parseInt(play_length[0]) + ":" + "" + Integer.parseInt(play_length[1]));
+            track.setGenre(splittedCsv[7]);
+            
+            track.setAlbum(album);
+            track.setCost(Double.parseDouble(splittedCsv[9]));
+            track.setList_price(Double.parseDouble(splittedCsv[10]));
+            track.setSale_price(0);
+            Date javaDate = new Date();
+            track.setDate_added(new java.sql.Date(javaDate.getTime()));
+            track.setIndividual(!(splittedCsv[13]).equals("Album"));
+            track.setRemoval_status(false);
+            track.setRemoval_date(null);
+        dao.write(track);}
+       
     }
-
     private void readCSVFile() throws IOException, ParseException {
-        Path p = Paths.get("C:\\Users\\Gabriela\\Desktop\\csdmusicstore\\sound++\\src\\main\\resources\\dataPoints.csv");
+       Path p = Paths.get("C:\\Users\\maian\\Desktop\\csdmusicstore\\sound++\\src\\main\\resources\\dataPoints.csv");
         List<String> list = Files.readAllLines(p, StandardCharsets.UTF_8);
         for (int i = 1; i < list.size(); i++) {
             String[] splittedCsv = list.get(i).split(",");
