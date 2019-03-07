@@ -50,30 +50,30 @@
         -->
         <h:form>
             <div class="row">
+                <h:outputText rendered="#{not empty user}" class="display-4" value="#{internationalization.welcome}  #{user}" />
+                    
                 <div class="col-md-1"></div>
                 <div class="col-md-4 ">
                     <h1>#{internationalization.addSurvey}</h1>
                     <div class="form-group">
                         <h:form>
                             <h:outputLabel class="col-form-label" for="question">#{internationalization.question}</h:outputLabel>
-                            <h:inputText id="question" class="form-control" value="" required="true" requiredMessage="#{internationalization.questionRequired}"/><br/>
+                            <h:inputText id="question" class="form-control" value="#{surveyBean.question}" required="true" requiredMessage="#{internationalization.questionRequired}"/><br/>
 
                             <h:outputLabel for="option1">#{internationalization.option} 1</h:outputLabel>
-                            <h:inputText id="option1" class="form-control" value="" required="true" requiredMessage="#{internationalization.optionRequired}"/><br/>
+                            <h:inputText id="option1" class="form-control" value="#{surveyBean.option1}" required="true" requiredMessage="#{internationalization.optionRequired}"/><br/>
 
                             <h:outputLabel for="option2">#{internationalization.option} 2</h:outputLabel>
-                            <h:inputText id="option2" class="form-control" value="" required="true" requiredMessage="#{internationalization.optionRequired}"/><br/>
-
+                            <h:inputText id="option2" class="form-control" value="#{surveyBean.option2}" required="true" requiredMessage="#{internationalization.optionRequired}"/><br/>
 
                             <h:outputLabel for="option3">#{internationalization.option} 3</h:outputLabel>
-                            <h:inputText id="option3" class="form-control" value="" /><br/>
-
+                            <h:inputText id="option3" class="form-control" value="#{surveyBean.option3}" /><br/>
 
                             <h:outputLabel for="option4">#{internationalization.option} 4</h:outputLabel>
-                            <h:inputText id="option4" class="form-control" value="" /><br/>
+                            <h:inputText id="option4" class="form-control" value="#{surveyBean.option4}" /><br/>
 
                             <h:outputLabel for="option5">#{internationalization.option} 5</h:outputLabel>
-                            <h:inputText id="option5" class="form-control" value="" /><br/>
+                            <h:inputText id="option5" class="form-control" value="#{surveyBean.option5}" /><br/>
 
                             <h:commandButton id="submit-button" value="#{internationalization.add}" class="btn btn-primary" action="savesurvey"/>
                         </h:form>

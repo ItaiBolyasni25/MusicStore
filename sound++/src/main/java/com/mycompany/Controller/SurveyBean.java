@@ -1,8 +1,10 @@
 package com.mycompany.Controller;
 
+import com.mycompany.Model.Survey;
 import com.mycompany.Persistence.DAO;
 import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -22,7 +24,7 @@ public class SurveyBean implements Serializable {
     private String option5;
 
     @Inject
-    private DAO DAO;
+    private DAO dao;
 
     public String getQuestion() {
         return question;
@@ -73,7 +75,11 @@ public class SurveyBean implements Serializable {
     }
 
     public String addSurvey() {
-
+        String email = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("id");
+        Survey survey = new Survey(question, option1, option2, option3, option4, option5, email);
+        dao.write(survey);
+        System.out.println(email);
+        System.out.println(survey.getQuestion());
         return "survey.xhtml";
     }
 }
