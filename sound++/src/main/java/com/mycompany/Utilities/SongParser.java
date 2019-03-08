@@ -94,6 +94,9 @@ public class SongParser implements Serializable {
        
     }
     private void readCSVFile() throws IOException, ParseException {
+        Path currentRelativePath = Paths.get("");
+        String s = currentRelativePath.toAbsolutePath().toString();
+        //You need to change your path here, I will ask Dan on Friday .
        Path p = Paths.get("C:\\Users\\maian\\Desktop\\csdmusicstore\\sound++\\src\\main\\resources\\dataPoints.csv");
         List<String> list = Files.readAllLines(p, StandardCharsets.UTF_8);
         for (int i = 1; i < list.size(); i++) {

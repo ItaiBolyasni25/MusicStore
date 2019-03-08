@@ -1,5 +1,5 @@
-com\mycompany\Controller\AlbumBean.class
 com\mycompany\Model\Track.class
+com\mycompany\Controller\SelectedAlbum.class
 com\mycompany\Model\User.class
 getTracks.class
 com\mycompany\Controller\RegisterBean.class
@@ -17,6 +17,6 @@ com\mycompany\Controller\TrackBean.class
 com\mycompany\Interface\EntityModel.class
 com\mycompany\Utilities\Validator.class
 getAlbums.class
+com\mycompany\Controller\SelectedTrack.class
 com\mycompany\Controller\SurveyBean.class
-com\mycompany\Controller\selectedAlbum.class
 com\mycompany\Controller\LoginBean.class

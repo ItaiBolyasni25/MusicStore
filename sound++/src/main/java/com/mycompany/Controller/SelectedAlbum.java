@@ -21,12 +21,12 @@ import javax.inject.Named;
 
 @ViewScoped
 @Named("selectedAlbum")
-public class selectedAlbum implements Serializable{
+public class SelectedAlbum implements Serializable{
     @Inject
    private DAO dao;
     private Album album;
     private HtmlInputHidden dataItemId = new HtmlInputHidden();
-    public selectedAlbum(){
+    public SelectedAlbum(){
     }
      public void editDataItem() {
         dataItemId.setValue(album.getId());
