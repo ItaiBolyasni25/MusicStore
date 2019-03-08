@@ -60,6 +60,7 @@
                         <f:facet name="header">
                             #{internationalization.numberSongs}
                         </f:facet>
+                        #{album.numberofsong}
                     </h:column>
                     <h:column>
                         <f:facet name="header">
@@ -136,15 +137,19 @@
                     <h5 class="detail">SIMILAR ALBUMS</h5>
                     <hr class="style"/>
                     <div class="row">
-                        <ui:repeat value="#{selectedAlbum.getSimilarAlbum()}" var="similarAlbum">
-                        <div class="column">
-                            <h:graphicImage value="#{similarAlbum.image}" title="Album's cover" class="albumPic"/>
-                            <p><h:outputText value=" #{similarAlbum.title}"></h:outputText></p>
-                            <p><ui:repeat var="artist" value="#{similarAlbum.artists}">
-                            <h:outputText value="#{artist.name}"></h:outputText>     
-                        </ui:repeat></p>
-                            <p> <h:outputText value="CAD  #{similarAlbum.cost}"></h:outputText> </p>
-                        </div></ui:repeat>                    
+                        <ui:repeat value="#{selectedAlbum.similarAlbum}" var="similarAlbum">
+                            <h:form class="column"><div>
+                                    <h:commandLink action="#{selectedAlbum.editDataItem()}">
+                                        <h:graphicImage value="#{similarAlbum.image}" title="Album's cover" class="albumPic"/><br/>
+                                        <h:outputText  value=" #{similarAlbum.title}"/>
+                                      <f:setPropertyActionListener target="#{selectedAlbum.selectedAlbum}" value="#{similarAlbum}" />
+                                <f:ajax render="result"/>
+                                </h:commandLink>
+                                <p><ui:repeat var="artist" value="#{similarAlbum.artists}">
+                                        <h:outputText value="#{artist.name}"></h:outputText>     
+                                    </ui:repeat></p>
+                                <p> <h:outputText value="CAD #{similarAlbum.cost}"></h:outputText> </p>
+                            </div></h:form></ui:repeat>                    
                     </div>
                     <h5 class="detail">REVIEWS</h5>
                     <hr class="style"/>

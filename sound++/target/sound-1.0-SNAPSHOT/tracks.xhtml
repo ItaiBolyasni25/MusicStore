@@ -65,7 +65,7 @@
                         <f:facet name="header">
                             #{internationalization.playlength}
                         </f:facet>
-                        #{tr.play_length}
+                        #{track.play_length}
                     </h:column>
                     <h:column>
                         <f:facet name="header">
@@ -114,7 +114,7 @@
                                 <h:outputText value="#{artist.name}"></h:outputText>             
                             </c:forEach></p>
                         <p class="card-text" id = "review"></p>
-                        <hr></hr>
+                        <hr/>
                         <p class="card-text" id = "cost"></p>
                         <form class="form-inline my-2 my-lg-0" id="quantityContainer">
                             <label for="quantity" class="quantity">Quantity</label>
@@ -141,13 +141,14 @@
                             <p id="songwriter"><span class="boldText">Label: </span> <h:outputText value="#{selectedTrack.selectedTrack.songwriter}"></h:outputText> </p>                       
                         </div>
                     </div>
-                    <h5 class="detail">SIMILAR ALBUMS</h5>
+                    <h5 class="detail">SIMILAR TRACKS</h5>
                     <hr class="style"/>
                     <div class="row">
                         <ui:repeat value="#{selectedTrack.similarTrack}" var="similarTrack">
-                            <h:form><div class="column">
-                                    <h:commandLink value=" #{similarTrack.title}" action="#{selectedTrack.editDataItem()}">
-                                         <h:graphicImage value="#{similarTrack.album.image}" title="Album's cover" class="albumPic"/>
+                            <h:form class="column"><div>
+                                    <h:commandLink action="#{selectedTrack.editDataItem()}">
+                                        <h:graphicImage value="#{similarTrack.album.image}" title="Album's cover" class="albumPic"/><br/>
+                                        <h:outputText  value=" #{similarTrack.title}"/>
                                       <f:setPropertyActionListener target="#{selectedTrack.selectedTrack}" value="#{similarTrack}" />
                                 <f:ajax render="result"/>
                                 </h:commandLink>

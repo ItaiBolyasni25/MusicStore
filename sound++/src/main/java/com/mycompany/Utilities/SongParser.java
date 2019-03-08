@@ -11,8 +11,12 @@ import com.mycompany.Model.Album;
 import com.mycompany.Model.Artist;
 import com.mycompany.Model.Track;
 import com.mycompany.Persistence.DAO;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.Serializable;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -24,6 +28,7 @@ import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.ServletContext;
 
 /**
  *
@@ -94,19 +99,24 @@ public class SongParser implements Serializable {
        
     }
     private void readCSVFile() throws IOException, ParseException {
-        Path currentRelativePath = Paths.get("");
-        String s = currentRelativePath.toAbsolutePath().toString();
         //You need to change your path here, I will ask Dan on Friday .
-       Path p = Paths.get("C:\\Users\\maian\\Desktop\\csdmusicstore\\sound++\\src\\main\\resources\\dataPoints.csv");
-        List<String> list = Files.readAllLines(p, StandardCharsets.UTF_8);
-        for (int i = 1; i < list.size(); i++) {
-            String[] splittedCsv = list.get(i).split(",");
+         InputStream inputStream = 
+                  getClass().getClassLoader().getResourceAsStream("dataPoints.csv");
+   BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream ));
+       String line;
+       int counter = 0;
+    while ((line = reader.readLine()) != null) {
+        counter++;
+        if(counter >1){
+         String[] splittedCsv = line.split(",");
             if (splittedCsv[0].contains("'")) {
                 splittedCsv[0] = splittedCsv[0].replace("'", "''");
             }
             albumParser(splittedCsv);
-        }
+        }}
     }
+          
+    
 
     private java.sql.Date newDateFormat(String date) throws ParseException {
         String newString = "";
