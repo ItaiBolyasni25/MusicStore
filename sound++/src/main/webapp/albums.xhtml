@@ -4,7 +4,9 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+
     <h:head>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.2.1/lux/bootstrap.min.css" />
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -17,126 +19,144 @@
     </h:head>
     <h:body>
         <ui:include src="navbar.xhtml" />
+        <p id = "top"></p>
+        <h:panelGroup id="table">
+            <div id="albumTable">
+                <h:dataTable id="datatable" class="table table-hover" value="#{AlbumPaginationBean.datalist}" var="album">
+                    <h:column>
+                        <f:facet name="header">
+                            #{internationalization.albumimage}
+                        </f:facet>
+                        <h:graphicImage value="#{album.image}" title="Album's cover" class="albumPic"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            #{internationalization.albumtitle}
+                        </f:facet>
+                        <h:form>
+                            <h:commandLink styleClass="customLink" value= "#{album.title}" action="#{selectedAlbum.editDataItem()}">
+                                <f:setPropertyActionListener target="#{selectedAlbum.selectedAlbum}" value="#{album}" />
+                                <f:ajax render="result"/>
+                            </h:commandLink></h:form>
 
-        <div id="albumTable">
-            <table class="table table-hover">
-                <thead>
-                    <tr id="header">
-                        <th scope="col">#{internationalization.albumimage}</th>
-                        <th scope="col">#{internationalization.albumtitle}</th>
-                        <th scope="col">#{internationalization.artist}</th>
-                        <th scope="col">#{internationalization.albumdate}</th>
-                        <th scope="col">#{internationalization.numberSongs}</th>
-                        <th scope="col">#{internationalization.cost}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <ui:repeat var="album" value="#{AlbumPaginationBean.datalist}" id="repeateId"> 
-                        <tr class="table-secondary" id ="${album.id}">
-                            <th><h:graphicImage value="#{album.image}" title="Album's cover" class="albumPic"/></th>
-                            <td>#{album.title}</td>
-                            <td><ui:repeat var="artist" value="#{album.artists}">
-                                    #{artist.name} 
-                                </ui:repeat>
-                            </td>
-                            <td>
-                                <h:outputText value="#{album.releasedate}">
-                                    <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
-                                </h:outputText>
-                            </td>
-                            <td>#{album.numberofsong}</td>
-                            <td>#{album.cost}</td>
-                        </tr>
-                    </ui:repeat>
-                </tbody>
-            </table> 
-            <h:form>
-                <ul class="pagination" >
-                    <c:if test="#{AlbumPaginationBean.current_page != 1}">
-                        <li class="page-item">
-                            <h:commandLink class="page-link" value="&laquo;" actionListener="#{AlbumPaginationBean.prev()}"/>
-                        </li>
-                    </c:if>
-                    <c:if test="#{AlbumPaginationBean.current_page == 1}">
-                        <li class="page-item disabled">
-                            <h:commandLink class="page-link" value="&laquo;"/>
-                        </li>
-                    </c:if>
-                    <p>#{AlbumPaginationBean.current_page}</p>
-                    <c:forEach begin="1" end="#{AlbumPaginationBean.total_pages}" varStatus="i">
-                        <c:if test="#{AlbumPaginationBean.current_page == i.index}">
-                            <li class="page-item active">
-                                <h:commandLink class="page-link" value="#{i.count}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            #{internationalization.artist}
+                        </f:facet>
+                        <ui:repeat var="artist" value="#{album.artists}">
+                            #{artist.name} 
+                        </ui:repeat>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            #{internationalization.albumdate}
+                        </f:facet>
+                        <h:outputText value="#{album.releasedate}">
+                            <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
+                        </h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            #{internationalization.numberSongs}
+                        </f:facet>
+                        #{album.numberofsong}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            #{internationalization.cost}
+                        </f:facet>
+                        #{album.cost}
+                    </h:column>
+
+                </h:dataTable>
+                <h:form>
+                    <ul class="pagination" >
+                        <c:if  test="#{AlbumPaginationBean.current_page != 1}">
+                            <li class="page-item">
+                                <h:commandLink class="page-link" value="&laquo;" actionListener="#{AlbumPaginationBean.prev()}"/>
                             </li>
                         </c:if>
-                        <c:if test="#{AlbumPaginationBean.current_page != i.index}">
-                            <li class="page-item">
-                                <h:commandLink class="page-link" value="#{i.count}" actionListener="#{AlbumPaginationBean.setCurrent_page(i.count)}" />
-                            </li>                                                
+                        <c:if  test="#{AlbumPaginationBean.current_page == 1}">
+                            <li class="page-item disabled">
+                                <h:commandLink class="page-link" value="&laquo;"/>
+                            </li>
                         </c:if>
-                    </c:forEach> 
-                </ul>
-            </h:form>
-        </div>
+                        <c:forEach begin="1" end="#{AlbumPaginationBean.total_pages}" var="i" >
+                            <li class="page-item #{AlbumPaginationBean.current_page == i ? 'active':''}">
+                                <h:commandLink class="page-link" action="#{AlbumPaginationBean.updateView()}" value="#{i}">
+                                    <f:setPropertyActionListener target="#{AlbumPaginationBean.current_page}" value="#{i}" />
+                                    <f:ajax render="table"></f:ajax>
+                                </h:commandLink>
+                            </li> 
+                        </c:forEach>
+                    </ul>
+                </h:form>
+            </div>
+            <script>assignEventsRows();</script>
+        </h:panelGroup>      
         <div class="card border-light mb-3" id ="info">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#" id="albumsList">Albums</a></li>
-                <li class="breadcrumb-item active" id="titleAlbum">Data</li>
-            </ol>
-            <div class="card-body">
-                <p class ="imageContainer"><img src="" alt="Album's cover" id="albumCover"></img></p>
-                <div class="contentContainer">
-                    <h4 class="card-title" id ="title"></h4>
-                    <p class="card-text" id = "artist"></p>
-                    <p class="card-text" id = "review"></p>
-                    <hr></hr>
-                    <p class="card-text" id = "cost"></p>
-                    <form class="form-inline my-2 my-lg-0" id="quantityContainer">
-                        <label for="quantity" class="quantity">Quantity</label>
-                        <select name = "quantity" class="custom-select">
-                            <option selected="1" value="1">1</option>
-                            <c:forEach var = "i" begin = "2" end = "100">
-                                <option value="${i}">${i}</option>
-                            </c:forEach>
-                        </select>
-                        <button class="btn btn-secondary my-2 my-sm-0" value ="Add" action = "add">Add</button>
-                    </form>
+            <h:panelGroup id="result">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><h:link value = "Albums" id="albumList" /> </li>
+                    <li class="breadcrumb-item active" id="titleAlbum">#{selectedAlbum.selectedAlbum.title}</li>
+                </ol>
+                <div class="card-body">
+                    <p class ="imageContainer"><h:graphicImage value="#{selectedAlbum.selectedAlbum.image}" title="Album's cover" class="albumPic"/></p>
+                    <div class="contentContainer">
+                        <h4 class="card-title" id ="title">#{selectedAlbum.selectedAlbum.title}</h4>
+                        <p class="card-text" id = "artist"><c:forEach items="#{selectedAlbum.selectedAlbum.artists}" var="artist">
+                                <h:outputText value="#{artist.name}"></h:outputText>             
+                            </c:forEach></p>
+                        <p class="card-text" id = "review"></p>
+                        <hr></hr>
+                        <p class="card-text" id = "cost"></p>
+                        <form class="form-inline my-2 my-lg-0" id="quantityContainer">
+                            <label for="quantity" class="quantity">Quantity</label>
+                            <select name = "quantity" class="custom-select">
+                                <option selected="1" value="1">1</option>
+                                <c:forEach var = "i" begin = "2" end = "100">
+                                    <option value="${i}">${i}</option>
+                                </c:forEach>
+                            </select>
+                            <button class="btn btn-secondary my-2 my-sm-0" value ="Add" action = "add">Add</button>
+                        </form>
+                    </div>
                 </div>
-            </div>
 
-            <div class = "detailInfo">
-                <h5 class="detail">DESCRIPTION</h5>
-                <hr class="style"></hr>
-                <div id="myTabContent" class="tab-content">
-                    <div class="tab-pane fade show active" id="details">
-                        <p id="releasedate"><span class="boldText">Original Release Date: </span></p>
-                        <p id="addeddate"><span class="boldText">Added Date: </span></p>
-                        <p id="label"><span class="boldText">Label: </span></p>                       
+                <div class = "detailInfo">
+                    <h5 class="detail">DESCRIPTION</h5>
+                    <hr class="style"/>
+                    <div id="myTabContent" class="tab-content">
+                        <div class="tab-pane fade show active" id="details">
+                            <p id="releasedate"><span class="boldText">Original Release Date: </span>  <h:outputText value="#{selectedAlbum.selectedAlbum.releasedate}"></h:outputText>  </p>
+                            <p id="addeddate"><span class="boldText">Added Date: </span> <h:outputText value="#{selectedAlbum.selectedAlbum.addedDate}"></h:outputText> </p>
+                            <p id="label"><span class="boldText">Label: </span> <h:outputText value="#{selectedAlbum.selectedAlbum.label}"></h:outputText> </p>                       
+                        </div>
                     </div>
+                    <h5 class="detail">SIMILAR ALBUMS</h5>
+                    <hr class="style"/>
+                    <div class="row">
+                        <ui:repeat value="#{selectedAlbum.similarAlbum}" var="similarAlbum">
+                            <h:form class="column"><div>
+                                    <h:commandLink action="#{selectedAlbum.editDataItem()}">
+                                        <h:graphicImage value="#{similarAlbum.image}" title="Album's cover" class="albumPic"/><br/>
+                                        <h:outputText  value=" #{similarAlbum.title}"/>
+                                      <f:setPropertyActionListener target="#{selectedAlbum.selectedAlbum}" value="#{similarAlbum}" />
+                                <f:ajax render="result"/>
+                                </h:commandLink>
+                                <p><ui:repeat var="artist" value="#{similarAlbum.artists}">
+                                        <h:outputText value="#{artist.name}"></h:outputText>     
+                                    </ui:repeat></p>
+                                <p> <h:outputText value="CAD #{similarAlbum.cost}"></h:outputText> </p>
+                            </div></h:form></ui:repeat>                    
+                    </div>
+                    <h5 class="detail">REVIEWS</h5>
+                    <hr class="style"/>
                 </div>
-                <hr class="style"></hr>
-                <h5 class="detail">SIMILAR ALBUMS</h5>
-                <hr class="style"></hr>
-                <div class="row">
-                    <div class="column">
-                        <img id="al1"/>
-                    </div>
-                    <div class="column">
-                        <img id="al2"/>
-                    </div>
-                    <div class="column">
-                        <img id="al3"/>
-                    </div>
-                </div>
-            </div>
-        </div>      
-        <!-- <div class="card border-light mb-3" id ="info">
-             <div class="card-header">Header</div>
-             <div class="card-body">
-                 <h4 class="card-title">Light card title</h4>
-                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-             </div>
-         </div> -->
+                <script>setAlbumList(); setAlbumVisible();</script>
+            </h:panelGroup> 
+        </div>
         <ui:include src="footer.xhtml" />
     </h:body>
 </html>

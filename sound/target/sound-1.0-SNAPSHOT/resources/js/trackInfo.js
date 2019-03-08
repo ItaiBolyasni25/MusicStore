@@ -2,6 +2,7 @@
 $(document).ready(function () {
     $("tr").each(function () {
         $(this).click(function () {
+            $(window).scrollTop(0);
             $("#info").css('display', 'block');
             $("#trackTable").css('display', 'none');
             var id = $(this).attr('id');
@@ -13,7 +14,9 @@ $(document).ready(function () {
                     displayData(data);
                     createTabContent(data);
                 },
-                error: function(ts) { alert(ts.responseText); }
+                error: function (ts) {
+                    alert(ts.responseText);
+                }
             });
         });
 

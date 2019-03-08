@@ -1,5 +1,5 @@
-TrackBean.class
 com\mycompany\Model\Track.class
+com\mycompany\Controller\SelectedAlbum.class
 com\mycompany\Model\User.class
 getTracks.class
 com\mycompany\Controller\RegisterBean.class
@@ -7,15 +7,16 @@ com\mycompany\Model\Artist.class
 com\mycompany\Persistence\DAO.class
 com\mycompany\Utilities\Internationalization.class
 com\mycompany\Model\Album.class
-TrackPaginationBean.class
+com\mycompany\Utilities\SongParser.class
 getInfo.class
 com\mycompany\Model\Survey.class
 getTrackInfo.class
+com\mycompany\Controller\TrackPaginationBean.class
+com\mycompany\Controller\AlbumPaginationBean.class
+com\mycompany\Controller\TrackBean.class
 com\mycompany\Interface\EntityModel.class
 com\mycompany\Utilities\Validator.class
-SongParser.class
-AlbumPaginationBean.class
 getAlbums.class
-AlbumBean.class
+com\mycompany\Controller\SelectedTrack.class
 com\mycompany\Controller\SurveyBean.class
 com\mycompany\Controller\LoginBean.class
