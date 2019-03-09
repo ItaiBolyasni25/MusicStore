@@ -93,9 +93,9 @@ public class DAO {
         this.userTransaction = ut;
     }
     
-    public <E extends EntityModel> List<E> findWithJoins(E entityModel, String joins, String where){
+    public <E extends EntityModel> List<E> findWithJoins(E entityModel, String minusquery){
         String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
-        Query q = em.createQuery("SELECT a FROM" + className + " " + joins + " " + where);
+        Query q = em.createNativeQuery("SELECT t.* FROM " + className + " t MINUS " + minusquery);
         return q.getResultList();
     }
 }

@@ -26,7 +26,7 @@ public class SurveyResultBean implements Serializable {
 
     @Inject
     private DAO dao;
-    
+
     private String answer;
     private String email;
     private Integer survey_id;
@@ -54,16 +54,17 @@ public class SurveyResultBean implements Serializable {
     public void setSurvey_id(Integer survey_id) {
         this.survey_id = survey_id;
     }
-    
-    public void savesurvey(){
-        User user = (User) dao.find(new User(), email);
-        Survey survey = (Survey) dao.find(new Survey(), survey_id+"");
-        SurveyResult result = new SurveyResult();
-        result.setEmail(user);
-        result.setAnswer(answer);
-        result.setDateSubmitted(new Date());
-        result.setSurveyId(survey);
-        dao.write(result);
-        
+
+    public void saveSurvey() {
+        if (email != null || !email.isEmpty()) {
+            User user = (User) dao.find(new User(), email);
+            Survey survey = (Survey) dao.find(new Survey(), survey_id + "");
+            SurveyResult result = new SurveyResult();
+            result.setEmail(user);
+            result.setAnswer(answer);
+            result.setDateSubmitted(new Date());
+            result.setSurveyId(survey);
+            dao.write(result);
+        }
     }
 }

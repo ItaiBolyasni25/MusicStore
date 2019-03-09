@@ -318,3 +318,16 @@ section .section-title {
 button{
     text-decoration: none;
 }
+
+.flip {
+    height: 250px;
+    margin: 0 auto;
+}
+.flip img {
+    width: 80%;
+    height: 80%;
+    border-radius: 50%;
+}
+.flip .back {
+    text-align: center;
+}

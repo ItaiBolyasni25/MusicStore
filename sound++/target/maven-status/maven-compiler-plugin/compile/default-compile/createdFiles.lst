@@ -1,10 +1,12 @@
 com\mycompany\Controller\AlbumBean.class
 com\mycompany\Model\Track.class
+com\mycompany\Controller\SurveyResultBean.class
 com\mycompany\Model\User.class
 com\mycompany\Controller\RegisterBean.class
 com\mycompany\Model\Artist.class
 com\mycompany\Persistence\DAO.class
 com\mycompany\Utilities\Internationalization.class
+com\mycompany\Model\SurveyResult.class
 com\mycompany\Model\Album.class
 com\mycompany\Model\Roles.class
 com\mycompany\Utilities\SongParser.class

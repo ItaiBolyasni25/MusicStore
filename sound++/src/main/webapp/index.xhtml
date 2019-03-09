@@ -92,25 +92,9 @@
                             <h:link value="#{internationalization.loginopt}    " outcome="login"></h:link>
                             <h:link value="#{internationalization.signup}" outcome="register"></h:link>
                         </h:panelGroup>
-                        <h:panelGroup rendered="#{not empty user}">
-                            <div id="surveys">
-                                <h1 class="display-5">#{internationalization.survey}</h1>
-                                <ui:repeat var="survey" value="#{surveyBean.surveysperuser}" size="1">
-                                    <div class="card border-primary mb-3">
-                                        <h3 class="card-header">#{survey.question}</h3>
-                                        <div class="card-body">
-                                            <h:selectOneRadio value="#{surveyResultBean.answer}">
-                                                <ui:repeat var="option" value="#{survey.options}">
-                                                    <f:selectItem itemValue="#{option}" itemLabel="#{option}" />
-                                                </ui:repeat>
-                                            </h:selectOneRadio>
-                                        </div>
-                                        <f:setPropertyActionListener target = "#{surveyResultBean.survey_id}" value = "#{survey.survey_id}" />
-                                        <h:commandButton type="submit" class="btn btn-primary formbutton" value="#{internationalization.submit}" action="#{surveyResultBean.savesurvey}"/>
-                                    </div>
-                                </ui:repeat>
-                            </div>
-                        </h:panelGroup>
+                        
+                        
+                        
                     </div>
                 </div>
 

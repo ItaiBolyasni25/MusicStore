@@ -316,4 +316,16 @@ public class Internationalization implements Serializable {
     public String getSubmit(){
         return language.equals("English") ? "Submit": "Completer";
     }
+    
+    public String getGoal(){
+        return language.equals("English") ? "Our Goal": "Notre Mission";
+    }
+    
+    public String getAboutUs(){
+        return language.equals("English") ? "About us": "A propos de nous";
+    }
+    
+    public String getDevelopers(){
+        return language.equals("English") ? "Our Developers": "Nos Developpeurs";
+    }
 }

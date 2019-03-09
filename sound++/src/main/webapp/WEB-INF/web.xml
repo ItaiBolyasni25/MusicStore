@@ -45,16 +45,16 @@
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>Protected Area</web-resource-name>
-            <url-pattern>/manager/*</url-pattern>
+            <url-pattern>/faces/manager/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <role-name>manager</role-name>
         </auth-constraint>
-        <!--
+        
         <user-data-constraint>
-            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+            <transport-guarantee>NONE</transport-guarantee>
         </user-data-constraint>
-        -->
+        
     </security-constraint>
     
     <login-config>

@@ -9,12 +9,61 @@
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+        <script src="resources/js/jquery.flip.min.js"></script>
         <h:outputStylesheet library="css" name="style.css"  />
         <title>Sound++</title>
     </h:head>
     <h:body>
         <ui:include src="navbar.xhtml" />
-        <section style="width: 100%; height:25%"></section>
-        <ui:include src="footer.xhtml" />
+        <h1 class="text-center">#{internationalization.aboutUs}</h1>
+        <h2 class="text-center">#{internationalization.goal}</h2>
+        <p class="text-center">GOAL</p>
+        <h2 class="text-center">#{internationalization.developers}</h2>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-2">
+                <div class="flip"> 
+                    <div class="front"> 
+                        <img src="assets/about/austin.jpg" alt="" class="aboutimgs"/>
+                    </div> 
+                    <div class="back">
+                        <h3>Austin!</h3>
+                    </div> 
+                </div> 
+            </div>
+            <div class="col-md-2">
+                <div class="flip"> 
+                    <div class="front"> 
+                        <img src="assets/about/anna.jpg" alt="" class="aboutimgs"/>
+                    </div> 
+                    <div class="back">
+                        <h3>Anna!</h3>
+                    </div> 
+                </div> 
+            </div>
+            <div class="col-md-2">
+                <div class="flip"> 
+                    <div class="front"> 
+                        <img src="assets/about/itai.jpg" alt="" class="aboutimgs"/>
+                    </div> 
+                    <div class="back">
+                        <h3>Itai!</h3>
+                    </div> 
+                </div> 
+            </div>
+            <div class="col-md-2"></div>
+
+
+
+        </div>
+        <script>
+            $(function () {
+                $(".flip").flip({
+                    trigger: 'hover'
+                });
+            });
+        </script>
+
+        <!--<ui:include src="footer.xhtml" />-->
     </h:body>
 </html>
