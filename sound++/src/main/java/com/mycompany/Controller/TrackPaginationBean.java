@@ -35,7 +35,7 @@ public class TrackPaginationBean implements Serializable {
     private int totalPages;
 
     public TrackPaginationBean() {
-        this.itemPerPage = 10;
+        this.itemPerPage = 12;
         this.currentPage = 1;
 
     }

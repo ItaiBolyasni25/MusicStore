@@ -13,17 +13,12 @@ function setAlbumVisible() {
 function assignEventsRows() {
     $(".customLink").mouseover(function () {
         $(".customLink").css('text-decoration', 'none');
+        console.log($(this).children().get(1));
+      $(this).children(".albumInfo").css("display",'block');
+       $(this).children(".albumCover").css('display', 'none');
     });
     $(".customLink").click(function () {
         currentlyShowingAlbum = true;
-    });
-    $("tr").each(function () {
-        $(this).click(function (event) {
-            if($(event.target).attr("class")==="customLink")
-                return;
-            $(this).find("td").get(1).getElementsByTagName("form")[0].children[1].click();
-            
-        });
     });
 }
 

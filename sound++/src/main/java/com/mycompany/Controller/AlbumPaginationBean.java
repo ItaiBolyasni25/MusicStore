@@ -37,7 +37,7 @@ public class AlbumPaginationBean implements Serializable {
     private int totalPages;
 
     public AlbumPaginationBean() {
-        this.itemPerPage = 5;
+        this.itemPerPage = 9;
         this.currentPage = 1;
 
     }

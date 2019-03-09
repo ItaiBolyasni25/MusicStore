@@ -20,57 +20,35 @@
     <h:body>
         <ui:include src="navbar.xhtml" />
         <p id = "top"></p>
-        <h:panelGroup id="table">
+        <h:panelGroup id="table" class="grid">
             <div id="albumTable">
-                <h:dataTable id="datatable" class="table table-hover" value="#{AlbumPaginationBean.datalist}" var="album">
-                    <h:column>
-                        <f:facet name="header">
-                            #{internationalization.albumimage}
-                        </f:facet>
-                        <h:graphicImage value="#{album.image}" title="Album's cover" class="albumPic"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            #{internationalization.albumtitle}
-                        </f:facet>
-                        <h:form>
-                            <h:commandLink styleClass="customLink" value= "#{album.title}" action="#{selectedAlbum.editDataItem()}">
-                                <f:setPropertyActionListener target="#{selectedAlbum.selectedAlbum}" value="#{album}" />
-                                <f:ajax render="result"/>
-                            </h:commandLink></h:form>
-
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            #{internationalization.artist}
-                        </f:facet>
-                        <ui:repeat var="artist" value="#{album.artists}">
-                            #{artist.name} 
-                        </ui:repeat>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            #{internationalization.albumdate}
-                        </f:facet>
-                        <h:outputText value="#{album.releasedate}">
-                            <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
-                        </h:outputText>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            #{internationalization.numberSongs}
-                        </f:facet>
-                        #{album.numberofsong}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            #{internationalization.cost}
-                        </f:facet>
-                        #{album.cost}
-                    </h:column>
-
-                </h:dataTable>
-                <h:form>
+                <h:panelGrid id = "panel" columns = "3"
+                             cellpadding = "55%">
+                    <c:forEach var="album" items="#{AlbumPaginationBean.datalist}">
+                         <h:form class="flip-box">
+                              <div class="flip-box-inner">
+                                <h:commandLink class="customLink"  action="#{selectedAlbum.editDataItem()}">
+                                    <div class="flip-box-front"><h:graphicImage value="#{album.image}" title="Album's cover" class="albumPic"/><br/>
+                                        <br/><h:outputText value=" #{album.title}"/>
+                                            <ui:repeat var="artist" value="#{album.artists}"><br/>
+                                                <h:outputText class="smallText" value="#{artist.name}"></h:outputText>   
+                                            </ui:repeat><br/>
+                                        <h:outputText class="smallText" value=" CAD #{album.cost}"/>
+                                    </div>
+                                    <div class = "flip-box-back">
+                                        <p class="title"><h:outputText  value="#{album.title}"/></p>
+                                        <p><ui:repeat var="artist" value="#{album.artists}">
+                                        <h:outputText value="Artist: #{artist.name}"></h:outputText>     
+                                            </ui:repeat></p>
+                                        <p>Number of song: #{album.numberofsong}</p>
+                                        <p>#{internationalization.genres}: #{album.genre}</p>
+                                        <p>#{internationalization.albumdate}: #{album.releasedate}</p>
+                                    </div>
+                                        <f:setPropertyActionListener target="#{selectedAlbum.selectedAlbum}" value="#{album}" />
+                                        <f:ajax render="result"/></h:commandLink></div></h:form>
+                    </c:forEach>
+                </h:panelGrid>
+                <h:form class="paginationForm">
                     <ul class="pagination" >
                         <c:if  test="#{AlbumPaginationBean.current_page != 1}">
                             <li class="page-item">
@@ -90,6 +68,16 @@
                                 </h:commandLink>
                             </li> 
                         </c:forEach>
+                        <c:if  test="#{AlbumPaginationBean.current_page != AlbumPaginationBean.total_pages}">
+                            <li class="page-item">
+                                <h:commandLink class="page-link" value="&raquo;" actionListener="#{AlbumPaginationBean.next()}"/>
+                            </li>
+                        </c:if>
+                        <c:if test="#{AlbumPaginationBean.current_page == AlbumPaginationBean.total_pages}">
+                            <li class="page-item disabled">
+                                <h:commandLink class="page-link" value="&raquo;"/>
+                            </li>
+                        </c:if>
                     </ul>
                 </h:form>
             </div>
@@ -112,8 +100,7 @@
                         <hr></hr>
                         <p class="card-text" id = "cost"></p>
                         <form class="form-inline my-2 my-lg-0" id="quantityContainer">
-                            <label for="quantity" class="quantity">Quantity</label>
-                            <select name = "quantity" class="custom-select">
+                            <select class="custom-select">
                                 <option selected="1" value="1">1</option>
                                 <c:forEach var = "i" begin = "2" end = "100">
                                     <option value="${i}">${i}</option>
@@ -140,16 +127,16 @@
                         <ui:repeat value="#{selectedAlbum.similarAlbum}" var="similarAlbum">
                             <h:form class="column"><div>
                                     <h:commandLink action="#{selectedAlbum.editDataItem()}">
-                                        <h:graphicImage value="#{similarAlbum.image}" title="Album's cover" class="albumPic"/><br/>
-                                        <h:outputText  value=" #{similarAlbum.title}"/>
-                                      <f:setPropertyActionListener target="#{selectedAlbum.selectedAlbum}" value="#{similarAlbum}" />
-                                <f:ajax render="result"/>
-                                </h:commandLink>
-                                <p><ui:repeat var="artist" value="#{similarAlbum.artists}">
-                                        <h:outputText value="#{artist.name}"></h:outputText>     
-                                    </ui:repeat></p>
-                                <p> <h:outputText value="CAD #{similarAlbum.cost}"></h:outputText> </p>
-                            </div></h:form></ui:repeat>                    
+                                        <h:graphicImage value="#{similarAlbum.image}" title="Album's cover" class="similarAlbum"/><br/>
+                                        <br/><h:outputText  value=" #{similarAlbum.title}"/><br/>
+                                        <f:setPropertyActionListener target="#{selectedAlbum.selectedAlbum}" value="#{similarAlbum}" />
+                                        <f:ajax render="result"/>
+                                    </h:commandLink>
+                                    <ui:repeat var="artist" value="#{similarAlbum.artists}">
+                                            <h:outputText value="#{artist.name}"></h:outputText>     
+                                        </ui:repeat><br/>
+                                    <h:outputText value="CAD #{similarAlbum.cost}"></h:outputText>
+                                </div></h:form></ui:repeat>                    
                     </div>
                     <h5 class="detail">REVIEWS</h5>
                     <hr class="style"/>
