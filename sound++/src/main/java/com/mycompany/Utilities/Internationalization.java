@@ -97,7 +97,7 @@ public class Internationalization implements Serializable {
 
     public String getDescription() {
         return language.equals("English")
-                ? "This is an online music store where you can purchase singles and albums from the best artist and genres!"
+                ? "The world of Music. " + " Available wherever you are."
                 : "C'est un magasin de musique en ligne où vous pouvez acheter des singles et des albums des meilleur artiste et des meilleurs genres!";
     }
 
@@ -327,5 +327,13 @@ public class Internationalization implements Serializable {
     
     public String getDevelopers(){
         return language.equals("English") ? "Our Developers": "Nos Developpeurs";
+    }
+    
+    public String getDevices(){
+        return language.equals("English") ? "Accessible in all devices": "Accessuble dans tous les appareils";
+    }
+    
+    public String getLearnmore(){
+        return language.equals("English") ? "Learn more about Sound++": "Apprendre plus sur Sound++";
     }
 }

@@ -7,7 +7,8 @@ and open the template in the editor.
     Created on : Jan 24, 2019, 1:54:17 PM
     Author     : 1635547
 */
-#logo{
+
+.logo{
     max-width: 40%;
     max-height: 30%;
     margin-left: 30%;
@@ -331,3 +332,49 @@ button{
 .flip .back {
     text-align: center;
 }
+
+#navsound{
+  position: fixed;
+  height: 100px;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+}
+
+.body{
+  margin-top:100px;
+}
+
+.divbackground{
+    background: url('../assets/indexbackground.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.5;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: black;
+  text-align: center;
+  font-weight: bold;
+}
+
+.container {
+  width: 100%;
+  height: 40%;
+  color: black;
+}
+
+.imgbackground{
+  width:100%;
+  color: black;
+  height: auto;
+}
+
+.display-5{
+    text-align: center;
+}
+

@@ -17,6 +17,9 @@
         <script src="resources/js/newsfeed.js"></script>
         <h:outputStylesheet library="css" name="style.css"  />
         <title>Sound++</title>
+        <f:view>
+            <f:event type="preRenderView" listener="#{SongParser.onLoad()}"/>
+        </f:view>
 
 
     </h:head>
@@ -24,164 +27,183 @@
 
         <ui:include src="navbar.xhtml"/>
 
-        <ul class="nav nav-tabs">
-            <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#home">#{internationalization.home}</a>
-            </li>
-            <li class="nav-item disabled">
-                <a class="nav-link" data-toggle="tab" href="#profile">#{internationalization.profile}</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#genres">#{internationalization.genres}</a>
-            </li>
-        </ul>
+        <div class="body">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#home">#{internationalization.home}</a>
+                </li>
+                <li class="nav-item disabled">
+                    <a class="nav-link" data-toggle="tab" href="#profile">#{internationalization.profile}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#genres">#{internationalization.genres}</a>
+                </li>
+            </ul>
 
-        <div id="myTabContent" class="tab-content">
+            <div id="myTabContent" class="tab-content">
 
-            <div class="tab-pane fade show active" id="home">
-                <div class="jumbotron">
-                    <h:outputText rendered="#{empty user}" class="display-4" value="#{internationalization.welcome}" />
-                    <h:outputText rendered="#{not empty user}" class="display-4" value="#{internationalization.welcome}  #{user}" />
-                    <p class="lead">#{internationalization.description}</p>
-                    <hr class="my-4"/>
-                </div>
-
-
-                <div class="row">
-                    <div class="col-md-9">
-                        <h1 class="display-5">#{internationalization.newsfeed}</h1>
-                        <div class="row">
-                            <div class="col-md-1" id="prev">
-                                <button type="button" class="slick-prev emptybutton"><img class="arrows" src="assets/arrowprev.png"></img></button>
+                <div class="tab-pane fade show active" id="home">
+                    <div class="divbackground">
+                        <h:graphicImage value="assets/indexbackground.jpg" class="imgbackground"/>
+                        <div class="centered">
+                            <h:outputText rendered="#{empty user}" class="display-3" value="#{internationalization.welcome}" />
+                            <h:outputText rendered="#{not empty user}" class="display-3" value="#{internationalization.welcome}  #{user}" />
+                            <br/><br/>
+                            <h:outputText class="h2" value="#{internationalization.description}" />
+                            <br/><br/>
+                            <div class="row">
+                                <div class="col-md-3"></div>
+                                <div class="col-md-3"><h:button class="btn btn-primary" value="#{internationalization.loginopt}" outcome="login" /></div>
+                                <div class="col-md-3"><h:button class="btn btn-primary" value="#{internationalization.signup}" outcome="register" /></div>
                             </div>
-                            <div class="jumbotron multiple-items col-md-10" id="newsfeed">
-                            </div>
-                            <div class="col-md-1" id="next">
-                                <button type="button" class="slick-next emptybutton"><img class="arrows" src="assets/arrownext.png"></img></button>
-                            </div>
+                            <br/><br/><br/>
+                            <h:outputText class="h4" value="*#{internationalization.devices}" />
+                            <br/><br/><br/><br/>
+                            <h:link class="h4" value="#{internationalization.learnmore}>" outcome="about"/>
                         </div>
                     </div>
 
-                    <div class="col-md-3">
-                        <div id="newreleases">
-                            <h1 class="display-5">#{internationalization.newreleases}</h1>
-                            <div class="card border-primary mb-3">
-                                <h3 class="card-header">#{internationalization.newsongs}</h3>
-                                <div class="card-body">
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item"><a href="#" class="card-link">Hello by gab</a></li>
-                                        <li class="list-group-item"> <a href="#" class="card-link">Hello by gab</a></li>
-                                    </ul>
+                    <br/><br/>
+                    <div class="row">
+                        <div class="col-md-9">
+                            <h1 class="display-5">#{internationalization.newsfeed}</h1>
+                            <div class="row">
+                                <div class="col-md-1" id="prev">
+                                    <button type="button" class="slick-prev emptybutton"><img class="arrows" src="assets/arrowprev.png"></img></button>
                                 </div>
-                                <h3 class="card-header">#{internationalization.newalbums}</h3>
-                                <div class="card-body">
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item"><a href="#" class="card-link">Hello by gab</a></li>
-                                        <li class="list-group-item"> <a href="#" class="card-link">Hello by gab</a></li>
-                                        <li class="list-group-item"> <a href="#" class="card-link">Hello by gab</a></li>
-                                        <li class="list-group-item"> <a href="#" class="card-link">Hello by gab</a></li>
-
-                                    </ul>
+                                <div class="jumbotron multiple-items col-md-10" id="newsfeed">
+                                </div>
+                                <div class="col-md-1" id="next">
+                                    <button type="button" class="slick-next emptybutton"><img class="arrows" src="assets/arrownext.png"></img></button>
                                 </div>
                             </div>
-                        </div> 
+                        </div>
 
-                        <h:panelGroup rendered="#{empty user}">
-                            <h1 class="display-5">#{internationalization.survey}</h1>
-                            <p>#{internationalization.surveyuser}</p>
-                            <h:link value="#{internationalization.loginopt}    " outcome="login"></h:link>
-                            <h:link value="#{internationalization.signup}" outcome="register"></h:link>
-                        </h:panelGroup>
-                        
-                        
-                        
+                        <div class="col-md-3">
+                            <div id="newreleases">
+                                <h1 class="display-5">#{internationalization.newreleases}</h1>
+                                <div class="card border-primary mb-3">
+                                    <h3 class="card-header">#{internationalization.newsongs}</h3>
+                                    <div class="card-body">
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item"><a href="#" class="card-link">Hello by gab</a></li>
+                                            <li class="list-group-item"> <a href="#" class="card-link">Hello by gab</a></li>
+                                        </ul>
+                                    </div>
+                                    <h3 class="card-header">#{internationalization.newalbums}</h3>
+                                    <div class="card-body">
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item"><a href="#" class="card-link">Hello by gab</a></li>
+                                            <li class="list-group-item"> <a href="#" class="card-link">Hello by gab</a></li>
+                                            <li class="list-group-item"> <a href="#" class="card-link">Hello by gab</a></li>
+                                            <li class="list-group-item"> <a href="#" class="card-link">Hello by gab</a></li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div> 
+
+                            <h:panelGroup rendered="#{empty user}">
+                                <h1 class="display-5">#{internationalization.survey}</h1>
+                                <p>#{internationalization.surveyuser}</p>
+                                <div class="row">
+                                    <div class="col-md-3"></div>
+                                    <div class="col-md-3"><h:button class="btn btn-primary" value="#{internationalization.loginopt}" outcome="login" /></div>
+                                    <div class="col-md-3"><h:button class="btn btn-primary" value="#{internationalization.signup}" outcome="register" /></div>
+                                </div>
+                            </h:panelGroup>
+
+
+
+                        </div>
                     </div>
+
+                    <div id="ads" class="card mb-3">
+                        <img style="height: 100px; width: 100%; display: block;" src="assets/ads.png" alt="Card image"/>
+                    </div>
+
                 </div>
 
-                <div id="ads" class="card mb-3">
-                    <img style="height: 100px; width: 100%; display: block;" src="assets/ads.png" alt="Card image"/>
+                <div class="tab-pane fade" id="profile">
+                    <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.</p>
+                </div>
+
+                <div class="tab-pane fade col-md-12" id="genres">
+
+                    <div class="card mb-3 displayinline ">
+                        <div class="card-body">
+                            <div class="card-title"><h6>Country</h6></div>
+                            <img class="genresimg" src="assets/genres/country.jpg" alt="Card image"/>  
+                        </div>
+                    </div>
+
+                    <div class="card mb-3 displayinline ">
+                        <div class="card-body">
+                            <div class="card-title"><h6>EDM</h6></div>
+                            <img class="genresimg" src="assets/genres/edm.jpg" alt="Card image"/>  
+                        </div>
+                    </div>
+
+                    <div class="card mb-3 displayinline ">
+                        <div class="card-body">
+                            <div class="card-title"><h6>Electro</h6></div>
+                            <img class="genresimg" src="assets/genres/electro.jpg" alt="Card image"/>   
+                        </div>
+                    </div>
+
+                    <div class="card mb-3 displayinline ">
+                        <div class="card-body">
+                            <div class="card-title"><h6>Hip Hop</h6></div>
+                            <img class="genresimg" src="assets/genres/hiphop.jpg" alt="Card image"/>  
+                        </div>
+                    </div>
+
+                    <div class="card mb-3 displayinline ">
+                        <div class="card-body">
+                            <div class="card-title"><h6>Jazz</h6></div>
+                            <img class="genresimg" src="assets/genres/jazz.jpg" alt="Card image"/> 
+                        </div>
+                    </div>
+
+                    <div class="card mb-3 displayinline ">
+                        <div class="card-body">
+                            <div class="card-title"><h6>Kids</h6></div>
+                            <img class="genresimg" src="assets/genres/kids.jpg" alt="Card image"/> 
+                        </div>
+                    </div>
+
+                    <div class="card mb-3 displayinline ">
+                        <div class="card-body">
+                            <div class="card-title"><h6>Pop</h6></div>
+                            <img class="genresimg" src="assets/genres/pop.jpg" alt="Card image"/> 
+                        </div>
+                    </div>
+
+                    <div class="card mb-3 displayinline ">
+                        <div class="card-body">
+                            <div class="card-title"><h6>RnB</h6></div>
+                            <img class="genresimg" src="assets/genres/randb.jpg" alt="Card image"/> 
+                        </div>
+                    </div>
+
+                    <div class="card mb-3 displayinline ">
+                        <div class="card-body">
+                            <div class="card-title"><h6>Reggae</h6></div>
+                            <img class="genresimg" src="assets/genres/reggae.jpg" alt="Card image"/> 
+                        </div>
+                    </div>
+
+                    <div class="card mb-3 displayinline ">
+                        <div class="card-body">
+                            <div class="card-title"><h6>Rock</h6></div>
+                            <img class="genresimg" src="assets/genres/rock.jpg" alt="Card image"/> 
+                        </div>
+                    </div>
                 </div>
 
             </div>
-
-            <div class="tab-pane fade" id="profile">
-                <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.</p>
-            </div>
-
-            <div class="tab-pane fade col-md-12" id="genres">
-
-                <div class="card mb-3 displayinline ">
-                    <div class="card-body">
-                        <div class="card-title"><h6>Country</h6></div>
-                        <img class="genresimg" src="assets/genres/country.jpg" alt="Card image"/>  
-                    </div>
-                </div>
-
-                <div class="card mb-3 displayinline ">
-                    <div class="card-body">
-                        <div class="card-title"><h6>EDM</h6></div>
-                        <img class="genresimg" src="assets/genres/edm.jpg" alt="Card image"/>  
-                    </div>
-                </div>
-
-                <div class="card mb-3 displayinline ">
-                    <div class="card-body">
-                        <div class="card-title"><h6>Electro</h6></div>
-                        <img class="genresimg" src="assets/genres/electro.jpg" alt="Card image"/>   
-                    </div>
-                </div>
-
-                <div class="card mb-3 displayinline ">
-                    <div class="card-body">
-                        <div class="card-title"><h6>Hip Hop</h6></div>
-                        <img class="genresimg" src="assets/genres/hiphop.jpg" alt="Card image"/>  
-                    </div>
-                </div>
-
-                <div class="card mb-3 displayinline ">
-                    <div class="card-body">
-                        <div class="card-title"><h6>Jazz</h6></div>
-                        <img class="genresimg" src="assets/genres/jazz.jpg" alt="Card image"/> 
-                    </div>
-                </div>
-
-                <div class="card mb-3 displayinline ">
-                    <div class="card-body">
-                        <div class="card-title"><h6>Kids</h6></div>
-                        <img class="genresimg" src="assets/genres/kids.jpg" alt="Card image"/> 
-                    </div>
-                </div>
-
-                <div class="card mb-3 displayinline ">
-                    <div class="card-body">
-                        <div class="card-title"><h6>Pop</h6></div>
-                        <img class="genresimg" src="assets/genres/pop.jpg" alt="Card image"/> 
-                    </div>
-                </div>
-
-                <div class="card mb-3 displayinline ">
-                    <div class="card-body">
-                        <div class="card-title"><h6>RnB</h6></div>
-                        <img class="genresimg" src="assets/genres/randb.jpg" alt="Card image"/> 
-                    </div>
-                </div>
-
-                <div class="card mb-3 displayinline ">
-                    <div class="card-body">
-                        <div class="card-title"><h6>Reggae</h6></div>
-                        <img class="genresimg" src="assets/genres/reggae.jpg" alt="Card image"/> 
-                    </div>
-                </div>
-
-                <div class="card mb-3 displayinline ">
-                    <div class="card-body">
-                        <div class="card-title"><h6>Rock</h6></div>
-                        <img class="genresimg" src="assets/genres/rock.jpg" alt="Card image"/> 
-                    </div>
-                </div>
-            </div>
-
         </div>
+
         <ui:include src="footer.xhtml"/>
     </h:body>
 </html>
