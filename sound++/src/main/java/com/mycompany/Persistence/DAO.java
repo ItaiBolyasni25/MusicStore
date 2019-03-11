@@ -75,6 +75,13 @@ public class DAO {
         Query q = em.createQuery("FROM " + className + " identifier WHERE identifier." + whereClause);
         return q.getResultList();
     }
+    
+      public <E extends EntityModel> List<E> findWithPattern(E entityModel, String pattern, String column) {
+        String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
+        Query q = em.createQuery("FROM " + className + " identifier WHERE identifier." + column +" like :pattern");
+        q.setParameter("pattern", pattern+"%");
+        return q.getResultList();
+    }
 
     public <E extends EntityModel> List<E> findAll(E entityModel) {
         String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);

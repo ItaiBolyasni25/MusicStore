@@ -33,11 +33,7 @@ and open the template in the editor.
             <div class="collapse navbar-collapse" id="navbarColor03">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-<<<<<<< HEAD:sound/target/sound-1.0-SNAPSHOT/navbar.xhtml
-                        <h:link class="nav-link" value="#{internationalization.home}" outcome="manager"/>
-=======
                         <h:link class="nav-link" value="#{internationalization.home}" outcome="index"/>
->>>>>>> code form for survey management:sound++/target/sound-1.0-SNAPSHOT/about.xhtml
                     </li>
                     <li class="nav-item">
                         <h:link class="nav-link" value="#{internationalization.albums}" outcome="albums"/>
@@ -56,24 +52,6 @@ and open the template in the editor.
                     </li>
                 </ul>
 
-<<<<<<< HEAD:sound/target/sound-1.0-SNAPSHOT/navbar.xhtml
-                <div class="form-group mt-3">
-                    <h:form class="form-inline my-2 my-lg-0 mr-sm-2">
-                        <h:inputText class="form-control mr-sm-3" value="#{internationalization.search}"/>
-                        <h:commandButton class="btn btn-outline-primary my-2 my-sm-0" value="#{internationalization.search}" action="search"/>
-                    </h:form>
-                </div>
-                <div class="form-group">
-                    <small class="ml-4 pl-3">Language</small>
-                    <h:form class="form-inline my-2 my-lg-0 ml-2">
-                        <h:selectOneMenu onchange="submit()" valueChangeListener="#{internationalization.languageChange}"  class="custom-select mr-sm-3 ml-4">
-                            <f:selectItem itemValue="en" itemLabel="#{internationalization.english}" />
-                            <f:selectItem itemValue="fr" itemLabel="#{internationalization.french}" />
-                        </h:selectOneMenu> 
-                    </h:form>
-                </div>
-
-=======
                 <li class="nav-item dropdown">
                     <div class="form-group">
                         <h:form class="form-inline my-2 my-lg-0 ml-2">
@@ -82,14 +60,29 @@ and open the template in the editor.
                                 <f:selectItem itemValue="fr" itemLabel="#{internationalization.french}" />
                             </h:selectOneMenu> 
                         </h:form>
+
                     </div>
                 </li>
 
                 <h:form class="form-inline my-2 my-lg-0">
-                    <h:inputText class="form-control mr-sm-2" value="#{internationalization.search}"/>
-                    <h:commandButton class="btn btn-outline-primary" value="#{internationalization.search}" action="search"/>
+                    <h:inputText id="pattern" class="form-control mr-sm-2" title="#{internationalization.search}" value="#{AlbumTrackBean.pattern}">
+                        <f:ajax event="keyup" listener="#{AlbumTrackBean.patternChanged()}" execute="pattern" render="searchList"></f:ajax>
+                    </h:inputText>
+                    <h:panelGroup id="searchList">
+                    <ul class="list-group">
+                        <ui:repeat value="#{AlbumTrackBean.albums}" var="album">
+                            <li class="list-group-item d-flex justify-content-between align-items-center" value="#{album.title}">#{album.title}}
+                            <span class="badge badge-primary badge-pill">Album</span>
+                            </li>
+                        </ui:repeat>
+                        <ui:repeat  value="#{AlbumTrackBean.tracks}" var="track">
+                            <li class="list-group-item d-flex justify-content-between align-items-center" value="#{track.title}">#{track.title}
+                             <span class="badge badge-primary badge-pill">Track</span>
+                            </li>
+                        </ui:repeat>
+                    </ul></h:panelGroup>
+                    <h:commandButton class="btn btn-outline-primary" value="#{internationalization.search}" action="result.xhtml?faces-redirect=true" />
                 </h:form>
->>>>>>> code form for survey management:sound++/target/sound-1.0-SNAPSHOT/about.xhtml
             </div>
         </nav>
 
