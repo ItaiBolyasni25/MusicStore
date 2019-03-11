@@ -19,63 +19,35 @@
     <h:body>
         <ui:include src="navbar.xhtml" />
         <p id = "top"></p>
-        <h:panelGroup id="table">
+        <h:panelGroup id="table" class="grid">
             <div id="albumTable">
-                <h:dataTable id="datatable" class="table table-hover" value="#{TrackPaginationBean.datalist}" var="track">
-                    <h:column>
-                        <f:facet name="header">
-                            #{internationalization.albumimage}
-                        </f:facet>
-                        <h:graphicImage value="#{track.album.image}" title="Album's cover" class="albumPic"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            #{internationalization.songtitle}
-                        </f:facet>
-                        <h:form>
-                            <h:commandLink styleClass="customLink" value= "#{track.title}" action="#{selectedTrack.editDataItem()}">
-                                <f:setPropertyActionListener target="#{selectedTrack.selectedTrack}" value="#{track}" />
-                                <f:ajax render="result"/>
-                            </h:commandLink></h:form>
-
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            #{internationalization.albumtitle}
-                        </f:facet>
-                        #{track.album.title}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            #{internationalization.artist}
-                        </f:facet>
-                        <ui:repeat var="artist" value="#{track.album.artists}">
-                            #{artist.name} 
-                        </ui:repeat>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            #{internationalization.songdate}
-                        </f:facet>
-                        <h:outputText value="#{track.date_added}">
-                            <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
-                        </h:outputText>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            #{internationalization.playlength}
-                        </f:facet>
-                        #{track.play_length}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            #{internationalization.cost}
-                        </f:facet>
-                        #{track.cost}
-                    </h:column>
-
-                </h:dataTable>
-                <h:form>
+                <h:panelGrid id = "panel" columns = "3"
+                             cellpadding = "55%">
+                    <c:forEach var="track" items="#{TrackPaginationBean.datalist}">
+                        <h:form class="flip-box">
+                            <div class="flip-box-inner">
+                                <h:commandLink class="customLink"  action="#{selectedTrack.editDataItem()}">
+                                    <div class="flip-box-front"><h:graphicImage value="#{track.album.image}" title="Album's cover" class="trackPic"/><br/>
+                                        <br/><h:outputText  value=" #{track.title}"/><br/>
+                                        <ui:repeat var="artist" value="#{track.album.artists}">
+                                            <h:outputText class="smallText" value="#{artist.name}"></h:outputText>     
+                                        </ui:repeat><br/>
+                                        <h:outputText class="smallText" value="CAD #{track.cost}"/>
+                                    </div>
+                                    <div class = "flip-box-back">
+                                        <p class="title"><h:outputText  value="#{track.title}"/></p>
+                                        <p><ui:repeat var="artist" value="#{track.album.artists}">
+                                                <h:outputText value="Artist: #{artist.name}"></h:outputText>     
+                                            </ui:repeat></p>
+                                        <p>#{internationalization.playlength}: #{track.play_length}</p>
+                                        <p>#{internationalization.genres}: #{track.genre}</p>
+                                        <p>#{internationalization.albumdate} #{track.album.releasedate}</p>
+                                    </div>
+                                    <f:setPropertyActionListener target="#{selectedTrack.selectedTrack}" value="#{track}" />
+                                   </h:commandLink></div></h:form>
+                    </c:forEach>
+                </h:panelGrid>
+                <h:form class="paginationForm">
                     <ul class="pagination" >
                         <c:if  test="#{TrackPaginationBean.current_page != 1}">
                             <li class="page-item">
@@ -100,70 +72,6 @@
             </div>
             <script>assignEventsRows();</script>
         </h:panelGroup>      
-        <div class="card border-light mb-3" id ="info">
-            <h:panelGroup id="result">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><h:link value = "Tracks" id="albumList" /> </li>
-                    <li class="breadcrumb-item active" id="titleTrack">#{selectedTrack.selectedTrack.title}</li>
-                </ol>
-                <div class="card-body">
-                    <p class ="imageContainer"><h:graphicImage value="#{selectedTrack.selectedTrack.album.image}" title="Album's cover" class="albumPic"/></p>
-                    <div class="contentContainer">
-                        <h4 class="card-title" id ="title">#{selectedTrack.selectedTrack.title}</h4>
-                        <p class="card-text" id = "artist"><c:forEach items="#{selectedTrack.selectedTrack.album.artists}" var="artist">
-                                <h:outputText value="#{artist.name}"></h:outputText>             
-                            </c:forEach></p>
-                        <p class="card-text" id = "review"></p>
-                        <hr/>
-                        <p class="card-text" id = "cost"></p>
-                        <form class="form-inline my-2 my-lg-0" id="quantityContainer">
-                            <label for="quantity" class="quantity">Quantity</label>
-                            <select name = "quantity" class="custom-select">
-                                <option selected="1" value="1">1</option>
-                                <c:forEach var = "i" begin = "2" end = "100">
-                                    <option value="${i}">${i}</option>
-                                </c:forEach>
-                            </select>
-                            <button class="btn btn-secondary my-2 my-sm-0" value ="Add" action = "add">Add</button>
-                        </form>
-                    </div>
-                </div>
-
-                <div class = "detailInfo">
-                    <h5 class="detail">DESCRIPTION</h5>
-                    <hr class="style"/>
-                    <div id="myTabContent" class="tab-content">
-                        <div class="tab-pane fade show active" id="details">
-                            <p id="releasedate"><span class="boldText">Original Release Date: </span>  <h:outputText value="#{selectedTrack.selectedTrack.album.releasedate}"></h:outputText>  </p>
-                            <p id="addeddate"><span class="boldText">Added Date: </span> <h:outputText value="#{selectedTrack.selectedTrack.date_added}"></h:outputText> </p>
-                            <p id="label"><span class="boldText">Label: </span> <h:outputText value="#{selectedTrack.selectedTrack.album.label}"></h:outputText> </p>   
-                            <p id="genre"><span class="boldText">Genre: </span> <h:outputText value="#{selectedTrack.selectedTrack.genre}"></h:outputText> </p>
-                            <p id="songwriter"><span class="boldText">Label: </span> <h:outputText value="#{selectedTrack.selectedTrack.songwriter}"></h:outputText> </p>                       
-                        </div>
-                    </div>
-                    <h5 class="detail">SIMILAR TRACKS</h5>
-                    <hr class="style"/>
-                    <div class="row">
-                        <ui:repeat value="#{selectedTrack.similarTrack}" var="similarTrack">
-                            <h:form class="column"><div>
-                                    <h:commandLink action="#{selectedTrack.editDataItem()}">
-                                        <h:graphicImage value="#{similarTrack.album.image}" title="Album's cover" class="albumPic"/><br/>
-                                        <h:outputText  value=" #{similarTrack.title}"/>
-                                      <f:setPropertyActionListener target="#{selectedTrack.selectedTrack}" value="#{similarTrack}" />
-                                <f:ajax render="result"/>
-                                </h:commandLink>
-                                <p><ui:repeat var="artist" value="#{similarTrack.album.artists}">
-                                        <h:outputText value="#{artist.name}"></h:outputText>     
-                                    </ui:repeat></p>
-                                <p> <h:outputText value="CAD #{similarTrack.cost}"></h:outputText> </p>
-                            </div></h:form></ui:repeat>                    
-                    </div>
-                    <h5 class="detail">REVIEWS</h5>
-                    <hr class="style"/>
-                </div>
-                <script>setAlbumList(); setAlbumVisible();</script>
-            </h:panelGroup> 
-        </div>
         <ui:include src="footer.xhtml" />
     </h:body>
 </html>

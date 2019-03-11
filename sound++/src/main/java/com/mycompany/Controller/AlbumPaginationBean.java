@@ -37,7 +37,7 @@ public class AlbumPaginationBean implements Serializable {
     private int totalPages;
 
     public AlbumPaginationBean() {
-        this.itemPerPage = 5;
+        this.itemPerPage = 9;
         this.currentPage = 1;
 
     }
@@ -95,19 +95,11 @@ public class AlbumPaginationBean implements Serializable {
     }
 
     public void setCurrent_page(int newCurrentPage) {
-        System.out.println("aaa..." + newCurrentPage);
         currentPage = newCurrentPage;
         updateView();
     }
 
     public void updateView() {
-        /* FacesContext fc = FacesContext.getCurrentInstance();
-        Map<String, String> params
-                = fc.getExternalContext().getRequestParameterMap();
-        if (!params.get("currentPage").isEmpty() || params.get("currentPage") != null) {
-            currentPage = Integer.parseInt(params.get("currentPage"));
-        }*/
-
         int offset = getOffset();
         setDatalist(dao.findWithLimit(new Album(), offset, itemPerPage));
     }
@@ -124,7 +116,6 @@ public class AlbumPaginationBean implements Serializable {
         if (this.currentPage > 1) {
             this.currentPage--;
         }
-
         updateView();
     }
 

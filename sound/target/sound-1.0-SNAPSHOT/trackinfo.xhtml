@@ -18,60 +18,6 @@
     </h:head>
     <h:body>
         <ui:include src="navbar.xhtml" />
-        <p id = "top"></p>
-        <h:panelGroup id="table" class="grid">
-            <div id="albumTable">
-                <h:panelGrid id = "panel" columns = "3"
-                             cellpadding = "55%">
-                    <c:forEach var="track" items="#{TrackPaginationBean.datalist}">
-                        <h:form class="flip-box">
-                            <div class="flip-box-inner">
-                                <h:commandLink class="customLink"  action="#{selectedTrack.editDataItem()}">
-                                    <div class="flip-box-front"><h:graphicImage value="#{track.album.image}" title="Album's cover" class="trackPic"/><br/>
-                                        <br/><h:outputText  value=" #{track.title}"/><br/>
-                                        <ui:repeat var="artist" value="#{track.album.artists}">
-                                            <h:outputText class="smallText" value="#{artist.name}"></h:outputText>     
-                                        </ui:repeat><br/>
-                                        <h:outputText class="smallText" value="CAD #{track.cost}"/>
-                                    </div>
-                                    <div class = "flip-box-back">
-                                        <p class="title"><h:outputText  value="#{track.title}"/></p>
-                                        <p><ui:repeat var="artist" value="#{track.album.artists}">
-                                                <h:outputText value="Artist: #{artist.name}"></h:outputText>     
-                                            </ui:repeat></p>
-                                        <p>#{internationalization.playlength}: #{track.play_length}</p>
-                                        <p>#{internationalization.genres}: #{track.genre}</p>
-                                        <p>#{internationalization.albumdate} #{track.album.releasedate}</p>
-                                    </div>
-                                    <f:setPropertyActionListener target="#{selectedTrack.selectedTrack}" value="#{track}" />
-                                    <f:ajax render="result"/></h:commandLink></div></h:form>
-                    </c:forEach>
-                </h:panelGrid>
-                <h:form class="paginationForm">
-                    <ul class="pagination" >
-                        <c:if  test="#{TrackPaginationBean.current_page != 1}">
-                            <li class="page-item">
-                                <h:commandLink class="page-link" value="&laquo;" actionListener="#{TrackPaginationBean.prev()}"/>
-                            </li>
-                        </c:if>
-                        <c:if  test="#{TrackPaginationBean.current_page == 1}">
-                            <li class="page-item disabled">
-                                <h:commandLink class="page-link" value="&laquo;"/>
-                            </li>
-                        </c:if>
-                        <c:forEach begin="1" end="#{TrackPaginationBean.total_pages}" var="i" >
-                            <li class="page-item #{TrackPaginationBean.current_page == i ? 'active':''}">
-                                <h:commandLink class="page-link" action="#{TrackPaginationBean.updateView()}" value="#{i}">
-                                    <f:setPropertyActionListener target="#{TrackPaginationBean.current_page}" value="#{i}" />
-                                    <f:ajax render="table"></f:ajax>
-                                </h:commandLink>
-                            </li> 
-                        </c:forEach>
-                    </ul>
-                </h:form>
-            </div>
-            <script>assignEventsRows();</script>
-        </h:panelGroup>      
         <div class="card border-light mb-3" id ="info">
             <h:panelGroup id="result">
                 <ol class="breadcrumb">
@@ -138,9 +84,7 @@
                     <h5 class="detail">REVIEWS</h5>
                     <hr class="style"/>
                 </div>
-                <script>setAlbumList(); setAlbumVisible();</script>
-            </h:panelGroup> 
-        </div>
-        <ui:include src="footer.xhtml" />
+            </h:panelGroup> </div>
+           <ui:include src="footer.xhtml" />
     </h:body>
 </html>

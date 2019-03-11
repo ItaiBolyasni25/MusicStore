@@ -1,0 +1,152 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.2.1/lux/bootstrap.min.css" />
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+        <h:outputStylesheet library="css" name="style.css"  />
+        <h:outputScript library="js" name="jquery-1.12.4.js" />
+        <h:outputScript library="js" name="itemInfo.js" />
+        <title>Sound++</title>
+    </h:head>
+    <h:body>
+        <ui:include src="navbar.xhtml" />
+        <p id = "top"></p>
+        <h:panelGroup id="table" class="grid">
+            <div id="albumTable">
+                <h2>Album</h2>
+                <hr class="style"></hr>
+                <h:panelGrid id = "panel" columns = "3"
+                             cellpadding = "55%">
+                    <c:forEach var="album" items="#{AlbumTrackBean.albums}">
+                        <h:outputText value ="#{album.title}"/>
+                         <h:form class="flip-box">
+                              <div class="flip-box-inner">
+                                <!--h:commandLink class="customLink"  action="#{selectedAlbum.editDataItem()}">
+                                    <div class="flip-box-front"><h:graphicImage value="#{album.image}" title="Album's cover" class="albumPic"/><br/>
+                                        <br/><h:outputText value=" #{album.title}"/>
+                                            <ui:repeat var="artist" value="#{album.artists}"><br/>
+                                                <h:outputText class="smallText" value="#{artist.name}"></h:outputText>   
+                                            </ui:repeat><br/>
+                                        <h:outputText class="smallText" value=" CAD #{album.cost}"/>
+                                    </div>
+                                    <div class = "flip-box-back">
+                                        <p class="title"><h:outputText  value="#{album.title}"/></p>
+                                        <p><ui:repeat var="artist" value="#{album.artists}">
+                                        <h:outputText value="Artist: #{artist.name}"></h:outputText>     
+                                            </ui:repeat></p>
+                                        <p>Number of song: #{album.numberofsong}</p>
+                                        <p>#{internationalization.genres}: #{album.genre}</p>
+                                        <p>#{internationalization.albumdate}: #{album.releasedate}</p>
+                                    </div>
+                                        <f:setPropertyActionListener target="#{selectedAlbum.selectedAlbum}" value="#{album}" />
+                                        <f:ajax render="result"/></h:commandLink--></div></h:form>
+                    </c:forEach>
+                </h:panelGrid>
+                <!--h:form class="paginationForm">
+                    <ul class="pagination" >
+                        <c:if  test="#{AlbumPaginationBean.current_page != 1}">
+                            <li class="page-item">
+                                <h:commandLink class="page-link" value="&laquo;" actionListener="#{AlbumPaginationBean.prev()}"/>
+                            </li>
+                        </c:if>
+                        <c:if  test="#{AlbumPaginationBean.current_page == 1}">
+                            <li class="page-item disabled">
+                                <h:commandLink class="page-link" value="&laquo;"/>
+                            </li>
+                        </c:if>
+                        <c:forEach begin="1" end="#{AlbumPaginationBean.total_pages}" var="i" >
+                            <li class="page-item #{AlbumPaginationBean.current_page == i ? 'active':''}">
+                                <h:commandLink class="page-link" action="#{AlbumPaginationBean.updateView()}" value="#{i}">
+                                    <f:setPropertyActionListener target="#{AlbumPaginationBean.current_page}" value="#{i}" />
+                                    <f:ajax render="table"></f:ajax>
+                                </h:commandLink>
+                            </li> 
+                        </c:forEach>
+                        <c:if  test="#{AlbumPaginationBean.current_page != AlbumPaginationBean.total_pages}">
+                            <li class="page-item">
+                                <h:commandLink class="page-link" value="&raquo;" actionListener="#{AlbumPaginationBean.next()}"/>
+                            </li>
+                        </c:if>
+                        <c:if test="#{AlbumPaginationBean.current_page == AlbumPaginationBean.total_pages}">
+                            <li class="page-item disabled">
+                                <h:commandLink class="page-link" value="&raquo;"/>
+                            </li>
+                        </c:if>
+                    </ul>
+                </h:form-->
+            </div>
+            <script>assignEventsRows();</script>
+        </h:panelGroup>      
+        <!--div class="card border-light mb-3" id ="info">
+            <h:panelGroup id="result">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><h:link value = "Albums" id="albumList" /> </li>
+                    <li class="breadcrumb-item active" id="titleAlbum">#{selectedAlbum.selectedAlbum.title}</li>
+                </ol>
+                <div class="card-body">
+                    <p class ="imageContainer"><h:graphicImage value="#{selectedAlbum.selectedAlbum.image}" title="Album's cover" class="albumPic"/></p>
+                    <div class="contentContainer">
+                        <h4 class="card-title" id ="title">#{selectedAlbum.selectedAlbum.title}</h4>
+                        <p class="card-text" id = "artist"><c:forEach items="#{selectedAlbum.selectedAlbum.artists}" var="artist">
+                                <h:outputText value="#{artist.name}"></h:outputText>             
+                            </c:forEach></p>
+                        <p class="card-text" id = "review"></p>
+                        <hr></hr>
+                        <p class="card-text" id = "cost"></p>
+                        <form class="form-inline my-2 my-lg-0" id="quantityContainer">
+                            <select class="custom-select">
+                                <option selected="1" value="1">1</option>
+                                <c:forEach var = "i" begin = "2" end = "100">
+                                    <option value="${i}">${i}</option>
+                                </c:forEach>
+                            </select>
+                            <button class="btn btn-secondary my-2 my-sm-0" value ="Add" action = "add">Add</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class = "detailInfo">
+                    <h5 class="detail">DESCRIPTION</h5>
+                    <hr class="style"/>
+                    <div id="myTabContent" class="tab-content">
+                        <div class="tab-pane fade show active" id="details">
+                            <p id="releasedate"><span class="boldText">Original Release Date: </span>  <h:outputText value="#{selectedAlbum.selectedAlbum.releasedate}"></h:outputText>  </p>
+                            <p id="addeddate"><span class="boldText">Added Date: </span> <h:outputText value="#{selectedAlbum.selectedAlbum.addedDate}"></h:outputText> </p>
+                            <p id="label"><span class="boldText">Label: </span> <h:outputText value="#{selectedAlbum.selectedAlbum.label}"></h:outputText> </p>                       
+                        </div>
+                    </div>
+                    <h5 class="detail">SIMILAR ALBUMS</h5>
+                    <hr class="style"/>
+                    <div class="row">
+                        <ui:repeat value="#{selectedAlbum.similarAlbum}" var="similarAlbum">
+                            <h:form class="column"><div>
+                                    <h:commandLink action="#{selectedAlbum.editDataItem()}">
+                                        <h:graphicImage value="#{similarAlbum.image}" title="Album's cover" class="similarAlbum"/><br/>
+                                        <br/><h:outputText  value=" #{similarAlbum.title}"/><br/>
+                                        <f:setPropertyActionListener target="#{selectedAlbum.selectedAlbum}" value="#{similarAlbum}" />
+                                        <f:ajax render="result"/>
+                                    </h:commandLink>
+                                    <ui:repeat var="artist" value="#{similarAlbum.artists}">
+                                            <h:outputText value="#{artist.name}"></h:outputText>     
+                                        </ui:repeat><br/>
+                                    <h:outputText value="CAD #{similarAlbum.cost}"></h:outputText>
+                                </div></h:form></ui:repeat>                    
+                    </div>
+                    <h5 class="detail">REVIEWS</h5>
+                    <hr class="style"/>
+                </div>
+                <script>setAlbumList(); setAlbumVisible();</script>
+            </h:panelGroup> 
+        </div-->
+        <ui:include src="footer.xhtml" />
+    </h:body>
+</html>

@@ -17,14 +17,6 @@ function assignEventsRows() {
     $(".customLink").click(function () {
         currentlyShowingAlbum = true;
     });
-    $("tr").each(function () {
-        $(this).click(function (event) {
-            if($(event.target).attr("class")==="customLink")
-                return;
-            $(this).find("td").get(1).getElementsByTagName("form")[0].children[1].click();
-            
-        });
-    });
 }
 
 function setAlbumList() {

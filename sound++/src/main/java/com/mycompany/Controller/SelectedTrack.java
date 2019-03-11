@@ -29,8 +29,9 @@ public class SelectedTrack implements Serializable {
     private HtmlInputHidden dataItemId = new HtmlInputHidden();
     public SelectedTrack(){
     }
-     public void editDataItem() {
+     public String editDataItem() {
         dataItemId.setValue(track.getId());
+         return "trackinfo?faces-redirect=true";
     }
 
     public Track getSelectedTrack() {
@@ -61,5 +62,4 @@ public class SelectedTrack implements Serializable {
          }
          return null;
     }
-   
 }
