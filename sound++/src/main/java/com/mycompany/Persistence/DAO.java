@@ -35,7 +35,7 @@ public class DAO {
     @Resource
     private UserTransaction userTransaction;
 
-    public <E extends EntityModel> boolean write(E entityModel) {
+    public <E extends EntityModel> E write(E entityModel) {
         try {
             userTransaction.begin();
             em.persist(entityModel);
@@ -44,7 +44,7 @@ public class DAO {
             Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return true;
+        return entityModel;
     }
 
     public <E extends EntityModel> List<E> read(E entityModel, int id) {
