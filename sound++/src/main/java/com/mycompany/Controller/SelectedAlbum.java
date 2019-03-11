@@ -29,7 +29,8 @@ public class SelectedAlbum implements Serializable{
     public SelectedAlbum(){
     }
      public void editDataItem() {
-        dataItemId.setValue(album.getId());
+         if(album !=null){
+        dataItemId.setValue(album.getId());}
     }
 
     public Album getSelectedAlbum() {

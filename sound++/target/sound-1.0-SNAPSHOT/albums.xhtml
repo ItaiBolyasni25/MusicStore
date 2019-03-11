@@ -15,6 +15,7 @@
         <h:outputStylesheet library="css" name="style.css"  />
         <h:outputScript library="js" name="jquery-1.12.4.js" />
         <h:outputScript library="js" name="itemInfo.js" />
+
         <title>Sound++</title>
     </h:head>
     <h:body>
@@ -25,27 +26,27 @@
                 <h:panelGrid id = "panel" columns = "3"
                              cellpadding = "55%">
                     <c:forEach var="album" items="#{AlbumPaginationBean.datalist}">
-                         <h:form class="flip-box">
-                              <div class="flip-box-inner">
+                        <h:form class="flip-box">
+                            <div class="flip-box-inner">
                                 <h:commandLink class="customLink"  action="#{selectedAlbum.editDataItem()}">
                                     <div class="flip-box-front"><h:graphicImage value="#{album.image}" title="Album's cover" class="albumPic"/><br/>
                                         <br/><h:outputText value=" #{album.title}"/>
-                                            <ui:repeat var="artist" value="#{album.artists}"><br/>
-                                                <h:outputText class="smallText" value="#{artist.name}"></h:outputText>   
-                                            </ui:repeat><br/>
+                                        <ui:repeat var="artist" value="#{album.artists}"><br/>
+                                            <h:outputText class="smallText" value="#{artist.name}"></h:outputText>   
+                                        </ui:repeat><br/>
                                         <h:outputText class="smallText" value=" CAD #{album.cost}"/>
                                     </div>
                                     <div class = "flip-box-back">
                                         <p class="title"><h:outputText  value="#{album.title}"/></p>
                                         <p><ui:repeat var="artist" value="#{album.artists}">
-                                        <h:outputText value="Artist: #{artist.name}"></h:outputText>     
+                                                <h:outputText value="Artist: #{artist.name}"></h:outputText>     
                                             </ui:repeat></p>
                                         <p>Number of song: #{album.numberofsong}</p>
                                         <p>#{internationalization.genres}: #{album.genre}</p>
                                         <p>#{internationalization.albumdate}: #{album.releasedate}</p>
                                     </div>
-                                        <f:setPropertyActionListener target="#{selectedAlbum.selectedAlbum}" value="#{album}" />
-                                        <f:ajax render="result"/></h:commandLink></div></h:form>
+                                    <f:setPropertyActionListener target="#{selectedAlbum.selectedAlbum}" value="#{album}" />
+                                    <f:ajax render="result"/></h:commandLink></div></h:form>
                     </c:forEach>
                 </h:panelGrid>
                 <h:form class="paginationForm">
@@ -133,8 +134,8 @@
                                         <f:ajax render="result"/>
                                     </h:commandLink>
                                     <ui:repeat var="artist" value="#{similarAlbum.artists}">
-                                            <h:outputText value="#{artist.name}"></h:outputText>     
-                                        </ui:repeat><br/>
+                                        <h:outputText value="#{artist.name}"></h:outputText>     
+                                    </ui:repeat><br/>
                                     <h:outputText value="CAD #{similarAlbum.cost}"></h:outputText>
                                 </div></h:form></ui:repeat>                    
                     </div>

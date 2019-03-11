@@ -6,14 +6,13 @@
 package com.mycompany.Controller;
 
 import com.mycompany.Model.Album;
-import com.mycompany.Model.Artist;
 import com.mycompany.Model.Track;
 import com.mycompany.Persistence.DAO;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
-import javax.enterprise.context.SessionScoped;
-import javax.faces.event.ValueChangeEvent;
+import javax.faces.view.ViewScoped;
+
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -21,7 +20,7 @@ import javax.inject.Named;
  *
  * @author maian
  */
-@SessionScoped
+@ViewScoped
 @Named("AlbumTrackBean")
 public class AlbumTrackBean implements Serializable {
 
@@ -29,11 +28,11 @@ public class AlbumTrackBean implements Serializable {
     private DAO dao;
     private String pattern;
     private List<Album> albums;
-     private List<Track> tracks;
+    private List<Track> tracks;
 
     public AlbumTrackBean() {
     }
-    
+
     public String getPattern() {
         return pattern;
     }
@@ -57,13 +56,13 @@ public class AlbumTrackBean implements Serializable {
     public void setPattern(String pattern) {
         this.pattern = pattern;
     }
+
     public void patternChanged() {
         if (pattern != null && !pattern.isEmpty() && !pattern.equals("")) {
-             System.out.println("++++++++++++++++\""+ Boolean.toString(pattern.equals("")));
-       setAlbums(dao.findWithPattern(new Album(), pattern, "title"));
-       setTracks(dao.findWithPattern(new Track(), pattern, "title"));
-        }
-        else{
+            System.out.println("++++++++++++++++\"" + Boolean.toString(pattern.equals("")));
+            setAlbums(dao.findWithPattern(new Album(), pattern, "title"));
+            setTracks(dao.findWithPattern(new Track(), pattern, "title"));
+        } else {
             setAlbums(null);
             setTracks(null);
         }
