@@ -79,8 +79,6 @@ public class SurveyBean implements Serializable {
         String email = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("id");
         Survey survey = new Survey(question, option1, option2, option3, option4, option5, email);
         dao.write(survey);
-        System.out.println(email);
-        System.out.println(survey.getQuestion());
         return "survey.xhtml";
     }
     

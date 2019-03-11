@@ -14,15 +14,14 @@ function news(newsfeed) {
             rss_url: feed,
             api_key: "ahtjmmolm5ip6nd4rucf2d1hxdtuh2usxwgswjg3"
         }
-    }).done(handleResponse, rss);
+    }).done(handleResponse);
 }
 
 /**
  * Handle response of RSS feed and initalize slick slide show
  * @param {JSON} response
  */
-function handleResponse(response, rss) {
-    console.log(response);
+function handleResponse(response) {
     //Throw error if response not catched
     if (response.status != 'ok') {
         throw response.message;
@@ -38,10 +37,8 @@ function handleResponse(response, rss) {
         var $description = $("<p>", {"class": "card-text"}).append(item.description);
         var $link = $("<a>", {"class": "card-link"}).attr("href", item.link).append("link");
         var $footer = $("<div>", {"class": "card-footer text-muted"}).append(item.pubDate);
-        if(rss != "cbc"){
-            var $img = $("<img>", {"class" : "newsimg"}).attr('src', item.enclosure.link);
-            $body.append($img);
-        }
+        var $img = $("<img>", {"class" : "newsimg"}).attr('src', item.enclosure.link);
+
         
         //Append elements to its correspondent parent
         $body.append($description);

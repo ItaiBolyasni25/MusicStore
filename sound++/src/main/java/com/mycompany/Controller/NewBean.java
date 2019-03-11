@@ -33,7 +33,6 @@ public class NewBean implements Serializable{
 
     public List<String> getRecommendations() {
         List<String> news = new ArrayList<String>();
-        news.add("CBC : https://www.cbc.ca/cmlink/rss-arts");
         news.add("Global News : https://globalnews.ca/entertainment/feed/");
         news.add("CTV News : https://www.ctvnews.ca/rss/ctvnews-ca-entertainment-public-rss-1.822292");
         news.add("NY Times : http://rss.nytimes.com/services/xml/rss/nyt/Music.xml");
@@ -52,9 +51,20 @@ public class NewBean implements Serializable{
         this.feed = feed;
     }
     
-    public void newfeed(){
-        News news = new News(feed);
-        DAO.write(news);
+    public String newfeed(){
+        News newRss = new News(feed, "1");
+        DAO.write(newRss);
+        
+        
+        List<News> currentRss = DAO.find(new News(), "used LIKE '1'");
+        DAO.beginTransaction();
+        for(int i = 0 ; i < currentRss.size(); i++){
+            currentRss.get(i).setUsed("0");
+        }
+        DAO.commitTransaction();
+        
+        return "manager/surveymngt.xhtml";
+        
     }
     
     public String getCurrentFeed(){

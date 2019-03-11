@@ -71,7 +71,7 @@ CREATE TABLE Invoice (
 -- Table: News
 CREATE TABLE News (
     news_id int NOT NULL auto_increment,
-    feed varchar(180) NOT NULL,
+    feed varchar(300) NOT NULL,
     used varchar(1) NOT NULL,
     CONSTRAINT News_pk PRIMARY KEY (news_id)
 );
@@ -254,5 +254,3 @@ ALTER TABLE album_artist ADD CONSTRAINT album_artist_Artist FOREIGN KEY album_ar
 ALTER TABLE Roles ADD CONSTRAINT Groups_User FOREIGN KEY Roles (email)
     REFERENCES User (email);
 -- End of file.
-
-INSERT INTO News (feed, used) VALUES ('https://globalnews.ca/entertainment/feed/', '1');

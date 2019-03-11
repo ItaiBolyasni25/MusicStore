@@ -23,42 +23,42 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Gabriela
  */
 @Entity
-@Table(name = "news")
+@Table(name = "News")
 @XmlRootElement
 public class News implements Serializable, EntityModel {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "news_id")
-    private Integer newsId;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 60)
-    @Column(name = "feed")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer news_id;
     private String feed;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1)
-    @Column(name = "used")
     private String used;
 
     public News() {
     }
 
-    public News(String feed) {
+    public News(String feed, String used) {
         this.feed = feed;
+        this.used = used;
     }
 
     public Integer getNewsId() {
-        return newsId;
+        return news_id;
     }
 
-    public void setNewsId(Integer newsId) {
-        this.newsId = newsId;
+    public void setNewsId(Integer news_id) {
+        this.news_id = news_id;
     }
 
+    public String getUsed() {
+        return used;
+    }
+
+    public void setUsed(String used) {
+        this.used = used;
+    }
+
+    
     public String getFeed() {
         return feed;
     }
@@ -70,7 +70,7 @@ public class News implements Serializable, EntityModel {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (newsId != null ? newsId.hashCode() : 0);
+        hash += (news_id != null ? news_id.hashCode() : 0);
         return hash;
     }
 
@@ -81,7 +81,7 @@ public class News implements Serializable, EntityModel {
             return false;
         }
         News other = (News) object;
-        if ((this.newsId == null && other.newsId != null) || (this.newsId != null && !this.newsId.equals(other.newsId))) {
+        if ((this.news_id == null && other.news_id != null) || (this.news_id != null && !this.news_id.equals(other.news_id))) {
             return false;
         }
         return true;
@@ -89,7 +89,7 @@ public class News implements Serializable, EntityModel {
 
     @Override
     public String toString() {
-        return "com.mycompany.Model.News[ newsId=" + newsId + " ]";
+        return "com.mycompany.Model.News[ news_id=" + news_id + " ]";
     }
     
 }

@@ -12,107 +12,120 @@
         <h:outputStylesheet library="css" name="style.css"  />
         <title>Sound++</title>
     </h:head>
-    <h:body>
+    <h:body class="backgroundcolor">
         <ui:include src="../navbarmanager.xhtml" />
         <!--
         <p>
             From this page a manager can define the survey presented on the front page. Previous surveys must be saved so that they may be reused.
         </p>
         -->
-        <h:form>
-            <div class="row">   
-                <div class="col-md-1"></div>
-                <div class="col-md-4 ">
-                    <h1 class="text-center">#{internationalization.addSurvey}</h1>
-                    <br/>
-                    <div class="form-group">
-                        <h:form>
-                            <div class="form-group row">
-                                <h:outputLabel class="col-sm-3 col-form-label" for="question">#{internationalization.question}</h:outputLabel>
-                                <div class="col-sm-9">
-                                    <h:inputText id="question" class="form-control" value="#{surveyBean.question}" required="true" requiredMessage="#{internationalization.questionRequired}"/><br/>
-                                </div>
-                            </div>
+        <br/>
+        <div class="row">   
+            <div class="col-md-1"></div>
 
-                            <div class="form-group row">
-                                <h:outputLabel class="col-sm-3 col-form-label" for="option1">#{internationalization.option} 1</h:outputLabel>
-                                <div class="col-sm-9">
-                                    <h:inputText id="option1" class="form-control" value="#{surveyBean.option1}" required="true" requiredMessage="#{internationalization.optionRequired}"/><br/>
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <h:outputLabel class="col-sm-3 col-form-label" for="option2">#{internationalization.option} 2</h:outputLabel>
-                                <div class="col-sm-9">
-                                    <h:inputText id="option2" class="form-control" value="#{surveyBean.option2}" required="true" requiredMessage="#{internationalization.optionRequired}"/><br/>
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <h:outputLabel class="col-sm-3 col-form-label" for="option3">#{internationalization.option} 3</h:outputLabel>
-                                <div class="col-sm-9">
-                                    <h:inputText id="option3" class="form-control" value="#{surveyBean.option3}" /><br/>
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <h:outputLabel class="col-sm-3 col-form-label" for="option4">#{internationalization.option} 4</h:outputLabel>
-                                <div class="col-sm-9">
-                                    <h:inputText id="option4" class="form-control" value="#{surveyBean.option4}" /><br/>
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <h:outputLabel class="col-sm-3 col-form-label" for="option5">#{internationalization.option} 5</h:outputLabel>
-                                <div class="col-sm-9">
-                                    <h:inputText id="option5" class="form-control" value="#{surveyBean.option5}" /><br/>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-5"></div>
-                                <div>
-                                    <h:commandButton id="submit-button" value="#{internationalization.add}" class="btn btn-primary" action="#{surveyBean.addSurvey}" type="submit"/>
-                                </div>
-                            </div>
-
-                        </h:form>
-                    </div>
-                </div>
-                <div class="col-md-2"></div>
-                <div class="col-md-5"> 
-                    <h1 class="text-center">#{internationalization.pastSurvey}</h1>
-                    <br/>
-
-                    <div class ="row">
-                        <div class="col-md-1"></div>
-                        <div class="col-md-10">
-                            <div class="accordion" id="accordionExample">
-                                <ui:repeat var="survey" value="#{surveyBean.pastSurveys}">
-                                    <div class="card">
-                                        <div class="card-header" id="heading#{survey.survey_id}">
-                                            <h2 class="mb-0">
-                                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse#{survey.survey_id}" aria-expanded="true" aria-controls="collapse#{survey.survey_id}">
-                                                    #{survey.question} created by #{survey.created_by}
-                                                </button>
-                                            </h2>
-                                        </div>
-
-                                        <div id="collapse#{survey.survey_id}" class="collapse" aria-labelledby="heading${survey.survey_id}" data-parent="#accordionExample">
-                                            <div class="card-body">
-                                                <ui:repeat var="option" value="#{survey.options}">
-                                                    <li>#{option}</li>
-                                                </ui:repeat>
-                                            </div>
-                                        </div>
+            <div class="col-md-4">
+                <div class="card text-white bg-dark mb-3">
+                    <div class="card-body">
+                        <h3 class="text-center card-title">#{internationalization.addSurvey}</h3>
+                        <br/>
+                        <div class="form-group">
+                            <h:form>
+                                <div class="form-group row">
+                                    <h:outputLabel class="col-sm-3 col-form-label" for="question">#{internationalization.question}</h:outputLabel>
+                                    <div class="col-sm-9">
+                                        <h:inputText id="question" class="form-control" value="#{surveyBean.question}" required="true" requiredMessage="#{internationalization.questionRequired}"/><br/>
                                     </div>
-                                </ui:repeat>
-                            </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <h:outputLabel class="col-sm-3 col-form-label" for="option1">#{internationalization.option} 1</h:outputLabel>
+                                    <div class="col-sm-9">
+                                        <h:inputText id="option1" class="form-control" value="#{surveyBean.option1}" required="true" requiredMessage="#{internationalization.optionRequired}"/><br/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <h:outputLabel class="col-sm-3 col-form-label" for="option2">#{internationalization.option} 2</h:outputLabel>
+                                    <div class="col-sm-9">
+                                        <h:inputText id="option2" class="form-control" value="#{surveyBean.option2}" required="true" requiredMessage="#{internationalization.optionRequired}"/><br/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <h:outputLabel class="col-sm-3 col-form-label" for="option3">#{internationalization.option} 3</h:outputLabel>
+                                    <div class="col-sm-9">
+                                        <h:inputText id="option3" class="form-control" value="#{surveyBean.option3}" /><br/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <h:outputLabel class="col-sm-3 col-form-label" for="option4">#{internationalization.option} 4</h:outputLabel>
+                                    <div class="col-sm-9">
+                                        <h:inputText id="option4" class="form-control" value="#{surveyBean.option4}" /><br/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <h:outputLabel class="col-sm-3 col-form-label" for="option5">#{internationalization.option} 5</h:outputLabel>
+                                    <div class="col-sm-9">
+                                        <h:inputText id="option5" class="form-control" value="#{surveyBean.option5}" /><br/>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-5"></div>
+                                    <div>
+                                        <h:commandButton id="submit-button" value="#{internationalization.add}" class="btn btn-primary" action="#{surveyBean.addSurvey}" type="submit"/>
+                                    </div>
+                                </div>
+                            </h:form>
                         </div>
                     </div>
                 </div>
             </div>
-        </h:form>
+            <div class="col-md-1"></div>
+            <div class="col-md-5"> 
+                <div class="row">
+                    <div class="col-md-11">
+                        <div class="card bg-secondary mb-3">
+                            <div class="card-body">
+                                <h3 class="text-center card-title">#{internationalization.pastSurvey}</h3>
+                                <br/>
+                                <div class ="row">
+                                    <div class="col-md-1"></div>
+                                    <div class="col-md-10">
+                                        <div class="accordion" id="accordionExample">
+                                            <ui:repeat var="survey" value="#{surveyBean.pastSurveys}">
+                                                <div class="card">
+                                                    <div class="card-header" id="heading#{survey.survey_id}">
+                                                        <h2 class="mb-0">
+                                                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse#{survey.survey_id}" aria-expanded="true" aria-controls="collapse#{survey.survey_id}">
+                                                                #{survey.question} created by #{survey.created_by}
+                                                            </button>
+                                                        </h2>
+                                                    </div>
+
+                                                    <div id="collapse#{survey.survey_id}" class="collapse" aria-labelledby="heading${survey.survey_id}" data-parent="#accordionExample">
+                                                        <div class="card-body">
+                                                            <ui:repeat var="option" value="#{survey.options}">
+                                                                <li>#{option}</li>
+                                                            </ui:repeat>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </ui:repeat>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+            </div>
+        </div>
+
 
     </h:body>
 </html>
