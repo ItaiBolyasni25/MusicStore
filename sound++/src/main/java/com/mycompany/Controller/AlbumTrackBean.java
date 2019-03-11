@@ -11,6 +11,7 @@ import com.mycompany.Persistence.DAO;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
+import javax.enterprise.context.ApplicationScoped;
 import javax.faces.view.ViewScoped;
 
 import javax.inject.Inject;
@@ -20,7 +21,7 @@ import javax.inject.Named;
  *
  * @author maian
  */
-@ViewScoped
+@ApplicationScoped
 @Named("AlbumTrackBean")
 public class AlbumTrackBean implements Serializable {
 

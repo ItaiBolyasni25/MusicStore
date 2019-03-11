@@ -9,7 +9,7 @@ import com.mycompany.Model.Album;
 import com.mycompany.Persistence.DAO;
 import java.io.Serializable;
 import java.util.List;
-import javax.faces.view.ViewScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.component.html.HtmlInputHidden;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -19,7 +19,7 @@ import javax.inject.Named;
  * @author maian
  */
 
-@ViewScoped
+@SessionScoped
 @Named("selectedAlbum")
 public class SelectedAlbum implements Serializable{
     @Inject
@@ -28,9 +28,10 @@ public class SelectedAlbum implements Serializable{
     private HtmlInputHidden dataItemId = new HtmlInputHidden();
     public SelectedAlbum(){
     }
-     public void editDataItem() {
+     public String editDataItem() {
          if(album !=null){
         dataItemId.setValue(album.getId());}
+          return "albuminfo?faces-redirect=true";
     }
 
     public Album getSelectedAlbum() {

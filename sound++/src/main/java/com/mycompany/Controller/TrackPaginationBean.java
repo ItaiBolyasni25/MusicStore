@@ -46,6 +46,7 @@ public class TrackPaginationBean implements Serializable {
 
     public void setDatalist(List<Track> dataList) {
         this.dataList = dataList;
+        setTotalrows(dataList.size());
     }
 
     public int getOffset() {

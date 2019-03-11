@@ -125,7 +125,6 @@ section .section-title {
     width: 90%;
     height: 40%;
     margin-left: 5%;
-    display: none;
 }
 #footer {
     background: #f7f7f9 !important;

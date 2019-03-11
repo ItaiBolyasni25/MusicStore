@@ -18,6 +18,7 @@ com\mycompany\Controller\TrackBean.class
 com\mycompany\Interface\EntityModel.class
 com\mycompany\Utilities\Validator.class
 getAlbums.class
+com\mycompany\Controller\ResultBean.class
 com\mycompany\Controller\SelectedTrack.class
 com\mycompany\Controller\SurveyBean.class
 com\mycompany\Controller\LoginBean.class
