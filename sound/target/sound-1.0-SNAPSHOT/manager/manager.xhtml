@@ -13,40 +13,9 @@
         <title>Sound++</title>
     </h:head>
     <h:body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-
-            <a class="navbar-brand" href="#"><img id="logo" src="../assets/footerLogo.png" alt="Logo of online music store Sound++"></img></a>
-
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarColor03">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <h:link class="nav-link" value="Menu" outcome="manager"/>
-                    </li>
-
-                </ul>
-
-                <li class="nav-item dropdown">
-                    <h:form class="form-inline my-2 my-lg-0 ml-2">
-                        <h:selectOneMenu onchange="submit()" valueChangeListener="#{internationalization.languageChange}"  class="custom-select mr-sm-3 ml-4">
-                            <f:selectItem itemValue="en" itemLabel="#{internationalization.english}" />
-                            <f:selectItem itemValue="fr" itemLabel="#{internationalization.french}" />
-                        </h:selectOneMenu> 
-                    </h:form>
-                </li>
-
-                <h:form class="form-inline my-2 my-lg-0">
-                    <h:inputText class="form-control mr-sm-2" value="#{internationalization.search}"/>
-                    <h:commandButton class="btn btn-outline-primary" value="#{internationalization.search}" action="search"/>
-                </h:form>
-            </div>
-        </nav>
+        <ui:include src="../navbarmanager.xhtml" />
 
         <div >
-
             <div class="row">
                 <div class="col-md-1"></div>
                 <div class="col-md-2">
@@ -54,7 +23,7 @@
                         <h:link class="nav-link" outcome="bannerad">
                             <div class="card-body">
                                 <div class="card-title"><h6>#{internationalization.bannerad}</h6></div>
-                                <img class="genresimg" src="../assets/manager/ad.png" alt="Card image"/> 
+                                <img class="genresimg" src="../assets/managerimgs/ad.png" alt="Card image"/> 
                             </div>
                         </h:link>
                     </div>
@@ -64,7 +33,7 @@
                         <h:link class="nav-link" outcome="inventory">
                             <div class="card-body">
                                 <div class="card-title"><h6>#{internationalization.inventory}</h6></div>
-                                <img class="genresimg" src="../assets/manager/box.png" alt="Card image"/>  
+                                <img class="genresimg" src="../assets/managerimgs/box.png" alt="Card image"/>  
                             </div>
                         </h:link> 
                     </div>
@@ -74,7 +43,7 @@
                         <h:link class="nav-link" outcome="sales">
                             <div class="card-body">
                                 <div class="card-title"><h6>#{internationalization.sales}</h6></div>
-                                <img class="genresimg" src="../assets/manager/sales.png" alt="Card image"/>  
+                                <img class="genresimg" src="../assets/managerimgs/sales.png" alt="Card image"/>  
                             </div>
                         </h:link>
                     </div>
@@ -84,7 +53,7 @@
                         <h:link class="nav-link" outcome="clientmngt">
                             <div class="card-body">
                                 <div class="card-title"><h6>#{internationalization.clientmngt}</h6></div>
-                                <img class="genresimg" src="../assets/manager/clients.png" alt="Card image"/>   
+                                <img class="genresimg" src="../assets/managerimgs/clients.png" alt="Card image"/>   
                             </div>
                         </h:link>
 
@@ -95,7 +64,7 @@
                         <h:link class="nav-link" outcome="ordermngt">
                             <div class="card-body">
                                 <div class="card-title"><h6>#{internationalization.ordermngt}</h6></div>
-                                <img class="genresimg" src="../assets/manager/orders.png" alt="Card image"/>  
+                                <img class="genresimg" src="../assets/managerimgs/orders.png" alt="Card image"/>  
                             </div> 
                         </h:link>
                     </div>
@@ -109,7 +78,7 @@
                         <h:link class="nav-link" outcome="reviewmngt">
                             <div class="card-body">
                                 <div class="card-title"><h6>#{internationalization.reviewmngt}</h6></div>
-                                <img class="genresimg" src="../assets/manager/reviews.png" alt="Card image"/> 
+                                <img class="genresimg" src="../assets/managerimgs/reviews.png" alt="Card image"/> 
                             </div>
                         </h:link>
                     </div>
@@ -119,7 +88,7 @@
                         <h:link class="nav-link" outcome="reports">
                             <div class="card-body">
                                 <div class="card-title"><h6>#{internationalization.reporting}</h6></div>
-                                <img class="genresimg" src="../assets/manager/reports.png" alt="Card image"/> 
+                                <img class="genresimg" src="../assets/managerimgs/reports.png" alt="Card image"/> 
                             </div>
                         </h:link>
                     </div>
@@ -129,7 +98,7 @@
                         <h:link class="nav-link" outcome="newsmngt">
                             <div class="card-body">
                                 <div class="card-title"><h6>#{internationalization.newsmngt}</h6></div>
-                                <img class="genresimg" src="../assets/manager/news.png" alt="Card image"/> 
+                                <img class="genresimg" src="../assets/managerimgs/news.png" alt="Card image"/> 
                             </div>
                         </h:link>
                     </div>
@@ -139,7 +108,7 @@
                         <h:link class="nav-link" outcome="surveymngt">
                             <div class="card-body">
                                 <div class="card-title"><h6>#{internationalization.surveymngt}</h6></div>
-                                <img class="genresimg" src="../assets/manager/surveys.png" alt="Card image"/> 
+                                <img class="genresimg" src="../assets/managerimgs/surveys.png" alt="Card image"/> 
                             </div>
                         </h:link>
                     </div>

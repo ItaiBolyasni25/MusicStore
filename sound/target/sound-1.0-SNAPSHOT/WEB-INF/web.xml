@@ -45,7 +45,8 @@
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>Protected Area</web-resource-name>
-            <url-pattern>/faces/manager/*</url-pattern>
+            <url-pattern>/manager/*</url-pattern>
+            <!-- <url-pattern>/faces/manager/*</url-pattern> -->
         </web-resource-collection>
         <auth-constraint>
             <role-name>manager</role-name>

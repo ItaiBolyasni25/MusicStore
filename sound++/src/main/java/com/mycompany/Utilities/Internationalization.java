@@ -336,4 +336,33 @@ public class Internationalization implements Serializable {
     public String getLearnmore(){
         return language.equals("English") ? "Learn more about Sound++": "Apprendre plus sur Sound++";
     }
+    
+    public String getPastnewsfeeds(){
+        return language.equals("English") ? "Past News Feeds": "Derniers Fil d'actualites";
+    }
+    
+    public String getChangenewsfeed(){
+        return language.equals("English") ? "Change News Feed": "Changer Fil d'actualites";
+    }
+    
+    public String getCurrentnewsfeed(){
+        return language.equals("English") ? "Current News Feeds": "Fil d'actualites courant";
+    }
+    
+    public String getRecommendations(){
+        return language.equals("English") ? "Recommended News Feeds": "Fil d'actualites recommandes";
+    }
+    
+    public String getRss(){
+        return language.equals("English") ? "New RSS": "Nouveau RSS";
+    }
+    
+    public String getRequired(){
+        return language.equals("English") ? "This field is required": "Cette section est requise";
+    }
+    
+    public String getInvalidlength(){
+        return language.equals("English") ? "Invalid length minimum 10, maximum 160": "Longueur invalide entre 10 et 160 caracteres";
+    }
+    
 }

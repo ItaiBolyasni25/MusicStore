@@ -15,54 +15,57 @@
     </h:head>
     <h:body>
         <ui:include src="navbar.xhtml" />
-        <h1 class="text-center">#{internationalization.aboutUs}</h1>
-        <h2 class="text-center">#{internationalization.goal}</h2>
-        <p class="text-center">GOAL</p>
-        <h2 class="text-center">#{internationalization.developers}</h2>
-        <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-2">
-                <div class="flip"> 
-                    <div class="front"> 
-                        <img src="assets/about/austin.jpg" alt="" class="aboutimgs"/>
+        <div class="body">
+            <h1 class="text-center">#{internationalization.aboutUs}</h1>
+            <h2 class="text-center">#{internationalization.goal}</h2>
+            <p class="text-center">GOAL</p>
+            <h2 class="text-center">#{internationalization.developers}</h2>
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-2">
+                    <div class="flip"> 
+                        <div class="front"> 
+                            <img src="assets/about/austin.jpg" alt="" class="aboutimgs"/>
+                        </div> 
+                        <div class="back">
+                            <h3>Austin!</h3>
+                        </div> 
                     </div> 
-                    <div class="back">
-                        <h3>Austin!</h3>
+                </div>
+                <div class="col-md-2">
+                    <div class="flip"> 
+                        <div class="front"> 
+                            <img src="assets/about/anna.jpg" alt="" class="aboutimgs"/>
+                        </div> 
+                        <div class="back">
+                            <h3>Anna!</h3>
+                        </div> 
                     </div> 
-                </div> 
-            </div>
-            <div class="col-md-2">
-                <div class="flip"> 
-                    <div class="front"> 
-                        <img src="assets/about/anna.jpg" alt="" class="aboutimgs"/>
+                </div>
+                <div class="col-md-2">
+                    <div class="flip"> 
+                        <div class="front"> 
+                            <img src="assets/about/itai.jpg" alt="" class="aboutimgs"/>
+                        </div> 
+                        <div class="back">
+                            <h3>Itai!</h3>
+                        </div> 
                     </div> 
-                    <div class="back">
-                        <h3>Anna!</h3>
-                    </div> 
-                </div> 
-            </div>
-            <div class="col-md-2">
-                <div class="flip"> 
-                    <div class="front"> 
-                        <img src="assets/about/itai.jpg" alt="" class="aboutimgs"/>
-                    </div> 
-                    <div class="back">
-                        <h3>Itai!</h3>
-                    </div> 
-                </div> 
-            </div>
-            <div class="col-md-2"></div>
+                </div>
+                <div class="col-md-2"></div>
 
 
 
-        </div>
-        <script>
-            $(function () {
-                $(".flip").flip({
-                    trigger: 'hover'
+            </div>
+            <script>
+                $(function () {
+                    $(".flip").flip({
+                        trigger: 'hover'
+                    });
                 });
-            });
-        </script>
+            </script>
+        </div>
+
 
         <!--<ui:include src="footer.xhtml" />-->
     </h:body>

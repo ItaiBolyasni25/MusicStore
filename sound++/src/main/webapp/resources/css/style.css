@@ -258,6 +258,12 @@ section .section-title {
     display: block;
 }
 
+.newsimg{
+    height: 20%;
+    width: 100%;
+    display: block;
+}
+
 .genresimg{
     height: 40%;
     width: 40%;
@@ -346,9 +352,6 @@ button{
 }
 
 .divbackground{
-    background: url('../assets/indexbackground.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
     opacity: 0.5;
 }
 
@@ -378,3 +381,6 @@ button{
     text-align: center;
 }
 
+.backgroundcolor{
+    background-color:#ededed;
+}

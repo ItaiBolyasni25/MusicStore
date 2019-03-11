@@ -92,10 +92,26 @@ public class DAO {
     public void setUserTransaction(UserTransaction ut) {
         this.userTransaction = ut;
     }
-    
-    public <E extends EntityModel> List<E> findWithJoins(E entityModel, String minusquery){
+
+    public <E extends EntityModel> List<E> findWithJoins(E entityModel, String minusquery) {
         String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
         Query q = em.createNativeQuery("SELECT t.* FROM " + className + " t MINUS " + minusquery);
         return q.getResultList();
+    }
+
+    public <E extends EntityModel> void beginTransaction() {
+        try {
+            userTransaction.begin();
+        } catch (NotSupportedException | SystemException ex) {
+            Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public <E extends EntityModel> void commitTransaction() {
+        try {
+            userTransaction.commit();
+        } catch (SystemException | RollbackException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException ex) {
+            Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
