@@ -41,9 +41,6 @@ public class Album implements EntityModel, Serializable {
     }
 
     public List<Artist> getArtists() {
-        for (Artist a : artists) {
-            System.out.println("++++++++++++++++++" + a.getName());
-        }
         return artists;
     }
 

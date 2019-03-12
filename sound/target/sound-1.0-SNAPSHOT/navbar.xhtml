@@ -17,8 +17,8 @@ and open the template in the editor.
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"></link>
 
-
         <h:outputStylesheet library="css" name="style.css"  />
+
         <title>Sound++</title>
     </h:head>
     <ui:composition>
@@ -27,7 +27,8 @@ and open the template in the editor.
             <h:link class="navbar-brand" outcome="index">
                 <h:graphicImage class="logo" value="assets/logonav.PNG" />
             </h:link> 
-
+        <h:outputScript library="js" name="jquery-1.12.4.js" target="head" />
+        <h:outputScript library="js" name="search.js" target="head"/>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -55,7 +56,7 @@ and open the template in the editor.
                     </li>
                 </ul>
 
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown" style="list-style-type:none">
                     <div class="form-group">
                         <h:form class="form-inline my-2 my-lg-0 ml-2">
                             <h:selectOneMenu onchange="submit()" valueChangeListener="#{internationalization.languageChange}"  class="custom-select mr-sm-3 ml-4">
@@ -67,9 +68,33 @@ and open the template in the editor.
                     </div>
                 </li>
 
-                <h:form class="form-inline my-2 my-lg-0">
-                    <h:inputText class="form-control mr-sm-2" value="#{internationalization.search}"/>
-                    <h:commandButton class="btn btn-outline-primary" value="#{internationalization.search}" action="search"/>
+                <h:form class="form-inline my-2 my-lg-0 searchForm" >
+                    <h:panelGroup id="input">
+                        <h:inputText onfocus="showSearchList();" autocomplete="off" id="pattern" class="form-control mr-sm-2 patternTextBox" title="#{internationalization.search}" value="#{AlbumTrackBean.pattern}" >
+                            <f:ajax event="keyup" listener="#{AlbumTrackBean.patternChanged()}" execute="pattern" render="searchList"></f:ajax>
+                        </h:inputText>
+                    </h:panelGroup>
+                    <h:panelGroup id="searchList" class="searchList">
+                        <ul class="list-group">
+                            <ui:repeat value="#{AlbumTrackBean.albums}" var="album">
+                                <li class="list-group-item d-flex justify-content-between align-items-center searchItem"> 
+                                    <h:commandLink  value="#{album.title}" onclick="setPattern(this);">           
+                                        <f:ajax />
+                                    </h:commandLink>
+                                    <span class="badge badge-primary badge-pill">Album</span> 
+                                </li>
+                            </ui:repeat>
+                            <ui:repeat  value="#{AlbumTrackBean.tracks}" var="track">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                     <h:commandLink  value="#{track.title}" onclick="setPattern(this);">           
+                                        <f:ajax />
+                                    </h:commandLink>
+                                    <span class="badge badge-primary badge-pill">Track</span>
+                                </li>
+                            </ui:repeat>
+                        </ul>
+                    </h:panelGroup>
+                    <h:commandButton class="btn btn-outline-primary" value="#{internationalization.search}"  action="#{AlbumTrackBean.redirect()}" />
                 </h:form>
             </div>
         </nav>

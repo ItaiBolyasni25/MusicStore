@@ -8,6 +8,13 @@
         <param-name>javax.faces.DEFAULT_SUFFIX</param-name>
         <param-value>.jsp</param-value>
     </context-param>
+<<<<<<< HEAD
+=======
+     <context-param>
+    <param-name>primefaces.THEME</param-name>
+    <param-value>none</param-value>
+  </context-param>
+>>>>>>> 514443d27e9bdce604b0ec3928e8b165d8f7ae6a
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -19,12 +26,17 @@
     </servlet-mapping>
     <session-config>
         <session-timeout>
+<<<<<<< HEAD
             30
+=======
+            100
+>>>>>>> 514443d27e9bdce604b0ec3928e8b165d8f7ae6a
         </session-timeout>
     </session-config>
     <welcome-file-list>
         <welcome-file>faces/index.xhtml</welcome-file>
     </welcome-file-list>
+<<<<<<< HEAD
     
     
     
@@ -68,4 +80,6 @@
     </login-config>
     
     
+=======
+>>>>>>> 514443d27e9bdce604b0ec3928e8b165d8f7ae6a
 </web-app>

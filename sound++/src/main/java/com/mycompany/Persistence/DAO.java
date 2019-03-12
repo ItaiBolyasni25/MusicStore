@@ -46,9 +46,8 @@ public class DAO {
     }
 
     public <E extends EntityModel> List<E> read(E entityModel, int id) {
-        em.getTransaction().begin();
         String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
-        Query q = em.createQuery("FROM " + className + " WHERE " + className + "_id = '" + id + "'");
+        Query q = em.createQuery("Select a FROM " + className + " a WHERE a." + className.toLowerCase() + "_id = '" + id + "'");
 
         return q.getResultList();
     }
@@ -61,9 +60,10 @@ public class DAO {
         return q.getResultList();
     }
 
-    public <E extends EntityModel> List<E> findWithLimitGenre(E entityModel, int display, String genre) {
+    public <E extends EntityModel> List<E> findWithLimitGenre(E entityModel, int display, String genre, String type, String name) {
         String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
-        Query q = em.createQuery("SELECT a FROM " + className + " a WHERE a.genre = " + genre + " ORDER BY a.title ASC");
+        Query q = em.createQuery("SELECT a FROM " + className + " a WHERE a.genre = '" + genre + "' AND a." +type + "!= :title ORDER BY a.title ASC");
+        q.setParameter("title", name);
         q.setMaxResults(display);
         return q.getResultList();
     }
@@ -71,6 +71,22 @@ public class DAO {
     public <E extends EntityModel> List<E> find(E entityModel, String whereClause) {
         String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
         Query q = em.createQuery("FROM " + className + " identifier WHERE identifier." + whereClause);
+        return q.getResultList();
+    }
+    
+      public <E extends EntityModel> List<E> findWithLimitPattern(E entityModel,int offset, int display, String pattern, String column) {
+        String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
+        Query q = em.createQuery("FROM " + className + " identifier WHERE identifier." + column +" like :pattern ORDER BY identifier.title ASC");
+        q.setParameter("pattern", pattern+"%");
+        if(offset != 0){
+        q.setFirstResult(offset);}
+        q.setMaxResults(display);
+        return q.getResultList();
+    }
+       public <E extends EntityModel> List<E> findWithPattern(E entityModel, String pattern, String column) {
+        String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
+        Query q = em.createQuery("FROM " + className + " identifier WHERE identifier." + column +" like :pattern  ORDER BY identifier.title ASC");
+        q.setParameter("pattern", pattern+"%");
         return q.getResultList();
     }
 

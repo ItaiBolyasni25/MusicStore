@@ -34,7 +34,7 @@ public class TrackPaginationBean implements Serializable {
     private int totalPages;
 
     public TrackPaginationBean() {
-        this.itemPerPage = 10;
+        this.itemPerPage = 12;
         this.currentPage = 1;
 
     }
@@ -45,6 +45,7 @@ public class TrackPaginationBean implements Serializable {
 
     public void setDatalist(List<Track> dataList) {
         this.dataList = dataList;
+        setTotalrows(dataList.size());
     }
 
     public int getOffset() {

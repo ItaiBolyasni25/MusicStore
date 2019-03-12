@@ -27,7 +27,7 @@ public class Track implements EntityModel, Serializable {
     private String songwriter;
     private String play_length;
     private String genre;
-    @ManyToOne(cascade = {CascadeType.ALL})
+    @ManyToOne
     @JoinColumn(name = "album_id", referencedColumnName = "album_id")
     private Album album;
     private double cost;
