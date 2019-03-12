@@ -20,7 +20,7 @@
         <ui:include src="navbar.xhtml" />
         <p id = "top"></p>
         <h:panelGroup id="table" class="grid">
-            <div id="albumTable">
+            <div class="albumTable">
                 <h:panelGrid id = "panel" columns = "3"
                              cellpadding = "55%">
                     <c:forEach var="track" items="#{TrackPaginationBean.datalist}">
@@ -44,7 +44,7 @@
                                         <p>#{internationalization.albumdate} #{track.album.releasedate}</p>
                                     </div>
                                     <f:setPropertyActionListener target="#{selectedTrack.selectedTrack}" value="#{track}" />
-                                    <f:ajax render="result"/></h:commandLink></div></h:form>
+                                   </h:commandLink></div></h:form>
                     </c:forEach>
                 </h:panelGrid>
                 <h:form class="paginationForm">
@@ -71,76 +71,8 @@
                 </h:form>
             </div>
             <script>assignEventsRows();</script>
-        </h:panelGroup>      
-        <div class="card border-light mb-3" id ="info">
-            <h:panelGroup id="result">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><h:link value = "Tracks" id="albumList" /> </li>
-                    <li class="breadcrumb-item active" id="titleTrack">#{selectedTrack.selectedTrack.title}</li>
-                </ol>
-                <div class="card-body">
-                    <p class ="imageContainer"><h:graphicImage value="#{selectedTrack.selectedTrack.album.image}" title="Album's cover" class="albumPic"/></p>
-                    <div class="contentContainer">
-                        <h4 class="card-title" id ="title">#{selectedTrack.selectedTrack.title}</h4>
-                        <p class="card-text" id = "artist"><c:forEach items="#{selectedTrack.selectedTrack.album.artists}" var="artist">
-                                <h:outputText value="#{artist.name}"></h:outputText>             
-                            </c:forEach></p>
-                        <p class="card-text" id = "review"></p>
-                        <hr/>
-                        <p class="card-text" id = "cost"></p>
-                        <form class="form-inline my-2 my-lg-0" id="quantityContainer">
-                            <select class="custom-select">
-                                <option selected="1" value="1">1</option>
-                                <c:forEach var = "i" begin = "2" end = "100">
-                                    <option value="${i}">${i}</option>
-                                </c:forEach>
-                            </select>
-                            <button class="btn btn-secondary my-2 my-sm-0" value ="Add" action = "add">Add</button>
-                        </form>
-                    </div>
-                </div>
-
-                <div class = "detailInfo">
-                    <h5 class="detail">DESCRIPTION</h5>
-                    <hr class="style"/>
-                    <div id="myTabContent" class="tab-content">
-                        <div class="tab-pane fade show active" id="details">
-                            <p id="releasedate"><span class="boldText">Original Release Date: </span>  <h:outputText value="#{selectedTrack.selectedTrack.album.releasedate}"></h:outputText>  </p>
-                            <p id="addeddate"><span class="boldText">Added Date: </span> <h:outputText value="#{selectedTrack.selectedTrack.date_added}"></h:outputText> </p>
-                            <p id="label"><span class="boldText">Label: </span> <h:outputText value="#{selectedTrack.selectedTrack.album.label}"></h:outputText> </p>   
-                            <p id="genre"><span class="boldText">Genre: </span> <h:outputText value="#{selectedTrack.selectedTrack.genre}"></h:outputText> </p>
-                            <p id="songwriter"><span class="boldText">Label: </span> <h:outputText value="#{selectedTrack.selectedTrack.songwriter}"></h:outputText> </p>                       
-                        </div>
-                    </div>
-                    <h5 class="detail">SIMILAR TRACKS</h5>
-                    <hr class="style"/>
-                    <c:choose>
-                        <c:when test="#{selectedTrack.similarTrack.size() > 0}">
-                            <div class="row">
-                                <ui:repeat value="#{selectedTrack.similarTrack}" var="similarTrack">
-                                    <h:form class="column"><div>
-                                            <h:commandLink action="#{selectedTrack.editDataItem()}">
-                                                <h:graphicImage value="#{similarTrack.album.image}" title="Album's cover" class="trackPic"/><br/>
-                                                <br/><h:outputText  value=" #{similarTrack.title}"/><br/>
-                                                <f:setPropertyActionListener target="#{selectedTrack.selectedTrack}" value="#{similarTrack}" />
-                                                <f:ajax render="result"/>
-                                            </h:commandLink>
-                                            <ui:repeat var="artist" value="#{similarTrack.album.artists}">
-                                                <h:outputText value="#{artist.name}"></h:outputText>     
-                                            </ui:repeat><br/>
-                                            <h:outputText value="CAD #{similarTrack.cost}"></h:outputText><br/>
-                                        </div></h:form></ui:repeat>                    
-                            </div>
-                        </c:when>
-                        <c:otherwise>
-                        </c:otherwise>
-                    </c:choose>
-                    <h5 class="detail">REVIEWS</h5>
-                    <hr class="style"/>
-                </div>
-                <script>setAlbumList(); setAlbumVisible();</script>
-            </h:panelGroup> 
-        </div>
+        </h:panelGroup> 
+        
         <ui:include src="footer.xhtml" />
     </h:body>
 </html>

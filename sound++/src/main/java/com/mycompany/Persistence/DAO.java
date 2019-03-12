@@ -76,9 +76,18 @@ public class DAO {
         return q.getResultList();
     }
     
-      public <E extends EntityModel> List<E> findWithPattern(E entityModel, String pattern, String column) {
+      public <E extends EntityModel> List<E> findWithLimitPattern(E entityModel,int offset, int display, String pattern, String column) {
         String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
-        Query q = em.createQuery("FROM " + className + " identifier WHERE identifier." + column +" like :pattern");
+        Query q = em.createQuery("FROM " + className + " identifier WHERE identifier." + column +" like :pattern ORDER BY identifier.title ASC");
+        q.setParameter("pattern", pattern+"%");
+        if(offset != 0){
+        q.setFirstResult(offset);}
+        q.setMaxResults(display);
+        return q.getResultList();
+    }
+       public <E extends EntityModel> List<E> findWithPattern(E entityModel, String pattern, String column) {
+        String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
+        Query q = em.createQuery("FROM " + className + " identifier WHERE identifier." + column +" like :pattern  ORDER BY identifier.title ASC");
         q.setParameter("pattern", pattern+"%");
         return q.getResultList();
     }

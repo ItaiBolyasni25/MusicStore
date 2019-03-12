@@ -15,14 +15,16 @@
         <h:outputStylesheet library="css" name="style.css"  />
         <h:outputScript library="js" name="jquery-1.12.4.js" />
         <h:outputScript library="js" name="itemInfo.js" />
-
+    <f:metadata>
+        <f:viewAction action="#{AlbumPaginationBean.initialize()}" />
+    </f:metadata>
         <title>Sound++</title>
     </h:head>
     <h:body>
         <ui:include src="navbar.xhtml" />
         <p id = "top"></p>
         <h:panelGroup id="table" class="grid">
-            <div id="albumTable">
+            <div class="albumTable">
                 <h:panelGrid id = "panel" columns = "3"
                              cellpadding = "55%">
                     <c:forEach var="album" items="#{AlbumPaginationBean.datalist}">

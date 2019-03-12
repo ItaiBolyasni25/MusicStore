@@ -59,7 +59,7 @@ a{
     cursor: pointer;
 }
 
-#albumTable{
+.albumTable{
     width: 73.5%;
     margin-left: 13.5%;
 }
