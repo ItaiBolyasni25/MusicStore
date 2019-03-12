@@ -37,6 +37,15 @@ public class Album implements EntityModel, Serializable {
     private String title;
     private Date release_date;
     private Date date_added;
+//
+//    public Cart getCart() {
+//        return cart;
+//    }
+//
+//    public void setCart(Cart cart) {
+//        this.cart = cart;
+//    }
+//    
     public Album(){
         super();
     }

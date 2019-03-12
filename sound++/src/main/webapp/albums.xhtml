@@ -46,6 +46,11 @@
                             </td>
                             <td>#{album.numberofsong}</td>
                             <td>#{album.cost}</td>
+                            <td>   
+                                <h:form>
+                                    <h:commandLink class="btn btn-primary" value="buy" actionListener="#{cartController.addAlbum(album,user)}"/>
+                                </h:form>
+                            </td>
                         </tr>
                     </ui:repeat>
                 </tbody>
@@ -99,7 +104,6 @@
                                 <option value="${i}">${i}</option>
                             </c:forEach>
                         </select>
-                        <button class="btn btn-secondary my-2 my-sm-0" value ="Add" action = "add">Add</button>
                     </form>
                 </div>
             </div>

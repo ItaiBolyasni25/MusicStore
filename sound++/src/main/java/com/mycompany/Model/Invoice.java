@@ -8,10 +8,12 @@ package com.mycompany.Model;
 import com.mycompany.Interface.EntityModel;
 import java.io.Serializable;
 import java.sql.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -31,7 +33,8 @@ public class Invoice implements EntityModel, Serializable {
     public double hst;
     public double pst;
     public double total_gross;
-    @OneToOne(mappedBy="user_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private User user;
 
     public int getInvoice_id() {

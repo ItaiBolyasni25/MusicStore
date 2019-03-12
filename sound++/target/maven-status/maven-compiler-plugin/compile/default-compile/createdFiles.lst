@@ -1,7 +1,0 @@
-com\mycompany\Model\Track.class
-com\mycompany\Model\User.class
-com\mycompany\Model\Artist.class
-com\mycompany\Utilities\Internationalization.class
-com\mycompany\Model\Album.class
-com\mycompany\Model\Survey.class
-com\mycompany\Interface\EntityModel.class

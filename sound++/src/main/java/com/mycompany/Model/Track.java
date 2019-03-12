@@ -37,6 +37,8 @@ public class Track implements EntityModel, Serializable {
     private boolean individual;
     private boolean removal_status;
     private Date removal_date;
+    @OneToOne(mappedBy="track")
+    private Cart cart;
 
     public Track() {
         super();

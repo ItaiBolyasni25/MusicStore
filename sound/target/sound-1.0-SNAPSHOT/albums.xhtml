@@ -16,8 +16,6 @@
         <title>Sound++</title>
     </h:head>
     <h:body>
-<<<<<<< HEAD
-<<<<<<< HEAD
         <ui:include src="navbar.xhtml" />
 
         <div id="albumTable">
@@ -48,6 +46,11 @@
                             </td>
                             <td>#{album.numberofsong}</td>
                             <td>#{album.cost}</td>
+                            <td>   
+                                <h:form>
+                                    <h:commandLink class="btn btn-primary" value="buy" actionListener="#{cartController.addAlbum(album,user)}"/>
+                                </h:form>
+                            </td>
                         </tr>
                     </ui:repeat>
                 </tbody>
@@ -101,12 +104,10 @@
                                 <option value="${i}">${i}</option>
                             </c:forEach>
                         </select>
-                        <button class="btn btn-secondary my-2 my-sm-0" value ="Add" action = "add">Add</button>
                     </form>
                 </div>
             </div>
 
-<<<<<<< HEAD
             <div class = "detailInfo">
                 <h5 class="detail">DESCRIPTION</h5>
                 <hr class="style"></hr>
@@ -115,17 +116,6 @@
                         <p id="releasedate"><span class="boldText">Original Release Date: </span></p>
                         <p id="addeddate"><span class="boldText">Added Date: </span></p>
                         <p id="label"><span class="boldText">Label: </span></p>                       
-=======
-                <li class="nav-item dropdown">
-                    <div class="form-group">
-                        <h:form class="form-inline my-2 my-lg-0 ml-2">
-                            <h:selectOneMenu onchange="submit()" valueChangeListener="#{internationalization.languageChange}"  class="custom-select mr-sm-3 ml-4">
-                                <f:selectItem itemValue="en" itemLabel="#{internationalization.english}" />
-                                <f:selectItem itemValue="fr" itemLabel="#{internationalization.french}" />
-                            </h:selectOneMenu> 
-                        </h:form>
-
->>>>>>> code form for survey management
                     </div>
                 </div>
                 <hr class="style"></hr>
@@ -151,43 +141,6 @@
                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
              </div>
          </div> -->
-=======
-
-=======
-
->>>>>>> 5bbcbb5f9a2e78cb3053e482470ea793c07fee59
-        <ui:include src="navbar.xhtml" />
-
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th scope="col">#{internationalization.albumimage}</th>
-                    <th scope="col">#{internationalization.albumtitle}</th>
-                    <th scope="col">#{internationalization.artist}</th>
-                    <th scope="col">#{internationalization.albumdate}</th>
-                    <th scope="col">#{internationalization.numberSongs}</th>
-                    <th scope="col">#{internationalization.cost}</th>
-                </tr>
-            </thead>
-            <tbody>
-                <ui:repeat var="album" value="#{albumBean.all}" > 
-                    <tr class="table-secondary">
-                        <th><h:graphicImage value="#{album.image}" title="Album's cover" class="albumPic"/></th>
-                        <td>#{album.title}</td>
-                        <td>Updating</td>
-                        <td>
-                            <h:outputText value="#{album.releaseDate}">
-                                <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
-                            </h:outputText>
-                        </td>
-                        <td>#{album.numberOfSong}</td>
-                        <td>#{album.cost}</td>
-                    </tr>
-                </ui:repeat>
-
-            </tbody>
-        </table> 
->>>>>>> change layout survey management and index
         <ui:include src="footer.xhtml" />
     </h:body>
 </html>

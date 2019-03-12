@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.2.1/lux/bootstrap.min.css" />
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -18,43 +19,32 @@
             <div class="col-md-3 order-md-2 mb-4 ml-3 mt-4" style="margin-top: 10%">
                 <h4 class="d-flex justify-content-between align-items-center mb-3">
                     <span class="text-muted">Your cart</span>
-                    <span class="badge badge-secondary badge-pill">3</span>
+                    <span class="badge badge-secondary badge-pill">#{cartController.getCartItems(user).size()}</span>
                 </h4>
                 <ul class="list-group mb-3">
-                    <li class="list-group-item d-flex justify-content-between lh-condensed">
-                        <div>
-                            <h6 class="my-0">Product name</h6>
-                            <small class="text-muted">Brief description</small>
-                        </div>
-                        <span class="text-muted">$12</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between lh-condensed">
-                        <div>
-                            <h6 class="my-0">Second product</h6>
-                            <small class="text-muted">Brief description</small>
-                        </div>
-                        <span class="text-muted">$8</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between lh-condensed">
-                        <div>
-                            <h6 class="my-0">Third item</h6>
-                            <small class="text-muted">Brief description</small>
-                        </div>
-                        <span class="text-muted">$5</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between bg-light">
-                        <div class="text-success">
-                            <h6 class="my-0">Promo code</h6>
-                            <small>EXAMPLECODE</small>
-                        </div>
-                        <span class="text-success">-$5</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between">
-                        <span>Total (USD)</span>
-                        <strong>$20</strong>
-                    </li>
-                </ul>
+                    <ui:repeat var="cartItem" value="#{cartController.getCartItems2(user)}">
+                        <li class="list-group-item d-flex justify-content-between lh-condensed" id="liHover">
+                            <div>
+                                <c:if test="#{empty cartItem.track}">
+                                    <h6 class="my-0">#{cartItem.album.title}</h6>
+                                </c:if>
+                                <c:if test="#{not empty cartItem.track}">
+                                    <small class="text-muted">#{cartItem.track.title}</small>
+                                </c:if>
 
+                            </div>
+                            <c:if test="#{empty cartItem.track}">
+                                <span>#{cartItem.album.cost}$</span>
+                            </c:if>
+
+                            <c:if test="#{not empty cartItem.track}">
+                                <span>#{cartController.addPrice(cartItem.track.cost)}$</span>
+                            </c:if>
+                            
+                        </li>
+                    </ui:repeat>
+                </ul>
+                
                 <form class="card p-2">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Promo code"></input>
@@ -63,6 +53,7 @@
                         </div>
                     </div>
                 </form>
+                <h5 class="text-secondary" style="margin-top: 15px; margin-left: 5px">Total price: 35.77</h5>
             </div>
             <div class="col-md-8 order-md-1 ml-5 mt-4">
                 <h4 class="mb-3">Billing address</h4>

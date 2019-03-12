@@ -1,3 +1,4 @@
+
 drop database songstore;
 create database songstore;
 DROP USER IF EXISTS songstore@localhost;
@@ -6,10 +7,10 @@ GRANT ALL ON songstore.* TO songstore@'localhost';
 FLUSH PRIVILEGES;
 Use songstore;
 CREATE TABLE Album (
-    albumId int NOT NULL auto_increment,
+    album_id int NOT NULL auto_increment,
     title varchar(256) NOT NULL,
     release_date date NOT NULL,
-    recording_label varchar(30) NOT NULL,
+    recording_label varchar(256) NOT NULL,
     number_songs int NOT NULL,
     date_added date NOT NULL,
     cost double(4,2) NOT NULL,
@@ -17,20 +18,15 @@ CREATE TABLE Album (
     sale_price double(4,2) NULL,
     removal_status bool NOT NULL,
     removal_date date NULL,
-<<<<<<< HEAD
-    image blob NULL,
-    CONSTRAINT Album_pk PRIMARY KEY (albumId)
-=======
     image varchar(250) NULL,
     genre varchar(256) NOT NULL,
     CONSTRAINT Album_pk PRIMARY KEY (album_id)
->>>>>>> 6af446d1ee7967f7aef2c18d6d293b6435e8e6f0
 );
 
 -- Table: Album_Review
 CREATE TABLE Album_Review (
     album_review_id int NOT NULL auto_increment,
-    albumId int NOT NULL,
+    album_id int NOT NULL,
     review_id int NOT NULL,
     CONSTRAINT Album_Review_pk PRIMARY KEY (album_review_id)
 );
@@ -42,29 +38,20 @@ CREATE TABLE Artist (
     CONSTRAINT Artist_pk PRIMARY KEY (artist_id)
 );
 
-<<<<<<< HEAD
--- Table: Artist_Album
-CREATE TABLE Artist_Album (
-    artist_albumId int NOT NULL auto_increment,
-    artist_id int NOT NULL,
-    albumId int NOT NULL,
-    CONSTRAINT Artist_Album_pk PRIMARY KEY (artist_albumId)
-=======
 -- Table: album_artist
 CREATE TABLE album_artist (
     album_artist_id int NOT NULL auto_increment,
     artist_id int NOT NULL,
     album_id int NOT NULL,
     CONSTRAINT album_artist_pk PRIMARY KEY (album_artist_id)
->>>>>>> 6af446d1ee7967f7aef2c18d6d293b6435e8e6f0
 );
 
 -- Table: Cart
 CREATE TABLE Cart (
     cart_id int NOT NULL auto_increment,
     user_id int NOT NULL,
-    track_id int NOT NULL,
-    album_id int NOT NULL,
+    track_id int NULL,
+    album_id int NULL,
     CONSTRAINT Cart_pk PRIMARY KEY (cart_id)
 );
 
@@ -99,7 +86,7 @@ CREATE TABLE `Order` (
     invoice_id int NOT NULL,
     price int NOT NULL,
     track_id int NOT NULL,
-    albumId int NOT NULL,
+    album_id int NOT NULL,
     CONSTRAINT Order_pk PRIMARY KEY (order_id)
 );
 
@@ -145,13 +132,8 @@ CREATE TABLE Track (
     title varchar(256) NOT NULL,
     songwriter varchar(256) NOT NULL,
     play_length varchar(256) NOT NULL,
-<<<<<<< HEAD
-    genre varchar(30) NOT NULL,
-    albumId int NOT NULL,
-=======
     genre varchar(256) NOT NULL,
     album_id int NOT NULL,
->>>>>>> 6af446d1ee7967f7aef2c18d6d293b6435e8e6f0
     cost double(4,2) NOT NULL,
     list_price double(4,2) NULL,
     sale_price double(4,2) NULL,
@@ -196,8 +178,8 @@ CREATE TABLE User (
 
 -- foreign keys
 -- Reference: Album_Review_Album (table: Album_Review)
-ALTER TABLE Album_Review ADD CONSTRAINT Album_Review_Album FOREIGN KEY Album_Review_Album (albumId)
-    REFERENCES Album (albumId);
+ALTER TABLE Album_Review ADD CONSTRAINT Album_Review_Album FOREIGN KEY Album_Review_Album (album_id)
+    REFERENCES Album (album_id);
 
 -- Reference: Album_Review_Review (table: Album_Review)
 ALTER TABLE Album_Review ADD CONSTRAINT Album_Review_Review FOREIGN KEY Album_Review_Review (review_id)
@@ -224,8 +206,8 @@ ALTER TABLE News ADD CONSTRAINT News_User FOREIGN KEY News_User (user_id)
     REFERENCES User (user_id);
 
 -- Reference: Order_Album (table: Order)
-ALTER TABLE `Order` ADD CONSTRAINT Order_Album FOREIGN KEY Order_Album (albumId)
-    REFERENCES Album (albumId);
+ALTER TABLE `Order` ADD CONSTRAINT Order_Album FOREIGN KEY Order_Album (album_id)
+    REFERENCES Album (album_id);
 
 -- Reference: Order_Invoice (table: Order)
 ALTER TABLE `Order` ADD CONSTRAINT Order_Invoice FOREIGN KEY Order_Invoice (invoice_id)
@@ -252,8 +234,8 @@ ALTER TABLE Survey ADD CONSTRAINT Survey_User FOREIGN KEY Survey_User (created_b
     REFERENCES User (user_id);
 
 -- Reference: Track_Album (table: Track)
-ALTER TABLE Track ADD CONSTRAINT Track_Album FOREIGN KEY Track_Album (albumId)
-    REFERENCES Album (albumId);
+ALTER TABLE Track ADD CONSTRAINT Track_Album FOREIGN KEY Track_Album (album_id)
+    REFERENCES Album (album_id);
 
 -- Reference: Track_Review_Review (table: Track_Review)
 ALTER TABLE Track_Review ADD CONSTRAINT Track_Review_Review FOREIGN KEY Track_Review_Review (review_id)
@@ -263,21 +245,12 @@ ALTER TABLE Track_Review ADD CONSTRAINT Track_Review_Review FOREIGN KEY Track_Re
 ALTER TABLE Track_Review ADD CONSTRAINT Track_Review_Track FOREIGN KEY Track_Review_Track (track_id)
     REFERENCES Track (track_id);
 
-<<<<<<< HEAD
--- Reference: artist_album_Album (table: Artist_Album)
-ALTER TABLE Artist_Album ADD CONSTRAINT artist_album_Album FOREIGN KEY artist_album_Album (albumId)
-    REFERENCES Album (albumId);
-
--- Reference: artist_album_Artist (table: Artist_Album)
-ALTER TABLE Artist_Album ADD CONSTRAINT artist_album_Artist FOREIGN KEY artist_album_Artist (artist_id)
-=======
 -- Reference: album_artist_Album (table: album_artist)
 ALTER TABLE album_artist ADD CONSTRAINT album_artist_Album FOREIGN KEY album_artist_Album (album_id)
     REFERENCES Album (album_id);
 
 -- Reference: album_artist_Artist (table: album_artist)
 ALTER TABLE album_artist ADD CONSTRAINT album_artist_Artist FOREIGN KEY album_artist_Artist (artist_id)
->>>>>>> 6af446d1ee7967f7aef2c18d6d293b6435e8e6f0
     REFERENCES Artist (artist_id);
 
 -- End of file.

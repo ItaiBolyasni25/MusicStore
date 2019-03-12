@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import com.mycompany.Interface.EntityModel;
+import javax.persistence.OneToOne;
 
 /**
  * Entity class for a user
@@ -28,6 +29,23 @@ public class User implements Serializable, EntityModel {
     private Integer user_id;
     private String title;
     private String lastname;
+
+
+    public boolean isIs_manager() {
+        return is_manager;
+    }
+
+    public void setIs_manager(boolean is_manager) {
+        this.is_manager = is_manager;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
 
     public Integer getUser_id() {
         return user_id;
@@ -88,10 +106,6 @@ public class User implements Serializable, EntityModel {
         this.country = country;
         this.cellphone = cellphone;
         this.home_telephone = homephone;
-    }
-
-    public Integer getUser_Id() {
-        return user_id;
     }
 
     public void setUser_Id(Integer user_id) {
@@ -202,8 +216,8 @@ public class User implements Serializable, EntityModel {
         this.home_telephone = homephone;
     }
 
-    @Override
-    public String toString() {
-        return this.email;
-    }
+//    @Override
+//    public String toString() {
+//        return this.email;
+//    }
 }

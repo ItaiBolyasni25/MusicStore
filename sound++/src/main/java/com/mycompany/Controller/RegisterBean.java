@@ -6,17 +6,18 @@ import com.mycompany.Model.User;
 import java.io.Serializable;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 /**
  * ManagedBean for registering a user
- * 
+ *
  * @author aantoine97
  */
-
 @Named(value = "registerBean")
-@SessionScoped 
-public class RegisterBean implements Serializable{
+@SessionScoped
+public class RegisterBean implements Serializable {
+
     private String firstName;
     private String lastName;
     private String email;
@@ -30,16 +31,16 @@ public class RegisterBean implements Serializable{
     private String country;
     private String cellphone;
     private String homephone;
-    
+
     // Holds logged in user's name
     private User loggedIn;
-    
+
     // Will be set to true if user tries to register with existing email
     private boolean invalidEmail;
-    
+
     @Inject
     private DAO DAO;
-    
+
     public String getFirstName() {
         return firstName;
     }
@@ -143,33 +144,35 @@ public class RegisterBean implements Serializable{
     public void setHomephone(String homephone) {
         this.homephone = homephone;
     }
-    
+
     public User getLoggedIn() {
         return loggedIn;
     }
-    
+
     public boolean getInvalidEmail() {
         return invalidEmail;
     }
-    
+
     /**
      * If credentials are valid, add the newly registered user to the database
-     * 
+     *
      * @return String page to redirect to
      */
     public String addUser() {
-        User user = new User(firstName, lastName, email, password, companyName, 
-            address1, postalCode, address2, city, province, country, cellphone, 
-            homephone);
+        User user = new User(firstName, lastName, email, password, companyName,
+                address1, postalCode, address2, city, province, country, cellphone,
+                homephone);
 
         if (!Validator.emailExists(user, DAO)) {
-           DAO.write(user);
-           loggedIn = user;
-           invalidEmail = false;
-           return "index.xhtml";
+            user = DAO.write(user);
+            loggedIn = user;
+            invalidEmail = false;
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", user);
+
+            return "index.xhtml";
         } else {
             invalidEmail = true;
             return "login.xhtml";
-        } 
+        }
     }
 }

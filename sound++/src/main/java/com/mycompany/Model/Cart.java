@@ -7,11 +7,14 @@ package com.mycompany.Model;
 
 import com.mycompany.Interface.EntityModel;
 import java.io.Serializable;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import static javax.persistence.GenerationType.*;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -22,15 +25,21 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Cart")
 public class Cart implements EntityModel, Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public int cart_id;
-    @OneToOne(mappedBy="user_id")
-    public User user;
-    @OneToOne(mappedBy="track_id")
-    public Track track;
-    @OneToOne(mappedBy="album_id")
-    public Album album;
+    private int cart_id;
+    @OneToOne(cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "user_id")
+    private User user;
+    @OneToOne(cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "track_id", referencedColumnName = "track_id", nullable=true)
+    private Track track;
+    @OneToOne(cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "album_id", referencedColumnName = "album_id", nullable=true)
+    private Album album;
+    
+    
 
     public int getCart_id() {
         return cart_id;
@@ -63,7 +72,5 @@ public class Cart implements EntityModel, Serializable {
     public void setAlbum(Album album) {
         this.album = album;
     }
-    
-   
-    
+
 }
