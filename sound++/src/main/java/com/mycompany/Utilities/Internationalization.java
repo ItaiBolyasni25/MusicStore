@@ -308,61 +308,92 @@ public class Internationalization implements Serializable {
     public String getTitle() {
         return language.equals("English") ? "Title" : "Titre";
     }
-    
-    public String getSurveyuser(){
+
+    public String getSurveyuser() {
         return language.equals("English") ? "Log In or Sign up to complete surveys about your favourites artists" : "Connectez ou enregistrez vous pour repondre a different sondages sur vos artistes favoris";
     }
-    
-    public String getSubmit(){
-        return language.equals("English") ? "Submit": "Completer";
+
+    public String getSubmit() {
+        return language.equals("English") ? "Submit" : "Completer";
+    }
+
+    public String getGoal() {
+        return language.equals("English") ? "Our Goal" : "Notre Mission";
+    }
+
+    public String getAboutUs() {
+        return language.equals("English") ? "About us" : "A propos de nous";
+    }
+
+    public String getDevelopers() {
+        return language.equals("English") ? "Our Developers" : "Nos Developpeurs";
+    }
+
+    public String getDevices() {
+        return language.equals("English") ? "Accessible in all devices" : "Accessuble dans tous les appareils";
+    }
+
+    public String getLearnmore() {
+        return language.equals("English") ? "Learn more about Sound++" : "Apprendre plus sur Sound++";
+    }
+
+    public String getPastnewsfeeds() {
+        return language.equals("English") ? "Past News Feeds" : "Derniers Fil d'actualites";
+    }
+
+    public String getChangenewsfeed() {
+        return language.equals("English") ? "Change News Feed" : "Changer Fil d'actualites";
+    }
+
+    public String getCurrentnewsfeed() {
+        return language.equals("English") ? "Current News Feeds" : "Fil d'actualites courant";
+    }
+
+    public String getRecommendations() {
+        return language.equals("English") ? "Recommended News Feeds" : "Fil d'actualites recommandes";
+    }
+
+    public String getRss() {
+        return language.equals("English") ? "New RSS" : "Nouveau RSS";
+    }
+
+    public String getRequired() {
+        return language.equals("English") ? "This field is required" : "Cette section est requise";
+    }
+
+    public String getInvalidlength() {
+        return language.equals("English") ? "Invalid length minimum 10, maximum 160" : "Longueur invalide entre 10 et 160 caracteres";
     }
     
-    public String getGoal(){
-        return language.equals("English") ? "Our Goal": "Notre Mission";
+    public String getSlogan(){
+        return language.equals("English") ? "When words fail, music speaks." : "Quand les mots manquent, la musique parle.";
+    }
+
+    public String getAboutText1() {
+        return language.equals("English")
+                ? "Sound++ makes it easy to find the right music for any moment on any device"
+                : "Sound++ permet l'access facile a la bonne musique dans n'importe quel moment sur n'importe quel appareil."
+                ;
     }
     
-    public String getAboutUs(){
-        return language.equals("English") ? "About us": "A propos de nous";
+    public String getAboutText2() {
+        return language.equals("English")
+                ? "We have an imense variety of albums, tracks and artists for everyone."
+                : "Nous avons une immense variete de chansons, albums et artistes pour tout le monde. "
+                ;
     }
     
-    public String getDevelopers(){
-        return language.equals("English") ? "Our Developers": "Nos Developpeurs";
+    public String getAboutText3() {
+        return language.equals("English")
+                ? " Whether you’re partying, relaxing or working, the right music is at every moment a click away."
+                : "Ce soit pour faire la fete, relaxer ou travailler, A tout moment vous etes a un click de la bonne musique."
+                ;
     }
-    
-    public String getDevices(){
-        return language.equals("English") ? "Accessible in all devices": "Accessuble dans tous les appareils";
+
+    public String getAboutText4() {
+        return language.equals("English")
+                ? "You will also know the latest news about your favourite artists and you can prove your extensive knowledge in music through different surveys."
+                : "Vous allez aussi en savoir les dernieres nouvelles de vos artistes favoris et vous pouvez prendre des questionnaires pour en demontrer vos connaissances."
+                ;
     }
-    
-    public String getLearnmore(){
-        return language.equals("English") ? "Learn more about Sound++": "Apprendre plus sur Sound++";
-    }
-    
-    public String getPastnewsfeeds(){
-        return language.equals("English") ? "Past News Feeds": "Derniers Fil d'actualites";
-    }
-    
-    public String getChangenewsfeed(){
-        return language.equals("English") ? "Change News Feed": "Changer Fil d'actualites";
-    }
-    
-    public String getCurrentnewsfeed(){
-        return language.equals("English") ? "Current News Feeds": "Fil d'actualites courant";
-    }
-    
-    public String getRecommendations(){
-        return language.equals("English") ? "Recommended News Feeds": "Fil d'actualites recommandes";
-    }
-    
-    public String getRss(){
-        return language.equals("English") ? "New RSS": "Nouveau RSS";
-    }
-    
-    public String getRequired(){
-        return language.equals("English") ? "This field is required": "Cette section est requise";
-    }
-    
-    public String getInvalidlength(){
-        return language.equals("English") ? "Invalid length minimum 10, maximum 160": "Longueur invalide entre 10 et 160 caracteres";
-    }
-    
 }

@@ -99,18 +99,12 @@ public class DAO {
         return q.getResultList();
     }
 
-    public <E extends EntityModel> void beginTransaction() {
+    public <E extends EntityModel> void updateEntity(E entityModel) {
         try {
             userTransaction.begin();
-        } catch (NotSupportedException | SystemException ex) {
-            Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    public <E extends EntityModel> void commitTransaction() {
-        try {
+            em.merge(entityModel);
             userTransaction.commit();
-        } catch (SystemException | RollbackException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException ex) {
+        }  catch ( RollbackException | NotSupportedException | SystemException |  HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException ex) {
             Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

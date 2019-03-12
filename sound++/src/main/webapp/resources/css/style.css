@@ -384,3 +384,13 @@ button{
 .backgroundcolor{
     background-color:#ededed;
 }
+
+.aboutimg{
+    width: 100%;
+    height: auto;
+}
+
+.aboutimgs{
+    width: auto;
+    height: 100%;
+}

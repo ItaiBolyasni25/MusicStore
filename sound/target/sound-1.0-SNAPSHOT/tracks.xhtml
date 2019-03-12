@@ -16,196 +16,73 @@
         <h:outputScript library="js" name="trackInfo.js" />
         <title>Sound++</title>
     </h:head>
-    <h:body>
-<<<<<<< HEAD
+    <h:body class="backgroundcolor">
         <ui:include src="navbar.xhtml" />
-=======
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-            <a class="navbar-brand" href="#"><img id="logo" src="assets/logo.png" alt="Logo of online music store Sound++"></img></a>
-
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarColor03">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <h:link class="nav-link" value="#{internationalization.home}" outcome="index"/>
-                    </li>
-                    <li class="nav-item">
-                        <h:link class="nav-link" value="#{internationalization.albums}" outcome="albums"/>
-                    </li>
-                    <li class="nav-item">
-                        <h:link class="nav-link" value="#{internationalization.tracks}" outcome="tracks"/>
-                    </li>
-                    <li class="nav-item">
-                        <h:link class="nav-link" value="#{internationalization.about}" outcome="about"/>
-                    </li>
-                    <li class="nav-item">
-                        <h:link class="nav-link" value="#{internationalization.login}" outcome="login"/>
-                    </li>
-                    <li class="nav-item">
-                        <h:link class="nav-link" value="#{internationalization.cart}" outcome="cart"/>
-                    </li>
-                </ul>
-
-                <li class="nav-item dropdown">
-                    <div class="form-group">
-                        <h:form class="form-inline my-2 my-lg-0 ml-2">
-                            <h:selectOneMenu onchange="submit()" valueChangeListener="#{internationalization.languageChange}"  class="custom-select mr-sm-3 ml-4">
-                                <f:selectItem itemValue="en" itemLabel="#{internationalization.english}" />
-                                <f:selectItem itemValue="fr" itemLabel="#{internationalization.french}" />
-                            </h:selectOneMenu> 
-                        </h:form>
-
-                    </div>
-                </li>
-
-                <h:form class="form-inline my-2 my-lg-0">
-                    <h:inputText class="form-control mr-sm-2" value="#{internationalization.search}"/>
-                    <h:commandButton class="btn btn-outline-primary" value="#{internationalization.search}" action="search"/>
-                </h:form>
-            </div>
-        </nav>
->>>>>>> code form for survey management
-
-         <div id ="trackTable">
-        <table class="table table-hover">
-            <thead>
-<<<<<<< HEAD
-              <tr>
-                <th scope="col">#{internationalization.albumimage}</th>
-                <th scope="col">#{internationalization.songtitle}</th>
-                <th scope="col">#{internationalization.albumtitle}</th>
-                <th scope="col">#{internationalization.artist}</th>
-                <th scope="col">#{internationalization.songdate}</th>
-                <th scope="col">#{internationalization.playlength}</th>
-                <th scope="col">#{internationalization.cost}</th>
-                <th>Add to cart</th>
-              </tr>
-=======
-<<<<<<< HEAD
-=======
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-
-            <a class="navbar-brand" href="#"><img id="logo" src="assets/logo.png" alt="Logo of online music store Sound++"></img></a>
-
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarColor03">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <h:link class="nav-link" value="#{internationalization.home}" outcome="index"/>
-                    </li>
-                    <li class="nav-item">
-                        <h:link class="nav-link" value="#{internationalization.albums}" outcome="albums"/>
-                    </li>
-                    <li class="nav-item">
-                        <h:link class="nav-link" value="#{internationalization.tracks}" outcome="tracks"/>
-                    </li>
-                    <li class="nav-item">
-                        <h:link class="nav-link" value="#{internationalization.about}" outcome="about"/>
-                    </li>
-                    <li class="nav-item">
-                        <h:link class="nav-link" value="#{internationalization.login}" outcome="login"/>
-                    </li>
-                    <li class="nav-item">
-                        <h:link class="nav-link" value="#{internationalization.cart}" outcome="cart"/>
-                    </li>
-                </ul>
-
-                <li class="nav-item dropdown">
-                    <div class="form-group">
-                        <h:form class="form-inline my-2 my-lg-0 ml-2">
-                            <h:selectOneMenu onchange="submit()" valueChangeListener="#{internationalization.languageChange}"  class="custom-select mr-sm-3 ml-4">
-                                <f:selectItem itemValue="en" itemLabel="#{internationalization.english}" />
-                                <f:selectItem itemValue="fr" itemLabel="#{internationalization.french}" />
-                            </h:selectOneMenu> 
-                        </h:form>
-
-                    </div>
-                </li>
-
-                <h:form class="form-inline my-2 my-lg-0">
-                    <h:inputText class="form-control mr-sm-2" value="#{internationalization.search}"/>
-                    <h:commandButton class="btn btn-outline-primary" value="#{internationalization.search}" action="search"/>
-                </h:form>
-            </div>
-        </nav>
-
-        <table class="table table-hover">
-            <thead>
->>>>>>> 5bbcbb5f9a2e78cb3053e482470ea793c07fee59
-                <tr>
-                    <th scope="col">#{internationalization.albumimage}</th>
-                    <th scope="col">#{internationalization.songtitle}</th>
-                    <th scope="col">#{internationalization.albumtitle}</th>
-                    <th scope="col">#{internationalization.artist}</th>
-                    <th scope="col">#{internationalization.songdate}</th>
-                    <th scope="col">#{internationalization.playlength}</th>
-                    <th scope="col">#{internationalization.cost}</th>
-                </tr>
-<<<<<<< HEAD
->>>>>>> code form for survey management
-=======
->>>>>>> 69ef0b16e0abf174e5f74d549254992bd1636228
->>>>>>> 5bbcbb5f9a2e78cb3053e482470ea793c07fee59
-            </thead>
-            <tbody>
-                <ui:repeat var="tr" value="#{TrackPaginationBean.datalist}" > 
-                    <tr class="table-secondary" id="${tr.id}">
-                        <th><h:graphicImage value="#{tr.album.image}" title="Album's cover" class="trackPic"/></th>
-                        <td>#{tr.title}</td>
-                        <td>#{tr.album.title}</td>
-                        <td>Updating</td>
-                        <td>
-                            <h:outputText value="#{tr.date_added}">
-                                <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
-                            </h:outputText>
-                        </td>
-                        <td>#{tr.play_length}</td>
-                        <td>#{tr.cost}</td>
-                        <td><a href="#" class="btn btn-success btn-sm ml-3" style="width: 8em"><i class="fas fa-cart-plus fa-2x"></i></a></td>
+        <div id ="trackTable">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#{internationalization.albumimage}</th>
+                        <th scope="col">#{internationalization.songtitle}</th>
+                        <th scope="col">#{internationalization.albumtitle}</th>
+                        <th scope="col">#{internationalization.artist}</th>
+                        <th scope="col">#{internationalization.songdate}</th>
+                        <th scope="col">#{internationalization.playlength}</th>
+                        <th scope="col">#{internationalization.cost}</th>
+                        <th>Add to cart</th>
                     </tr>
-                </ui:repeat>
-            </tbody>
-        </table> 
-<<<<<<< HEAD
-<<<<<<< HEAD
-        <h:form>
-            <ul class="pagination" >
-               <c:if test="#{TrackPaginationBean.current_page != 1}">
-                    <li class="page-item">
-                        <h:commandLink class="page-link" value="&laquo;" actionListener="#{TrackPaginationBean.prev()}"/>
-                    </li>
-                </c:if>
-                <c:if test="#{TrackPaginationBean.current_page == 1}">
-                    <li class="page-item disabled">
-                        <h:commandLink class="page-link" value="&laquo;"/>
-                    </li>
-                </c:if>
-                <p>#{TrackPaginationBean.current_page}</p>
-                <c:forEach begin="1" end="#{TrackPaginationBean.total_pages}" varStatus="i">
-                    <p>#{i.index}</p>
-                    
-                    <c:if test="#{TrackPaginationBean.current_page == i.index}">
-                        <li class="page-item active">
-                            <h:commandLink class="page-link" value="#{i.index}"/>
-                        </li>
-                    </c:if>
-                    <c:if test="#{TrackPaginationBean.current_page != i.index}">
+                </thead>
+                <tbody>
+                    <ui:repeat var="tr" value="#{TrackPaginationBean.datalist}" > 
+                        <tr class="table-secondary" id="${tr.id}">
+                            <th><h:graphicImage value="#{tr.album.image}" title="Album's cover" class="trackPic"/></th>
+                            <td>#{tr.title}</td>
+                            <td>#{tr.album.title}</td>
+                            <td>Updating</td>
+                            <td>
+                                <h:outputText value="#{tr.date_added}">
+                                    <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
+                                </h:outputText>
+                            </td>
+                            <td>#{tr.play_length}</td>
+                            <td>#{tr.cost}</td>
+                            <td><a href="#" class="btn btn-success btn-sm ml-3" style="width: 8em"><i class="fas fa-cart-plus fa-2x"></i></a></td>
+                        </tr>
+                    </ui:repeat>
+                </tbody>
+            </table> 
+            <h:form>
+                <ul class="pagination" >
+                    <c:if test="#{TrackPaginationBean.current_page != 1}">
                         <li class="page-item">
-                            <h:commandLink class="page-link" value="#{i.index}" action="#{TrackPaginationBean.setCurrent_page(i.index)}" />
+                            <h:commandLink class="page-link" value="&laquo;" actionListener="#{TrackPaginationBean.prev()}"/>
                         </li>
                     </c:if>
-                </c:forEach> 
-            </ul>
-            
-        </h:form></div>
-           <div class="card border-light mb-3" id ="info">
+                    <c:if test="#{TrackPaginationBean.current_page == 1}">
+                        <li class="page-item disabled">
+                            <h:commandLink class="page-link" value="&laquo;"/>
+                        </li>
+                    </c:if>
+                    <p>#{TrackPaginationBean.current_page}</p>
+                    <c:forEach begin="1" end="#{TrackPaginationBean.total_pages}" varStatus="i">
+                        <p>#{i.index}</p>
+
+                        <c:if test="#{TrackPaginationBean.current_page == i.index}">
+                            <li class="page-item active">
+                                <h:commandLink class="page-link" value="#{i.index}"/>
+                            </li>
+                        </c:if>
+                        <c:if test="#{TrackPaginationBean.current_page != i.index}">
+                            <li class="page-item">
+                                <h:commandLink class="page-link" value="#{i.index}" action="#{TrackPaginationBean.setCurrent_page(i.index)}" />
+                            </li>
+                        </c:if>
+                    </c:forEach> 
+                </ul>
+
+            </h:form></div>
+        <div class="card border-light mb-3" id ="info">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Track</a></li>
                 <li class="breadcrumb-item active" id="titleTrack">Data</li>
@@ -217,17 +94,17 @@
                     <p class="card-text" id = "artist"></p>
                     <p class="card-text" id = "review"></p>
                     <hr></hr>
-                        <p class="card-text" id = "cost"></p>
-                        <form class="form-inline my-2 my-lg-0" id="quantityContainer">
-                            <label for="quantity" class="quantity">Quantity</label>
-                            <select name = "quantity" class="custom-select">
-                                <option selected="1" value="1">1</option>
-                                <c:forEach var = "i" begin = "2" end = "100">
-                                    <option value="${i}">${i}</option>
-                                </c:forEach>
-                            </select>
-                            <button class="btn btn-secondary my-2 my-sm-0" value ="Add" action = "add">Add</button>
-                        </form>
+                    <p class="card-text" id = "cost"></p>
+                    <form class="form-inline my-2 my-lg-0" id="quantityContainer">
+                        <label for="quantity" class="quantity">Quantity</label>
+                        <select name = "quantity" class="custom-select">
+                            <option selected="1" value="1">1</option>
+                            <c:forEach var = "i" begin = "2" end = "100">
+                                <option value="${i}">${i}</option>
+                            </c:forEach>
+                        </select>
+                        <button class="btn btn-secondary my-2 my-sm-0" value ="Add" action = "add">Add</button>
+                    </form>
                 </div>
             </div>
             <div class = "detailInfo">
@@ -235,28 +112,18 @@
                     <li class="nav-item">
                         <a class="nav-link active" data-toggle="tab" href="#details">Details</a>
                     </li>
-                  </ul>
+                </ul>
                 <div id="myTabContent" class="tab-content">
                     <div class="tab-pane fade show active" id="details">
                         <p id="addeddate"><span class="boldText">Added Date: </span></p>
                         <p id="genre"><span class="boldText">Genre: </span></p>
                         <p id="songwriter"><span class="boldText">Songwriter: </span></p>
-                         <p id="playlength"><span class="boldText">Play Length:  </span></p>  
+                        <p id="playlength"><span class="boldText">Play Length:  </span></p>  
                     </div>
-                   </div>
+                </div>
             </div>
         </div>              
-=======
->>>>>>> 5bbcbb5f9a2e78cb3053e482470ea793c07fee59
-        
+
         <ui:include src="footer.xhtml" />
-=======
-
-
-<<<<<<< HEAD
->>>>>>> code form for survey management
-=======
->>>>>>> 69ef0b16e0abf174e5f74d549254992bd1636228
->>>>>>> 5bbcbb5f9a2e78cb3053e482470ea793c07fee59
     </h:body>
 </html>

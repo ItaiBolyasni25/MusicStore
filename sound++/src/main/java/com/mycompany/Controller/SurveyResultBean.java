@@ -11,6 +11,7 @@ import com.mycompany.Model.User;
 import com.mycompany.Persistence.DAO;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
@@ -53,6 +54,13 @@ public class SurveyResultBean implements Serializable {
 
     public void setSurvey_id(Integer survey_id) {
         this.survey_id = survey_id;
+    }
+    
+    public List<Survey> surveysNotAnswered(){
+        List<Survey> surveys = dao.findAll(new Survey());
+        
+        
+        return surveys;
     }
 
     public void saveSurvey() {

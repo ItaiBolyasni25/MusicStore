@@ -52,19 +52,14 @@ public class NewBean implements Serializable{
     }
     
     public String newfeed(){
-        News newRss = new News(feed, "1");
-        DAO.write(newRss);
-        
-        
         List<News> currentRss = DAO.find(new News(), "used LIKE '1'");
-        DAO.beginTransaction();
         for(int i = 0 ; i < currentRss.size(); i++){
             currentRss.get(i).setUsed("0");
+            DAO.updateEntity(currentRss.get(i));
         }
-        DAO.commitTransaction();
-        
+        News newRss = new News(feed, "1");
+        DAO.write(newRss);
         return "manager/surveymngt.xhtml";
-        
     }
     
     public String getCurrentFeed(){

@@ -13,49 +13,113 @@
         <h:outputStylesheet library="css" name="style.css"  />
         <title>Sound++</title>
     </h:head>
-    <h:body>
+    <h:body class="backgroundcolor">
         <ui:include src="navbar.xhtml" />
         <div class="body">
-            <h1 class="text-center">#{internationalization.aboutUs}</h1>
-            <h2 class="text-center">#{internationalization.goal}</h2>
-            <p class="text-center">GOAL</p>
-            <h2 class="text-center">#{internationalization.developers}</h2>
             <div class="row">
-                <div class="col-md-2"></div>
-                <div class="col-md-2">
-                    <div class="flip"> 
-                        <div class="front"> 
-                            <img src="assets/about/austin.jpg" alt="" class="aboutimgs"/>
-                        </div> 
-                        <div class="back">
-                            <h3>Austin!</h3>
-                        </div> 
-                    </div> 
+                <div class="col-md-8">
+                    <h:graphicImage class="aboutimg" value="assets/about/devices.jpg"/>
                 </div>
-                <div class="col-md-2">
-                    <div class="flip"> 
-                        <div class="front"> 
-                            <img src="assets/about/anna.jpg" alt="" class="aboutimgs"/>
-                        </div> 
-                        <div class="back">
-                            <h3>Anna!</h3>
-                        </div> 
-                    </div> 
+                <div class="col-md-4">
+                    <br/><br/><br/><br/>
+                    <h1 class="text-center">#{internationalization.aboutUs}</h1>
+                    <br/><br/><br/>
+                    <h5 class="text-center">#{internationalization.aboutText1}</h5>
+                    <br/><br/><br/>
+                    <h5 class="text-center">#{internationalization.aboutText2}</h5>
+                    <br/><br/><br/>
+                    <h5 class="text-center">#{internationalization.aboutText3}</h5>
+                    <br/><br/><br/>
+                    <h5 class="text-center">#{internationalization.aboutText4}</h5>
+                    <br/><br/><br/>
+                    <h2 class="text-center">#{internationalization.slogan}</h2>
                 </div>
-                <div class="col-md-2">
-                    <div class="flip"> 
-                        <div class="front"> 
-                            <img src="assets/about/itai.jpg" alt="" class="aboutimgs"/>
-                        </div> 
-                        <div class="back">
-                            <h3>Itai!</h3>
-                        </div> 
-                    </div> 
+            </div>
+            <br/><br/><br/>
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-10">
+                            <div class="card text-white bg-dark mb-3">
+                                <div class="card-body">
+                                    <h1 class="card-title">Sound++ HQ</h1>
+                                    <p class="card-text text-center">Sound++ Montreal</p>
+                                    <p class="card-text text-center">Dawson College</p>
+                                    <p class="card-text text-center">3040 Sherbrooke St W, Montreal, QC H3Z 1A4</p>
+                                    <p class="card-text text-center">office@sound.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="card text-white bg-dark mb-3">
+                                <div class="card-body">
+                                    <h1 class="card-title">Sound++ Around the World</h1>
+                                    <p class="card-text text-center">Sound++ Germany</p>
+                                    <p class="card-text text-center">Berlin</p>
+                                    <p class="card-text text-center">officeberlin@sound.com</p>
+                                    <hr/>
+                                    <p class="card-text text-center">Sound++ Japan</p>
+                                    <p class="card-text text-center">Tokyo</p>
+                                    <p class="card-text text-center">officetokyo@sound.com</p>
+                                    <hr/>
+                                    <p class="card-text text-center">Sound++ USA</p>
+                                    <p class="card-text text-center">Los Angeles</p>
+                                    <p class="card-text text-center">officela@sound.com</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-2"></div>
-
-
-
+                <div class="col-md-7">
+                    <h1 class="text-center">#{internationalization.developers}</h1>
+                    <br/><br/><br/>
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-4">
+                            <div class="flip"> 
+                                <div class="front"> 
+                                    <img src="assets/about/anna.jpg" alt="" class="aboutimgs"/>
+                                </div> 
+                                <div class="back">
+                                    <h3>Mai Anh</h3>
+                                </div> 
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="flip"> 
+                                <div class="front"> 
+                                    <img src="assets/about/itai.jpg" alt="" class="aboutimgs"/>
+                                </div> 
+                                <div class="back">
+                                    <h3>Itai Bolyasni</h3>
+                                </div> 
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-4">
+                            <div class="flip"> 
+                                <div class="front"> 
+                                    <img src="assets/about/austin.jpg" alt="" class="aboutimgs"/>
+                                </div> 
+                                <div class="back">
+                                    <h3>Austin Antoine</h3>
+                                </div> 
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="flip"> 
+                                <div class="front"> 
+                                    <img src="assets/about/gabriela.jpg" alt="" class="aboutimgs"/>
+                                </div> 
+                                <div class="back">
+                                    <h3>Gabriela Rueda</h3>
+                                </div> 
+                            </div> 
+                        </div>
+                    </div>
+                </div>
             </div>
             <script>
                 $(function () {
