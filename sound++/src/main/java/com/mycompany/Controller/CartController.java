@@ -63,7 +63,7 @@ public class CartController implements Serializable {
 
     public int addPrice(int price) {
         this.price += price;
-        return this.price;
+        return price;
     }
 
     public int getPrice() {

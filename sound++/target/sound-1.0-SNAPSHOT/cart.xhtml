@@ -19,7 +19,7 @@
             <div class="col-md-3 order-md-2 mb-4 ml-3 mt-4" style="margin-top: 10%">
                 <h4 class="d-flex justify-content-between align-items-center mb-3">
                     <span class="text-muted">Your cart</span>
-                    <span class="badge badge-secondary badge-pill">3</span>
+                    <span class="badge badge-secondary badge-pill">#{cartController.getCartItems(userObj).size()}</span>
                 </h4>
                 <ul class="list-group mb-3">
                     <ui:repeat var="cartItem" value="#{cartController.getCartItems(userObj)}">
@@ -34,11 +34,11 @@
 
                             </div>
                             <c:if test="#{empty cartItem.track}">
-                                <span></span>
+                                <span>#{cartItem.album.cost}$</span>
                             </c:if>
 
                             <c:if test="#{not empty cartItem.track}">
-                                <span>#{cartController.addPrice(cartItem.track.cost)}$</span>
+                                <span>#{cartItem.title.cost}$$</span>
                             </c:if>
                             
                         </li>
@@ -53,7 +53,7 @@
                         </div>
                     </div>
                 </form>
-                <h5 class="text-secondary" style="margin-top: 15px; margin-left: 5px">Total price: 35.77</h5>
+                <h5 class="text-secondary" style="margin-top: 15px; margin-left: 5px">Total price: #{cartController.price}$</h5>
             </div>
             <div class="col-md-8 order-md-1 ml-5 mt-4">
                 <h4 class="mb-3">Billing address</h4>
