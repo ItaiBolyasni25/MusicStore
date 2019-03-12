@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import com.mycompany.Interface.EntityModel;
+import javax.persistence.OneToOne;
 
 /**
  * Entity class for a user
@@ -23,7 +24,8 @@ import com.mycompany.Interface.EntityModel;
 public class User implements Serializable, EntityModel {
 
     private static final long serialVersionUID = 1L;
-
+    @Id
+    private String email;
     private String title;
     private String lastname;
     private String firstname;
@@ -36,16 +38,14 @@ public class User implements Serializable, EntityModel {
     private String postal_code;
     private String home_telephone;
     private String cellphone;
-    @Id
-    private String email;
     private String hash;
     private String salt;
     private String last_genre;
+    private boolean is_manager;
+    private String language;
 
     public User() {
     }
-    private boolean is_manager;
-    private String language;
 
     public User(String firstName, String lastName, String email, String password,
             String title) {
@@ -56,62 +56,6 @@ public class User implements Serializable, EntityModel {
         this.title = title;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getSalt() {
-        return salt;
-    }
-
-    public void setSalt(String salt) {
-        this.salt = salt;
-    }
-
-    public String getLast_genre() {
-        return last_genre;
-    }
-
-    public void setLast_genre(String last_genre) {
-        this.last_genre = last_genre;
-    }
-
-    public boolean isIs_manager() {
-        return is_manager;
-    }
-
-    public void setIs_manager(boolean is_manager) {
-        this.is_manager = is_manager;
-    }
-
-    public String getLanguage() {
-        return language;
-    }
-
-    public void setLanguage(String language) {
-        this.language = language;
-    }
-
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public void setFirstname(String firstName) {
-        this.firstname = firstName;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastName) {
-        this.lastname = lastName;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -120,20 +64,36 @@ public class User implements Serializable, EntityModel {
         this.email = email;
     }
 
-    public String getHash() {
-        return this.hash;
+    public String getTitle() {
+        return title;
     }
 
-    public void setHash(String hash) {
-        this.hash = hash;
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
     public String getCompany_name() {
         return company_name;
     }
 
-    public void setCompany_name(String companyName) {
-        this.company_name = companyName;
+    public void setCompany_name(String company_name) {
+        this.company_name = company_name;
     }
 
     public String getAddress1() {
@@ -142,14 +102,6 @@ public class User implements Serializable, EntityModel {
 
     public void setAddress1(String address1) {
         this.address1 = address1;
-    }
-
-    public String getPostal_code() {
-        return postal_code;
-    }
-
-    public void setPostal_code(String postalCode) {
-        this.postal_code = postalCode;
     }
 
     public String getAddress2() {
@@ -184,6 +136,22 @@ public class User implements Serializable, EntityModel {
         this.country = country;
     }
 
+    public String getPostal_code() {
+        return postal_code;
+    }
+
+    public void setPostal_code(String postal_code) {
+        this.postal_code = postal_code;
+    }
+
+    public String getHome_telephone() {
+        return home_telephone;
+    }
+
+    public void setHome_telephone(String home_telephone) {
+        this.home_telephone = home_telephone;
+    }
+
     public String getCellphone() {
         return cellphone;
     }
@@ -192,17 +160,45 @@ public class User implements Serializable, EntityModel {
         this.cellphone = cellphone;
     }
 
-    public String getHome_telephone() {
-        return home_telephone;
+    public String getHash() {
+        return hash;
     }
 
-    public void setHome_telephone(String homephone) {
-        this.home_telephone = homephone;
+    public void setHash(String hash) {
+        this.hash = hash;
     }
 
-    @Override
-    public String toString() {
-        return this.email;
+    public String getSalt() {
+        return salt;
     }
 
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+
+    public String getLast_genre() {
+        return last_genre;
+    }
+
+    public void setLast_genre(String last_genre) {
+        this.last_genre = last_genre;
+    }
+
+    public boolean isIs_manager() {
+        return is_manager;
+    }
+
+    public void setIs_manager(boolean is_manager) {
+        this.is_manager = is_manager;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+    
+    
 }

@@ -1,3 +1,4 @@
+
 drop database songstore;
 create database songstore;
 DROP USER IF EXISTS songstore@localhost;
@@ -18,7 +19,7 @@ CREATE TABLE Album (
     removal_status bool NOT NULL,
     removal_date date NULL,
     image varchar(250) NULL,
-     genre varchar(256) NOT NULL,
+    genre varchar(256) NOT NULL,
     CONSTRAINT Album_pk PRIMARY KEY (album_id)
 );
 
@@ -49,8 +50,8 @@ CREATE TABLE album_artist (
 CREATE TABLE Cart (
     cart_id int NOT NULL auto_increment,
     user_id int NOT NULL,
-    track_id int NOT NULL,
-    album_id int NOT NULL,
+    track_id int NULL,
+    album_id int NULL,
     CONSTRAINT Cart_pk PRIMARY KEY (cart_id)
 );
 

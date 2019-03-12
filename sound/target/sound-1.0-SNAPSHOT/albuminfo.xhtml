@@ -18,7 +18,7 @@
 
         <title>Sound++</title>
     </h:head>
-    <h:body>
+    <h:body class="backgroundcolor body">
         <ui:include src="navbar.xhtml" />  
         <div class="card border-light mb-3" id ="info">
             <h:panelGroup id="result">
@@ -36,15 +36,15 @@
                         <p class="card-text" id = "review"></p>
                         <hr></hr>
                         <p class="card-text" id = "cost"></p>
-                        <form class="form-inline my-2 my-lg-0" id="quantityContainer">
+                        <h:form class="form-inline my-2 my-lg-0" id="quantityContainer">
                             <select class="custom-select">
                                 <option selected="1" value="1">1</option>
                                 <c:forEach var = "i" begin = "2" end = "100">
                                     <option value="${i}">${i}</option>
                                 </c:forEach>
                             </select>
-                            <button class="btn btn-secondary my-2 my-sm-0" value ="Add" action = "add">Add</button>
-                        </form>
+                            <h:commandLink class="btn btn-primary my-2 my-sm-0" value="#{internationalization.add}" actionListener="#{cartController.addAlbum(selectedAlbum.selectedAlbum, userObj)}" />
+                        </h:form>
                     </div>
                 </div>
 

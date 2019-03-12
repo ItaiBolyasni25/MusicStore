@@ -71,4 +71,5 @@ public class NewBean implements Serializable{
         return DAO.findAll(new News());
     }
     
+    
 }

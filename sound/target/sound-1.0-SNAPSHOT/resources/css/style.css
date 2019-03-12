@@ -13,7 +13,10 @@ and open the template in the editor.
     max-height: 30%;
     margin-left: 30%;
 }
-
+#liHover:hover {
+    background: #b3b3b3 !important;
+    color: #fff !important;
+}
 .navbar-brand{
     margin: 0px;
     padding: 0px;
@@ -323,6 +326,7 @@ section .section-title {
 .addsurvey{
     width: 40%;
     margin-left: 30%;
+<<<<<<< HEAD
 }
 
 button{
@@ -476,3 +480,6 @@ button{
     overflow-x: hidden;
     z-index: 1;
 }
+=======
+}
+>>>>>>> 9754cea62714deb2f2c0dc8945a085ce3e194138

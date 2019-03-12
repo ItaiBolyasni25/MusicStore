@@ -93,6 +93,8 @@ public class RegisterBean implements Serializable {
         User user = new User(firstName, lastName, email, password, title);
         if (!Validator.emailExists(user, DAO)) {
             DAO.write(user);
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("userObj", user);
+
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", firstName);
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("id", email);
             String role = "manager";

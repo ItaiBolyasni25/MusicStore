@@ -35,11 +35,7 @@ public class Album implements EntityModel, Serializable {
     private String title;
     private Date release_date;
     private Date date_added;
-
-    public Album() {
-        super();
-    }
-
+    
     public List<Artist> getArtists() {
         return artists;
     }
