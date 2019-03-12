@@ -16,8 +16,6 @@ and open the template in the editor.
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"></link>
-
-
         <h:outputStylesheet library="css" name="style.css"  />
         <title>Sound++</title>
     </h:head>
@@ -27,7 +25,9 @@ and open the template in the editor.
             <div class="container">
                 <div class="row text-center text-xs-center text-sm-left text-md-left">
                     <div class="col-xs-12 col-sm-4 col-md-4">
-                        <a class="navbar-brand" href="#"><img id="logoFooter" src="assets/footerLogo.png" alt="Logo of online music store Sound++"></img></a>
+                        <h:link class="navbar-brand" outcome="index">
+                            <h:graphicImage value="/assets/footerLogo.png" />
+                        </h:link> 
                     </div>
                     <div class="col-xs-12 col-sm-4 col-md-4">
                         <h5>Quick links</h5>

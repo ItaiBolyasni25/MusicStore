@@ -9,6 +9,7 @@ package com.mycompany.Utilities;
 
 import com.mycompany.Model.Album;
 import com.mycompany.Model.Artist;
+import com.mycompany.Model.News;
 import com.mycompany.Model.Track;
 import com.mycompany.Persistence.DAO;
 import java.io.BufferedReader;
@@ -40,6 +41,7 @@ public class SongParser implements Serializable {
 
     public void onLoad() throws Exception {
         readCSVFile();
+        addNewsFeed();
     }
 
     private void albumParser(String[] splittedCsv) throws ParseException {
@@ -122,5 +124,11 @@ public class SongParser implements Serializable {
         java.sql.Date sqlDate = new java.sql.Date(newdate.getTime());
         return sqlDate;
     }
+    
+     private void addNewsFeed(){
+        News news = new News("https://www.ctvnews.ca/rss/ctvnews-ca-entertainment-public-rss-1.822292", "1");
+        dao.write(news);
+    }
+
 
 }

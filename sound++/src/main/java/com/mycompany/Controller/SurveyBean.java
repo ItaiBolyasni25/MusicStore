@@ -1,9 +1,11 @@
 package com.mycompany.Controller;
 
+import com.mycompany.Model.Survey;
 import com.mycompany.Persistence.DAO;
 import java.io.Serializable;
-import javax.ejb.Stateless;
+import java.util.List;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -11,9 +13,10 @@ import javax.inject.Named;
  *
  * @author Gabriela
  */
-@Named(value= "surveyBean")
+@Named(value = "surveyBean")
 @SessionScoped
-public class SurveyBean implements Serializable{
+public class SurveyBean implements Serializable {
+
     private String question;
     private String option1;
     private String option2;
@@ -22,8 +25,8 @@ public class SurveyBean implements Serializable{
     private String option5;
 
     @Inject
-    private DAO DAO;
-    
+    private DAO dao;
+
     public String getQuestion() {
         return question;
     }
@@ -71,9 +74,20 @@ public class SurveyBean implements Serializable{
     public void setOption5(String option5) {
         this.option5 = option5;
     }
-    
-    public String addSurvey(){
-        
+
+    public String addSurvey() {
+        String email = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("id");
+        Survey survey = new Survey(question, option1, option2, option3, option4, option5, email);
+        dao.write(survey);
         return "survey.xhtml";
+    }
+    
+    public List<Survey> getPastSurveys(){
+        return dao.findAll(new Survey());
+    }
+    
+    public List<Survey> getSurveysperuser(){
+        String username = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("id");
+        return dao.findWithJoins(new Survey(), "SELECT t.* FROM survey t LEFT JOIN survey_result s ON t.survey_id = s.survey_id WHERE s.email LIKE '" + username + "'");
     }
 }

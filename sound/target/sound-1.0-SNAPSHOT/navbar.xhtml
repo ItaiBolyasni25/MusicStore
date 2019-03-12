@@ -22,11 +22,13 @@ and open the template in the editor.
         <title>Sound++</title>
     </h:head>
     <ui:composition>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top" id="navsound">
+
+            <h:link class="navbar-brand" outcome="index">
+                <h:graphicImage class="logo" value="assets/logonav.PNG" />
+            </h:link> 
         <h:outputScript library="js" name="jquery-1.12.4.js" target="head" />
         <h:outputScript library="js" name="search.js" target="head"/>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-
-            <a class="navbar-brand" href="#"><img id="logo" src="assets/footerLogo.png" alt="Logo of online music store Sound++"></img></a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -46,15 +48,22 @@ and open the template in the editor.
                     <li class="nav-item">
                         <h:link class="nav-link" value="#{internationalization.about}" outcome="about"/>
                     </li>
-                    <li class="nav-item">
-                        <h:link class="nav-link" value="#{internationalization.login}" outcome="login"/>
-                    </li>
+                    <h:panelGroup rendered="#{empty user}">
+                        <li class="nav-item">
+                            <h:link class="nav-link" value="#{internationalization.login}" outcome="register"/>
+                        </li>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{not empty user}">
+                        <li class="nav-item">
+                            <h:link class="nav-link" value="#{internationalization.signOut}" outcome="register"/>
+                        </li>
+                    </h:panelGroup>
                     <li class="nav-item">
                         <h:link class="nav-link" value="#{internationalization.cart}" outcome="cart"/>
                     </li>
                 </ul>
 
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown" style="list-style-type:none">
                     <div class="form-group">
                         <h:form class="form-inline my-2 my-lg-0 ml-2">
                             <h:selectOneMenu onchange="submit()" valueChangeListener="#{internationalization.languageChange}"  class="custom-select mr-sm-3 ml-4">
@@ -92,10 +101,11 @@ and open the template in the editor.
                             </ui:repeat>
                         </ul>
                     </h:panelGroup>
-                    <h:commandButton class="btn btn-outline-primary" value="#{internationalization.search}" action="result.xhtml?faces-redirect=true" />
+                    <h:commandButton class="btn btn-outline-primary" value="#{internationalization.search}"  action="#{AlbumTrackBean.redirect()}" />
                 </h:form>
             </div>
         </nav>
+
 
 
     </ui:composition>
