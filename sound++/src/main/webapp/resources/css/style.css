@@ -120,9 +120,8 @@ section .section-title {
     margin-left: 5%;
 }
 #footer {
-    background: #f7f7f9 !important;
-
     margin-top: 10%;
+    background-color: #FFFFFF;
 }
 #footer h5{
     padding-left: 10px;

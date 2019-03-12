@@ -396,4 +396,12 @@ public class Internationalization implements Serializable {
                 : "Vous allez aussi en savoir les dernieres nouvelles de vos artistes favoris et vous pouvez prendre des questionnaires pour en demontrer vos connaissances."
                 ;
     }
+    
+    public String getAnswer(){
+        return language.equals("English")? "Submit": "Soumettre";
+    }
+    
+    public String getSignOut(){
+        return language.equals("English")? "Sign Out": "Se deconnecter";
+    }
 }
