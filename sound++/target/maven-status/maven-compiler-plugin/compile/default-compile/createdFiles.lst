@@ -25,6 +25,8 @@ com\mycompany\Interface\EntityModel.class
 com\mycompany\Utilities\Validator.class
 com\mycompany\Controller\ResultBean.class
 com\mycompany\Controller\SelectedTrack.class
+com\mycompany\Controller\ReviewBean.class
 com\mycompany\Controller\SurveyBean.class
 com\mycompany\Model\Invoice.class
+com\mycompany\Model\Review.class
 com\mycompany\Controller\LoginBean.class

@@ -9,6 +9,7 @@ import com.mycompany.Interface.EntityModel;
 import com.mycompany.Model.Album;
 import java.sql.Date;
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.*;
 
 /**
@@ -39,6 +40,9 @@ public class Track implements EntityModel, Serializable {
     private Date removal_date;
     @OneToOne(mappedBy="track")
     private Cart cart;
+    @OneToMany
+    @JoinColumn(name = "review_id")
+    private List<Review> reviews;
 
     public Track() {
         super();
@@ -154,5 +158,13 @@ public class Track implements EntityModel, Serializable {
 
     public void setRemoval_date(Date removal_date) {
         this.removal_date = removal_date;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
     }
 }

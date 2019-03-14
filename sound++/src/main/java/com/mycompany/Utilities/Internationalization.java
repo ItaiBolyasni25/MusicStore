@@ -404,4 +404,8 @@ public class Internationalization implements Serializable {
     public String getSignOut(){
         return language.equals("English")? "Sign Out": "Se deconnecter";
     }
+    
+    public String getSubmitReview() {
+        return language.equals("English") ? "Submit review" : "Poster le commentaire";
+    }
 }

@@ -60,6 +60,11 @@ public class Album implements EntityModel, Serializable {
     private Timestamp removal_date;
     private String image;
     private String genre;
+    
+    @OneToMany
+    @JoinColumn(name = "review_id")
+    private List<Review> reviews;
+
 
     public int getId() {
         return album_id;
@@ -157,4 +162,11 @@ public class Album implements EntityModel, Serializable {
         this.genre = genre;
     }
 
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
 }
