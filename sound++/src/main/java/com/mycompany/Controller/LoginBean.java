@@ -178,7 +178,7 @@ public class LoginBean implements Serializable{
      */
     public String canLogIn() {
         if (Validator.isRegistered(email, password, DAO)) {
-            User user = DAO.find(new User(), "identifier.email = '" + email + "'").get(0);
+            User user = DAO.find(new User(), "email = '" + email + "'").get(0);
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("userObj", user);
 
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", firstName);

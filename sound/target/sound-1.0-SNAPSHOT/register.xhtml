@@ -30,14 +30,14 @@
                                 <fieldset>
                                     <legend>#{internationalization.signup}</legend>
 
-                                    <h:panelGroup layout="block" class="alert alert-danger" rendered="#{loginBean.invalidEmail == true}">
+                                    <h:panelGroup layout="block" class="alert alert-danger" rendered="#{registerBean.invalidEmail == true}">
                                         <h:outputText class="text-danger" value="#{internationalization.invalidEmail}" />
                                     </h:panelGroup>
 
                                     <div class="row">
                                         <div class="col-md-3">
                                             <label class="col-form-label" for="inputDefault">#{internationalization.title}</label>
-                                            <h:selectOneMenu  class="custom-select" value="#{loginBean.title}">
+                                            <h:selectOneMenu  class="custom-select" value="#{registerBean.title}">
                                                 <f:selectItem itemValue="Miss" itemLabel="Miss" />
                                                 <f:selectItem itemValue="Mrs." itemLabel="Mrs." />
                                                 <f:selectItem itemValue="Ms." itemLabel="Ms." />
@@ -46,29 +46,29 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label class="col-form-label" for="inputDefault">#{internationalization.firstname}</label>
-                                                <h:inputText value="#{loginBean.firstName}" class="form-control" id="firstname" required="true"/>
+                                                <h:inputText value="#{registerBean.firstName}" class="form-control" id="firstname" required="true"/>
                                             </div>
                                         </div>
                                         <div class="col-md-5">
                                             <div class="form-group">
                                                 <label class="col-form-label" for="inputDefault">#{internationalization.lastname}</label>
-                                                <h:inputText value="#{loginBean.lastName}" class="form-control" id="lastname" required="true"/>
+                                                <h:inputText value="#{registerBean.lastName}" class="form-control" id="lastname" required="true"/>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">#{internationalization.email}</label>
-                                        <h:inputText  value="#{loginBean.email}" class="form-control" id="registerEmail" />
+                                        <h:inputText  value="#{registerBean.email}" class="form-control" id="registerEmail" />
                                         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">#{internationalization.password}</label>
-                                        <h:inputSecret value="#{loginBean.password}" class="form-control" id="registerPassword" />
+                                        <h:inputSecret value="#{registerBean.password}" class="form-control" id="registerPassword" />
                                     </div>
 
-                                    <h:commandButton type="submit" class="btn btn-primary formbutton" value="#{internationalization.signup}" action="#{loginBean.addUser}"/>
+                                    <h:commandButton type="submit" class="btn btn-primary formbutton" value="#{internationalization.signup}" action="#{registerBean.addUser}"/>
                                 </fieldset>
                             </h:form>
                         </div>

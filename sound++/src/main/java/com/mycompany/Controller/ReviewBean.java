@@ -77,7 +77,7 @@ public class ReviewBean implements Serializable {
         review.setIsApproved(false);
         User user = (User)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("userObj");
         review.setUser(user);
-        if (track == null)
+        if (track.getSelectedTrack() == null)
             review.setAlbum(album.getSelectedAlbum());
         else
             review.setTrack(track.getSelectedTrack());
