@@ -50,7 +50,7 @@ public class Review implements EntityModel, Serializable {
     private boolean isApproved;
     
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "email")
     private User user;
     
     @ManyToOne

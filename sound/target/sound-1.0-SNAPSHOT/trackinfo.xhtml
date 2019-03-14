@@ -34,15 +34,15 @@
                         <p class="card-text" id = "review"></p>
                         <hr/>
                         <p class="card-text" id = "cost"></p>
-                        <form class="form-inline my-2 my-lg-0" id="quantityContainer">
+                        <h:form class="form-inline my-2 my-lg-0" id="quantityContainer">
                             <select class="custom-select">
                                 <option selected="1" value="1">1</option>
                                 <c:forEach var = "i" begin = "2" end = "100">
                                     <option value="${i}">${i}</option>
                                 </c:forEach>
                             </select>
-                            <button class="btn btn-secondary my-2 my-sm-0" value ="Add" action = "add">Add</button>
-                        </form>
+                            <h:commandLink class="btn btn-secondary my-2 my-sm-0" value ="Add" actionListener = "#{cartController.addTrack(selectedTrack.selectedTrack, userObj)}"/>
+                        </h:form>
                     </div>
                 </div>
 
@@ -83,6 +83,9 @@
                     </c:choose>
                     <h5 class="detail">REVIEWS</h5>
                     <hr class="style"/>
+                    <h:panelGroup layout="block" rendered="#{not empty user}">
+                        <ui:include src="reviewpage.xhtml" />
+                    </h:panelGroup>
                 </div>
             </h:panelGroup> </div>
            <ui:include src="footer.xhtml" />

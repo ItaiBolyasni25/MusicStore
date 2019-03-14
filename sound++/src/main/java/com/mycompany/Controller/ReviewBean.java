@@ -33,9 +33,6 @@ public class ReviewBean implements Serializable {
     @Inject 
     private SelectedAlbum album;
     
-    @Inject
-    private RegisterBean bean;
-    
     public ReviewBean() {}
 
     public Integer getReview_Id() {
