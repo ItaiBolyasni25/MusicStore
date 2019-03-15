@@ -5,7 +5,8 @@ document.addEventListener("DOMContentLoaded", function () {
     if (ratings !== null) {
         for (var i = 0; i < ratings.length; i++) {
             var rating = ratings[i];
-            var value = rating.innerHTML;
+            var value = rating.innerText;
+            rating.innerText = "";
             var labels = [];
 
             for (var j = 0; j < 5; j++) {
@@ -15,10 +16,12 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             for (var j = 0; j < value; j++) {
-                labels[i].style.color = "gold";
+                labels[j].style.color = "gold";
             }
 
-            rating.innerHTML = labels;
+            for (var j = 0; j < labels.length; j++) {
+                rating.appendChild(labels[j]);
+            }
         }
     }
 });
