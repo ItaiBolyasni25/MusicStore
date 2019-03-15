@@ -42,7 +42,6 @@ public class SelectedAlbum implements Serializable{
         return dataItemId;
     }
     public void setSelectedAlbum(Album dataItem) {
-        System.out.println("hihihihihii" + dataItem.getTitle());
         this.album = dataItem;
     }
 
@@ -59,7 +58,6 @@ public class SelectedAlbum implements Serializable{
             genre = album.getGenre();
          }
          List<Album> albums = dao.findWithLimitGenre(new Album(), 3, genre, "title", album.getTitle());
-         System.out.println(albums.size());
          return albums;
          }
          return null;

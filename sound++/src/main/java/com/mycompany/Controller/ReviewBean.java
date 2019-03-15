@@ -8,8 +8,9 @@ import com.mycompany.Persistence.DAO;
 import java.io.Serializable;
 import java.sql.Date;
 import java.time.LocalDate;
-import javax.enterprise.context.RequestScoped;
+import java.util.List;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -18,7 +19,7 @@ import javax.inject.Named;
  * @author aantoine97
  */
 @Named(value = "reviewBean")
-@RequestScoped
+@ViewScoped
 public class ReviewBean implements Serializable {
     
     private Integer review_id;
@@ -74,7 +75,6 @@ public class ReviewBean implements Serializable {
         review.setDate(sqlDate);
         review.setRating(rating);
         review.setText(text);
-        review.setIsApproved(false);
         User user = (User)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("userObj");
         review.setUser(user);
         if (track.getSelectedTrack() == null)
@@ -83,5 +83,17 @@ public class ReviewBean implements Serializable {
             review.setTrack(track.getSelectedTrack());
 
         dao.write(review);
+    }
+    
+    public List<Review> getUnapproved() {
+        return dao.find(new Review(), "isApproved = 0");
+    }
+    
+    public List<Review> getAlbumReviews(Album album) {
+        return dao.find(new Review(), "album.album_id = '" + album.getId() + "'");
+    }
+    
+    public List<Review> getTrackReviews(Track track) {
+        return dao.find(new Review(), "track.track_id = '" + track.getId() + "'");
     }
 }
