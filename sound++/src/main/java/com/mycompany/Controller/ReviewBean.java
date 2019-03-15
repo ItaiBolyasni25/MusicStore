@@ -90,10 +90,10 @@ public class ReviewBean implements Serializable {
     }
     
     public List<Review> getAlbumReviews(Album album) {
-        return dao.find(new Review(), "album.album_id = '" + album.getId() + "'");
+        return dao.find(new Review(), "album.album_id = '" + album.getId() + "' AND album.isApproved = 1");
     }
     
     public List<Review> getTrackReviews(Track track) {
-        return dao.find(new Review(), "track.track_id = '" + track.getId() + "'");
+        return dao.find(new Review(), "track.track_id = '" + track.getId() + "' AND track.isApproved = 1");
     }
 }
