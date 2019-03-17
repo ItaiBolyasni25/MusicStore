@@ -79,6 +79,8 @@ public class ReviewBean implements Serializable {
         review.setText(text);
         User user = (User) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("userObj");
         review.setUser(user);
+        // This doesn't work properly for now because the beans apparently have to be sessionscoped
+        // need to find an alternative
         if (track.getSelectedTrack() == null) {
             review.setAlbum(album.getSelectedAlbum());
         } else {

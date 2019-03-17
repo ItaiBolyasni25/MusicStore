@@ -88,13 +88,13 @@
                     <h:panelGroup layout="block" rendered="#{not empty user}">
                         <ui:include src="reviewpage.xhtml" />
                     </h:panelGroup>
-                    <h:panelGroup layout="block" rendered="#{reviewBean.getTrackReviews(selectedTrack) != null}">
+                    <h:panelGroup layout="block" rendered="#{!reviewBean.getTrackReviews(selectedTrack.selectedTrack).isEmpty()}">
                         <div class="container-fluid">
                             <table class="table text-centered">
                                 <thead>
                                     <tr>
-                                        <th>Review Text</th>
-                                        <th>Review Rating</th>
+                                        <th>#{internationalization.reviewText}</th>
+                                        <th>#{internationalization.reviewRating}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
