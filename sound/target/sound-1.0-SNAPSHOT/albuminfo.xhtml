@@ -81,24 +81,26 @@
                     <h:panelGroup layout="block" rendered="#{not empty user}">
                         <ui:include src="reviewpage.xhtml" />
                     </h:panelGroup>
-                    <div class="container-fluid">
-                        <table class="table text-centered">
-                            <thead>
-                                <tr>
-                                    <th>Review Text</th>
-                                    <th>Review Rating</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <ui:repeat value="#{reviewBean.getAlbumReviews(selectedAlbum.selectedAlbum)}" var="review">
+                    <h:panelGroup layout="block" rendered="#{reviewBean.getAlbumReviews(selectedAlbum.selectedAlbum) != null}">
+                        <div class="container-fluid">
+                            <table class="table text-centered">
+                                <thead>
                                     <tr>
-                                        <td>#{review.text}</td>
-                                        <td class="rating">#{review.rating}</td>
+                                        <th>Review Text</th>
+                                        <th>Review Rating</th>
                                     </tr>
-                                </ui:repeat>
-                            </tbody>    
-                        </table>
-                    </div>
+                                </thead>
+                                <tbody>
+                                    <ui:repeat value="#{reviewBean.getAlbumReviews(selectedAlbum.selectedAlbum)}" var="review">
+                                        <tr>
+                                            <td>#{review.text}</td>
+                                            <td class="rating">#{review.rating}</td>
+                                        </tr>
+                                    </ui:repeat>
+                                </tbody>    
+                            </table>
+                        </div>
+                    </h:panelGroup>
                 </div>
             </h:panelGroup> 
         </div>

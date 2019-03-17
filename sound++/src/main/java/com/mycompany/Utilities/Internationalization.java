@@ -406,6 +406,22 @@ public class Internationalization implements Serializable {
     }
     
     public String getSubmitReview() {
-        return language.equals("English") ? "Submit review" : "Poster le commentaire";
+        return language.equals("English")? "Submit review" : "Poster le commentaire";
+    }
+    
+    public String getApprove() {
+        return language.equals("English")? "Approve review" : "Approuver la révision"; 
+    }
+    
+    public String getDelete() {
+        return language.equals("English")? "Delete review" : "Supprimer la critique";
+    }
+    
+    public String getReviewText() {
+        return language.equals("English")? "Review text" : "Texte de révision";
+    }
+    
+    public String getReviewRating() {
+        return language.equals("English")? "Review rating" : "Note d'évaluation";
     }
 }

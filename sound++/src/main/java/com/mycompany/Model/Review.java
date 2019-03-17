@@ -30,7 +30,7 @@ public class Review implements EntityModel, Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "review_id")
-    private Integer reviewId;
+    private Integer review_id;
     @Basic(optional = false)
     @NotNull
     @Column(name = "date")
@@ -108,22 +108,22 @@ public class Review implements EntityModel, Serializable {
     }
 
     public Review(Integer reviewId) {
-        this.reviewId = reviewId;
+        this.review_id = reviewId;
     }
 
     public Review(Integer reviewId, java.util.Date date, int rating, boolean isApproved) {
-        this.reviewId = reviewId;
+        this.review_id = reviewId;
         this.date = date;
         this.rating = rating;
         this.isApproved = isApproved;
     }
 
-    public Integer getReviewId() {
-        return reviewId;
+    public Integer getReview_id() {
+        return review_id;
     }
 
-    public void setReviewId(Integer reviewId) {
-        this.reviewId = reviewId;
+    public void setReview_id(Integer review_id) {
+        this.review_id = review_id;
     }
 
 
@@ -138,7 +138,7 @@ public class Review implements EntityModel, Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (reviewId != null ? reviewId.hashCode() : 0);
+        hash += (review_id != null ? review_id.hashCode() : 0);
         return hash;
     }
 
@@ -149,7 +149,7 @@ public class Review implements EntityModel, Serializable {
             return false;
         }
         Review other = (Review) object;
-        if ((this.reviewId == null && other.reviewId != null) || (this.reviewId != null && !this.reviewId.equals(other.reviewId))) {
+        if ((this.review_id == null && other.review_id != null) || (this.review_id != null && !this.review_id.equals(other.review_id))) {
             return false;
         }
         return true;
@@ -157,6 +157,6 @@ public class Review implements EntityModel, Serializable {
 
     @Override
     public String toString() {
-        return "com.mycompany.Model.Review[ reviewId=" + reviewId + " ]";
+        return "com.mycompany.Model.Review[ reviewId=" + review_id + " ]";
     }
 }

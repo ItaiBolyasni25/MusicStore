@@ -13,6 +13,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.transaction.Transactional;
 
 /**
  *
@@ -21,29 +22,30 @@ import javax.inject.Named;
 @Named(value = "reviewBean")
 @ViewScoped
 public class ReviewBean implements Serializable {
-    
+
     private Integer review_id;
     private int rating;
     private String text;
     @Inject
     private DAO dao;
-    
+
     @Inject
     private SelectedTrack track;
-    
-    @Inject 
+
+    @Inject
     private SelectedAlbum album;
-    
-    public ReviewBean() {}
+
+    public ReviewBean() {
+    }
 
     public Integer getReview_Id() {
         return review_id;
     }
-    
+
     public void setReview_Id(Integer review_id) {
         this.review_id = review_id;
     }
-    
+
     public int getRating() {
         return rating;
     }
@@ -59,15 +61,15 @@ public class ReviewBean implements Serializable {
     public void setText(String text) {
         this.text = text;
     }
-    
+
     public Track getTrack() {
         return track.getSelectedTrack();
     }
-    
+
     public Album getAlbum() {
         return album.getSelectedAlbum();
     }
-    
+
     public void saveReview() {
         Review review = new Review();
         LocalDate date = LocalDate.now();
@@ -75,25 +77,41 @@ public class ReviewBean implements Serializable {
         review.setDate(sqlDate);
         review.setRating(rating);
         review.setText(text);
-        User user = (User)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("userObj");
+        User user = (User) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("userObj");
         review.setUser(user);
-        if (track.getSelectedTrack() == null)
+        if (track.getSelectedTrack() == null) {
             review.setAlbum(album.getSelectedAlbum());
-        else
+        } else {
             review.setTrack(track.getSelectedTrack());
+        }
 
         dao.write(review);
     }
-    
+
     public List<Review> getUnapproved() {
         return dao.find(new Review(), "isApproved = 0");
     }
+
     
-    public List<Review> getAlbumReviews(Album album) {
-        return dao.find(new Review(), "album.album_id = '" + album.getId() + "' AND album.isApproved = 1");
+    public String approveReview(int review_id) {
+        Review review = dao.read(new Review(), review_id).get(0);
+        review.setIsApproved(true);
+        dao.updateEntity(review);
+        return "managerreviews.xhtml";
     }
-    
+
+    @Transactional
+    public String deleteReview(int review_id) {
+        Review review = dao.read(new Review(), review_id).get(0);
+        dao.delete(review);
+        return "managerreviews.xhtml";
+    }
+
+    public List<Review> getAlbumReviews(Album album) {
+        return dao.find(new Review(), "album.album_id = '" + album.getId() + "' AND identifier.isApproved = 1");
+    }
+
     public List<Review> getTrackReviews(Track track) {
-        return dao.find(new Review(), "track.track_id = '" + track.getId() + "' AND track.isApproved = 1");
+        return dao.find(new Review(), "track.track_id = '" + track.getId() + "' AND identifier.isApproved = 1");
     }
 }

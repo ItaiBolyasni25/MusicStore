@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.2.1/lux/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+        <h:outputStylesheet library="css" name="style.css"  />
+        <h:outputScript library="js" name="ratingToStars.js" />
+        <title>Sound++</title>
+    </h:head>
+    <h:body class="backgroundcolor">
+        <div class="container-fluid">
+            <table class="table text-centered">
+                <thead>
+                    <tr>
+                        <th>Reviewed</th>
+                        <th>Review Text</th>
+                        <th>Review Rating</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ui:repeat value="#{reviewBean.getUnapproved()}" var="review">
+                        <tr>
+                            <td>#{review.track == null ? review.album.title : review.track.title}</td>
+                            <td>#{review.text}</td>
+                            <td class="rating">#{review.rating}</td>
+                            <td><h:commandButton value ="#{internationalization.approve}" 
+                                                 onclick="#{reviewBean.approveReview(review.review_id)}"/></td>
+                            <td><h:commandButton value ="#{internationalization.delete}" 
+                                                 onclick="#{reviewBean.deleteReview(review.review_id)}"/></td>
+                        </tr>
+                    </ui:repeat>
+                </tbody>    
+            </table>
+        </div>
+    </h:body>
+</html>

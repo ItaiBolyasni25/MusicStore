@@ -84,7 +84,7 @@ CREATE TABLE Review (
     date date NOT NULL,
     rating int NOT NULL,
     text text NULL,
-    is_approved bool NOT NULL,
+    is_approved bool NULL,
     email varchar(50) NOT NULL,
     album_id int NULL,
     track_id int NULL,
