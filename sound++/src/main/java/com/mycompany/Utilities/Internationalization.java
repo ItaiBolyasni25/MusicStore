@@ -417,6 +417,14 @@ public class Internationalization implements Serializable {
         return language.equals("English")? "Delete review" : "Supprimer la critique";
     }
     
+    public String getReviewed() {
+        return language.equals("English")? "Reviewed" : "Critiqué";
+    }
+    
+    public String getReviews() {
+        return language.equals("English")? "Reviews" : "Critiques";
+    }
+    
     public String getReviewText() {
         return language.equals("English")? "Review text" : "Texte de révision";
     }
