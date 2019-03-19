@@ -19,6 +19,7 @@
         <title>Sound++</title>
     </h:head>
     <h:body>
+        <c:set target="#{reviewBean}" property="trackOrAlbum" value="track" /> 
         <ui:include src="navbar.xhtml" />
         <div class="card border-light mb-3" id ="info">
             <h:panelGroup id="result">

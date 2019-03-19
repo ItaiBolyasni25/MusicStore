@@ -26,6 +26,8 @@ public class ReviewBean implements Serializable {
     private Integer review_id;
     private int rating;
     private String text;
+    private String trackOrAlbum;
+    
     @Inject
     private DAO dao;
 
@@ -70,6 +72,14 @@ public class ReviewBean implements Serializable {
         return album.getSelectedAlbum();
     }
 
+    public String getTrackOrAlbum() {
+        return trackOrAlbum;
+    }
+
+    public void setTrackOrAlbum(String trackOrAlbum) {
+        this.trackOrAlbum = trackOrAlbum;
+    }
+
     public void saveReview() {
         Review review = new Review();
         LocalDate date = LocalDate.now();
@@ -79,9 +89,8 @@ public class ReviewBean implements Serializable {
         review.setText(text);
         User user = (User) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("userObj");
         review.setUser(user);
-        // This doesn't work properly for now because the beans apparently have to be sessionscoped
-        // need to find an alternative
-        if (track.getSelectedTrack() == null) {
+
+        if (trackOrAlbum.equals("album")) {
             review.setAlbum(album.getSelectedAlbum());
         } else {
             review.setTrack(track.getSelectedTrack());

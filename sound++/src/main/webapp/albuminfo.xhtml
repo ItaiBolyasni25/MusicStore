@@ -20,6 +20,7 @@
         <title>Sound++</title>
     </h:head>
     <h:body class="backgroundcolor body">
+        <c:set target="#{reviewBean}" property="trackOrAlbum" value="album" /> 
         <ui:include src="navbar.xhtml" />  
         <div class="card border-light mb-3" id ="info">
             <h:panelGroup id="result">
@@ -81,7 +82,7 @@
                     <h:panelGroup layout="block" rendered="#{not empty user}">
                         <ui:include src="reviewpage.xhtml" />
                     </h:panelGroup>
-                    <h:panelGroup layout="block" rendered="#{reviewBean.getAlbumReviews(selectedAlbum.selectedAlbum) != null}">
+                    <h:panelGroup layout="block" rendered="#{reviewBean.getAlbumReviews(selectedAlbum.selectedAlbum).isEmpty()}">
                         <div class="container-fluid">
                             <table class="table text-centered">
                                 <thead>
