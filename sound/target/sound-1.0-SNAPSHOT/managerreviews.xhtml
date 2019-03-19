@@ -16,28 +16,30 @@
     </h:head>
     <h:body class="backgroundcolor">
         <div class="container-fluid">
-            <table class="table text-centered">
-                <thead>
-                    <tr>
-                        <th>Reviewed</th>
-                        <th>Review Text</th>
-                        <th>Review Rating</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <ui:repeat value="#{reviewBean.getUnapproved()}" var="review">
+            <h:form>
+                <table class="table text-centered">
+                    <thead>
                         <tr>
-                            <td>#{review.track == null ? review.album.title : review.track.title}</td>
-                            <td>#{review.text}</td>
-                            <td class="rating">#{review.rating}</td>
-                            <td><h:commandButton value ="#{internationalization.approve}" 
-                                                 onclick="#{reviewBean.approveReview(review.review_id)}"/></td>
-                            <td><h:commandButton value ="#{internationalization.delete}" 
-                                                 onclick="#{reviewBean.deleteReview(review.review_id)}"/></td>
+                            <th>#{internationalization.reviewed}</th>
+                            <th>#{internationalization.reviewText}</th>
+                            <th>#{internationalization.reviewRating}</th>
                         </tr>
-                    </ui:repeat>
-                </tbody>    
-            </table>
+                    </thead>
+                    <tbody>
+                        <ui:repeat value="#{reviewBean.getUnapproved()}" var="review">
+                            <tr>
+                                <td>#{review.track == null ? review.album.title : review.track.title}</td>
+                                <td>#{review.text}</td>
+                                <td class="rating">#{review.rating}</td>
+                                <td><h:commandButton value ="#{internationalization.approve}" 
+                                                     action="#{reviewBean.approveReview(review.review_id)}"/></td>
+                                <td><h:commandButton value ="#{internationalization.delete}" 
+                                                     action="#{reviewBean.deleteReview(review.review_id)}"/></td>
+                            </tr>
+                        </ui:repeat>
+                    </tbody>    
+                </table>
+            </h:form>
         </div>
     </h:body>
 </html>
