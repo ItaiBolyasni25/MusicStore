@@ -16,17 +16,17 @@
         <title>Sound++</title>
     </h:head>
     <h:body>
-        <ui:include src="../navbarmanager.xhtml" />
+        <ui:include src="navbarmanager.xhtml" />
         <div class="container">
             <ul class="nav nav-pills">
                 <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab" href="#add">Add inventory</a>
+                    <a class="nav-link active" data-toggle="tab" href="#add">#{internationalization.inventoryadd}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#edit">Edit inventory</a>
+                    <a class="nav-link" data-toggle="tab" href="#edit">#{internationalization.inventoryedit}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#remove">Remove inventory</a>
+                    <a class="nav-link" data-toggle="tab" href="#remove">#{internationalization.inventoryremove}</a>
                 </li>
             </ul>
             <div id="myTabContent" class="tab-content">
