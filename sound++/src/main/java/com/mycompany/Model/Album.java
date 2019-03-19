@@ -7,6 +7,7 @@ package com.mycompany.Model;
  * and open the template in the editor.
  */
 import com.mycompany.Interface.EntityModel;
+import com.mycompany.Interface.Inventory;
 import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -19,7 +20,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "Album")
-public class Album implements EntityModel, Serializable {
+public class Album implements EntityModel, Inventory, Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
