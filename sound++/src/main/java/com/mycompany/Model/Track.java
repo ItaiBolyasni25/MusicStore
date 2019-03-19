@@ -6,8 +6,6 @@ package com.mycompany.Model;
  * and open the template in the editor.
  */
 import com.mycompany.Interface.EntityModel;
-import com.mycompany.Interface.Inventory;
-import com.mycompany.Model.Album;
 import java.sql.Date;
 import java.io.Serializable;
 import javax.persistence.*;
@@ -18,7 +16,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "Track")
-public class Track implements EntityModel, Inventory, Serializable {
+public class Track implements EntityModel, Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

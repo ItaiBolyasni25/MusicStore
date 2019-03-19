@@ -7,10 +7,8 @@ package com.mycompany.Model;
  * and open the template in the editor.
  */
 import com.mycompany.Interface.EntityModel;
-import com.mycompany.Interface.Inventory;
 import java.io.Serializable;
 import java.sql.Date;
-import java.sql.Timestamp;
 import java.util.List;
 import javax.persistence.*;
 
@@ -20,7 +18,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "Album")
-public class Album implements EntityModel, Inventory, Serializable {
+public class Album implements EntityModel, Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -58,7 +56,7 @@ public class Album implements EntityModel, Inventory, Serializable {
     private double list_price;
     private double sale_price;
     private boolean removal_status;
-    private Timestamp removal_date;
+    private Date removal_date;
     private String image;
     private String genre;
 
@@ -134,11 +132,11 @@ public class Album implements EntityModel, Inventory, Serializable {
         this.removal_status = removalStatus;
     }
 
-    public Timestamp getRemoval_date() {
+    public Date getRemoval_date() {
         return removal_date;
     }
 
-    public void setRemoval_date(Timestamp removalDate) {
+    public void setRemoval_date(Date removalDate) {
         this.removal_date = removalDate;
     }
 
