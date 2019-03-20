@@ -9,16 +9,11 @@
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-<<<<<<< HEAD
-=======
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"></link>
         <!--Library for sliding carousel -->
         <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
         <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-
-        <script src="js/newsfeed.js"></script>
-
->>>>>>> add slider to news feed
+        <script src="resources/js/newsfeed.js"></script>
         <h:outputStylesheet library="css" name="style.css"  />
         <title>Sound++</title>
         <f:view>
@@ -27,67 +22,9 @@
 
     </h:head>
     <h:body>
+
         <ui:include src="navbar.xhtml"/>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-            <a class="navbar-brand" href="#"><img id="logo" src="assets/logo.png" alt="Logo of online music store Sound++"></img></a>
-
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarColor03">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <h:link class="nav-link" value="#{internationalization.home}" outcome="index"/>
-                    </li>
-                    <li class="nav-item">
-                        <h:link class="nav-link" value="#{internationalization.albums}" outcome="albums"/>
-                    </li>
-                    <li class="nav-item">
-                        <h:link class="nav-link" value="#{internationalization.tracks}" outcome="tracks"/>
-                    </li>
-                    <li class="nav-item">
-                        <h:link class="nav-link" value="#{internationalization.about}" outcome="about"/>
-                    </li>
-                    <li class="nav-item">
-                        <h:link class="nav-link" value="#{internationalization.login}" outcome="login"/>
-                    </li>
-                    <li class="nav-item">
-                        <h:link class="nav-link" value="#{internationalization.cart}" outcome="cart"/>
-                    </li>
-                </ul>
-
-                <div class="form-group mt-3">
-                    <h:form class="form-inline my-2 my-lg-0 mr-sm-2">
-                        <h:inputText class="form-control mr-sm-3" value="#{internationalization.search}"/>
-                        <h:commandButton class="btn btn-outline-primary my-2 my-sm-0" value="#{internationalization.search}" action="search"/>
-                    </h:form>
-                </div>
-                <div class="form-group">
-                    <small class="ml-4 pl-3">Language</small>
-                    <h:form class="form-inline my-2 my-lg-0 ml-2">
-                        <h:selectOneMenu onchange="submit()" valueChangeListener="#{internationalization.languageChange}"  class="custom-select mr-sm-3 ml-4">
-                            <f:selectItem itemValue="en" itemLabel="#{internationalization.english}" />
-                            <f:selectItem itemValue="fr" itemLabel="#{internationalization.french}" />
-                        </h:selectOneMenu> 
-                    </h:form>
-                </div>
-
-            </div>
-        </nav>
->>>>>>> add slider to news feed
-
-
-=======
-
->>>>>>> change layout survey management and index
-=======
-
->>>>>>> 5bbcbb5f9a2e78cb3053e482470ea793c07fee59
         <ul class="nav nav-tabs">
             <li class="nav-item">
                 <a class="nav-link active" data-toggle="tab" href="#home">#{internationalization.home}</a>
@@ -114,12 +51,11 @@
                     <div class="col-md-9">
                         <h1 class="display-5">#{internationalization.newsfeed}</h1>
                         <div class="row">
-
                             <div class="col-md-1" id="prev">
                                 <button type="button" class="slick-prev emptybutton"><img class="arrows" src="assets/arrowprev.png"></img></button>
                             </div>
-                            <div class="jumbotron multiple-items col-md-10" id="newsfeed"></div>
-                            
+                            <div class="jumbotron multiple-items col-md-10" id="newsfeed">
+                            </div>
                             <div class="col-md-1" id="next">
                                 <button type="button" class="slick-next emptybutton"><img class="arrows" src="assets/arrownext.png"></img></button>
                             </div>

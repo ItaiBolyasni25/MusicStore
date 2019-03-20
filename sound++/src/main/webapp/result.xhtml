@@ -27,7 +27,7 @@
             <div class="albumTable">
                 <h3>Album</h3>
                 <hr class="style"></hr>
-                <h:panelGrid id = "albumpanel" columns = "3"
+                <h:panelGrid id = "albumpanel" columns = "4"
                              cellpadding = "55%">
                     <c:forEach var="album" items="#{ResultBean.albums}">
                         <h:form class="flip-box">
@@ -56,30 +56,30 @@
                 </h:panelGrid>
                 <h:form class="paginationForm">
                     <ul class="pagination" >
-                        <c:if  test="#{ResultBean.currentAlbumsPage != 1}">
+                        <c:if  test="#{ResultBean.currentPage != 1}">
                             <li class="page-item">
-                                <h:commandLink class="page-link" value="&laquo;" actionListener="#{AlbumPaginationBean.prev()}"/>
+                                <h:commandLink class="page-link" value="&laquo;" actionListener="#{ResultBean.prev()}"/>
                             </li>
                         </c:if>
-                        <c:if  test="#{ResultBean.currentAlbumsPage == 1}">
+                        <c:if  test="#{ResultBean.currentPage == 1}">
                             <li class="page-item disabled">
                                 <h:commandLink class="page-link" value="&laquo;"/>
                             </li>
                         </c:if>
-                        <c:forEach begin="1" end="#{ResultBean.totalAlbumPages}" var="i" >
-                            <li class="page-item #{ResultBean.currentAlbumsPage == i ? 'active':''}">
+                        <c:forEach begin="1" end="#{ResultBean.totalPages}" var="i" >
+                            <li class="page-item #{ResultBean.currentPage == i ? 'active':''}">
                                 <h:commandLink class="page-link" action="#{ResultBean.updateView()}" value="#{i}">
-                                    <f:setPropertyActionListener target="#{ResultBean.currentAlbumsPage}" value="#{i}" />
+                                    <f:setPropertyActionListener target="#{ResultBean.currentPage}" value="#{i}" />
                                     <f:ajax render="table"></f:ajax>
                                 </h:commandLink>
                             </li> 
                         </c:forEach>
-                        <c:if  test="#{ResultBean.currentAlbumsPage != ResultBean.totalAlbumPages}">
+                        <c:if  test="#{ResultBean.currentPage != ResultBean.totalPages}">
                             <li class="page-item">
                                 <h:commandLink class="page-link" value="&raquo;" actionListener="#{ResultBean.next()}"/>
                             </li>
                         </c:if>
-                        <c:if test="#{ResultBean.currentAlbumsPage == ResultBean.totalAlbumPages}">
+                        <c:if test="#{ResultBean.currentPage == ResultBean.totalPages}">
                             <li class="page-item disabled">
                                 <h:commandLink class="page-link" value="&raquo;"/>
                             </li>
@@ -94,7 +94,7 @@
             <div class="albumTable">
                 <h3>Tracks</h3>
         <hr class="style"/>
-                <h:panelGrid id = "trackpanel" columns = "3"
+                <h:panelGrid id = "trackpanel" columns = "4"
                              cellpadding = "55%">
                     <c:forEach var="track" items="#{ResultBean.tracks}">
                         <h:form class="flip-box">
@@ -123,20 +123,20 @@
                 </h:panelGrid>
                 <h:form class="paginationForm">
                     <ul class="pagination" >
-                        <c:if  test="#{ResultBean.currentTrackPage != 1}">
+                        <c:if  test="#{ResultBean.currentPage != 1}">
                             <li class="page-item">
                                 <h:commandLink class="page-link" value="&laquo;" actionListener="#{ResultBean.prev()}"/>
                             </li>
                         </c:if>
-                        <c:if  test="#{ResultBean.currentTrackPage == 1}">
+                        <c:if  test="#{ResultBean.currentPage == 1}">
                             <li class="page-item disabled">
                                 <h:commandLink class="page-link" value="&laquo;"/>
                             </li>
                         </c:if>
-                        <c:forEach begin="1" end="#{ResultBean.totalTrackPages}" var="i" >
-                            <li class="page-item #{ResultBean.currentTrackPage == i ? 'active':''}">
+                        <c:forEach begin="1" end="#{ResultBean.totalPages}" var="i" >
+                            <li class="page-item #{ResultBean.currentPage == i ? 'active':''}">
                                 <h:commandLink class="page-link" action="#{ResultBean.updateView()}" value="#{i}">
-                                    <f:setPropertyActionListener target="#{ResultBean.currentTrackPage}" value="#{i}" />
+                                    <f:setPropertyActionListener target="#{ResultBean.currentPage}" value="#{i}" />
                                     <f:ajax render="table"></f:ajax>
                                 </h:commandLink>
                             </li> 

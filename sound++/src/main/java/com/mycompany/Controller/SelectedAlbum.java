@@ -6,8 +6,10 @@
 package com.mycompany.Controller;
 
 import com.mycompany.Model.Album;
+import com.mycompany.Model.Artist;
 import com.mycompany.Persistence.DAO;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.component.html.HtmlInputHidden;
@@ -42,7 +44,6 @@ public class SelectedAlbum implements Serializable{
         return dataItemId;
     }
     public void setSelectedAlbum(Album dataItem) {
-        System.out.println("hihihihihii" + dataItem.getTitle());
         this.album = dataItem;
     }
 
@@ -58,7 +59,11 @@ public class SelectedAlbum implements Serializable{
          else{
             genre = album.getGenre();
          }
-         List<Album> albums = dao.findWithLimitGenre(new Album(), 3, genre, "title", album.getTitle());
+         List<String> artists = new ArrayList<>();
+         for(Artist a: album.getArtists()){
+             artists.add(a.getName());
+         }
+         List<Album> albums = dao.findWithLimitGenreAlbum(new Album(), 3, genre,artists, album.getTitle());
          System.out.println(albums.size());
          return albums;
          }

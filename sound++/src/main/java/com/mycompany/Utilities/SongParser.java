@@ -37,10 +37,22 @@ public class SongParser implements Serializable {
     private DAO dao;
     Album album;
     Artist artist;
+    private boolean isLoaded = false;
 
     public void onLoad() throws Exception {
+        if(!isIsLoaded()){
         readCSVFile();
+        }
     }
+
+    public boolean isIsLoaded() {
+        return isLoaded;
+    }
+
+    public void setIsLoaded(boolean isLoaded) {
+        this.isLoaded = isLoaded;
+    }
+    
 
     private void albumParser(String[] splittedCsv) throws ParseException {
         List<Artist> artists = null;

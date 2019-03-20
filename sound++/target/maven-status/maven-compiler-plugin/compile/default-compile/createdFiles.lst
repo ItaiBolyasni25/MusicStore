@@ -9,7 +9,6 @@ com\mycompany\Utilities\Internationalization.class
 com\mycompany\Model\Album.class
 com\mycompany\Controller\AlbumTrackBean.class
 com\mycompany\Utilities\SongParser.class
-getInfo.class
 com\mycompany\Model\Survey.class
 getTrackInfo.class
 com\mycompany\Controller\TrackPaginationBean.class

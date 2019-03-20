@@ -60,8 +60,8 @@ a{
 }
 
 .albumTable{
-    width: 73.5%;
-    margin-left: 13.5%;
+    width: 100%;
+    text-align: center;
 }
 
 .navcenter{
@@ -88,7 +88,6 @@ a{
 }
 .trackPic{
     height: 150px;
-    border-radius: 50%;
     width: auto;
 }
 .languagebutton{
@@ -413,8 +412,8 @@ section .section-title {
     z-index: 1;
 }
 #albumpanel{
-    margin-left: 10%;
+     margin: 0 auto;
 }
 #trackpanel{
-     margin-left: 10%;
+     margin: 0 auto;
 }

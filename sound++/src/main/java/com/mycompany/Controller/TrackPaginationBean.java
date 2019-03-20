@@ -7,8 +7,8 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -21,7 +21,7 @@ import javax.inject.Named;
  *
  * @author maian
  */
-@ViewScoped
+@SessionScoped
 @Named("TrackPaginationBean")
 public class TrackPaginationBean implements Serializable {
 
@@ -39,6 +39,17 @@ public class TrackPaginationBean implements Serializable {
         this.currentPage = 1;
 
     }
+    
+     public void initialize(){
+         String current = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("page");
+        this.currentPage = 1;
+        if(current != null) {
+            int currentInt = Integer.parseInt(current);
+            if(!(currentInt > this.totalPages))
+                this.currentPage = currentInt;
+        }
+        updateView();
+    }
 
     public List<Track> getDatalist() {
         return dataList;
@@ -46,7 +57,6 @@ public class TrackPaginationBean implements Serializable {
 
     public void setDatalist(List<Track> dataList) {
         this.dataList = dataList;
-        setTotalrows(dataList.size());
     }
 
     public int getOffset() {
@@ -54,6 +64,7 @@ public class TrackPaginationBean implements Serializable {
     }
 
     public int getTotalrows() {
+        System.out.println("totalRows " +totalRows);
         return totalRows;
     }
 
@@ -80,12 +91,13 @@ public class TrackPaginationBean implements Serializable {
     @PostConstruct
     public void init() {
         this.totalRows = dao.findAll(new Track()).size();
+
         if (totalRows > itemPerPage) {
             totalPages = (int) Math.ceil((totalRows * 1.0) / itemPerPage);
         } else {
             totalPages = 1;
         }
-        updateView();
+        //updateView();
     }
 
     public int getCurrent_page() {
@@ -103,20 +115,7 @@ public class TrackPaginationBean implements Serializable {
         setDatalist(dao.findWithLimit(new Track(), offset, itemPerPage));
     }
 
-    public void next() {
-        if (this.currentPage < totalPages) {
-            this.currentPage++;
-        }
-
-        updateView();
+     public String redirect(){
+        return "tracks?faces-redirect=true&page="+this.currentPage;  
     }
-
-    public void prev() {
-        if (this.currentPage > 1) {
-            this.currentPage--;
-        }
-
-        updateView();
-    }
-
 }
