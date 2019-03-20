@@ -27,7 +27,7 @@ function handleResponse(response) {
     }
 
     //Loop through most recent items of the RSS news feed
-    for (var i = 0; i < 9; i++) 
+    for (var i = 0; i < 9; i++)
     {
         var item = response.items[i];
         //Create html elements to hold the information about each article

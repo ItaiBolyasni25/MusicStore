@@ -24,7 +24,6 @@ com\mycompany\Model\News.class
 com\mycompany\Controller\TrackBean.class
 com\mycompany\Interface\EntityModel.class
 com\mycompany\Utilities\Validator.class
-com\mycompany\Interface\Inventory.class
 com\mycompany\Controller\ResultBean.class
 com\mycompany\Controller\SelectedTrack.class
 com\mycompany\Controller\SurveyBean.class

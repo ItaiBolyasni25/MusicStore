@@ -35,19 +35,86 @@
                 <div class="tab-pane fade show active" id="add">
                     <ul class="nav nav-pills">
                         <li class="nav-item">
-                            <a class="nav-link active" data-toggle="tab" href="#atrack">Add Track</a>
+                            <a class="nav-link active" data-toggle="tab" href="#atrack">#{internationalization.addTrack}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#aalbum">Add album</a>
+                            <a class="nav-link" data-toggle="tab" href="#aalbum">#{internationalization.addAlbum}</a>
                         </li>
                     </ul>
                     <div id="myTabContent" class="tab-content">
-                        <div class="tab-pane fade show active" id="atrack">
-                            <p>Track stuff here</p>
+                        <div class="tab-pane fade show active form-group" id="atrack">
+                            <h:form>
+                                <label class="col-form-label" for="inputDefault">#{internationalization.album}</label>
+                                <h:inputText value="#{inventoryBean.trackTitle}" class="form-control" />
+                                
+                                <label class="col-form-label" for="inputDefault">#{internationalization.title}</label>
+                                <h:inputText value="#{inventoryBean.trackTitle}" class="form-control" required="true"/>
+
+                                <label class="col-form-label" for="inputDefault">#{internationalization.songwriter}</label>
+                                <h:inputText value="#{inventoryBean.songwriter}" class="form-control" required="true"/>
+
+                                <label class="col-form-label" for="inputDefault">#{internationalization.playlength}</label>
+                                <h:inputText value="#{inventoryBean.playLength}" class="form-control" required="true" />
+
+                                <label class="col-form-label" for="inputDefault">Genre</label>
+                                <h:inputText value="#{inventoryBean.trackGenre}" class="form-control" required="true" />
+
+                                <label class="col-form-label" for="inputDefault">#{internationalization.cost}</label>
+                                <h:inputText value="#{inventoryBean.trackCost}" class="form-control" required="true" />
+
+                                <label class="col-form-label" for="inputDefault">#{internationalization.listPrice}</label>
+                                <h:inputText value="#{inventoryBean.trackListPrice}" class="form-control" />
+
+                                <label class="col-form-label" for="inputDefault">#{internationalization.salePrice}</label>
+                                <h:inputText value="#{inventoryBean.trackSalePrice}" class="form-control" />
+
+                                <h:commandButton value="#{internationalization.submit}" class="btn btn-primary formbutton" 
+                                                 action="#{inventoryBean.addTrack}" />
+
+                                <h:panelGroup layout="block" class="alert alert-success" rendered="#{inventoryBean.success == true}">
+                                    <h:outputText class="text-centered" value="#{internationalization.success}" />
+                                </h:panelGroup>
+
+                                <h:panelGroup layout="block" class="alert alert-danger" rendered="#{inventoryBean.fail == true}">
+                                    <h:outputText class="text-danger" value="#{internationalization.fail}" />
+                                </h:panelGroup>
+                            </h:form>
                         </div>
 
                         <div class="tab-pane fade" id="aalbum">
-                            <p>Album stuff here</p>
+                            <h:form>               
+                                <label class="col-form-label" for="inputDefault">#{internationalization.title}</label>
+                                <h:inputText value="#{inventoryBean.albumTitle}" class="form-control" required="true"/>
+
+                                <label class="col-form-label" for="inputDefault">#{internationalization.albumdate}</label>
+                                <h:inputText value="#{inventoryBean.releaseDate}" class="form-control" required="true"/>
+
+                                <label class="col-form-label" for="inputDefault">#{internationalization.recordingLabel}</label>
+                                <h:inputText value="#{inventoryBean.recordingLabel}" class="form-control" required="true" />
+
+                                <label class="col-form-label" for="inputDefault">#{internationalization.numberSongs}</label>
+                                <h:inputText value="#{inventoryBean.numberSongs}" class="form-control" required="true" />
+
+                                <label class="col-form-label" for="inputDefault">#{internationalization.cost}</label>
+                                <h:inputText value="#{inventoryBean.albumCost}" class="form-control" required="true" />
+
+                                <label class="col-form-label" for="inputDefault">#{internationalization.listPrice}</label>
+                                <h:inputText value="#{inventoryBean.albumListPrice}" class="form-control" />
+
+                                <label class="col-form-label" for="inputDefault">#{internationalization.salePrice}</label>
+                                <h:inputText value="#{inventoryBean.albumSalePrice}" class="form-control" />
+
+                                <h:commandButton value="#{internationalization.submit}" class="btn btn-primary formbutton" 
+                                                 action="#{inventoryBean.addTrack}" />
+
+                                <h:panelGroup layout="block" class="alert alert-success" rendered="#{inventoryBean.success == true}">
+                                    <h:outputText class="text-centered" value="#{internationalization.success}" />
+                                </h:panelGroup>
+
+                                <h:panelGroup layout="block" class="alert alert-danger" rendered="#{inventoryBean.fail == true}">
+                                    <h:outputText class="text-danger" value="#{internationalization.fail}" />
+                                </h:panelGroup>
+                            </h:form>
                         </div>
                     </div>
                 </div>
@@ -56,10 +123,10 @@
                 <div class="tab-pane fade" id="edit">
                     <ul class="nav nav-pills">
                         <li class="nav-item">
-                            <a class="nav-link active" data-toggle="tab" href="#etrack">Edit Track</a>
+                            <a class="nav-link active" data-toggle="tab" href="#etrack">#{internationalization.editTrack}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#ealbum">Edit album</a>
+                            <a class="nav-link" data-toggle="tab" href="#ealbum">#{internationalization.editAlbum}</a>
                         </li>
                     </ul>
                     <div id="myTabContent" class="tab-content">
@@ -77,10 +144,10 @@
                 <div class="tab-pane fade" id="remove">
                     <ul class="nav nav-pills">
                         <li class="nav-item">
-                            <a class="nav-link active" data-toggle="tab" href="#rtrack">Remove Track</a>
+                            <a class="nav-link active" data-toggle="tab" href="#rtrack">#{internationalization.removeTrack}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#ralbum">Remove album</a>
+                            <a class="nav-link" data-toggle="tab" href="#ralbum">#{internationalization.removeAlbum}</a>
                         </li>
                     </ul>
                     <div id="myTabContent" class="tab-content">

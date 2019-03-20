@@ -11,6 +11,7 @@ import com.mycompany.Persistence.DAO;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.Calendar;
+import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -23,22 +24,23 @@ import javax.inject.Named;
 @SessionScoped
 public class InventoryBean implements Serializable {
 
+    private boolean success;
+    private boolean fail;
+    private final Date date = new java.sql.Date(Calendar.getInstance().getTimeInMillis());
+
     // Track
+    private String album;
     private String trackTitle;
     private String songwriter;
-    private String play_length;
+    private String playLength;
     private String trackGenre;
-    // private Album album;
     private double trackCost;
     private double trackListPrice;
     private double trackSalePrice;
-    private Date trackDateAdded;
-    private boolean individual;
-    
+
     // Album
     private String albumTitle;
     private Date releaseDate;
-    private Date albumDateAdded;
     private String recordingLabel;
     private int numberSongs;
     private double albumCost;
@@ -51,27 +53,55 @@ public class InventoryBean implements Serializable {
     private DAO dao;
 
     public void addTrack() {
-        Track track = new Track();
-        // Find out about setting the album
-        // track.setAlbum(album);
-        track.setTitle(trackTitle);
-        track.setSongwriter(songwriter);
-        track.setPlay_length(play_length);
-        track.setGenre(trackGenre);
-        track.setCost(trackCost);
-        track.setList_price(trackListPrice);
-        track.setSale_price(trackSalePrice);
-        track.setDate_added(trackDateAdded);
-        track.setIndividual(individual);
-        
-        dao.write(track);
+        try {
+            Track track = new Track();
+
+            if (!album.isEmpty()) {
+                List<Album> albums = dao.find(new Album(), "title = " + album);
+                if (!albums.isEmpty()) {
+                    track.setAlbum(albums.get(0));
+                }
+            } else {
+                Album single = new Album();
+                single.setTitle(trackTitle);
+                single.setReleasedate(date);
+                single.setAddedDate(date);
+                single.setLabel(" ");
+                single.setNumberofsong(1);
+                single.setCost(trackCost);
+                single.setList_price(trackListPrice);
+                single.setSale_price(trackSalePrice);
+                single.setGenre(trackGenre);
+
+                dao.write(single);
+
+                track.setAlbum(single);
+            }
+
+            track.setTitle(trackTitle);
+            track.setSongwriter(songwriter);
+            track.setPlay_length(playLength);
+            track.setGenre(trackGenre);
+            track.setCost(trackCost);
+            track.setList_price(trackListPrice);
+            track.setSale_price(trackSalePrice);
+            track.setDate_added(date);
+            track.setIndividual(true);
+
+            dao.write(track);
+            success = true;
+            fail = false;
+        } catch (Exception e) {
+            success = false;
+            fail = true;
+        }
     }
 
     public void addAlbum() {
         Album album = new Album();
         album.setTitle(albumTitle);
         album.setReleasedate(releaseDate);
-        album.setAddedDate(albumDateAdded);
+        album.setAddedDate(date);
         album.setLabel(recordingLabel);
         album.setNumberofsong(numberSongs);
         album.setCost(albumCost);
@@ -79,7 +109,7 @@ public class InventoryBean implements Serializable {
         album.setSale_price(albumSalePrice);
         album.setImage(image);
         album.setGenre(albumGenre);
-        
+
         dao.write(album);
     }
 
@@ -107,5 +137,146 @@ public class InventoryBean implements Serializable {
         updated.setRemoval_status(true);
         updated.setRemoval_date(new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
         dao.updateEntity(updated);
+    }
+
+    // ---------- Getters and setters ---------- //
+    public boolean getSuccess() {
+        return success;
+    }
+
+    public boolean isFail() {
+        return fail;
+    }
+
+    public String getAlbum() {
+        return album;
+    }
+
+    public String getTrackTitle() {
+        return trackTitle;
+    }
+
+    public void setTrackTitle(String trackTitle) {
+        this.trackTitle = trackTitle;
+    }
+
+    public String getSongwriter() {
+        return songwriter;
+    }
+
+    public void setSongwriter(String songwriter) {
+        this.songwriter = songwriter;
+    }
+
+    public String getPlayLength() {
+        return playLength;
+    }
+
+    public void setPlayLength(String playLength) {
+        this.playLength = playLength;
+    }
+
+    public String getTrackGenre() {
+        return trackGenre;
+    }
+
+    public void setTrackGenre(String trackGenre) {
+        this.trackGenre = trackGenre;
+    }
+
+    public double getTrackCost() {
+        return trackCost;
+    }
+
+    public void setTrackCost(double trackCost) {
+        this.trackCost = trackCost;
+    }
+
+    public double getTrackListPrice() {
+        return trackListPrice;
+    }
+
+    public void setTrackListPrice(double trackListPrice) {
+        this.trackListPrice = trackListPrice;
+    }
+
+    public double getTrackSalePrice() {
+        return trackSalePrice;
+    }
+
+    public void setTrackSalePrice(double trackSalePrice) {
+        this.trackSalePrice = trackSalePrice;
+    }
+
+    public String getAlbumTitle() {
+        return albumTitle;
+    }
+
+    public void setAlbumTitle(String albumTitle) {
+        this.albumTitle = albumTitle;
+    }
+
+    public Date getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(Date releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
+    public String getRecordingLabel() {
+        return recordingLabel;
+    }
+
+    public void setRecordingLabel(String recordingLabel) {
+        this.recordingLabel = recordingLabel;
+    }
+
+    public int getNumberSongs() {
+        return numberSongs;
+    }
+
+    public void setNumberSongs(int numberSongs) {
+        this.numberSongs = numberSongs;
+    }
+
+    public double getAlbumCost() {
+        return albumCost;
+    }
+
+    public void setAlbumCost(double albumCost) {
+        this.albumCost = albumCost;
+    }
+
+    public double getAlbumListPrice() {
+        return albumListPrice;
+    }
+
+    public void setAlbumListPrice(double albumListPrice) {
+        this.albumListPrice = albumListPrice;
+    }
+
+    public double getAlbumSalePrice() {
+        return albumSalePrice;
+    }
+
+    public void setAlbumSalePrice(double albumSalePrice) {
+        this.albumSalePrice = albumSalePrice;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getAlbumGenre() {
+        return albumGenre;
+    }
+
+    public void setAlbumGenre(String albumGenre) {
+        this.albumGenre = albumGenre;
     }
 }
