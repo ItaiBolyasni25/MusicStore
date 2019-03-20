@@ -45,7 +45,7 @@
                         <div class="tab-pane fade show active form-group" id="atrack">
                             <h:form>
                                 <label class="col-form-label" for="inputDefault">#{internationalization.album}</label>
-                                <h:inputText value="#{inventoryBean.trackTitle}" class="form-control" />
+                                <h:inputText value="#{inventoryBean.albumName}" class="form-control" />
                                 
                                 <label class="col-form-label" for="inputDefault">#{internationalization.title}</label>
                                 <h:inputText value="#{inventoryBean.trackTitle}" class="form-control" required="true"/>
@@ -69,7 +69,7 @@
                                 <h:inputText value="#{inventoryBean.trackSalePrice}" class="form-control" />
 
                                 <h:commandButton value="#{internationalization.submit}" class="btn btn-primary formbutton" 
-                                                 action="#{inventoryBean.addTrack}" />
+                                                 action="#{inventoryBean.addTrack}" outcome="managerinventory"/>
 
                                 <h:panelGroup layout="block" class="alert alert-success" rendered="#{inventoryBean.success == true}">
                                     <h:outputText class="text-centered" value="#{internationalization.success}" />
@@ -81,10 +81,13 @@
                             </h:form>
                         </div>
 
-                        <div class="tab-pane fade" id="aalbum">
+                        <div class="tab-pane fade form-group" id="aalbum">
                             <h:form>               
                                 <label class="col-form-label" for="inputDefault">#{internationalization.title}</label>
                                 <h:inputText value="#{inventoryBean.albumTitle}" class="form-control" required="true"/>
+                                
+                                <label class="col-form-label" for="inputDefault">#{internationalization.genres}</label>
+                                <h:inputText value="#{inventoryBean.albumGenre}" class="form-control" required="true"/>
 
                                 <label class="col-form-label" for="inputDefault">#{internationalization.albumdate}</label>
                                 <h:inputText value="#{inventoryBean.releaseDate}" class="form-control" required="true"/>
@@ -103,9 +106,12 @@
 
                                 <label class="col-form-label" for="inputDefault">#{internationalization.salePrice}</label>
                                 <h:inputText value="#{inventoryBean.albumSalePrice}" class="form-control" />
+                                
+                                <label class="col-form-label" for="inputDefault">#{internationalization.imagePath}</label>
+                                <h:inputText value="#{inventoryBean.image}" class="form-control" />
 
                                 <h:commandButton value="#{internationalization.submit}" class="btn btn-primary formbutton" 
-                                                 action="#{inventoryBean.addTrack}" />
+                                                 action="#{inventoryBean.addAlbum}" outcome="managerinventory" />
 
                                 <h:panelGroup layout="block" class="alert alert-success" rendered="#{inventoryBean.success == true}">
                                     <h:outputText class="text-centered" value="#{internationalization.success}" />

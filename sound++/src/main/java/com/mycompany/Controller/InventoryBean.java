@@ -29,7 +29,7 @@ public class InventoryBean implements Serializable {
     private final Date date = new java.sql.Date(Calendar.getInstance().getTimeInMillis());
 
     // Track
-    private String album;
+    private String albumName;
     private String trackTitle;
     private String songwriter;
     private String playLength;
@@ -52,12 +52,12 @@ public class InventoryBean implements Serializable {
     @Inject
     private DAO dao;
 
-    public void addTrack() {
+    public String addTrack() {
         try {
             Track track = new Track();
 
-            if (!album.isEmpty()) {
-                List<Album> albums = dao.find(new Album(), "title = " + album);
+            if (!albumName.isEmpty()) {
+                List<Album> albums = dao.find(new Album(), "title = " + albumName);
                 if (!albums.isEmpty()) {
                     track.setAlbum(albums.get(0));
                 }
@@ -95,22 +95,33 @@ public class InventoryBean implements Serializable {
             success = false;
             fail = true;
         }
+        
+        return "managerinventory.xhtml";
     }
 
-    public void addAlbum() {
-        Album album = new Album();
-        album.setTitle(albumTitle);
-        album.setReleasedate(releaseDate);
-        album.setAddedDate(date);
-        album.setLabel(recordingLabel);
-        album.setNumberofsong(numberSongs);
-        album.setCost(albumCost);
-        album.setList_price(albumListPrice);
-        album.setSale_price(albumSalePrice);
-        album.setImage(image);
-        album.setGenre(albumGenre);
+    public String addAlbum() {
+        try {
+            Album album = new Album();
+            album.setTitle(albumTitle);
+            album.setReleasedate(releaseDate);
+            album.setAddedDate(date);
+            album.setLabel(recordingLabel);
+            album.setNumberofsong(numberSongs);
+            album.setCost(albumCost);
+            album.setList_price(albumListPrice);
+            album.setSale_price(albumSalePrice);
+            album.setImage(image);
+            album.setGenre(albumGenre);
 
-        dao.write(album);
+            dao.write(album);
+            success = true;
+            fail = false;
+        } catch (Exception e) {
+            success = false;
+            fail = true;
+        }
+        
+        return "managerinventory.xhtml";
     }
 
     public void editTrack(int track_id, double sale) {
@@ -148,8 +159,12 @@ public class InventoryBean implements Serializable {
         return fail;
     }
 
-    public String getAlbum() {
-        return album;
+    public String getAlbumName() {
+        return albumName;
+    }
+    
+    public void setAlbumName(String albumName) {
+        this.albumName = albumName;
     }
 
     public String getTrackTitle() {
