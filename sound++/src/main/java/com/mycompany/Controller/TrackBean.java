@@ -5,8 +5,6 @@ package com.mycompany.Controller;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
 /**
  *
  * @author maian
@@ -22,12 +20,15 @@ import javax.inject.Named;
 @SessionScoped
 @Named("trackBean")
 public class TrackBean implements Serializable {
+
     @Inject
-   private DAO dao;
-   public TrackBean(){
-   }
-   public List<Track> getAll(){
-       return dao.findAll(new Track());
-   }
-   
+    private DAO dao;
+
+    public TrackBean() {
+    }
+
+    public List<Track> getAll() {
+        return dao.findAll(new Track());
+    }
+
 }

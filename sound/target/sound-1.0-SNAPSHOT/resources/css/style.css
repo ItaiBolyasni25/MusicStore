@@ -7,12 +7,16 @@ and open the template in the editor.
     Created on : Jan 24, 2019, 1:54:17 PM
     Author     : 1635547
 */
-#logo{
+
+.logo{
     max-width: 40%;
     max-height: 30%;
     margin-left: 30%;
 }
-
+#liHover:hover {
+    background: #b3b3b3 !important;
+    color: #fff !important;
+}
 .navbar-brand{
     margin: 0px;
     padding: 0px;
@@ -96,14 +100,6 @@ a{
     text-align: center;
 }
 
-.manageroptions{
-    display:inline-block;
-    width: 16%;
-    margin-left: 2%;
-    margin-top: 5%;
-    border: 0px;
-}
-
 .inventorychoices{
     margin-left: 28.5%;
 }
@@ -126,9 +122,8 @@ section .section-title {
     margin-left: 5%;
 }
 #footer {
-    background: #f7f7f9 !important;
-
     margin-top: 10%;
+    background-color: #FFFFFF;
 }
 #footer h5{
     padding-left: 10px;
@@ -268,9 +263,15 @@ section .section-title {
     display: block;
 }
 
+.newsimg{
+    height: 20%;
+    width: 100%;
+    display: block;
+}
+
 .genresimg{
-    height: 60%;
-    width: 60%;
+    height: 40%;
+    width: 40%;
     display: block;
     margin-left: 20%;
     margin-top: 5%;
@@ -310,13 +311,6 @@ section .section-title {
     display: block;
 }
 
-.genresimg{
-    height: 60%;
-    width: 60%;
-    display: block;
-    margin-left: 20%;
-    margin-top: 5%;
-}
 
 #logomanager{
     height: 100%;
@@ -331,6 +325,79 @@ section .section-title {
 .addsurvey{
     width: 40%;
     margin-left: 30%;
+}
+
+button{
+    text-decoration: none;
+}
+
+.flip {
+    height: 250px;
+    margin: 0 auto;
+}
+.flip img {
+    width: 80%;
+    height: 80%;
+    border-radius: 50%;
+}
+.flip .back {
+    text-align: center;
+}
+
+#navsound{
+  position: fixed;
+  height: 100px;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+}
+
+.body{
+  margin-top:100px;
+}
+
+.divbackground{
+    opacity: 0.5;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: black;
+  text-align: center;
+  font-weight: bold;
+}
+
+.container {
+  width: 100%;
+  height: 40%;
+  color: black;
+}
+
+.imgbackground{
+  width:100%;
+  color: black;
+  height: auto;
+}
+
+.display-5{
+    text-align: center;
+}
+
+.backgroundcolor{
+    background-color:#ededed;
+}
+
+.aboutimg{
+    width: 100%;
+    height: auto;
+}
+
+.aboutimgs{
+    width: auto;
+    height: 100%;
 }
 .column{
     margin-top: 2%;

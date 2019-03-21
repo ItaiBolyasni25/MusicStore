@@ -1,8 +1,11 @@
 package com.mycompany.Model;
 
-
 import com.mycompany.Interface.EntityModel;
 import java.io.Serializable;
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,37 +17,56 @@ import javax.persistence.Table;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Gabriela
  */
 @Entity
-@Table(name= "Survey")
-public class Survey implements Serializable, EntityModel{
-    
+@Table(name = "Survey")
+public class Survey implements Serializable, EntityModel {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer survey_id;
 
-    
     private String question;
     private String option1;
     private String option2;
     private String option3;
     private String option4;
     private String option5;
-    
-    public Survey(){}
-    
-    public Survey(String question, String opt1, String opt2, String opt3, String opt4, String opt5){
+    private String created_by;
+    private Date date_created;
+
+    public Survey() {
+    }
+
+    public Survey(String question, String opt1, String opt2, String opt3, String opt4, String opt5, String createdby) {
         this.question = question;
         this.option1 = opt1;
         this.option2 = opt2;
         this.option3 = opt3;
         this.option4 = opt4;
         this.option5 = opt5;
+        this.created_by = createdby;
+        this.date_created = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+    }
+
+    public Date getDate_created() {
+        return date_created;
+    }
+
+    public void setDate_created(Date date_created) {
+        this.date_created = date_created;
+    }
+
+    public String getCreated_by() {
+        return created_by;
+    }
+
+    public void setCreated_by(String created_by) {
+        this.created_by = created_by;
     }
 
     public Integer getSurvey_id() {
@@ -54,7 +76,7 @@ public class Survey implements Serializable, EntityModel{
     public void setSurvey_id(Integer survey_id) {
         this.survey_id = survey_id;
     }
-    
+
     public String getQuestion() {
         return question;
     }
@@ -101,5 +123,21 @@ public class Survey implements Serializable, EntityModel{
 
     public void setOption5(String option5) {
         this.option5 = option5;
+    }
+
+    public List<String> getOptions() {
+        List<String> options = new ArrayList<String>();
+        options.add(option1);
+        options.add(option2);
+        if(option3 != null && !option3.isEmpty()){
+            options.add(option3);
+        }
+        if(option4 != null && !option4.isEmpty()){
+            options.add(option4);
+        }
+        if(option5 != null && !option4.isEmpty()){
+            options.add(option5);
+        }
+        return options;
     }
 }

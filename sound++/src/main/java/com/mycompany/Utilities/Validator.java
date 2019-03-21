@@ -37,7 +37,6 @@ public class Validator {
         if (user.size() == 1) {
             return user.get(0).getHash().equals(password);
         }
-
         return false;
     }
 

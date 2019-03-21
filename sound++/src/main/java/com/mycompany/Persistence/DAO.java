@@ -6,7 +6,6 @@ package com.mycompany.Persistence;
  * and open the template in the editor.
  */
 import com.mycompany.Interface.EntityModel;
-import com.mycompany.Model.User;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,7 +34,7 @@ public class DAO {
     @Resource
     private UserTransaction userTransaction;
 
-    public <E extends EntityModel> boolean write(E entityModel) {
+    public <E extends EntityModel> E write(E entityModel) {
         try {
             userTransaction.begin();
             em.persist(entityModel);
@@ -44,7 +43,7 @@ public class DAO {
             Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return true;
+        return entityModel;
     }
 
     public <E extends EntityModel> List<E> read(E entityModel, int id) {
@@ -118,5 +117,21 @@ public class DAO {
 
     public void setUserTransaction(UserTransaction ut) {
         this.userTransaction = ut;
+    }
+
+    public <E extends EntityModel> List<E> findWithJoins(E entityModel, String minusquery) {
+        String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
+        Query q = em.createNativeQuery("SELECT t.* FROM " + className + " t MINUS " + minusquery);
+        return q.getResultList();
+    }
+
+    public <E extends EntityModel> void updateEntity(E entityModel) {
+        try {
+            userTransaction.begin();
+            em.merge(entityModel);
+            userTransaction.commit();
+        }  catch ( RollbackException | NotSupportedException | SystemException |  HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException ex) {
+            Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

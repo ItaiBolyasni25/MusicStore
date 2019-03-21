@@ -24,24 +24,18 @@ public class Album implements EntityModel, Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int album_id;
-    
-    
+
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(name = "album_artist",
-        joinColumns = @JoinColumn(name = "album_id"),
-        inverseJoinColumns = @JoinColumn(name = "artist_id")
+            joinColumns = @JoinColumn(name = "album_id"),
+            inverseJoinColumns = @JoinColumn(name = "artist_id")
     )
     private List<Artist> artists;
-    
-    
+
     private String title;
     private Date release_date;
     private Date date_added;
-    public Album(){
-        super();
-    }
     
-
     public List<Artist> getArtists() {
         return artists;
     }
@@ -154,7 +148,7 @@ public class Album implements EntityModel, Serializable {
     public void setImage(String image) {
         this.image = image;
     }
-    
+
     public String getGenre() {
         return genre;
     }

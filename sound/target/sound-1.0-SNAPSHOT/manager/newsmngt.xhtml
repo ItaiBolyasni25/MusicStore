@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.2.1/lux/bootstrap.min.css" />
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+        <h:outputStylesheet library="css" name="style.css"  />
+        <title>Sound++</title>
+    </h:head>
+    <h:body class="backgroundcolor">
+        <ui:include src="../navbarmanager.xhtml" />
+        <p>
+            From this page a manager can define the current news feeds presented on the front page. Previous news feed must be saved so that they may be reused.
+        </p>
+        <div class="row">
+
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-8">
+                        <div class="card text-white bg-dark mb-3">
+                            <div class="card-body">
+                                <h3 class="card-title">#{internationalization.changenewsfeed}</h3>
+                                <h:form>
+                                    <div class="form-group row centerform">
+                                        <h:outputLabel class="col-sm-4 col-form-label display-5" for="option4">#{internationalization.rss}</h:outputLabel>
+                                        <div class="col-sm-6">
+                                            <h:inputText id="rss" class="form-control" value="#{newsBean.feed}" requiredMessage="#{internationalization.invalidlength}">
+                                                <f:validateLength minimum="10" maximum="300"/>
+                                                <f:validateRequired /> 
+                                            </h:inputText>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-5"></div>
+                                        <div class="col-md-4">
+                                            <h:commandButton id="submit-button" value="#{internationalization.add}" class="btn btn-secondary" action="#{newsBean.newfeed}" type="submit"/>
+                                        </div>
+                                    </div>
+                                </h:form>
+                            </div>
+                            <br/><br/><br/><br/>
+                        </div>
+                        <div class="card bg-secondary mb-3">
+                            <div class="card-body">
+                                <h3 class="card-title">#{internationalization.currentnewsfeed}</h3>
+                                <h5 class="text-center">#{newsBean.currentFeed}</h5>
+                            </div>
+                            <br/><br/><br/><br/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="card bg-secondary mb-3">
+                            <div class="card-body">
+                                <h3 class="card-title">#{internationalization.pastnewsfeeds}</h3>
+                                <ul class="list-group">
+                                    <ui:repeat var="news" value="#{newsBean.newsFeeds}">
+                                        <li class="list-group-item d-flex justify-content-between align-items-center"> #{news.feed}</li>
+                                    </ui:repeat>
+                                </ul>
+                            </div>
+                            <br/><br/><br/><br/>
+                        </div>
+                        <div class="card text-white bg-dark mb-3">
+                            <div class="card-body">
+                                <h3 class="card-title">#{internationalization.recommendations}</h3>
+                                <ul class="list-group">
+                                    <ui:repeat var="feeds" value="#{newsBean.recommendations}">
+                                        <li class="justify-content-between align-items-center">#{feeds}</li>
+                                    </ui:repeat>
+                                </ul>
+                                <br/><br/><br/><br/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </h:body>
+</html>
