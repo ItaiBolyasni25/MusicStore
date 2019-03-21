@@ -6,6 +6,7 @@
 package com.mycompany.Controller;
 
 import com.mycompany.Model.Album;
+import com.mycompany.Model.Artist;
 import com.mycompany.Model.Track;
 import com.mycompany.Persistence.DAO;
 import java.io.Serializable;
@@ -24,32 +25,40 @@ public class ResultBean implements Serializable {
     private String pattern;
     private List<Album> albums;
     private List<Track> tracks;
-    private int totalRows;
-    private int currentPage;
-    private int itemPerPage;
-    private int totalPages;
     @Inject
     private DAO dao;
-    public ResultBean() {
-        this.itemPerPage = 4;
-        this.currentPage = 1;
+    private int totalAlbumsRows;
+    private int currentAlbumsPage;
+    private int albumPerPage;
+    private int totalAlbumPages;
+    private int totalTrackRows;
+    private int currentTrackPage;
+    private int trackPerPage;
+    private int totalTrackPages;
+
+      public ResultBean() {
+        this.albumPerPage = 4;
+        this.currentAlbumsPage = 1;
+        this.trackPerPage = 4;
+        this.currentTrackPage = 1;
     }
 
     public void init() {
         this.pattern = (String) FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("pattern");
         updateView();
-         this.totalRows = dao.findWithPattern(new Album(), pattern, "title").size();
-        if (totalRows > itemPerPage) {
-            totalPages = (int) Math.ceil((totalRows * 1.0) / itemPerPage);
+         this.totalAlbumsRows = dao.findWithPatternAlbum(new Album(), pattern).size();
+        if (totalAlbumsRows > albumPerPage) {
+            totalAlbumPages = (int) Math.ceil((totalAlbumsRows * 1.0) / albumPerPage);
         } else {
-            totalPages = 1;
+            totalAlbumPages = 1;
         }
-        this.totalRows = dao.findWithPattern(new Album(), pattern, "title").size();
-         if (totalRows > itemPerPage) {
-            totalPages = (int) Math.ceil((totalRows * 1.0) / itemPerPage);
+        this.totalTrackRows = dao.findWithPatternTrack(new Track(), pattern).size();
+         if (totalTrackRows > trackPerPage) {
+            totalTrackPages = (int) Math.ceil((totalTrackRows * 1.0) / trackPerPage);
         } else {
-            totalPages = 1;
+            totalTrackPages = 1;
         }
+
     }
 
     public String getPattern() {
@@ -75,65 +84,107 @@ public class ResultBean implements Serializable {
     public void setTracks(List<Track> tracks) {
         this.tracks = tracks;
     }
-     public void updateView() {
-        if (pattern != null && !pattern.isEmpty() && !pattern.equals("")) {
-            setAlbums(dao.findWithLimitPattern(new Album(), getOffset(), itemPerPage,pattern, "title"));
-            setTracks(dao.findWithLimitPattern(new Track(), getOffset(),itemPerPage, pattern, "title"));
-        } else {
-            setAlbums(null);
-            setTracks(null);
-        }
+
+    public int getTotalAlbumsRows() {
+        return totalAlbumsRows;
     }
 
-    public int getTotalRows() {
-        return totalRows;
+    public void setTotalAlbumsRows(int totalAlbumsRows) {
+        this.totalAlbumsRows = totalAlbumsRows;
     }
 
-    public void setTotalRows(int totalRows) {
-        this.totalRows = totalRows;
+    public int getCurrentAlbumsPage() {
+        return currentAlbumsPage;
     }
 
-    public int getCurrentPage() {
-        return currentPage;
+    public void setCurrentAlbumsPage(int currentAlbumsPage) {
+        this.currentAlbumsPage = currentAlbumsPage;
     }
 
-    public void setCurrentPage(int currentPage) {
-        this.currentPage = currentPage;
+    public int getAlbumPerPage() {
+        return albumPerPage;
     }
 
-    public int getItemPerPage() {
-        return itemPerPage;
+    public void setAlbumPerPage(int albumPerPage) {
+        this.albumPerPage = albumPerPage;
     }
 
-    public void setItemPerPage(int itemPerPage) {
-        this.itemPerPage = itemPerPage;
+    public int getTotalAlbumPages() {
+        return totalAlbumPages;
     }
 
-    public int getTotalPages() {
-        return totalPages;
+    public void setTotalAlbumPages(int totalAlbumPages) {
+        this.totalAlbumPages = totalAlbumPages;
     }
 
-    public void setTotalPages(int totalPages) {
-        this.totalPages = totalPages;
+    public int getTotalTrackRows() {
+        return totalTrackRows;
     }
-     
-    public int getOffset() {
-        return (currentPage - 1) * itemPerPage;
+
+    public void setTotalTrackRows(int totalTrackRows) {
+        this.totalTrackRows = totalTrackRows;
+    }
+
+    public int getCurrentTrackPage() {
+        return currentTrackPage;
+    }
+
+    public void setCurrentTrackPage(int currentTrackPage) {
+        this.currentTrackPage = currentTrackPage;
+    }
+
+    public int getTrackPerPage() {
+        return trackPerPage;
+    }
+
+    public void setTrackPerPage(int trackPerPage) {
+        this.trackPerPage = trackPerPage;
+    }
+
+    public int getTotalTrackPages() {
+        return totalTrackPages;
+    }
+
+    public void setTotalTrackPages(int totalTrackPages) {
+        this.totalTrackPages = totalTrackPages;
+    }
+     public int getTrackOffset() {
+        return (currentTrackPage - 1) * trackPerPage;
+    }
+    
+    public int getAlbumOffset(){
+           return (currentAlbumsPage - 1) * albumPerPage;
     }
     
 
     public void next() {
-        if (this.currentPage < this.totalPages) {
-            this.currentPage++;
+        if (this.currentAlbumsPage < this.totalAlbumPages) {
+            this.currentAlbumsPage++;
+        }
+        if(this.currentTrackPage < this.totalTrackPages){
+            this.currentTrackPage++;
         }
         updateView();
     }
 
     public void prev() {
-        if (this.currentPage > 1) {
-            this.currentPage--;
+        if (this.currentAlbumsPage > 1) {
+            this.currentAlbumsPage--;
+        }
+        if (this.currentTrackPage > 1) {
+            this.currentTrackPage--;
         }
         updateView();
+    }
+
+     public void updateView() {
+        if (pattern != null && !pattern.isEmpty() && !pattern.equals("")) {
+            setAlbums(dao.findWithLimitPatternAlbum(new Album(), getAlbumOffset(),albumPerPage ,pattern));
+            setTracks(dao.findWithLimitPatternTrack(new Track(), getTrackOffset(),albumPerPage, pattern));
+        } else {
+            setAlbums(null);
+            setTracks(null);
+        }
     }
 
 }

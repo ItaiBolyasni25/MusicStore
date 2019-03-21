@@ -35,6 +35,7 @@ CREATE TABLE Album_Review (
 CREATE TABLE Artist (
     artist_id int NOT NULL auto_increment,
     name varchar(30) NOT NULL,
+image varchar(250) NULL,
     CONSTRAINT Artist_pk PRIMARY KEY (artist_id)
 );
 

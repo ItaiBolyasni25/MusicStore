@@ -6,6 +6,7 @@
 package com.mycompany.Controller;
 
 import com.mycompany.Model.Album;
+import com.mycompany.Model.Artist;
 import com.mycompany.Model.Track;
 import com.mycompany.Persistence.DAO;
 import java.io.Serializable;
@@ -64,8 +65,8 @@ public class AlbumTrackBean implements Serializable {
 
     public void patternChanged() {
         if (pattern != null && !pattern.isEmpty() && !pattern.equals("")) {
-            setAlbums(dao.findWithLimitPattern(new Album(),0,4, pattern, "title"));
-            setTracks(dao.findWithLimitPattern(new Track(),0,4, pattern, "title"));
+            setAlbums(dao.findWithLimitPatternAlbum(new Album(),0,3, pattern));
+            setTracks(dao.findWithLimitPatternTrack(new Track(),0,3, pattern));
         } else {
             setAlbums(null);
             setTracks(null);

@@ -1,4 +1,3 @@
-
 drop database songstore;
 create database songstore;
 DROP USER IF EXISTS songstore@localhost;
@@ -6,6 +5,7 @@ CREATE USER songstore@'localhost' IDENTIFIED WITH mysql_native_password BY 'daws
 GRANT ALL ON songstore.* TO songstore@'localhost';
 FLUSH PRIVILEGES;
 Use songstore;
+
 CREATE TABLE Album (
     album_id int NOT NULL auto_increment,
     title varchar(256) NOT NULL,
@@ -35,6 +35,7 @@ CREATE TABLE Album_Review (
 CREATE TABLE Artist (
     artist_id int NOT NULL auto_increment,
     name varchar(30) NOT NULL,
+image varchar(250) NULL,
     CONSTRAINT Artist_pk PRIMARY KEY (artist_id)
 );
 
@@ -49,7 +50,7 @@ CREATE TABLE album_artist (
 -- Table: Cart
 CREATE TABLE Cart (
     cart_id int NOT NULL auto_increment,
-    user_id int NOT NULL,
+    email varchar(50) NOT NULL,
     track_id int NULL,
     album_id int NULL,
     CONSTRAINT Cart_pk PRIMARY KEY (cart_id)
@@ -64,19 +65,15 @@ CREATE TABLE Invoice (
     gst double(5,2) NOT NULL,
     hst double(5,2) NOT NULL,
     total_gross double(5,2) NOT NULL,
-    user_id int NOT NULL,
+    email varchar(50) NOT NULL,
     CONSTRAINT Invoice_pk PRIMARY KEY (invoice_id)
 );
 
 -- Table: News
 CREATE TABLE News (
     news_id int NOT NULL auto_increment,
-    user_id int NOT NULL,
-    headline varchar(50) NOT NULL,
-    description text NOT NULL,
-    link varchar(300) NOT NULL,
-    date_created date NOT NULL,
-    image_url varchar(300) NULL,
+    feed varchar(300) NOT NULL,
+    used varchar(1) NOT NULL,
     CONSTRAINT News_pk PRIMARY KEY (news_id)
 );
 
@@ -97,7 +94,7 @@ CREATE TABLE Review (
     rating int NOT NULL,
     text text NULL,
     is_approved bool NOT NULL,
-    user_id int NOT NULL,
+    email varchar(50) NOT NULL,
     CONSTRAINT Review_pk PRIMARY KEY (review_id)
 );
 
@@ -111,14 +108,14 @@ CREATE TABLE Survey (
     option4 varchar(100) NULL,
     option5 varchar(100) NULL,
     date_created date NOT NULL,
-    created_by int NOT NULL,
+    created_by varchar(50) NOT NULL,
     CONSTRAINT Survey_pk PRIMARY KEY (survey_id)
 );
 
 -- Table: Survey_Result
 CREATE TABLE Survey_Result (
     survey_result_id int NOT NULL auto_increment,
-    user_id int NOT NULL,
+    email varchar(50) NOT NULL,
     survey_id int NOT NULL,
     answer varchar(100) NOT NULL,
     date_submitted date NOT NULL,
@@ -154,26 +151,31 @@ CREATE TABLE Track_Review (
 
 -- Table: User
 CREATE TABLE User (
-    user_id int NOT NULL auto_increment,
-    title varchar(30) NULL,
+    title varchar(30) NOT NULL,
     lastname varchar(30) NOT NULL,
     firstname varchar(30) NOT NULL,
-    company_name varchar(30) NOT NULL,
-    address1 varchar(30) NOT NULL,
+    company_name varchar(30) NULL,
+    address1 varchar(30) NULL,
     address2 varchar(30) NULL,
-    city varchar(30) NOT NULL,
-    province varchar(30) NOT NULL,
-    country varchar(30) NOT NULL,
-    postal_code varchar(7) NOT NULL,
+    city varchar(30) NULL,
+    province varchar(30) NULL,
+    country varchar(30) NULL,
+    postal_code varchar(7) NULL,
     home_telephone varchar(10) NULL,
     cellphone varchar(10) NULL,
     email varchar(50) NOT NULL,
     last_genre varchar(30) NULL,
-    is_manager bool DEFAULT 0,
-    language varchar(30) DEFAULT 'English',
+    is_manager bool NULL,
+    language varchar(30) NULL,
     hash varchar(300) NOT NULL,
     salt varchar(300) NULL,
-    CONSTRAINT User_pk PRIMARY KEY (user_id)
+    CONSTRAINT User_pk PRIMARY KEY (email)
+);
+
+CREATE TABLE Roles (
+    email varchar(50) NOT NULL,
+    roles varchar(50) NOT NULL,
+    CONSTRAINT Groups_pk PRIMARY KEY (email)
 );
 
 -- foreign keys
@@ -194,16 +196,12 @@ ALTER TABLE Cart ADD CONSTRAINT Cart_Track FOREIGN KEY Cart_Track (track_id)
     REFERENCES Track (track_id);
 
 -- Reference: Cart_User (table: Cart)
-ALTER TABLE Cart ADD CONSTRAINT Cart_User FOREIGN KEY Cart_User (user_id)
-    REFERENCES User (user_id);
+ALTER TABLE Cart ADD CONSTRAINT Cart_User FOREIGN KEY Cart_User (email)
+    REFERENCES User (email);
 
 -- Reference: Invoice_User (table: Invoice)
-ALTER TABLE Invoice ADD CONSTRAINT Invoice_User FOREIGN KEY Invoice_User (user_id)
-    REFERENCES User (user_id);
-
--- Reference: News_User (table: News)
-ALTER TABLE News ADD CONSTRAINT News_User FOREIGN KEY News_User (user_id)
-    REFERENCES User (user_id);
+ALTER TABLE Invoice ADD CONSTRAINT Invoice_User FOREIGN KEY Invoice_User (email)
+    REFERENCES User (email);
 
 -- Reference: Order_Album (table: Order)
 ALTER TABLE `Order` ADD CONSTRAINT Order_Album FOREIGN KEY Order_Album (album_id)
@@ -218,20 +216,20 @@ ALTER TABLE `Order` ADD CONSTRAINT Order_Track FOREIGN KEY Order_Track (track_id
     REFERENCES Track (track_id);
 
 -- Reference: Review_User (table: Review)
-ALTER TABLE Review ADD CONSTRAINT Review_User FOREIGN KEY Review_User (user_id)
-    REFERENCES User (user_id);
+ALTER TABLE Review ADD CONSTRAINT Review_User FOREIGN KEY Review_User (email)
+    REFERENCES User (email);
 
 -- Reference: Survey_Result_Survey (table: Survey_Result)
 ALTER TABLE Survey_Result ADD CONSTRAINT Survey_Result_Survey FOREIGN KEY Survey_Result_Survey (survey_id)
     REFERENCES Survey (survey_id);
 
 -- Reference: Survey_Result_User (table: Survey_Result)
-ALTER TABLE Survey_Result ADD CONSTRAINT Survey_Result_User FOREIGN KEY Survey_Result_User (user_id)
-    REFERENCES User (user_id);
+ALTER TABLE Survey_Result ADD CONSTRAINT Survey_Result_User FOREIGN KEY Survey_Result_User (email)
+    REFERENCES User (email);
 
 -- Reference: Survey_User (table: Survey)
 ALTER TABLE Survey ADD CONSTRAINT Survey_User FOREIGN KEY Survey_User (created_by)
-    REFERENCES User (user_id);
+    REFERENCES User (email);
 
 -- Reference: Track_Album (table: Track)
 ALTER TABLE Track ADD CONSTRAINT Track_Album FOREIGN KEY Track_Album (album_id)
@@ -253,4 +251,7 @@ ALTER TABLE album_artist ADD CONSTRAINT album_artist_Album FOREIGN KEY album_art
 ALTER TABLE album_artist ADD CONSTRAINT album_artist_Artist FOREIGN KEY album_artist_Artist (artist_id)
     REFERENCES Artist (artist_id);
 
+-- Reference: groups_user_email (table: groups)
+ALTER TABLE Roles ADD CONSTRAINT Groups_User FOREIGN KEY Roles (email)
+    REFERENCES User (email);
 -- End of file.
