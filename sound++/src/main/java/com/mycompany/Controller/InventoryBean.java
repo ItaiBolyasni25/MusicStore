@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.Controller;
 
 import com.mycompany.Model.Album;
@@ -26,6 +21,7 @@ public class InventoryBean implements Serializable {
 
     private boolean success;
     private boolean fail;
+    private boolean searched;
     private final Date date = new java.sql.Date(Calendar.getInstance().getTimeInMillis());
 
     // Track
@@ -130,9 +126,9 @@ public class InventoryBean implements Serializable {
         dao.updateEntity(updated);
     }
 
-    public void editAlbum(int album_id, double sale) {
+    public void editAlbum(int album_id) {
         Album updated = dao.read(new Album(), album_id).get(0);
-        updated.setSale_price(sale);
+        updated.setSale_price(albumSalePrice);
         dao.updateEntity(updated);
     }
 
@@ -149,14 +145,26 @@ public class InventoryBean implements Serializable {
         updated.setRemoval_date(new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
         dao.updateEntity(updated);
     }
+    
+    public void searchMethod() {
+        searched = true;
+    }
 
     // ---------- Getters and setters ---------- //
-    public boolean getSuccess() {
+    public boolean isSuccess() {
         return success;
     }
 
     public boolean isFail() {
         return fail;
+    }
+
+    public boolean isSearched() {
+        return searched;
+    }
+    
+    public void setSearched(boolean searched) {
+        this.searched = searched;
     }
 
     public String getAlbumName() {

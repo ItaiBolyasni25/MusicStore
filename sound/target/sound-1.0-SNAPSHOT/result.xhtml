@@ -51,6 +51,9 @@
                                   </div>
                                       <f:setPropertyActionListener target="#{selectedAlbum.selectedAlbum}" value="#{album}" />
                                     </h:commandLink></div></h:form>
+                        <c:if test="#{inventoryBean.search == true}">
+                            <h:outputText value="THIS WAS SEARCHED FROM INVENTORY" />
+                        </c:if>
                     </c:forEach>
                     <p><h:outputText value="Your search did not match any albums.!" rendered="#{empty ResultBean.albums}" /></p>
                 </h:panelGrid>
