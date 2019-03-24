@@ -18,8 +18,27 @@ function showSearchList() {
 
 
 $(document).ready(function () {
-    $(window).click(hideSearchList)
+    var textInput;
+    $(window).click(hideSearchList);
     $(".searchForm").click(function(event) {
         event.stopPropagation();
+    });
+    $(".filter").change(function(){
+        if($("[id='searchform:filter:2']").is(':checked')){
+            $("[id='searchform:pattern']").daterangepicker();
+        }
+        else{
+        if($("[id='searchform:pattern']").data('daterangepicker')){
+        $("[id='searchform:pattern']").data('daterangepicker').remove();
+        }
+        $(".patternTextBox").val("");
+        $('.patternTextBox').keyup();
+        hideSearchList();
+    }
+    });
+    $("[id='searchform:pattern']").change(function(){
+        if($("[id='searchform:filter:2']").is(':checked')){
+         $('.patternTextBox').keyup();
+     }
     })
 });

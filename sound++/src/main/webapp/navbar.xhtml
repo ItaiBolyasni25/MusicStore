@@ -11,24 +11,27 @@ and open the template in the editor.
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.2.1/lux/bootstrap.min.css" />
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.2.1/lux/bootstrap.min.css"/>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"></link>
-
-        <h:outputStylesheet library="css" name="style.css"  />
-
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.min.js" integrity="sha384-F13mJAeqdsVJS5kJv7MZ4PzYmJ+yXXZkt/gEnamJGTXZFzYgAcVtNg5wBDrRgLg9" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js" integrity="sha384-2Tnqs3x0ucZkxYqJ3UX1R/fkSRkMaDsdYWsUNc0hZVikDXRHamRor+AsNJ7Pi2DA" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" integrity="sha384-3J4adb6KqO9u+ZgVfdmUqKDG4qWyG2qxGdXYoCXh3YmBQURWveIDgFh22pw1E3a9" crossorigin="anonymous"></link>
         <title>Sound++</title>
     </h:head>
     <ui:composition>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.min.js" integrity="sha384-F13mJAeqdsVJS5kJv7MZ4PzYmJ+yXXZkt/gEnamJGTXZFzYgAcVtNg5wBDrRgLg9" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js" integrity="sha384-2Tnqs3x0ucZkxYqJ3UX1R/fkSRkMaDsdYWsUNc0hZVikDXRHamRor+AsNJ7Pi2DA" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" integrity="sha384-3J4adb6KqO9u+ZgVfdmUqKDG4qWyG2qxGdXYoCXh3YmBQURWveIDgFh22pw1E3a9" crossorigin="anonymous"></link>
         <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top" id="navsound">
 
             <h:link class="navbar-brand" outcome="index">
                 <h:graphicImage class="logo" value="assets/logonav.PNG" />
             </h:link> 
-        <h:outputScript library="js" name="jquery-1.12.4.js" target="head" />
-        <h:outputScript library="js" name="search.js" target="head"/>
+            <h:outputScript library="js" name="jquery-1.12.4.js" target="head" />
+            <h:outputScript library="js" name="search.js" target="head"/>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -41,7 +44,7 @@ and open the template in the editor.
                     </li>
                     <li class="nav-item">
                         <h:form>
-                      <h:commandLink class="nav-link" value="#{internationalization.albums}" action="/albums?faces-redirect=true"/>
+                            <h:commandLink class="nav-link" value="#{internationalization.albums}" action="/albums?faces-redirect=true"/>
                         </h:form>
                     </li>
                     <li class="nav-item">
@@ -78,8 +81,14 @@ and open the template in the editor.
 
                     </div>
                 </li>
-
-                <h:form class="form-inline my-2 my-lg-0 searchForm" >
+                <h:form class="form-inline my-2 my-lg-0 searchForm" id="searchform" >
+                    <label>Search by:</label>
+                    <h:selectOneRadio value="#{AlbumTrackBean.filter}" id ="filter" class="filter">
+                        <f:selectItem itemValue="title" itemLabel="Title"/>
+                        <f:selectItem  itemValue="artist" itemLabel="Artist" />
+                        <f:selectItem itemValue="rangeofdate" itemLabel="Range of Date" />
+                        <f:ajax event="click"/>
+                    </h:selectOneRadio>
                     <h:panelGroup id="input">
                         <h:inputText onfocus="showSearchList();" autocomplete="off" id="pattern" class="form-control mr-sm-2 patternTextBox" title="#{internationalization.search}" value="#{AlbumTrackBean.pattern}" >
                             <f:ajax event="keyup" listener="#{AlbumTrackBean.patternChanged()}" execute="pattern" render="searchList"></f:ajax>
@@ -97,10 +106,18 @@ and open the template in the editor.
                             </ui:repeat>
                             <ui:repeat  value="#{AlbumTrackBean.tracks}" var="track">
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                                     <h:commandLink  value="#{track.title}" onclick="setPattern(this);">           
+                                    <h:commandLink  value="#{track.title}" onclick="setPattern(this);">           
                                         <f:ajax />
                                     </h:commandLink>
                                     <span class="badge badge-primary badge-pill">Track</span>
+                                </li>
+                            </ui:repeat>
+                            <ui:repeat  value="#{AlbumTrackBean.artists}" var="artist">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <h:commandLink  value="#{artist.name}" onclick="setPattern(this);">           
+                                        <f:ajax />
+                                    </h:commandLink>
+                                    <span class="badge badge-primary badge-pill">Artist</span>
                                 </li>
                             </ui:repeat>
                         </ul>

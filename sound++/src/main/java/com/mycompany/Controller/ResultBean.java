@@ -23,6 +23,7 @@ import javax.inject.Named;
 public class ResultBean implements Serializable {
 
     private String pattern;
+    private String filter;
     private List<Album> albums;
     private List<Track> tracks;
     @Inject
@@ -45,14 +46,15 @@ public class ResultBean implements Serializable {
 
     public void init() {
         this.pattern = (String) FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("pattern");
+        this.filter = (String) FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("filter");
         updateView();
-         this.totalAlbumsRows = dao.findWithPatternAlbum(new Album(), pattern).size();
+         this.totalAlbumsRows = dao.findWithPattern(new Album(), pattern).size();
         if (totalAlbumsRows > albumPerPage) {
             totalAlbumPages = (int) Math.ceil((totalAlbumsRows * 1.0) / albumPerPage);
         } else {
             totalAlbumPages = 1;
         }
-        this.totalTrackRows = dao.findWithPatternTrack(new Track(), pattern).size();
+        this.totalTrackRows = dao.findWithPattern(new Track(), pattern).size();
          if (totalTrackRows > trackPerPage) {
             totalTrackPages = (int) Math.ceil((totalTrackRows * 1.0) / trackPerPage);
         } else {
@@ -61,6 +63,14 @@ public class ResultBean implements Serializable {
 
     }
 
+    public String getFilter() {
+        return filter;
+    }
+
+    public void setFilter(String filter) {
+        this.filter = filter;
+    }
+    
     public String getPattern() {
         return pattern;
     }
@@ -178,9 +188,18 @@ public class ResultBean implements Serializable {
     }
 
      public void updateView() {
-        if (pattern != null && !pattern.isEmpty() && !pattern.equals("")) {
-            setAlbums(dao.findWithLimitPatternAlbum(new Album(), getAlbumOffset(),albumPerPage ,pattern));
-            setTracks(dao.findWithLimitPatternTrack(new Track(), getTrackOffset(),albumPerPage, pattern));
+        if (pattern != null && !pattern.isEmpty() && !pattern.equals("") && filter != null && !filter.isEmpty() && !filter.equals("")) {
+            if(filter.equals("title")){
+            setAlbums(dao.findWithLimitPattern(new Album(), getAlbumOffset(),albumPerPage ,pattern));
+            setTracks(dao.findWithLimitPattern(new Track(), getTrackOffset(),albumPerPage, pattern));
+            }
+            else if(filter.equals("artist")){
+            setAlbums(dao.findWithLimitPatternAlbumArtist(new Album(), getAlbumOffset(),albumPerPage ,pattern));
+            setTracks(dao.findWithLimitPatternTrackArtist(new Track(), getTrackOffset(),albumPerPage, pattern));
+            }
+            else{
+                
+            }
         } else {
             setAlbums(null);
             setTracks(null);

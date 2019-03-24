@@ -56,30 +56,30 @@
                 </h:panelGrid>
                 <h:form class="paginationForm">
                     <ul class="pagination" >
-                        <c:if  test="#{ResultBean.currentPage != 1}">
+                        <c:if  test="#{ResultBean.currentAlbumsPage != 1}">
                             <li class="page-item">
                                 <h:commandLink class="page-link" value="&laquo;" actionListener="#{ResultBean.prev()}"/>
                             </li>
                         </c:if>
-                        <c:if  test="#{ResultBean.currentPage == 1}">
+                        <c:if  test="#{ResultBean.currentAlbumsPage == 1}">
                             <li class="page-item disabled">
                                 <h:commandLink class="page-link" value="&laquo;"/>
                             </li>
                         </c:if>
-                        <c:forEach begin="1" end="#{ResultBean.totalPages}" var="i" >
-                            <li class="page-item #{ResultBean.currentPage == i ? 'active':''}">
+                        <c:forEach begin="1" end="#{ResultBean.totalAlbumPages}" var="i" >
+                            <li class="page-item #{ResultBean.currentAlbumsPage == i ? 'active':''}">
                                 <h:commandLink class="page-link" action="#{ResultBean.updateView()}" value="#{i}">
-                                    <f:setPropertyActionListener target="#{ResultBean.currentPage}" value="#{i}" />
+                                    <f:setPropertyActionListener target="#{ResultBean.currentAlbumsPage}" value="#{i}" />
                                     <f:ajax render="table"></f:ajax>
                                 </h:commandLink>
                             </li> 
                         </c:forEach>
-                        <c:if  test="#{ResultBean.currentPage != ResultBean.totalPages}">
+                        <c:if  test="#{ResultBean.currentAlbumsPage != ResultBean.totalAlbumPages}">
                             <li class="page-item">
                                 <h:commandLink class="page-link" value="&raquo;" actionListener="#{ResultBean.next()}"/>
                             </li>
                         </c:if>
-                        <c:if test="#{ResultBean.currentPage == ResultBean.totalPages}">
+                        <c:if test="#{ResultBean.currentAlbumsPage == ResultBean.totalAlbumPages}">
                             <li class="page-item disabled">
                                 <h:commandLink class="page-link" value="&raquo;"/>
                             </li>
@@ -123,20 +123,20 @@
                 </h:panelGrid>
                 <h:form class="paginationForm">
                     <ul class="pagination" >
-                        <c:if  test="#{ResultBean.currentPage != 1}">
+                        <c:if  test="#{ResultBean.currentTrackPage != 1}">
                             <li class="page-item">
                                 <h:commandLink class="page-link" value="&laquo;" actionListener="#{ResultBean.prev()}"/>
                             </li>
                         </c:if>
-                        <c:if  test="#{ResultBean.currentPage == 1}">
+                        <c:if  test="#{ResultBean.currentTrackPage == 1}">
                             <li class="page-item disabled">
                                 <h:commandLink class="page-link" value="&laquo;"/>
                             </li>
                         </c:if>
-                        <c:forEach begin="1" end="#{ResultBean.totalPages}" var="i" >
-                            <li class="page-item #{ResultBean.currentPage == i ? 'active':''}">
+                        <c:forEach begin="1" end="#{ResultBean.totalTrackPages}" var="i" >
+                            <li class="page-item #{ResultBean.currentTrackPage == i ? 'active':''}">
                                 <h:commandLink class="page-link" action="#{ResultBean.updateView()}" value="#{i}">
-                                    <f:setPropertyActionListener target="#{ResultBean.currentPage}" value="#{i}" />
+                                    <f:setPropertyActionListener target="#{ResultBean.currentTrackPage}" value="#{i}" />
                                     <f:ajax render="table"></f:ajax>
                                 </h:commandLink>
                             </li> 
