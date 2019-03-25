@@ -94,7 +94,9 @@
                                 <h:inputText value="#{inventoryBean.albumGenre}" class="form-control" required="true"/>
 
                                 <label class="col-form-label" for="inputDefault">#{internationalization.albumdate}</label>
-                                <h:inputText value="#{inventoryBean.releaseDate}" class="form-control" required="true"/>
+                                <h:inputText value="#{inventoryBean.releaseDate}" class="form-control" required="true">
+                                    <f:convertDateTime pattern="yyyy-MM-dd" />
+                                </h:inputText>
 
                                 <label class="col-form-label" for="inputDefault">#{internationalization.recordingLabel}</label>
                                 <h:inputText value="#{inventoryBean.recordingLabel}" class="form-control" required="true" />
@@ -123,7 +125,7 @@
 
                                 <h:panelGroup layout="block" class="alert alert-danger" rendered="#{inventoryBean.fail == true}">
                                     <h:outputText class="text-danger" value="#{internationalization.fail}" />
-                                </h:panelGroup>
+                                </h:panelGroup> 
                             </h:form>
                         </div>
                     </div>

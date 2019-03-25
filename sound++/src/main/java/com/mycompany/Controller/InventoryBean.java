@@ -4,7 +4,7 @@ import com.mycompany.Model.Album;
 import com.mycompany.Model.Track;
 import com.mycompany.Persistence.DAO;
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 import java.util.Calendar;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
@@ -49,19 +49,21 @@ public class InventoryBean implements Serializable {
     private DAO dao;
 
     public String addTrack() {
-        try {
+
+        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+        
             Track track = new Track();
 
             if (!albumName.isEmpty()) {
-                List<Album> albums = dao.find(new Album(), "title = " + albumName);
+                List<Album> albums = dao.find(new Album(), "title = '" + albumName + "'");
                 if (!albums.isEmpty()) {
                     track.setAlbum(albums.get(0));
                 }
             } else {
                 Album single = new Album();
                 single.setTitle(trackTitle);
-                single.setReleasedate(date);
-                single.setAddedDate(date);
+                single.setReleasedate(sqlDate);
+                single.setAddedDate(sqlDate);
                 single.setLabel(" ");
                 single.setNumberofsong(1);
                 single.setCost(trackCost);
@@ -81,17 +83,14 @@ public class InventoryBean implements Serializable {
             track.setCost(trackCost);
             track.setList_price(trackListPrice);
             track.setSale_price(trackSalePrice);
-            track.setDate_added(date);
+            track.setDate_added(sqlDate);
             track.setIndividual(true);
 
             dao.write(track);
             success = true;
             fail = false;
-        } catch (Exception e) {
-            success = false;
-            fail = true;
-        }
-        
+       
+
         return "managerinventory.xhtml";
     }
 
@@ -99,8 +98,8 @@ public class InventoryBean implements Serializable {
         try {
             Album album = new Album();
             album.setTitle(albumTitle);
-            album.setReleasedate(releaseDate);
-            album.setAddedDate(date);
+            album.setReleasedate(new java.sql.Date(releaseDate.getTime()));
+            album.setAddedDate(new java.sql.Date(date.getTime()));
             album.setLabel(recordingLabel);
             album.setNumberofsong(numberSongs);
             album.setCost(albumCost);
@@ -116,7 +115,6 @@ public class InventoryBean implements Serializable {
             success = false;
             fail = true;
         }
-        
         return "managerinventory.xhtml";
     }
 
@@ -145,7 +143,7 @@ public class InventoryBean implements Serializable {
         updated.setRemoval_date(new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
         dao.updateEntity(updated);
     }
-    
+
     public void searchMethod() {
         searched = true;
     }
@@ -162,7 +160,7 @@ public class InventoryBean implements Serializable {
     public boolean isSearched() {
         return searched;
     }
-    
+
     public void setSearched(boolean searched) {
         this.searched = searched;
     }
@@ -170,7 +168,7 @@ public class InventoryBean implements Serializable {
     public String getAlbumName() {
         return albumName;
     }
-    
+
     public void setAlbumName(String albumName) {
         this.albumName = albumName;
     }
