@@ -11,6 +11,8 @@ import com.mycompany.Model.Track;
 import com.mycompany.Persistence.DAO;
 import java.io.Serializable;
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
@@ -90,7 +92,6 @@ public class AlbumTrackBean implements Serializable {
     public void patternChanged() {
 
         if (pattern != null && !pattern.isEmpty() && !pattern.equals("")) {
-                     System.out.println(this.pattern);
             if (filter.equals("title")) {
                 setAlbums(dao.findWithLimitPattern(new Album(), 0, 3, pattern));
                 setTracks(dao.findWithLimitPattern(new Track(), 0, 3, pattern));
@@ -106,7 +107,7 @@ public class AlbumTrackBean implements Serializable {
             setArtists(null);
         }
     }
-
+     
     public String redirect() {
         return "result?faces-redirect=true&pattern=" + this.pattern + "&filter=" + this.filter;
     }

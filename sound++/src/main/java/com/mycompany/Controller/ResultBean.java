@@ -10,6 +10,8 @@ import com.mycompany.Model.Artist;
 import com.mycompany.Model.Track;
 import com.mycompany.Persistence.DAO;
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -37,29 +39,42 @@ public class ResultBean implements Serializable {
     private int trackPerPage;
     private int totalTrackPages;
 
-      public ResultBean() {
-        this.albumPerPage = 4;
+    public ResultBean() {
+        this.albumPerPage = 2;
         this.currentAlbumsPage = 1;
-        this.trackPerPage = 4;
+        this.trackPerPage = 2;
         this.currentTrackPage = 1;
     }
 
-    public void init() {
+    public void init() throws ParseException {
         this.pattern = (String) FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("pattern");
         this.filter = (String) FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("filter");
         updateView();
-         this.totalAlbumsRows = dao.findWithPattern(new Album(), pattern).size();
+        if(filter.equals("title")){
+        this.totalAlbumsRows = dao.findWithPattern(new Album(), pattern).size();
+        }
+        else if(filter.equals("artist")){
+           this.totalAlbumsRows = dao.findWithAllAlbumArtist(new Album(), pattern).size();
+           this.totalTrackRows = dao.findWithAllTrackArtist(new Track(), pattern).size();
+        }
+        else if(filter.equals("rangeofdate")){
+            String[] days = pattern.split("-");
+            this.totalAlbumsRows = dao.findWithAllPatternDate(new Album(), newDateFormat(days[0]), newDateFormat(days[1])).size();
+            this.totalTrackRows = dao.findWithAllPatternDate(new Track(), newDateFormat(days[0]), newDateFormat(days[1])).size();
+        }
         if (totalAlbumsRows > albumPerPage) {
             totalAlbumPages = (int) Math.ceil((totalAlbumsRows * 1.0) / albumPerPage);
         } else {
             totalAlbumPages = 1;
         }
         this.totalTrackRows = dao.findWithPattern(new Track(), pattern).size();
-         if (totalTrackRows > trackPerPage) {
+        if (totalTrackRows > trackPerPage) {
             totalTrackPages = (int) Math.ceil((totalTrackRows * 1.0) / trackPerPage);
         } else {
             totalTrackPages = 1;
         }
+         this.currentAlbumsPage = 1;
+          this.currentTrackPage = 1;
 
     }
 
@@ -70,7 +85,7 @@ public class ResultBean implements Serializable {
     public void setFilter(String filter) {
         this.filter = filter;
     }
-    
+
     public String getPattern() {
         return pattern;
     }
@@ -158,52 +173,77 @@ public class ResultBean implements Serializable {
     public void setTotalTrackPages(int totalTrackPages) {
         this.totalTrackPages = totalTrackPages;
     }
-     public int getTrackOffset() {
+
+    public int getTrackOffset() {
         return (currentTrackPage - 1) * trackPerPage;
     }
-    
-    public int getAlbumOffset(){
-           return (currentAlbumsPage - 1) * albumPerPage;
-    }
-    
 
-    public void next() {
+    public int getAlbumOffset() {
+        return (currentAlbumsPage - 1) * albumPerPage;
+    }
+
+    public void albumNext() throws ParseException {
         if (this.currentAlbumsPage < this.totalAlbumPages) {
             this.currentAlbumsPage++;
         }
-        if(this.currentTrackPage < this.totalTrackPages){
+        updateView();
+    }
+
+    public void albumPrev() throws ParseException {
+        if (this.currentAlbumsPage > 1) {
+            this.currentAlbumsPage--;
+        }
+        updateView();
+    }
+    public void trackNext() throws ParseException {
+        System.out.println("next" +  this.currentTrackPage);
+        if (this.currentTrackPage < this.totalTrackPages) {
             this.currentTrackPage++;
         }
         updateView();
     }
 
-    public void prev() {
-        if (this.currentAlbumsPage > 1) {
-            this.currentAlbumsPage--;
-        }
+    public void trackPrev() throws ParseException {
+        System.out.println("pre" +  this.currentTrackPage);
         if (this.currentTrackPage > 1) {
             this.currentTrackPage--;
         }
         updateView();
     }
 
-     public void updateView() {
+    public void updateView() throws ParseException {
         if (pattern != null && !pattern.isEmpty() && !pattern.equals("") && filter != null && !filter.isEmpty() && !filter.equals("")) {
-            if(filter.equals("title")){
-            setAlbums(dao.findWithLimitPattern(new Album(), getAlbumOffset(),albumPerPage ,pattern));
-            setTracks(dao.findWithLimitPattern(new Track(), getTrackOffset(),albumPerPage, pattern));
-            }
-            else if(filter.equals("artist")){
-            setAlbums(dao.findWithLimitPatternAlbumArtist(new Album(), getAlbumOffset(),albumPerPage ,pattern));
-            setTracks(dao.findWithLimitPatternTrackArtist(new Track(), getTrackOffset(),albumPerPage, pattern));
-            }
-            else{
-                
+            switch (filter) {
+                case "title":
+                    setAlbums(dao.findWithLimitPattern(new Album(), getAlbumOffset(), albumPerPage, pattern));
+                    setTracks(dao.findWithLimitPattern(new Track(), getTrackOffset(), albumPerPage, pattern));
+                    break;
+                case "artist":
+                    setAlbums(dao.findWithLimitPatternAlbumArtist(new Album(), getAlbumOffset(), albumPerPage, pattern));
+                    setTracks(dao.findWithLimitPatternTrackArtist(new Track(), getTrackOffset(), albumPerPage, pattern));
+                    break;
+                case "rangeofdate":
+                    String[] days = pattern.split("-");
+                    setAlbums(dao.findWithLimitPatternDate(new Album(), getAlbumOffset(), albumPerPage, newDateFormat(days[0]),  newDateFormat(days[1])));
+                    setTracks(dao.findWithLimitPatternDate(new Track(), getTrackOffset(), albumPerPage, newDateFormat(days[0]),  newDateFormat(days[1])));
+                    break;
+                default:
+                    break;
             }
         } else {
             setAlbums(null);
             setTracks(null);
         }
+    }
+    private java.sql.Date newDateFormat(String date) throws ParseException {
+        String newString = "";
+        String[] elements = date.split("/");
+        newString += elements[2] + "-" + elements[0] + "-" + elements[1];
+        
+        SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+        java.util.Date newdate = sdf1.parse(newString.replaceAll("\\s",""));
+        java.sql.Date sqlDate = new java.sql.Date(newdate.getTime());
+        return sqlDate;
     }
 
 }

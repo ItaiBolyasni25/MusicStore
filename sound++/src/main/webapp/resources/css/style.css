@@ -484,3 +484,62 @@ button{
 #trackpanel{
      margin: 0 auto;
 }
+.body{
+    margin-top: 10%;
+}
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: black;
+  font-weight: bold;
+  font-size: 30px;
+  transition: 0.6s ease;
+  user-select: none;
+}
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+  color: white;
+}
+.left-not-active {
+  right: 0;
+  pointer-events: none;
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  font-weight: bold;
+  font-size: 30px;
+  transition: 0.6s ease;
+}
+.right-not-active{
+  pointer-events: none;
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  font-weight: bold;
+  font-size: 30px;
+  transition: 0.6s ease;
+}

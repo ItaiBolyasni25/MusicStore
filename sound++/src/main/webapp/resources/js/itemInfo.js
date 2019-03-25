@@ -5,7 +5,6 @@ var currentlyShowingAlbum = false;
 function setAlbumVisible() {
     if(!currentlyShowingAlbum)
         return;
-    $(window).scrollTop(0);
     $("#info").css('display', 'block');
     $("#albumTable").css('display', 'none');
 }

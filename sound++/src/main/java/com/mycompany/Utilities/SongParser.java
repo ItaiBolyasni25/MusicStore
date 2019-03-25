@@ -130,7 +130,7 @@ public class SongParser implements Serializable {
     private java.sql.Date newDateFormat(String date) throws ParseException {
         String newString = "";
         String[] elements = date.split("/");
-        newString += elements[2] + "-" + elements[0] + "-" + elements[1];
+        newString += elements[2].trim() + "-" + elements[0].trim() + "-" + elements[1].trim();
         SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
         Date newdate = sdf1.parse(newString);
         java.sql.Date sqlDate = new java.sql.Date(newdate.getTime());

@@ -6,6 +6,7 @@ package com.mycompany.Persistence;
  * and open the template in the editor.
  */
 import com.mycompany.Interface.EntityModel;
+import java.sql.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -69,6 +70,7 @@ public class DAO {
         q.setMaxResults(display);
         return q.getResultList();
     }
+
     public <E extends EntityModel> List<E> findWithLimitGenreTrack(E entityModel, int display, String genre, List<String> artist, String name) {
         String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
         Query q = em.createQuery("SELECT DISTINCT a FROM " + className + " a JOIN a.album al JOIN al.artists at WHERE a.genre = '" + genre + "' AND a.title" + "!= :title AND at.name NOT IN :artists ORDER BY a.title ASC");
@@ -83,64 +85,95 @@ public class DAO {
         Query q = em.createQuery("FROM " + className + " identifier WHERE identifier." + whereClause);
         return q.getResultList();
     }
-    
-      public <E extends EntityModel> List<E> findWithLimitPattern(E entityModel,int offset, int display, String pattern) {
+
+    public <E extends EntityModel> List<E> findWithLimitPattern(E entityModel, int offset, int display, String pattern) {
         String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
         Query q = em.createQuery("Select identifier FROM " + className + " identifier WHERE identifier.title like :pattern ORDER BY identifier.title ASC");
-        q.setParameter("pattern", pattern+"%");
-        if(offset != 0){
-        q.setFirstResult(offset);}
+        q.setParameter("pattern", pattern + "%");
+        if (offset != 0) {
+            q.setFirstResult(offset);
+        }
         q.setMaxResults(display);
         return q.getResultList();
     }
-      
-        public <E extends EntityModel> List<E> findWithLimitPatternArtist(E entityModel,int offset, int display, String pattern) {
+
+    public <E extends EntityModel> List<E> findWithLimitPatternArtist(E entityModel, int offset, int display, String pattern) {
         String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
         Query q = em.createQuery("Select identifier FROM " + className + " identifier WHERE identifier.name like :pattern ORDER BY identifier.name ASC");
-        q.setParameter("pattern", pattern+"%");
-        if(offset != 0){
-        q.setFirstResult(offset);}
+        q.setParameter("pattern", pattern + "%");
+        if (offset != 0) {
+            q.setFirstResult(offset);
+        }
         q.setMaxResults(display);
         return q.getResultList();
-        }
-      
-        public <E extends EntityModel> List<E> findWithLimitPatternAlbumArtist(E entityModel,int offset, int display, String pattern) {
+    }
+
+    public <E extends EntityModel> List<E> findWithLimitPatternAlbumArtist(E entityModel, int offset, int display, String pattern) {
         String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
         Query q = em.createQuery("Select identifier FROM " + className + " identifier  JOIN identifier.artists at WHERE at.name like :pattern ORDER BY identifier.title ASC");
-        q.setParameter("pattern", pattern+"%");
-        if(offset != 0){
-        q.setFirstResult(offset);}
+        q.setParameter("pattern", pattern + "%");
+        if (offset != 0) {
+            q.setFirstResult(offset);
+        }
         q.setMaxResults(display);
         return q.getResultList();
     }
-          public <E extends EntityModel> List<E> findWithLimitPatternTrackArtist(E entityModel,int offset, int display, String pattern) {
+
+    public <E extends EntityModel> List<E> findWithLimitPatternTrackArtist(E entityModel, int offset, int display, String pattern) {
         String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
         Query q = em.createQuery("Select identifier FROM " + className + " identifier JOIN identifier.album  al JOIN al.artists at WHERE at.name like :pattern ORDER BY identifier.title ASC");
-        q.setParameter("pattern", pattern+"%");
-        if(offset != 0){
-        q.setFirstResult(offset);}
+        q.setParameter("pattern", pattern + "%");
+        if (offset != 0) {
+            q.setFirstResult(offset);
+        }
         q.setMaxResults(display);
         return q.getResultList();
     }
-         public <E extends EntityModel> List<E> findWithLimitPatternDate(E entityModel,int offset, int display, String pattern) {
+
+    public <E extends EntityModel> List<E> findWithAllAlbumArtist(E entityModel, String pattern) {
         String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
-        Query q = em.createQuery("Select identifier FROM " + className + " identifier where ORDER BY identifier.title ASC");
-        q.setParameter("pattern", pattern+"%");
-        if(offset != 0){
-        q.setFirstResult(offset);}
+        Query q = em.createQuery("Select identifier FROM " + className + " identifier JOIN identifier.artists at WHERE at.name like :pattern ORDER BY identifier.title ASC");
+        q.setParameter("pattern", pattern + "%");
+        return q.getResultList();
+    }
+
+    public <E extends EntityModel> List<E> findWithAllTrackArtist(E entityModel, String pattern) {
+        String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
+        Query q = em.createQuery("Select identifier FROM " + className + " identifier JOIN identifier.artists JOIN identifier.album al JOIN al.artists at WHERE at.name like :pattern ORDER BY identifier.title ASC");
+        q.setParameter("pattern", pattern + "%");
+        return q.getResultList();
+    }
+
+    public <E extends EntityModel> List<E> findWithLimitPatternDate(E entityModel, int offset, int display, Date from, Date to) {
+        String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
+        Query q = em.createQuery("Select identifier FROM " + className + " identifier where identifier.date_added = :from OR identifier.date_added = :to OR identifier.date_added BETWEEN :from AND :to ORDER BY identifier.title ASC");
+        q.setParameter("from", from);
+        q.setParameter("to", to);
+        if (offset != 0) {
+            q.setFirstResult(offset);
+        }
         q.setMaxResults(display);
         return q.getResultList();
     }
-       public <E extends EntityModel> List<E> findWithPattern(E entityModel, String pattern) {
+    public <E extends EntityModel> List<E> findWithAllPatternDate(E entityModel, Date from, Date to) {
+        String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
+        Query q = em.createQuery("Select identifier FROM " + className + " identifier where identifier.date_added = :from OR identifier.date_added = :to OR identifier.date_added BETWEEN :from AND :to ORDER BY identifier.title ASC");
+        q.setParameter("from", from);
+        q.setParameter("to", to);
+        return q.getResultList();
+    }
+
+    public <E extends EntityModel> List<E> findWithPattern(E entityModel, String pattern) {
         String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
         Query q = em.createQuery("Select identifier FROM " + className + " identifier WHERE identifier.title like :pattern ORDER BY identifier.title ASC");
-        q.setParameter("pattern", pattern+"%");
+        q.setParameter("pattern", pattern + "%");
         return q.getResultList();
     }
-        public <E extends EntityModel> List<E> findWithPatternAlbum(E entityModel, String pattern) {
+
+    public <E extends EntityModel> List<E> findWithPatternAlbum(E entityModel, String pattern) {
         String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
         Query q = em.createQuery("Select identifier FROM " + className + " identifier JOIN identifier.artists at WHERE identifier.title like :pattern OR identifier.date_added like :pattern OR at.name like :pattern ORDER BY identifier.title ASC");
-        q.setParameter("pattern", pattern+"%");
+        q.setParameter("pattern", pattern + "%");
         return q.getResultList();
     }
 
@@ -174,7 +207,7 @@ public class DAO {
             userTransaction.begin();
             em.merge(entityModel);
             userTransaction.commit();
-        }  catch ( RollbackException | NotSupportedException | SystemException |  HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException ex) {
+        } catch (RollbackException | NotSupportedException | SystemException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException ex) {
             Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
