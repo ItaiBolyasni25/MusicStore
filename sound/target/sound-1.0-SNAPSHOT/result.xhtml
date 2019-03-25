@@ -21,7 +21,12 @@
         <title>Sound++</title>
     </h:head>
     <h:body>
-        <ui:include src="navbar.xhtml" />
+        <c:if test="#{inventoryBean.searched == false}">
+            <ui:include src="navbar.xhtml" />
+        </c:if>
+        <c:otherwise>
+            <ui:include src="navbarmanager.xhtml"/>
+        </c:otherwise>
         <p id = "top"></p>
         <h:panelGroup id="table" class="grid">
             <div class="albumTable">
@@ -32,27 +37,33 @@
                     <c:forEach var="album" items="#{ResultBean.albums}">
                         <h:form class="flip-box">
                             <div class="flip-box-inner">
-                              <h:commandLink class="customLink"  action="#{selectedAlbum.editDataItem()}">
-                                  <div class="flip-box-front"><h:graphicImage value="#{album.image}" title="Album's cover" class="albumPic"/><br/>
-                                      <br/><h:outputText value=" #{album.title}"/>
-                                          <ui:repeat var="artist" value="#{album.artists}"><br/>
-                                              <h:outputText class="smallText" value="#{artist.name}"></h:outputText>   
-                                          </ui:repeat><br/>
-                                      <h:outputText class="smallText" value=" CAD #{album.cost}"/>
-                                  </div>
-                                  <div class = "flip-box-back">
-                                      <p class="title"><h:outputText  value="#{album.title}"/></p>
-                                      <p><ui:repeat var="artist" value="#{album.artists}">
-                                      <h:outputText value="Artist: #{artist.name}"></h:outputText>     
-                                          </ui:repeat></p>
-                                      <p>Number of song: #{album.numberofsong}</p>
-                                      <p>#{internationalization.genres}: #{album.genre}</p>
-                                      <p>#{internationalization.albumdate}: #{album.releasedate}</p>
-                                  </div>
-                                      <f:setPropertyActionListener target="#{selectedAlbum.selectedAlbum}" value="#{album}" />
-                                    </h:commandLink></div></h:form>
-                        <c:if test="#{inventoryBean.search == true}">
-                            <h:outputText value="THIS WAS SEARCHED FROM INVENTORY" />
+                                <h:commandLink class="customLink"  action="#{selectedAlbum.editDataItem()}">
+                                    <div class="flip-box-front"><h:graphicImage value="#{album.image}" title="Album's cover" class="albumPic"/><br/>
+                                        <br/><h:outputText value=" #{album.title}"/>
+                                        <ui:repeat var="artist" value="#{album.artists}"><br/>
+                                            <h:outputText class="smallText" value="#{artist.name}"></h:outputText>   
+                                        </ui:repeat><br/>
+                                        <h:outputText class="smallText" value=" CAD #{album.cost}"/>
+                                    </div>
+                                    <div class = "flip-box-back">
+                                        <p class="title"><h:outputText  value="#{album.title}"/></p>
+                                        <p><ui:repeat var="artist" value="#{album.artists}">
+                                                <h:outputText value="Artist: #{artist.name}"></h:outputText>     
+                                            </ui:repeat></p>
+                                        <p>Number of song: #{album.numberofsong}</p>
+                                        <p>#{internationalization.genres}: #{album.genre}</p>
+                                        <p>#{internationalization.albumdate}: #{album.releasedate}</p>
+                                    </div>
+                                    <f:setPropertyActionListener target="#{selectedAlbum.selectedAlbum}" value="#{album}" />
+                                </h:commandLink></div>
+                        </h:form>
+                        <c:if test="#{inventoryBean.searched == true}">
+                            <h:form>
+                                <h:commandButton class="btn btn-primary formbutton" value="Delete" action="#{inventoryBean.deleteAlbum(album.id)}" outcome="managementinventory"/>
+
+                                <h:inputText value="#{inventoryBean.albumSalePrice}" class="form-control" />
+                                <h:commandButton class="btn btn-primary formbutton" value="Change sale price" action="#{inventoryBean.editAlbum(album.id)}" outcome="managementinventory"/>
+                            </h:form>
                         </c:if>
                     </c:forEach>
                     <p><h:outputText value="Your search did not match any albums.!" rendered="#{empty ResultBean.albums}" /></p>
@@ -92,11 +103,11 @@
             </div>
             <script>assignEventsRows();</script>
         </h:panelGroup>
-        
-         <h:panelGroup id="tracktable" class="grid">
+
+        <h:panelGroup id="tracktable" class="grid">
             <div class="albumTable">
                 <h3>Tracks</h3>
-        <hr class="style"/>
+                <hr class="style"/>
                 <h:panelGrid id = "trackpanel" columns = "3"
                              cellpadding = "55%">
                     <c:forEach var="track" items="#{ResultBean.tracks}">
@@ -120,7 +131,17 @@
                                         <p>#{internationalization.albumdate} #{track.album.releasedate}</p>
                                     </div>
                                     <f:setPropertyActionListener target="#{selectedTrack.selectedTrack}" value="#{track}" />
-                                   </h:commandLink></div></h:form>
+                                </h:commandLink></div></h:form>
+                        <c:if test="#{inventoryBean.searched == true}">
+                            <h:form>
+                                <h:commandButton class="btn btn-primary formbutton" value="Delete" 
+                                                 action="#{inventoryBean.deleteTrack(track.id)}" outcome="managementinventory"/>
+
+                                <h:inputText value="#{inventoryBean.trackSalePrice}" class="form-control" />
+                                <h:commandButton class="btn btn-primary formbutton" style="margin: 3%;" value="Change sale price" 
+                                                 action="#{inventoryBean.editTrack(track.id)}" outcome="managementinventory"/>
+                            </h:form>
+                        </c:if>
                     </c:forEach>
                     <p><h:outputText value="Your search did not match any tracks.!" rendered="#{empty ResultBean.tracks}" /></p>
                 </h:panelGrid>
@@ -149,6 +170,8 @@
             </div>
             <script>assignEventsRows();</script>
         </h:panelGroup>     
-        <ui:include src="footer.xhtml" />
+        <c:if test="#{inventoryBean.searched == false}">
+            <ui:include src="footer.xhtml" />
+        </c:if>
     </h:body>
 </html>

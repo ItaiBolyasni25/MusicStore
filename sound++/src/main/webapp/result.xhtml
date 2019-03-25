@@ -28,6 +28,13 @@
             <ui:include src="navbarmanager.xhtml"/>
         </c:otherwise>
         <p id = "top"></p>
+        <h:panelGroup layout="block" class="alert alert-success" rendered="#{inventoryBean.success == true}">
+            <h:outputText class="text-centered" value="#{internationalization.success}" />
+        </h:panelGroup>
+
+        <h:panelGroup layout="block" class="alert alert-danger" rendered="#{inventoryBean.fail == true}">
+            <h:outputText class="text-danger" value="#{internationalization.fail}" />
+        </h:panelGroup>
         <h:panelGroup id="table" class="grid">
             <div class="albumTable">
                 <h3>Album</h3>
@@ -134,11 +141,11 @@
                                 </h:commandLink></div></h:form>
                         <c:if test="#{inventoryBean.searched == true}">
                             <h:form>
-                                <h:commandButton style="margin-bottom: 3%;" class="btn btn-primary formbutton" value="Delete" 
+                                <h:commandButton style="margin-bottom: 3%;" value="Delete" 
                                                  action="#{inventoryBean.deleteTrack(track.id)}" outcome="managementinventory"/>
 
                                 <h:inputText value="#{inventoryBean.trackSalePrice}" class="form-control" />
-                                <h:commandButton class="btn btn-primary formbutton" style="margin: 3%;" value="Change sale price" 
+                                <h:commandButton style="margin: 3%;" value="Change sale price" 
                                                  action="#{inventoryBean.editTrack(track.id)}" outcome="managementinventory"/>
                             </h:form>
                         </c:if>

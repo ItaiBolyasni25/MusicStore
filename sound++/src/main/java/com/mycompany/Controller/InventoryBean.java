@@ -51,45 +51,44 @@ public class InventoryBean implements Serializable {
     public String addTrack() {
 
         java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-        
-            Track track = new Track();
 
-            if (!albumName.isEmpty()) {
-                List<Album> albums = dao.find(new Album(), "title = '" + albumName + "'");
-                if (!albums.isEmpty()) {
-                    track.setAlbum(albums.get(0));
-                }
-            } else {
-                Album single = new Album();
-                single.setTitle(trackTitle);
-                single.setReleasedate(sqlDate);
-                single.setAddedDate(sqlDate);
-                single.setLabel(" ");
-                single.setNumberofsong(1);
-                single.setCost(trackCost);
-                single.setList_price(trackListPrice);
-                single.setSale_price(trackSalePrice);
-                single.setGenre(trackGenre);
+        Track track = new Track();
 
-                dao.write(single);
-
-                track.setAlbum(single);
+        if (!albumName.isEmpty()) {
+            List<Album> albums = dao.find(new Album(), "title = '" + albumName + "'");
+            if (!albums.isEmpty()) {
+                track.setAlbum(albums.get(0));
             }
+        } else {
+            Album single = new Album();
+            single.setTitle(trackTitle);
+            single.setReleasedate(sqlDate);
+            single.setAddedDate(sqlDate);
+            single.setLabel(" ");
+            single.setNumberofsong(1);
+            single.setCost(trackCost);
+            single.setList_price(trackListPrice);
+            single.setSale_price(trackSalePrice);
+            single.setGenre(trackGenre);
 
-            track.setTitle(trackTitle);
-            track.setSongwriter(songwriter);
-            track.setPlay_length(playLength);
-            track.setGenre(trackGenre);
-            track.setCost(trackCost);
-            track.setList_price(trackListPrice);
-            track.setSale_price(trackSalePrice);
-            track.setDate_added(sqlDate);
-            track.setIndividual(true);
+            dao.write(single);
 
-            dao.write(track);
-            success = true;
-            fail = false;
-       
+            track.setAlbum(single);
+        }
+
+        track.setTitle(trackTitle);
+        track.setSongwriter(songwriter);
+        track.setPlay_length(playLength);
+        track.setGenre(trackGenre);
+        track.setCost(trackCost);
+        track.setList_price(trackListPrice);
+        track.setSale_price(trackSalePrice);
+        track.setDate_added(sqlDate);
+        track.setIndividual(true);
+
+        dao.write(track);
+        success = true;
+        fail = false;
 
         return "managerinventory.xhtml";
     }
@@ -109,6 +108,7 @@ public class InventoryBean implements Serializable {
             album.setGenre(albumGenre);
 
             dao.write(album);
+
             success = true;
             fail = false;
         } catch (Exception e) {
@@ -119,29 +119,61 @@ public class InventoryBean implements Serializable {
     }
 
     public void editTrack(int track_id, double sale) {
-        Track updated = dao.read(new Track(), track_id).get(0);
-        updated.setSale_price(sale);
-        dao.updateEntity(updated);
+        try {
+            Track updated = dao.read(new Track(), track_id).get(0);
+            updated.setSale_price(sale);
+            dao.updateEntity(updated);
+
+            success = true;
+            fail = false;
+        } catch (Exception e) {
+            success = false;
+            fail = true;
+        }
     }
 
     public void editAlbum(int album_id) {
-        Album updated = dao.read(new Album(), album_id).get(0);
-        updated.setSale_price(albumSalePrice);
-        dao.updateEntity(updated);
+        try {
+            Album updated = dao.read(new Album(), album_id).get(0);
+            updated.setSale_price(albumSalePrice);
+            dao.updateEntity(updated);
+
+            success = true;
+            fail = false;
+        } catch (Exception e) {
+            success = false;
+            fail = true;
+        }
     }
 
     public void deleteTrack(int track_id) {
-        Track updated = dao.read(new Track(), track_id).get(0);
-        updated.setRemoval_status(true);
-        updated.setRemoval_date(new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
-        dao.updateEntity(updated);
+        try {
+            Track updated = dao.read(new Track(), track_id).get(0);
+            updated.setRemoval_status(true);
+            updated.setRemoval_date(new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
+            dao.updateEntity(updated);
+
+            success = true;
+            fail = false;
+        } catch (Exception e) {
+            success = false;
+            fail = true;
+        }
     }
 
     public void deleteAlbum(int album_id) {
-        Album updated = dao.read(new Album(), album_id).get(0);
-        updated.setRemoval_status(true);
-        updated.setRemoval_date(new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
-        dao.updateEntity(updated);
+        try {
+            Album updated = dao.read(new Album(), album_id).get(0);
+            updated.setRemoval_status(true);
+            updated.setRemoval_date(new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
+            dao.updateEntity(updated);
+
+            success = true;
+            fail = false;
+        } catch (Exception e) {
+            success = false;
+            fail = true;
+        }
     }
 
     public void searchMethod() {
