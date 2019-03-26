@@ -28,6 +28,13 @@
             <ui:include src="navbarmanager.xhtml"/>
         </c:otherwise>
         <p id = "top"></p>
+        <h:panelGroup layout="block" class="alert alert-success" rendered="#{inventoryBean.success == true}">
+            <h:outputText class="text-centered" value="#{internationalization.success}" />
+        </h:panelGroup>
+
+        <h:panelGroup layout="block" class="alert alert-danger" rendered="#{inventoryBean.fail == true}">
+            <h:outputText class="text-danger" value="#{internationalization.fail}" />
+        </h:panelGroup>
         <h:panelGroup id="table" class="grid">
             <div class="albumTable">
                 <h3>Album</h3>
@@ -59,10 +66,20 @@
                         </h:form>
                         <c:if test="#{inventoryBean.searched == true}">
                             <h:form>
-                                <h:commandButton class="btn btn-primary formbutton" value="Delete" action="#{inventoryBean.deleteAlbum(album.id)}" outcome="managementinventory"/>
-
-                                <h:inputText value="#{inventoryBean.albumSalePrice}" class="form-control" />
-                                <h:commandButton class="btn btn-primary formbutton" value="Change sale price" action="#{inventoryBean.editAlbum(album.id)}" outcome="managementinventory"/>
+                                <c:set target="#{inventoryBean}" property="albumListPrice" value="#{album.list_Price}" /> 
+                                <c:set target="#{inventoryBean}" property="albumSalePrice" value="#{album.sale_price}" /> 
+                                
+                                <label class="col-form-label" for="inputDefault">#{internationalization.listPrice}</label>
+                                <h:inputText value="#{inventoryBean.albumListPrice}" class="form-control" />
+                                
+                                <label class="col-form-label" for="inputDefault">#{internationalization.salePrice}</label>
+                                <h:inputText style="margin-bottom: 3%;" value="#{inventoryBean.albumSalePrice}" class="form-control" />
+                                
+                                <h:commandButton value="#{internationalization.inventoryedit}" action="#{inventoryBean.editAlbum(album.id)}" 
+                                                 outcome="managementinventory"/>
+                                
+                                <h:commandButton style="margin-left: 3%;" value="Delete" action="#{inventoryBean.deleteAlbum(album.id)}" 
+                                                 outcome="managementinventory"/>
                             </h:form>
                         </c:if>
                     </c:forEach>
@@ -108,7 +125,7 @@
             <div class="albumTable">
                 <h3>Tracks</h3>
                 <hr class="style"/>
-                <h:panelGrid id = "trackpanel" columns = "3"
+                <h:panelGrid id = "trackpanel" columns = "4"
                              cellpadding = "55%">
                     <c:forEach var="track" items="#{ResultBean.tracks}">
                         <h:form class="flip-box">
@@ -134,12 +151,20 @@
                                 </h:commandLink></div></h:form>
                         <c:if test="#{inventoryBean.searched == true}">
                             <h:form>
-                                <h:commandButton class="btn btn-primary formbutton" value="Delete" 
-                                                 action="#{inventoryBean.deleteTrack(track.id)}" outcome="managementinventory"/>
-
-                                <h:inputText value="#{inventoryBean.trackSalePrice}" class="form-control" />
-                                <h:commandButton class="btn btn-primary formbutton" style="margin: 3%;" value="Change sale price" 
+                                <c:set target="#{inventoryBean}" property="trackListPrice" value="#{track.list_price}" /> 
+                                <c:set target="#{inventoryBean}" property="trackSalePrice" value="#{track.sale_price}" /> 
+                                
+                                <label class="col-form-label" for="inputDefault">#{internationalization.listPrice}</label>
+                                <h:inputText value="#{inventoryBean.trackListPrice}" class="form-control" />
+                                
+                                <label class="col-form-label" for="inputDefault">#{internationalization.salePrice} (%)</label>
+                                <h:inputText style="margin-bottom: 3%;" value="#{inventoryBean.trackSalePrice}" class="form-control" />
+                                
+                                <h:commandButton style="margin: 3%;" value="Change sale price" 
                                                  action="#{inventoryBean.editTrack(track.id)}" outcome="managementinventory"/>
+                                
+                                <h:commandButton style="margin-left: 3%;" value="Delete" 
+                                                 action="#{inventoryBean.deleteTrack(track.id)}" outcome="managementinventory"/>
                             </h:form>
                         </c:if>
                     </c:forEach>

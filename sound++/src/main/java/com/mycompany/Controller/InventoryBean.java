@@ -118,10 +118,12 @@ public class InventoryBean implements Serializable {
         return "managerinventory.xhtml";
     }
 
-    public void editTrack(int track_id, double sale) {
+    public void editTrack(int track_id) {
         try {
             Track updated = dao.read(new Track(), track_id).get(0);
-            updated.setSale_price(sale);
+            updated.setList_price(trackListPrice);
+            updated.setSale_price(trackSalePrice);
+            updated.setCost(trackListPrice - (trackListPrice * (trackSalePrice / 100)));
             dao.updateEntity(updated);
 
             success = true;
@@ -135,7 +137,9 @@ public class InventoryBean implements Serializable {
     public void editAlbum(int album_id) {
         try {
             Album updated = dao.read(new Album(), album_id).get(0);
+            updated.setList_price(albumListPrice);
             updated.setSale_price(albumSalePrice);
+            updated.setCost(albumListPrice - (albumListPrice * (albumSalePrice / 100)));
             dao.updateEntity(updated);
 
             success = true;
