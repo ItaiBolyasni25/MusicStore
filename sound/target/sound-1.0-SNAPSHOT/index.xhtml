@@ -4,7 +4,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.2.1/lux/bootstrap.min.css" />
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -23,12 +24,12 @@
     </h:head>
     <h:body class="backgroundcolor">
 
-<!--        <script>
+        <script>
             $(document).ready(function () {
                 //Call news function to request the latest news of the moment when page is loaded
                 news("#{newsBean.currentFeed}");
             });
-        </script>-->
+        </script>
 
 
         <ui:include src="navbar.xhtml"/>
@@ -59,10 +60,10 @@
                             <br/><br/><br/><br/>
                             <h:panelGroup rendered="#{empty user}">
                                 <div class="row">
-                                <div class="col-md-3"></div>
-                                <div class="col-md-3"><h:button class="btn btn-primary" value="#{internationalization.loginopt}" outcome="login" /></div>
-                                <div class="col-md-3"><h:button class="btn btn-primary" value="#{internationalization.signup}" outcome="register" /></div>
-                            </div>
+                                    <div class="col-md-3"></div>
+                                    <div class="col-md-3"><h:button class="btn btn-primary" value="#{internationalization.loginopt}" outcome="login" /></div>
+                                    <div class="col-md-3"><h:button class="btn btn-primary" value="#{internationalization.signup}" outcome="register" /></div>
+                                </div>
                             </h:panelGroup>
                             <br/><br/><br/><br/><br/>
                             <h:outputText class="h3" value="*#{internationalization.devices}" />
@@ -123,14 +124,17 @@
                             </h:panelGroup>
                             <h:panelGroup rendered="#{not empty user}">
                                 <h1 class="display-5">#{internationalization.survey}</h1>
-                                <ui:repeat var="survey" value="#{surveyBean.pastSurveys}" size="1">
-                                    <p>#{survey.question}</p>
-                                    <h:selectOneRadio value="#{surveyResultBean.answer}">
-                                        <ui:repeat var="option" value="#{survey.options}">
-                                        <f:selectItem itemValue="#{option}" itemLabel="#{option}" />
-                                    </ui:repeat>
-                                    </h:selectOneRadio>
-                                    <h:commandButton type="submit" class="btn btn-primary formbutton" value="#{internationalization.submit}" action="#{surveyResultBean.saveSurvey}"/>    
+                                <ui:repeat var="survey" value="#{surveyResultBean.surveysNotAnswered}" size="1">
+                                    <h:form>
+                                        <h1>#{survey.question}</h1>
+                                        <h:selectOneRadio value="#{surveyResultBean.answer}">
+                                            <f:selectItems var="option" value="#{survey.options}"
+                                                           itemValue="#{option}" itemLabel="#{option}"/>
+                                        </h:selectOneRadio>
+                                        <h:commandButton value="Submit" action="#{surveyResultBean.saveSurvey}">
+                                            <f:setPropertyActionListener target="#{surveyResultBean.survey_id}" value="#{survey.survey_id}" />
+                                        </h:commandButton>
+                                    </h:form>
                                 </ui:repeat>
                             </h:panelGroup>
                         </div>

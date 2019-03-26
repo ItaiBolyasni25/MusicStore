@@ -177,6 +177,14 @@ CREATE TABLE Roles (
     CONSTRAINT Groups_pk PRIMARY KEY (email)
 );
 
+DROP TABLE Banner;
+CREATE TABLE Banner(
+    banner_id int NOT NULL auto_increment,
+    banner varchar(300) NOT NULL,
+    used varchar(1) NOT NULL,
+    CONSTRAINT Banner_pk PRIMARY KEY (banner_id) 
+);
+
 -- foreign keys
 -- Reference: Album_Review_Album (table: Album_Review)
 ALTER TABLE Album_Review ADD CONSTRAINT Album_Review_Album FOREIGN KEY Album_Review_Album (album_id)

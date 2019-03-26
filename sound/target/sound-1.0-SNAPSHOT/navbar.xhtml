@@ -8,7 +8,8 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.2.1/lux/bootstrap.min.css" />
@@ -16,9 +17,7 @@ and open the template in the editor.
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"></link>
-
         <h:outputStylesheet library="css" name="style.css"  />
-
         <title>Sound++</title>
     </h:head>
     <ui:composition>
@@ -27,8 +26,8 @@ and open the template in the editor.
             <h:link class="navbar-brand" outcome="index">
                 <h:graphicImage class="logo" value="assets/logonav.PNG" />
             </h:link> 
-        <h:outputScript library="js" name="jquery-1.12.4.js" target="head" />
-        <h:outputScript library="js" name="search.js" target="head"/>
+            <h:outputScript library="js" name="jquery-1.12.4.js" target="head" />
+            <h:outputScript library="js" name="search.js" target="head"/>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -59,7 +58,7 @@ and open the template in the editor.
                         </li>
                     </h:panelGroup>
                     <li class="nav-item">
-                        <h:link class="nav-link" value="#{internationalization.cart}" outcome="cart"/>
+                        <h:link class="nav-link" value="#{internationalization.cart}" outcome="manager/manager"/>
                     </li>
                 </ul>
 
@@ -69,12 +68,11 @@ and open the template in the editor.
                             <h:selectOneMenu onchange="submit()" valueChangeListener="#{internationalization.languageChange}"  class="custom-select mr-sm-3 ml-4">
                                 <f:selectItem itemValue="en" itemLabel="#{internationalization.english}" />
                                 <f:selectItem itemValue="fr" itemLabel="#{internationalization.french}" />
-                            </h:selectOneMenu> 
+                            </h:selectOneMenu>                            
                         </h:form>
-
                     </div>
                 </li>
-
+                
                 <h:form class="form-inline my-2 my-lg-0 searchForm" >
                     <h:panelGroup id="input">
                         <h:inputText onfocus="showSearchList();" autocomplete="off" id="pattern" class="form-control mr-sm-2 patternTextBox" title="#{internationalization.search}" value="#{AlbumTrackBean.pattern}" >
@@ -93,7 +91,7 @@ and open the template in the editor.
                             </ui:repeat>
                             <ui:repeat  value="#{AlbumTrackBean.tracks}" var="track">
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                                     <h:commandLink  value="#{track.title}" onclick="setPattern(this);">           
+                                    <h:commandLink  value="#{track.title}" onclick="setPattern(this);">           
                                         <f:ajax />
                                     </h:commandLink>
                                     <span class="badge badge-primary badge-pill">Track</span>
@@ -105,8 +103,5 @@ and open the template in the editor.
                 </h:form>
             </div>
         </nav>
-
-
-
     </ui:composition>
 </html>

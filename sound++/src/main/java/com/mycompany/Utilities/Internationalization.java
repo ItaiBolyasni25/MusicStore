@@ -5,10 +5,14 @@ package com.mycompany.Utilities;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import com.mycompany.Model.User;
+import com.mycompany.Persistence.DAO;
 import java.io.Serializable;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
+import javax.inject.Inject;
 
 /**
  *
@@ -19,27 +23,40 @@ import javax.faces.event.ValueChangeEvent;
 public class Internationalization implements Serializable {
 
     private String language = "English";
+    
+    @Inject
+    private DAO dao;
 
     /**
      * Creates a new instance of Internationalization
      */
     public Internationalization() {
+        if (FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user") == null) {
+            String lan = (String) (FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("language"));
+            language = lan == null? language: lan;
+        } else {
+            User user = (User)(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("userObj"));
+            language = user.getLanguage() == null? language: user.getLanguage();
+        }
     }
 
-//    public void setLanguage(String lan) {
-//    public void setLanguage(String lan) {
-//        if (lan.equals("fr")) {
-//            language = "Francais";
-//        } else if (lan.equals("en")) {
-//            language = "English";
-//        }
-//    }
     public void languageChange(ValueChangeEvent e) {
         String lan = e.getNewValue().toString();
         if (lan.equals("fr")) {
             language = "Francais";
         } else if (lan.equals("en")) {
             language = "English";
+        }
+        storeInSession();
+    }
+
+    public void storeInSession() {
+        if (FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user") == null) {
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("language", language);
+        } else {
+            User user = (User)(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("userObj"));
+            user.setLanguage(language);
+            dao.updateEntity(user);
         }
     }
 
@@ -364,44 +381,40 @@ public class Internationalization implements Serializable {
     public String getInvalidlength() {
         return language.equals("English") ? "Invalid length minimum 10, maximum 160" : "Longueur invalide entre 10 et 160 caracteres";
     }
-    
-    public String getSlogan(){
+
+    public String getSlogan() {
         return language.equals("English") ? "When words fail, music speaks." : "Quand les mots manquent, la musique parle.";
     }
 
     public String getAboutText1() {
         return language.equals("English")
                 ? "Sound++ makes it easy to find the right music for any moment on any device"
-                : "Sound++ permet l'access facile a la bonne musique dans n'importe quel moment sur n'importe quel appareil."
-                ;
+                : "Sound++ permet l'access facile a la bonne musique dans n'importe quel moment sur n'importe quel appareil.";
     }
-    
+
     public String getAboutText2() {
         return language.equals("English")
                 ? "We have an imense variety of albums, tracks and artists for everyone."
-                : "Nous avons une immense variete de chansons, albums et artistes pour tout le monde. "
-                ;
+                : "Nous avons une immense variete de chansons, albums et artistes pour tout le monde. ";
     }
-    
+
     public String getAboutText3() {
         return language.equals("English")
                 ? " Whether you’re partying, relaxing or working, the right music is at every moment a click away."
-                : "Ce soit pour faire la fete, relaxer ou travailler, A tout moment vous etes a un click de la bonne musique."
-                ;
+                : "Ce soit pour faire la fete, relaxer ou travailler, A tout moment vous etes a un click de la bonne musique.";
     }
 
     public String getAboutText4() {
         return language.equals("English")
                 ? "You will also know the latest news about your favourite artists and you can prove your extensive knowledge in music through different surveys."
-                : "Vous allez aussi en savoir les dernieres nouvelles de vos artistes favoris et vous pouvez prendre des questionnaires pour en demontrer vos connaissances."
-                ;
+                : "Vous allez aussi en savoir les dernieres nouvelles de vos artistes favoris et vous pouvez prendre des questionnaires pour en demontrer vos connaissances.";
     }
-    
-    public String getAnswer(){
-        return language.equals("English")? "Submit": "Soumettre";
+
+    public String getAnswer() {
+        return language.equals("English") ? "Submit" : "Soumettre";
     }
-    
-    public String getSignOut(){
-        return language.equals("English")? "Sign Out": "Se deconnecter";
+
+    public String getSignOut() {
+        return language.equals("English") ? "Sign Out" : "Se deconnecter";
     }
 }

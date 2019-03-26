@@ -1,8 +1,10 @@
 package com.mycompany.Controller;
 
 import com.mycompany.Model.Survey;
+import com.mycompany.Model.SurveyResult;
 import com.mycompany.Persistence.DAO;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -84,10 +86,5 @@ public class SurveyBean implements Serializable {
     
     public List<Survey> getPastSurveys(){
         return dao.findAll(new Survey());
-    }
-    
-    public List<Survey> getSurveysperuser(){
-        String username = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("id");
-        return dao.findWithJoins(new Survey(), "SELECT t.* FROM survey t LEFT JOIN survey_result s ON t.survey_id = s.survey_id WHERE s.email LIKE '" + username + "'");
     }
 }
