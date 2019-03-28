@@ -20,15 +20,18 @@
         <f:view>
             <f:event type="preRenderView" listener="#{SongParser.onLoad()}"/>
         </f:view>
+            <f:metadata>
+        <f:viewAction action="#{IndexMusicBean.init}" />
+    </f:metadata>
     </h:head>
     <h:body class="backgroundcolor">
 
-<!--        <script>
-            $(document).ready(function () {
-                //Call news function to request the latest news of the moment when page is loaded
-                news("");
-            });
-        </script>-->
+        <!--        <script>
+                    $(document).ready(function () {
+                        //Call news function to request the latest news of the moment when page is loaded
+                        news("");
+                    });
+                </script>-->
 
 
         <ui:include src="navbar.xhtml"/>
@@ -59,10 +62,10 @@
                             <br/><br/><br/><br/>
                             <h:panelGroup rendered="#{empty user}">
                                 <div class="row">
-                                <div class="col-md-3"></div>
-                                <div class="col-md-3"><h:button class="btn btn-primary" value="#{internationalization.loginopt}" outcome="login" /></div>
-                                <div class="col-md-3"><h:button class="btn btn-primary" value="#{internationalization.signup}" outcome="register" /></div>
-                            </div>
+                                    <div class="col-md-3"></div>
+                                    <div class="col-md-3"><h:button class="btn btn-primary" value="#{internationalization.loginopt}" outcome="login" /></div>
+                                    <div class="col-md-3"><h:button class="btn btn-primary" value="#{internationalization.signup}" outcome="register" /></div>
+                                </div>
                             </h:panelGroup>
                             <br/><br/><br/><br/><br/>
                             <h:outputText class="h3" value="*#{internationalization.devices}" />
@@ -86,6 +89,35 @@
                                     <button type="button" class="slick-next emptybutton"><img class="arrows" src="assets/arrownext.png"></img></button>
                                 </div>
                             </div>
+                            <h:panelGroup id="tracktable" class="col-md-9">
+                                <h1 class="display-5">Special Albums</h1>
+                                <div class="row">                
+                                    <div class="col-md-1" id="prev">
+                                        <button type="button" class="slick-prev emptybutton"><img class="arrows" src="assets/arrowprev.png"></img></button>
+                                    </div>    
+                                     <div class="jumbotron multiple-items col-md-10">
+                                         <div class="row">
+                                            <c:forEach var="album" items="#{IndexMusicBean.albums}">
+                                                 <div class="col-lg-4">
+                                                <h:form class="specAlbum">
+                                                        <div>
+                                                            <h:commandLink class="customLink"  action="#{selectedAlbum.editDataItem()}">
+                                                                <div><h:graphicImage value="#{album.image}" title="Album's cover" class="albumPic"/>
+                                                                    <div><h:outputText value=" #{album.title}"/>
+                                                                    <ui:repeat var="artist" value="#{album.artists}"><br/>
+                                                                        <h:outputText class="smallText" value="#{artist.name}"></h:outputText>   
+                                                                    </ui:repeat><br/>
+                                                                    <h:outputText class="smallText" value=" CAD #{album.cost}"/></div>
+                                                                </div>
+                                                                <f:setPropertyActionListener target="#{selectedAlbum.selectedAlbum}" value="#{album}" />
+                                                            </h:commandLink></div></h:form></div>
+                                            </c:forEach></div></div>
+                                     <div class="col-md-1" id="next">
+                                    <button type="button" class="slick-next emptybutton"><img class="arrows" src="assets/arrownext.png"></img></button>
+                                </div>
+                                </div>
+                               
+                            </h:panelGroup>
                         </div>
 
                         <div class="col-md-3">
@@ -127,14 +159,15 @@
                                     <p>#{survey.question}</p>
                                     <h:selectOneRadio value="#{surveyResultBean.answer}">
                                         <ui:repeat var="option" value="#{survey.options}">
-                                        <f:selectItem itemValue="#{option}" itemLabel="#{option}" />
-                                    </ui:repeat>
+                                            <f:selectItem itemValue="#{option}" itemLabel="#{option}" />
+                                        </ui:repeat>
                                     </h:selectOneRadio>
                                     <h:commandButton type="submit" class="btn btn-primary formbutton" value="#{internationalization.submit}" action="#{surveyResultBean.saveSurvey}"/>    
                                 </ui:repeat>
                             </h:panelGroup>
                         </div>
                     </div>
+
 
                     <div id="ads" class="card mb-3">
                         <img style="height: 100px; width: 100%; display: block;" src="assets/ads.png" alt="Card image"/>

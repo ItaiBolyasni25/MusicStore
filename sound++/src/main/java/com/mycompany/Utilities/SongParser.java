@@ -22,7 +22,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -57,7 +56,7 @@ public class SongParser implements Serializable {
 
     private void albumParser(String[] splittedCsv) throws ParseException {
         List<Artist> artists = null;
-            artists = dao.find(new Artist(), "name = '" + splittedCsv[3] + "'");
+            artists = dao.find(new Artist(), "name = '" + splittedCsv[3].trim() + "'");
              if(artists.size()< 1){
                  artist = new Artist();
                  artist.setName(splittedCsv[3].trim());

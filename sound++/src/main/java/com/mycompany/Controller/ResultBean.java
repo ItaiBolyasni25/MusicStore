@@ -50,14 +50,12 @@ public class ResultBean implements Serializable {
         this.pattern = (String) FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("pattern");
         this.filter = (String) FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("filter");
         updateView();
-        if(filter.equals("title")){
-        this.totalAlbumsRows = dao.findWithPattern(new Album(), pattern).size();
+        if(filter.equals("false")){
+           this.totalAlbumsRows = dao.findAllArtistAlbum(new Album(), pattern).size();
+           this.totalTrackRows = dao.findAllTrackArtist(new Track(), pattern).size();
+           System.out.println("++++" +  this.totalTrackRows);
         }
-        else if(filter.equals("artist")){
-           this.totalAlbumsRows = dao.findWithAllAlbumArtist(new Album(), pattern).size();
-           this.totalTrackRows = dao.findWithAllTrackArtist(new Track(), pattern).size();
-        }
-        else if(filter.equals("rangeofdate")){
+        else {
             String[] days = pattern.split("-");
             this.totalAlbumsRows = dao.findWithAllPatternDate(new Album(), newDateFormat(days[0]), newDateFormat(days[1])).size();
             this.totalTrackRows = dao.findWithAllPatternDate(new Track(), newDateFormat(days[0]), newDateFormat(days[1])).size();
@@ -67,14 +65,13 @@ public class ResultBean implements Serializable {
         } else {
             totalAlbumPages = 1;
         }
-        this.totalTrackRows = dao.findWithPattern(new Track(), pattern).size();
         if (totalTrackRows > trackPerPage) {
             totalTrackPages = (int) Math.ceil((totalTrackRows * 1.0) / trackPerPage);
         } else {
             totalTrackPages = 1;
         }
          this.currentAlbumsPage = 1;
-          this.currentTrackPage = 1;
+         this.currentTrackPage = 1;
 
     }
 
@@ -196,7 +193,7 @@ public class ResultBean implements Serializable {
         updateView();
     }
     public void trackNext() throws ParseException {
-        System.out.println("next" +  this.currentTrackPage);
+        System.out.println(totalTrackPages);
         if (this.currentTrackPage < this.totalTrackPages) {
             this.currentTrackPage++;
         }
@@ -204,7 +201,6 @@ public class ResultBean implements Serializable {
     }
 
     public void trackPrev() throws ParseException {
-        System.out.println("pre" +  this.currentTrackPage);
         if (this.currentTrackPage > 1) {
             this.currentTrackPage--;
         }
@@ -213,22 +209,14 @@ public class ResultBean implements Serializable {
 
     public void updateView() throws ParseException {
         if (pattern != null && !pattern.isEmpty() && !pattern.equals("") && filter != null && !filter.isEmpty() && !filter.equals("")) {
-            switch (filter) {
-                case "title":
-                    setAlbums(dao.findWithLimitPattern(new Album(), getAlbumOffset(), albumPerPage, pattern));
-                    setTracks(dao.findWithLimitPattern(new Track(), getTrackOffset(), albumPerPage, pattern));
-                    break;
-                case "artist":
-                    setAlbums(dao.findWithLimitPatternAlbumArtist(new Album(), getAlbumOffset(), albumPerPage, pattern));
-                    setTracks(dao.findWithLimitPatternTrackArtist(new Track(), getTrackOffset(), albumPerPage, pattern));
-                    break;
-                case "rangeofdate":
+            if(this.filter.equals("false")){
+                    setAlbums(dao.findWithLimitPatternAlbum(new Album(), getAlbumOffset(), albumPerPage, pattern));
+                    setTracks(dao.findWithLimitPatternTrack(new Track(), getTrackOffset(), albumPerPage, pattern));
+            }
+            else{
                     String[] days = pattern.split("-");
                     setAlbums(dao.findWithLimitPatternDate(new Album(), getAlbumOffset(), albumPerPage, newDateFormat(days[0]),  newDateFormat(days[1])));
                     setTracks(dao.findWithLimitPatternDate(new Track(), getTrackOffset(), albumPerPage, newDateFormat(days[0]),  newDateFormat(days[1])));
-                    break;
-                default:
-                    break;
             }
         } else {
             setAlbums(null);

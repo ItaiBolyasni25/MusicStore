@@ -82,13 +82,6 @@ and open the template in the editor.
                     </div>
                 </li>
                 <h:form class="form-inline my-2 my-lg-0 searchForm" id="searchform" >
-                    <label>Search by:</label>
-                    <h:selectOneRadio value="#{AlbumTrackBean.filter}" id ="filter" class="filter">
-                        <f:selectItem itemValue="title" itemLabel="Title"/>
-                        <f:selectItem  itemValue="artist" itemLabel="Artist" />
-                        <f:selectItem itemValue="rangeofdate" itemLabel="Range of Date" />
-                        <f:ajax event="click"/>
-                    </h:selectOneRadio>
                     <h:panelGroup id="input">
                         <h:inputText onfocus="showSearchList();" autocomplete="off" id="pattern" class="form-control mr-sm-2 patternTextBox" title="#{internationalization.search}" value="#{AlbumTrackBean.pattern}" >
                             <f:ajax event="keyup" listener="#{AlbumTrackBean.patternChanged()}" execute="pattern" render="searchList"></f:ajax>
@@ -121,6 +114,13 @@ and open the template in the editor.
                                 </li>
                             </ui:repeat>
                         </ul>
+                    </h:panelGroup>
+                    <h:panelGroup>
+                        <input type="hidden" id="filter" value="#{AlbumTrackBean.filter}"/>
+                         <h:commandLink id="filterLink">      
+                               <h:graphicImage value="assets/iconfinder_common-calendar-month-glyph_763272.png" class="dateSymbol" />
+                             <f:ajax event="click" listener="#{AlbumTrackBean.filterChanged()}" />
+                         </h:commandLink>
                     </h:panelGroup>
                     <h:commandButton class="btn btn-outline-primary" value="#{internationalization.search}"  action="#{AlbumTrackBean.redirect()}" />
                 </h:form>

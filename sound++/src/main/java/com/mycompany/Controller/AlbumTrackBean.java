@@ -10,11 +10,7 @@ import com.mycompany.Model.Artist;
 import com.mycompany.Model.Track;
 import com.mycompany.Persistence.DAO;
 import java.io.Serializable;
-import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 
 import javax.inject.Inject;
@@ -39,7 +35,7 @@ public class AlbumTrackBean implements Serializable {
     private List<Artist> artists;
 
     public AlbumTrackBean() {
-        filter = "title";
+        filter = "false";
     }
     public String getFilter() {
         return filter;
@@ -92,20 +88,22 @@ public class AlbumTrackBean implements Serializable {
     public void patternChanged() {
 
         if (pattern != null && !pattern.isEmpty() && !pattern.equals("")) {
-            if (filter.equals("title")) {
+            if (filter.equals("false")) {
                 setAlbums(dao.findWithLimitPattern(new Album(), 0, 3, pattern));
                 setTracks(dao.findWithLimitPattern(new Track(), 0, 3, pattern));
-                setArtists(null);
-            } else if (filter.equals("artist")) {
-                setArtists(dao.findWithLimitPatternArtist(new Artist(), 0, 3, pattern));              
-                setAlbums(null);
-                setTracks(null);
+                setArtists(dao.findWithLimitPatternArtist(new Artist(), 0, 3, pattern));             
             }
         } else {
             setAlbums(null);
             setTracks(null);
             setArtists(null);
         }
+    }
+    public void filterChanged(){
+        boolean b = Boolean.parseBoolean(this.filter);
+        boolean newFilter = !b;
+        setFilter(Boolean.toString(newFilter));
+        System.out.println("+++"+this.filter);
     }
      
     public String redirect() {

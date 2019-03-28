@@ -9,12 +9,14 @@ com\mycompany\Model\Artist.class
 com\mycompany\Persistence\DAO.class
 com\mycompany\Utilities\Internationalization.class
 com\mycompany\Model\SurveyResult.class
+com\mycompany\Controller\PaginationBean.class
 com\mycompany\Model\Album.class
 com\mycompany\Controller\InvoiceController.class
 com\mycompany\Model\Roles.class
 com\mycompany\Controller\AlbumTrackBean.class
 com\mycompany\Utilities\SongParser.class
 com\mycompany\Model\Survey.class
+com\mycompany\Controller\IndexMusicBean.class
 com\mycompany\Model\Cart.class
 com\mycompany\Controller\TrackPaginationBean.class
 com\mycompany\Controller\AlbumPaginationBean.class
