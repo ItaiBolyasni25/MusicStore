@@ -25,7 +25,6 @@ public class AlbumBean implements Serializable {
     private DAO dao;
 
     public AlbumBean() {
-
     }
 
     public List<Album> getAll() {

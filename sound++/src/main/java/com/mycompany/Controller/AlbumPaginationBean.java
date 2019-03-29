@@ -39,15 +39,14 @@ public class AlbumPaginationBean implements Serializable {
           this.currentPage = 1;
 
     }
+    
     public void initialize(){
-        System.out.println("hihihihihihii");
         if(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("current")==null){
         this.currentPage = 1;
         }
         else{
             this.currentPage = Integer.parseInt(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("current"));
         }
-          System.out.println("heeeeeeeeeeeeeeee" + Boolean.toString(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("current")==null) + this.currentPage);
     }
     
     public List<Album> getDatalist() {
