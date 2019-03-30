@@ -35,10 +35,6 @@
         <welcome-file>faces/index.xhtml</welcome-file>
     </welcome-file-list>
     
-    
-    
-    
-    
     <security-role>
         <description>customer</description>
         <role-name>customer</role-name>
@@ -48,14 +44,11 @@
         <role-name>manager</role-name>
     </security-role>
     
-    
-    
-    
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>Protected Area</web-resource-name>
-            <url-pattern>/manager/*</url-pattern>
-            <!-- <url-pattern>/faces/manager/*</url-pattern> -->
+            <!--<url-pattern>/manager/*</url-pattern>-->
+            <url-pattern>/faces/manager/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <role-name>manager</role-name>
@@ -69,7 +62,7 @@
     
     <login-config>
         <auth-method>FORM</auth-method>
-        <realm-name>JDBCRealm</realm-name>
+        <realm-name>JDBCRealmTeamA</realm-name>
         <form-login-config>
             <form-login-page>/faces/login.xhtml</form-login-page>
             <form-error-page>/faces/error/loginerror.xhtml</form-error-page>
