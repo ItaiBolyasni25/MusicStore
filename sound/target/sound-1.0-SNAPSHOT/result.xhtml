@@ -26,6 +26,12 @@
         </c:if>
         <c:otherwise>
             <ui:include src="navbarmanager.xhtml"/>
+            <h:form>
+                <h:commandButton class="btn btn-dark" style="display: block; margin: auto;" value="#{internationalization.backToInventory}" 
+                                 action="#{inventoryBean.setSuccess(false)}">
+                    <f:actionListener binding="#{inventoryBean.setFail(false)}"/>
+                </h:commandButton>
+            </h:form>
         </c:otherwise>
         <p id = "top"></p>
         <h:panelGroup layout="block" class="alert alert-success" rendered="#{inventoryBean.success == true}">
@@ -72,7 +78,7 @@
                                 <label class="col-form-label" for="inputDefault">#{internationalization.listPrice}</label>
                                 <h:inputText value="#{inventoryBean.albumListPrice}" class="form-control" />
                                 
-                                <label class="col-form-label" for="inputDefault">#{internationalization.salePrice}</label>
+                                <label class="col-form-label" for="inputDefault">#{internationalization.salePrice} (%)</label>
                                 <h:inputText style="margin-bottom: 3%;" value="#{inventoryBean.albumSalePrice}" class="form-control" />
                                 
                                 <h:commandButton value="#{internationalization.inventoryedit}" action="#{inventoryBean.editAlbum(album.id)}" 

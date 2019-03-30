@@ -26,6 +26,12 @@
         </c:if>
         <c:otherwise>
             <ui:include src="navbarmanager.xhtml"/>
+            <h:form>
+                <h:commandButton class="btn btn-dark" style="margin-top: 3%; display: block; margin: auto;" value="#{internationalization.backToInventory}" 
+                                 action="#{inventoryBean.setSuccess(false)}">
+                    <f:actionListener binding="#{inventoryBean.setFail(false)}"/>
+                </h:commandButton>
+            </h:form>
         </c:otherwise>
         <p id = "top"></p>
         <h:panelGroup layout="block" class="alert alert-success" rendered="#{inventoryBean.success == true}">

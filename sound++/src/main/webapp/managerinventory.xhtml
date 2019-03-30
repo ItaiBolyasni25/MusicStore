@@ -154,7 +154,7 @@
                                     </ul>
                                 </h:panelGroup>
                                 <h:commandButton style="margin-top: 3%;" class="btn btn-outline-primary" value="#{internationalization.search}"  action="#{AlbumTrackBean.redirect()}">
-                                    <f:actionListener binding="#{inventoryBean.searchMethod()}" />
+                                    <f:actionListener binding="#{inventoryBean.setSearched(true)}" />
                                 </h:commandButton>
                             </h:form> 
                         </div>

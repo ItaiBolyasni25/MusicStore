@@ -188,9 +188,18 @@ public class InventoryBean implements Serializable {
     public boolean isSuccess() {
         return success;
     }
+    
+    public String setSuccess(boolean success) {
+        this.success = success;
+        return "managerinventory.xhtml";
+    }
 
     public boolean isFail() {
         return fail;
+    }
+    
+    public void setFail(boolean fail) {
+        this.fail = fail;
     }
 
     public boolean isSearched() {

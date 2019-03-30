@@ -460,4 +460,8 @@ public class Internationalization implements Serializable {
     public String getImagePath() {
         return language.equals("English")? "Image path" : "Chemin de l'image";
     }
+    
+    public String getBackToInventory() {
+        return language.equals("English")? "Back to inventory management" : "Retour à la gestion des stocks";
+    }
 }
