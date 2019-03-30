@@ -20,13 +20,17 @@ public class PaginationBean implements Serializable {
     @Inject
     private DAO dao;
     private int totalRows;
-    private int currentPage;
     private int itemPerPage;
     private int totalPages;
+    private int albumCurrentPage;
+    private int trackCurrentPage;
+        
 
     public PaginationBean() {
-        this.currentPage = 1;
+        this.albumCurrentPage = 1;
+        this.trackCurrentPage = 1;
         this.itemPerPage = 3;
+        
     }
 
     public int getTotalRows() {
@@ -37,14 +41,23 @@ public class PaginationBean implements Serializable {
         this.totalRows = totalRows;
     }
 
-    public int getCurrentsPage() {
-        return currentPage;
+    public int getAlbumCurrentPage() {
+        return albumCurrentPage;
     }
 
-    public void setCurrentsPage(int currentsPage) {
-        this.currentPage = currentsPage;
+    public void setAlbumCurrentPage(int albumCurrentPage) {
+        this.albumCurrentPage = albumCurrentPage;
     }
 
+    public int getTrackCurrentPage() {
+        return trackCurrentPage;
+    }
+
+    public void setTrackCurrentPage(int trackCurrentPage) {
+        this.trackCurrentPage = trackCurrentPage;
+    }
+
+    
     public int getItemPerPage() {
         return itemPerPage;
     }
@@ -60,17 +73,16 @@ public class PaginationBean implements Serializable {
     public void setTotalPages(int totalPages) {
         this.totalPages = totalPages;
     }
-     public int getOffset() {
-        return (currentPage - 1) * itemPerPage;
+     public int getAlbumOffset() {
+        return (albumCurrentPage - 1) * itemPerPage;
+    }
+     public int getTrackOffset() {
+        return (trackCurrentPage - 1) * itemPerPage;
     }
      
-   public void initialTotalRow(String str){
-       if(str.equals("album")){
-           totalRows = dao.findRandom(new Album()).size();
-       }
-       else if(str.equals("track")){
-           totalRows = dao.findRandom(new Track()).size();
-       }
+   public void initialTotalRow(){
+       totalRows = 9;
+       totalPages = (int) Math.ceil((totalRows * 1.0) / itemPerPage);
    }
   
 }

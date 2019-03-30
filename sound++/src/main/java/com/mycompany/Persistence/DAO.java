@@ -192,21 +192,13 @@ public class DAO {
         q.setMaxResults(3);
         return q.getResultList();
     }
+     public <E extends EntityModel> List<E> findLimitRandom(E entityModel) {
+        String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
+        Query q = em.createQuery("Select identifier FROM " + className + " identifier order by function('RAND')");
+        q.setMaxResults(9);
+        return q.getResultList();
+    }
 
-    public <E extends EntityModel> List<E> findRandom(E entityModel) {
-        String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
-        Query q = em.createQuery("Select identifier FROM " + className + " identifier order by function('RAND')");
-        return q.getResultList();
-    }
-     public <E extends EntityModel> List<E> findLimitRandom(E entityModel,int offset, int display) {
-        String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
-        Query q = em.createQuery("Select identifier FROM " + className + " identifier order by function('RAND')");
-          if (offset != 0) {
-            q.setFirstResult(offset);
-        }
-        q.setMaxResults(display);
-        return q.getResultList();
-    }
 
     public <E extends EntityModel> boolean delete(E entityModel) {
         em.remove(entityModel);

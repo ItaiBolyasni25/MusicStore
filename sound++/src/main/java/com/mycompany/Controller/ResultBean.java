@@ -53,7 +53,6 @@ public class ResultBean implements Serializable {
         if(filter.equals("false")){
            this.totalAlbumsRows = dao.findAllArtistAlbum(new Album(), pattern).size();
            this.totalTrackRows = dao.findAllTrackArtist(new Track(), pattern).size();
-           System.out.println("++++" +  this.totalTrackRows);
         }
         else {
             String[] days = pattern.split("-");

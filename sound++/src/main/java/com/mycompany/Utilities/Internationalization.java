@@ -404,4 +404,10 @@ public class Internationalization implements Serializable {
     public String getSignOut(){
         return language.equals("English")? "Sign Out": "Se deconnecter";
     }
+    public String getPopularAlbums(){
+        return language.equals("English")? "Popular Albums": "Albums Populaires";
+    }
+    public String getPopularTracks(){
+        return language.equals("English")? "Popular Tracks": "Chansons Populaires";
+    }
 }
