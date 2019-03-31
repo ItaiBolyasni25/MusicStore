@@ -8,6 +8,7 @@ com\mycompany\Controller\RegisterBean.class
 com\mycompany\Model\Artist.class
 com\mycompany\Persistence\DAO.class
 com\mycompany\Utilities\Internationalization.class
+com\mycompany\Controller\ReportBean.class
 com\mycompany\Model\SurveyResult.class
 com\mycompany\Model\Album.class
 com\mycompany\Controller\InvoiceController.class
@@ -25,6 +26,7 @@ com\mycompany\Interface\EntityModel.class
 com\mycompany\Utilities\Validator.class
 com\mycompany\Controller\ResultBean.class
 com\mycompany\Controller\SelectedTrack.class
+com\mycompany\Model\InventoryReport.class
 com\mycompany\Controller\SurveyBean.class
 com\mycompany\Model\Invoice.class
 com\mycompany\Controller\LoginBean.class

@@ -1,4 +1,4 @@
-drop if exists database songstore;
+drop database if exists songstore;
 create database songstore;
 DROP USER IF EXISTS songstore@localhost;
 CREATE USER songstore@'localhost' IDENTIFIED WITH mysql_native_password BY 'dawson123' REQUIRE NONE;
@@ -20,6 +20,7 @@ CREATE TABLE Album (
     removal_date date NULL,
     image varchar(250) NULL,
     genre varchar(256) NOT NULL,
+    total_sales int,
     CONSTRAINT Album_pk PRIMARY KEY (album_id)
 );
 
@@ -137,6 +138,7 @@ CREATE TABLE Track (
     individual bool NOT NULL,
     removal_status bool NOT NULL,
     removal_date date NULL,
+    total_sales int,
     CONSTRAINT Track_pk PRIMARY KEY (track_id)
 );
 
