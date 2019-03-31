@@ -31,17 +31,22 @@
             });
         </script>
 
-
         <ui:include src="navbar.xhtml"/>
-
         <div class="body">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
                     <a class="nav-link active" data-toggle="tab" href="#home">#{internationalization.home}</a>
                 </li>
-                <li class="nav-item disabled">
-                    <a class="nav-link" data-toggle="tab" href="#profile">#{internationalization.profile}</a>
-                </li>
+                <h:panelGroup rendered="#{empty user}">
+                    <li class="nav-item disabled">
+                        <a class="nav-link" data-toggle="tab" href="#profile">#{internationalization.profile}</a>
+                    </li>
+                </h:panelGroup>
+                <h:panelGroup rendered="#{not empty user}">
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#profile">#{internationalization.profile}</a>
+                    </li>
+                </h:panelGroup>
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="tab" href="#genres">#{internationalization.genres}</a>
                 </li>
@@ -137,6 +142,7 @@
                                     </h:form>
                                 </ui:repeat>
                             </h:panelGroup>
+
                         </div>
                     </div>
 
@@ -147,82 +153,33 @@
                 </div>
 
                 <div class="tab-pane fade" id="profile">
-                    <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.</p>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <br/>
+                            <div class="card">
+                                <h3 class="card-header text-center">#{user}</h3>
+                                <h:graphicImage style="height: 30%; width: 70%; margin-left: 15%;" value="assets/profile.jpg"></h:graphicImage>
+                                <div class="card-body">
+                                    <p class="card-text">#{internationalization.email} : #{user}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="tab-pane fade col-md-12" id="genres">
-
-                    <div class="card mb-3 displayinline ">
-                        <div class="card-body">
-                            <div class="card-title"><h6>Country</h6></div>
-                            <img class="genresimg" src="assets/genre/country.jpg" alt="Card image"/>  
-                        </div>
-                    </div>
-
-                    <div class="card mb-3 displayinline ">
-                        <div class="card-body">
-                            <div class="card-title"><h6>EDM</h6></div>
-                            <img class="genresimg" src="assets/genre/edm.jpg" alt="Card image"/>  
-                        </div>
-                    </div>
-
-                    <div class="card mb-3 displayinline ">
-                        <div class="card-body">
-                            <div class="card-title"><h6>Electro</h6></div>
-                            <img class="genresimg" src="assets/genre/electro.jpg" alt="Card image"/>   
-                        </div>
-                    </div>
-
-                    <div class="card mb-3 displayinline ">
-                        <div class="card-body">
-                            <div class="card-title"><h6>Hip Hop</h6></div>
-                            <img class="genresimg" src="assets/genre/hiphop.jpg" alt="Card image"/>  
-                        </div>
-                    </div>
-
-                    <div class="card mb-3 displayinline ">
-                        <div class="card-body">
-                            <div class="card-title"><h6>Jazz</h6></div>
-                            <img class="genresimg" src="assets/genre/jazz.jpg" alt="Card image"/> 
-                        </div>
-                    </div>
-
-                    <div class="card mb-3 displayinline ">
-                        <div class="card-body">
-                            <div class="card-title"><h6>Kids</h6></div>
-                            <img class="genresimg" src="assets/genre/kids.jpg" alt="Card image"/> 
-                        </div>
-                    </div>
-
-                    <div class="card mb-3 displayinline ">
-                        <div class="card-body">
-                            <div class="card-title"><h6>Pop</h6></div>
-                            <img class="genresimg" src="assets/genre/pop.jpg" alt="Card image"/> 
-                        </div>
-                    </div>
-
-                    <div class="card mb-3 displayinline ">
-                        <div class="card-body">
-                            <div class="card-title"><h6>RnB</h6></div>
-                            <img class="genresimg" src="assets/genre/randb.jpg" alt="Card image"/> 
-                        </div>
-                    </div>
-
-                    <div class="card mb-3 displayinline ">
-                        <div class="card-body">
-                            <div class="card-title"><h6>Reggae</h6></div>
-                            <img class="genresimg" src="assets/genre/reggae.jpg" alt="Card image"/> 
-                        </div>
-                    </div>
-
-                    <div class="card mb-3 displayinline ">
-                        <div class="card-body">
-                            <div class="card-title"><h6>Rock</h6></div>
-                            <img class="genresimg" src="assets/genre/rock.jpg" alt="Card image"/> 
-                        </div>
-                    </div>
+                    <h:panelGrid columns="3">
+                        <c:forEach var="genre" items="#{genreSearchBean.genres}">
+                            <h:form>
+                                <h:commandLink class="customLink" action="#{genreSearchBean.searchGenre}">
+                                    <p>#{genre}</p>
+                                    <h:graphicImage class="genresimg" value="assets/genre/#{genre}.jpg" title="Genre image for #{genre}"/>
+                                    <f:setPropertyActionListener target="#{genreSearchBean.selectedGenre}" value="#{genre}"/>
+                                </h:commandLink>
+                            </h:form>
+                        </c:forEach>
+                    </h:panelGrid>
                 </div>
-
             </div>
         </div>
 

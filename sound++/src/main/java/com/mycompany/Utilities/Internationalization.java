@@ -417,4 +417,12 @@ public class Internationalization implements Serializable {
     public String getSignOut() {
         return language.equals("English") ? "Sign Out" : "Se deconnecter";
     }
+    
+    public String getUser(){
+        return language.equals("English") ? "User" : "Utilisateur";
+    }
+    
+    public String getSearchUser(){
+        return language.equals("English") ? "Search the user you want to change its information for" : "Cherchez l'utilisitaure duquel vous voulez changer leur information";
+    }
 }

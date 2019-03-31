@@ -9,7 +9,6 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
-import javax.servlet.http.HttpSession;
 
 /**
  * ManagedBean for registering a user
@@ -91,7 +90,10 @@ public class RegisterBean implements Serializable {
      */
     public String addUser() {
         User user = new User(firstName, lastName, email, password, title);
-        if (!Validator.emailExists(user, DAO)) {
+        if(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("lastgenre") != null){
+            user.setLast_genre((String)(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("lastgenre")));
+        }
+        if (!Validator.emailExists(user, DAO)){
             DAO.write(user);
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("userObj", user);
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", firstName);

@@ -36,20 +36,20 @@ public class AlbumPaginationBean implements Serializable {
 
     public AlbumPaginationBean() {
         this.itemPerPage = 9;
-          this.currentPage = 1;
+        this.currentPage = 1;
 
     }
-    public void initialize(){
+
+    public void initialize() {
         System.out.println("hihihihihihii");
-        if(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("current")==null){
-        this.currentPage = 1;
-        }
-        else{
+        if (FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("current") == null) {
+            this.currentPage = 1;
+        } else {
             this.currentPage = Integer.parseInt(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("current"));
         }
-          System.out.println("heeeeeeeeeeeeeeee" + Boolean.toString(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("current")==null) + this.currentPage);
+        System.out.println("heeeeeeeeeeeeeeee" + Boolean.toString(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("current") == null) + this.currentPage);
     }
-    
+
     public List<Album> getDatalist() {
         return dataList;
     }
@@ -104,11 +104,11 @@ public class AlbumPaginationBean implements Serializable {
 
     public void setCurrent_page(int newCurrentPage) {
         currentPage = newCurrentPage;
-           FacesContext.getCurrentInstance()
-            .getExternalContext()
-            .getRequestMap()
-            .put("current", this.currentPage);
-           System.out.println("hsdsjcsljldaj");
+        FacesContext.getCurrentInstance()
+                .getExternalContext()
+                .getRequestMap()
+                .put("current", this.currentPage);
+        System.out.println("hsdsjcsljldaj");
         updateView();
     }
 
@@ -119,7 +119,7 @@ public class AlbumPaginationBean implements Serializable {
 
     public void next() {
         if (this.currentPage < totalPages) {
-            setCurrent_page(this.currentPage+1);
+            setCurrent_page(this.currentPage + 1);
         }
 
         updateView();
@@ -127,7 +127,7 @@ public class AlbumPaginationBean implements Serializable {
 
     public void prev() {
         if (this.currentPage > 1) {
-           setCurrent_page(this.currentPage-1);
+            setCurrent_page(this.currentPage - 1);
         }
         updateView();
     }

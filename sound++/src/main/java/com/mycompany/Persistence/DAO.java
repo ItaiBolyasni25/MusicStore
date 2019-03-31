@@ -125,4 +125,9 @@ public class DAO {
             Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public List<String> findGenres(){
+        Query q = em.createNativeQuery("SELECT genre FROM track GROUP BY genre");
+        return q.getResultList();
+    }
 }

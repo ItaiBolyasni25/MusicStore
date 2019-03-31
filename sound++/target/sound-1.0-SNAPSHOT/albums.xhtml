@@ -15,9 +15,9 @@
         <h:outputStylesheet library="css" name="style.css"  />
         <h:outputScript library="js" name="jquery-1.12.4.js" />
         <h:outputScript library="js" name="itemInfo.js" />
-    <f:metadata>
-        <f:viewAction action="#{AlbumPaginationBean.initialize()}" />
-    </f:metadata>
+        <f:metadata>
+            <f:viewAction action="#{AlbumPaginationBean.initialize()}" />
+        </f:metadata>
         <title>Sound++</title>
     </h:head>
     <h:body class="backgroundcolor body">
@@ -48,7 +48,7 @@
                                         <p>#{internationalization.albumdate}: #{album.releasedate}</p>
                                     </div>
                                     <f:setPropertyActionListener target="#{selectedAlbum.selectedAlbum}" value="#{album}" />
-                                   </h:commandLink>
+                                </h:commandLink>
                             </div>
                         </h:form>
                     </c:forEach>

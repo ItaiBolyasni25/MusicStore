@@ -7,6 +7,7 @@ C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Cont
 C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Controller\AlbumBean.java
 C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Persistence\DAO.java
 C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Controller\ResultBean.java
+C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Controller\GenreSearchBean.java
 C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Model\Roles.java
 C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Model\Album.java
 C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Model\Artist.java
@@ -26,6 +27,7 @@ C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Cont
 C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Controller\TrackBean.java
 C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Model\Cart.java
 C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Model\Invoice.java
+C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Controller\ClientManagementBean.java
 C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Utilities\SongParser.java
 C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Controller\NewBean.java
 C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Utilities\Validator.java

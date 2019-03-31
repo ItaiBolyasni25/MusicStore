@@ -21,8 +21,7 @@
         <p id = "top"></p>
         <h:panelGroup id="table" class="grid">
             <div class="albumTable">
-                <h:panelGrid id = "panel" columns = "3"
-                             cellpadding = "55%">
+                <h:panelGrid id = "panel" columns = "3" cellpadding = "55%">
                     <c:forEach var="track" items="#{TrackPaginationBean.datalist}">
                         <h:form class="flip-box">
                             <div class="flip-box-inner">
@@ -44,7 +43,9 @@
                                         <p>#{internationalization.albumdate} #{track.album.releasedate}</p>
                                     </div>
                                     <f:setPropertyActionListener target="#{selectedTrack.selectedTrack}" value="#{track}" />
-                                   </h:commandLink></div></h:form>
+                                   </h:commandLink>
+                            </div>
+                        </h:form>
                     </c:forEach>
                 </h:panelGrid>
                 <h:form class="paginationForm">
