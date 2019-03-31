@@ -1,8 +1,11 @@
+drop database songstore;
+create database songstore;
 DROP USER IF EXISTS songstore@localhost;
 CREATE USER songstore@'localhost' IDENTIFIED WITH mysql_native_password BY 'dawson123' REQUIRE NONE;
 GRANT ALL ON songstore.* TO songstore@'localhost';
 FLUSH PRIVILEGES;
 Use songstore;
+
 
 CREATE TABLE Album (
     album_id int NOT NULL auto_increment,
@@ -147,7 +150,6 @@ CREATE TABLE Track_Review (
     CONSTRAINT Track_Review_pk PRIMARY KEY (track_review_id)
 );
 
--- Table: User
 CREATE TABLE User (
     title varchar(30) NOT NULL,
     lastname varchar(30) NOT NULL,
@@ -169,6 +171,7 @@ CREATE TABLE User (
     salt varchar(300) NULL,
     CONSTRAINT User_pk PRIMARY KEY (email)
 );
+
 
 CREATE TABLE Roles (
     email varchar(50) NOT NULL,

@@ -103,7 +103,6 @@ public class AlbumTrackBean implements Serializable {
         boolean b = Boolean.parseBoolean(this.filter);
         boolean newFilter = !b;
         setFilter(Boolean.toString(newFilter));
-        System.out.println("+++"+this.filter);
     }
      
     public String redirect() {
