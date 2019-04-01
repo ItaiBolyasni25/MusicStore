@@ -6,7 +6,6 @@ package com.mycompany.Model;
  * and open the template in the editor.
  */
 import com.mycompany.Interface.EntityModel;
-import com.mycompany.Model.Album;
 import java.sql.Date;
 import java.io.Serializable;
 import java.util.List;

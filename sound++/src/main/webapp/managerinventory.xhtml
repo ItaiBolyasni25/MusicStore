@@ -7,6 +7,9 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:p="http://primefaces.org/ui">
 
+    <f:metadata>
+        <f:viewAction action="#{ResultBean.init}" />
+    </f:metadata>
     <h:head>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.2.1/lux/bootstrap.min.css" />
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -20,7 +23,7 @@
         <title>Sound++</title>
     </h:head>
     <h:body>
-        <ui:include src="../navbarmanager.xhtml" />
+        <ui:include src="navbarmanager.xhtml" />
         <div class="container">
             <ul class="nav nav-pills">
                 <li class="nav-item">
