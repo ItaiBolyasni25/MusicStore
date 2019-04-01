@@ -1,37 +1,3 @@
-<<<<<<< HEAD
-C:\Users\austi\Desktop\SchoolStuff\JavaServerSide\Project\csdmusicstore\sound++\src\main\java\com\mycompany\Controller\ReviewBean.java
-C:\Users\austi\Desktop\SchoolStuff\JavaServerSide\Project\csdmusicstore\sound++\src\main\java\com\mycompany\Controller\RegisterBean.java
-C:\Users\austi\Desktop\SchoolStuff\JavaServerSide\Project\csdmusicstore\sound++\src\main\java\com\mycompany\Controller\NewBean.java
-C:\Users\austi\Desktop\SchoolStuff\JavaServerSide\Project\csdmusicstore\sound++\src\main\java\com\mycompany\Controller\SurveyResultBean.java
-C:\Users\austi\Desktop\SchoolStuff\JavaServerSide\Project\csdmusicstore\sound++\src\main\java\com\mycompany\Controller\TrackPaginationBean.java
-C:\Users\austi\Desktop\SchoolStuff\JavaServerSide\Project\csdmusicstore\sound++\src\main\java\com\mycompany\Model\Album.java
-C:\Users\austi\Desktop\SchoolStuff\JavaServerSide\Project\csdmusicstore\sound++\src\main\java\com\mycompany\Controller\InvoiceController.java
-C:\Users\austi\Desktop\SchoolStuff\JavaServerSide\Project\csdmusicstore\sound++\src\main\java\com\mycompany\Controller\SelectedAlbum.java
-C:\Users\austi\Desktop\SchoolStuff\JavaServerSide\Project\csdmusicstore\sound++\src\main\java\com\mycompany\Model\User.java
-C:\Users\austi\Desktop\SchoolStuff\JavaServerSide\Project\csdmusicstore\sound++\src\main\java\com\mycompany\Utilities\Validator.java
-C:\Users\austi\Desktop\SchoolStuff\JavaServerSide\Project\csdmusicstore\sound++\src\main\java\com\mycompany\Model\News.java
-C:\Users\austi\Desktop\SchoolStuff\JavaServerSide\Project\csdmusicstore\sound++\src\main\java\com\mycompany\Controller\TrackBean.java
-C:\Users\austi\Desktop\SchoolStuff\JavaServerSide\Project\csdmusicstore\sound++\src\main\java\com\mycompany\Model\SurveyResult.java
-C:\Users\austi\Desktop\SchoolStuff\JavaServerSide\Project\csdmusicstore\sound++\src\main\java\com\mycompany\Controller\CartController.java
-C:\Users\austi\Desktop\SchoolStuff\JavaServerSide\Project\csdmusicstore\sound++\src\main\java\com\mycompany\Model\Artist.java
-C:\Users\austi\Desktop\SchoolStuff\JavaServerSide\Project\csdmusicstore\sound++\src\main\java\com\mycompany\Controller\LoginBean.java
-C:\Users\austi\Desktop\SchoolStuff\JavaServerSide\Project\csdmusicstore\sound++\src\main\java\com\mycompany\Utilities\Internationalization.java
-C:\Users\austi\Desktop\SchoolStuff\JavaServerSide\Project\csdmusicstore\sound++\src\main\java\com\mycompany\Controller\AlbumPaginationBean.java
-C:\Users\austi\Desktop\SchoolStuff\JavaServerSide\Project\csdmusicstore\sound++\src\main\java\com\mycompany\Persistence\DAO.java
-C:\Users\austi\Desktop\SchoolStuff\JavaServerSide\Project\csdmusicstore\sound++\src\main\java\com\mycompany\Controller\AlbumTrackBean.java
-C:\Users\austi\Desktop\SchoolStuff\JavaServerSide\Project\csdmusicstore\sound++\src\main\java\com\mycompany\Model\Roles.java
-C:\Users\austi\Desktop\SchoolStuff\JavaServerSide\Project\csdmusicstore\sound++\src\main\java\com\mycompany\Model\Cart.java
-C:\Users\austi\Desktop\SchoolStuff\JavaServerSide\Project\csdmusicstore\sound++\src\main\java\com\mycompany\Model\Survey.java
-C:\Users\austi\Desktop\SchoolStuff\JavaServerSide\Project\csdmusicstore\sound++\src\main\java\com\mycompany\Model\Invoice.java
-C:\Users\austi\Desktop\SchoolStuff\JavaServerSide\Project\csdmusicstore\sound++\src\main\java\com\mycompany\Interface\EntityModel.java
-C:\Users\austi\Desktop\SchoolStuff\JavaServerSide\Project\csdmusicstore\sound++\src\main\java\com\mycompany\Model\Review.java
-C:\Users\austi\Desktop\SchoolStuff\JavaServerSide\Project\csdmusicstore\sound++\src\main\java\com\mycompany\Controller\AlbumBean.java
-C:\Users\austi\Desktop\SchoolStuff\JavaServerSide\Project\csdmusicstore\sound++\src\main\java\com\mycompany\Utilities\SongParser.java
-C:\Users\austi\Desktop\SchoolStuff\JavaServerSide\Project\csdmusicstore\sound++\src\main\java\com\mycompany\Controller\ResultBean.java
-C:\Users\austi\Desktop\SchoolStuff\JavaServerSide\Project\csdmusicstore\sound++\src\main\java\com\mycompany\Controller\SurveyBean.java
-C:\Users\austi\Desktop\SchoolStuff\JavaServerSide\Project\csdmusicstore\sound++\src\main\java\com\mycompany\Model\Track.java
-C:\Users\austi\Desktop\SchoolStuff\JavaServerSide\Project\csdmusicstore\sound++\src\main\java\com\mycompany\Controller\SelectedTrack.java
-=======
 C:\Users\1633867\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Model\Album.java
 C:\Users\1633867\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Model\SurveyResult.java
 C:\Users\1633867\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Controller\TrackBean.java
@@ -47,6 +13,7 @@ C:\Users\1633867\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Model
 C:\Users\1633867\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Controller\ResultBean.java
 C:\Users\1633867\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Model\Orders.java
 C:\Users\1633867\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Model\Cart.java
+C:\Users\1633867\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Controller\LoginBean.java
 C:\Users\1633867\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Model\Artist.java
 C:\Users\1633867\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Controller\BannerAddBean.java
 C:\Users\1633867\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Controller\AlbumPaginationBean.java
@@ -59,6 +26,7 @@ C:\Users\1633867\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Model
 C:\Users\1633867\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Model\Roles.java
 C:\Users\1633867\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Model\User.java
 C:\Users\1633867\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Controller\SurveyBean.java
+C:\Users\1633867\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Controller\ReviewBean.java
 C:\Users\1633867\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Controller\SelectedAlbum.java
 C:\Users\1633867\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Controller\AlbumTrackBean.java
 C:\Users\1633867\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Controller\GenreSearchBean.java
@@ -69,8 +37,8 @@ C:\Users\1633867\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Model
 C:\Users\1633867\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Controller\ReportBean.java
 C:\Users\1633867\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Model\SaleReport.java
 C:\Users\1633867\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Model\Survey.java
+C:\Users\1633867\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Model\Review.java
 C:\Users\1633867\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Controller\AlbumBean.java
 C:\Users\1633867\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Persistence\DAO.java
 C:\Users\1633867\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Utilities\Internationalization.java
 C:\Users\1633867\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Interface\EntityModel.java
->>>>>>> 484d52702ba0e99bdf4d354d4b15b2c344c50fe6
