@@ -6,16 +6,11 @@
 package com.mycompany.Controller;
 
 import com.mycompany.Model.Album;
+import com.mycompany.Model.Artist;
 import com.mycompany.Model.Track;
 import com.mycompany.Persistence.DAO;
 import java.io.Serializable;
-import java.sql.Date;
 import java.util.List;
-import javax.annotation.PostConstruct;
-import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.context.Conversation;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 
 import javax.inject.Inject;
@@ -25,21 +20,49 @@ import javax.inject.Inject;
  * @author maian
  */
 import javax.inject.Named;
+
 @ViewScoped
 @Named("AlbumTrackBean")
 public class AlbumTrackBean implements Serializable {
 
     @Inject
     private DAO dao;
+    private String filter;
     private String pattern;
+    private String dateRange;
     private List<Album> albums;
     private List<Track> tracks;
+    private List<Artist> artists;
 
     public AlbumTrackBean() {
+        filter = "false";
+    }
+    public String getFilter() {
+        return filter;
+    }
+
+    public String getDateRange() {
+        return dateRange;
+    }
+
+    public void setDateRange(String dateRange) {
+        this.dateRange = dateRange;
+    }
+    
+    public void setFilter(String filter) {
+        this.filter = filter;
     }
 
     public String getPattern() {
         return pattern;
+    }
+
+    public List<Artist> getArtists() {
+        return artists;
+    }
+
+    public void setArtists(List<Artist> artists) {
+        this.artists = artists;
     }
 
     public List<Album> getAlbums() {
@@ -63,16 +86,26 @@ public class AlbumTrackBean implements Serializable {
     }
 
     public void patternChanged() {
+
         if (pattern != null && !pattern.isEmpty() && !pattern.equals("")) {
-            setAlbums(dao.findWithLimitPattern(new Album(),0,4, pattern, "title"));
-            setTracks(dao.findWithLimitPattern(new Track(),0,4, pattern, "title"));
+            if (filter.equals("false")) {
+                setAlbums(dao.findWithLimitPattern(new Album(), 0, 3, pattern, "album"));
+                setTracks(dao.findWithLimitPattern(new Track(), 0, 3, pattern, "track"));
+                setArtists(dao.findWithLimitPatternArtist(new Artist(), 0, 3, pattern));             
+            }
         } else {
             setAlbums(null);
             setTracks(null);
+            setArtists(null);
         }
     }
-
-    public String redirect(){
-        return "result?faces-redirect=true&pattern="+this.pattern;  
+    public void filterChanged(){
+        boolean b = Boolean.parseBoolean(this.filter);
+        boolean newFilter = !b;
+        setFilter(Boolean.toString(newFilter));
+    }
+     
+    public String redirect() {
+        return "result?faces-redirect=true&pattern=" + this.pattern + "&filter=" + this.filter;
     }
 }

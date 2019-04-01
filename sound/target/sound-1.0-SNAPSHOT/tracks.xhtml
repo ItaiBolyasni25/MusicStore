@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.2.1/lux/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"></link>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+        <h:outputStylesheet library="css" name="style.css" />
+        <h:outputScript library="js" name="jquery-1.12.4.js" />
+        <h:outputScript library="js" name="itemInfo.js" />
+        <title>Sound++</title>
+        <f:metadata>
+            <f:viewAction action="#{TrackPaginationBean.initialize()}" />
+        </f:metadata>
+    </h:head>
+    <h:body class="backgroundcolor body">
+        <ui:include src="navbar.xhtml" />
+        <p id = "top"></p>
+        <h:panelGroup id="table" class="grid">
+            <div class="albumTable">
+                <h:panelGrid id = "trackpanel" columns = "3"
+                             cellpadding = "55%">
+                    <c:forEach var="track" items="#{TrackPaginationBean.datalist}">
+                        <h:form class="flip-box">
+                            <div class="flip-box-inner">
+                                <h:commandLink class="customLink"  action="#{selectedTrack.editDataItem()}">
+                                    <div class="flip-box-front"><h:graphicImage value="#{track.album.image}" title="Album's cover" class="trackPic"/><br/>
+                                        <br/><h:outputText  value=" #{track.title}"/><br/>
+                                        <ui:repeat var="artist" value="#{track.album.artists}">
+                                            <h:outputText class="smallText" value="#{artist.name}"></h:outputText>     
+                                        </ui:repeat><br/>
+                                        <h:outputText class="smallText" value="CAD #{track.cost}"/>
+                                    </div>
+                                    <div class = "flip-box-back">
+                                        <p class="title"><h:outputText  value="#{track.title}"/></p>
+                                        <p><ui:repeat var="artist" value="#{track.album.artists}">
+                                                <h:outputText value="Artist: #{artist.name}"></h:outputText>     
+                                            </ui:repeat></p>
+                                        <p>#{internationalization.playlength}: #{track.play_length}</p>
+                                        <p>#{internationalization.genres}: #{track.genre}</p>
+                                        <p>#{internationalization.albumdate} #{track.album.releasedate}</p>
+                                    </div>
+                                    <f:setPropertyActionListener target="#{selectedTrack.selectedTrack}" value="#{track}" />
+                                </h:commandLink></div></h:form>
+                    </c:forEach>
+                </h:panelGrid>
+                <h:form class="paginationForm">
+                    <ul class="pagination" >
+                        <c:if  test="#{TrackPaginationBean.current_page != 1}">
+                            <li class="page-item">
+                                <h:commandLink class="page-link" value="&laquo;" action="#{TrackPaginationBean.redirect()}">
+                                    <f:setPropertyActionListener target="#{TrackPaginationBean.current_page}" value="#{TrackPaginationBean.current_page-1}" />
+                                </h:commandLink>
+                            </li>
+                        </c:if>
+                        <c:if  test="#{TrackPaginationBean.current_page == 1}">
+                            <li class="page-item disabled">
+                                <h:commandLink class="page-link" value="&laquo;"/>
+                            </li>
+                        </c:if>
+                        <c:forEach begin="1" end="#{TrackPaginationBean.total_pages}" var="i" >
+                            <li class="page-item #{TrackPaginationBean.current_page == i ? 'active':''}">
+                                <h:commandLink class="page-link" action="#{TrackPaginationBean.redirect()}" value="#{i}">
+                                    <f:setPropertyActionListener target="#{TrackPaginationBean.current_page}" value="#{i}" />
+                                </h:commandLink>
+                            </li> 
+                        </c:forEach>
+                    </ul>
+                </h:form>
+            </div>
+            <script>assignEventsRows();</script>
+        </h:panelGroup> 
+
+        <ui:include src="footer.xhtml" />
+    </h:body>
+</html>

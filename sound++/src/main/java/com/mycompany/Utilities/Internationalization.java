@@ -429,4 +429,10 @@ public class Internationalization implements Serializable {
     public String getRecommended(){
         return language.equals("English") ? "Recommended for you" : "Recommandé pour vous";
     }
+    public String getPopularAlbums(){
+        return language.equals("English")? "Popular Albums": "Albums Populaires";
+    }
+    public String getPopularTracks(){
+        return language.equals("English")? "Popular Tracks": "Chansons Populaires";
+    }
 }

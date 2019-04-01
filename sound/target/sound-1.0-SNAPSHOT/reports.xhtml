@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:metadata>
+        <f:viewAction action="#{ResultBean.init}" />
+    </f:metadata>
+    <h:head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.2.1/lux/bootstrap.min.css" />
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+        <h:outputStylesheet library="css" name="style.css"  />
+        <h:outputScript library="js" name="itemInfo.js" />
+
+
+
+        <title>Sound++</title>
+    </h:head>
+    <h:body>
+        <ui:include src="navbarmanager.xhtml" />
+
+        <div class="container">
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#totalSales">Total sales</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#salesByClient">Sales by client</a>
+                </li>
+            </ul>
+            <div id="myTabContent" class="tab-content">
+
+                <!-- Total sales -->
+                <div class="tab-pane fade show active" id="totalSales">
+                    <div id="myTabContent" class="tab-content">
+                        <div class="tab-pane fade show active">
+                            <h:form>
+                                <label class="col-form-label" for="inputDefault">Start date</label>
+                                <h:inputText value="#{reportBean.startDate}" class="form-control" required="true">
+                                    <f:convertDateTime pattern="yyyy-MM-dd" />
+                                </h:inputText>
+
+                                <label class="col-form-label" for="inputDefault">End date</label>
+                                <h:inputText value="#{reportBean.endDate}" class="form-control" required="true">
+                                    <f:convertDateTime pattern="yyyy-MM-dd" />
+                                </h:inputText>
+
+                                <h:commandButton style="margin-top: 3%; margin-bottom: 3%;" class="btn btn-primary formbutton" 
+                                                 value="#{internationalization.submit}" action="#{reportBean.getTotalSales()}" />
+                            </h:form>
+                            <c:if test="#{reportBean.searched == true}">
+                                <table class="table text-centered">
+                                    <thead>
+                                        <tr>
+                                            <th>Inventory type</th>
+                                            <th>Title</th>
+                                            <th>Total sales</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <ui:repeat value="#{reportBean.getTotalSales()}" var="record">
+                                            <tr>
+                                                <td>#{record.type}</td>
+                                                <td>#{record.name}</td>
+                                                <td>#{record.sales}</td>
+                                            </tr>
+                                        </ui:repeat>  
+                                    </tbody>    
+                                </table>             
+                            </c:if> 
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sales by client -->
+                <div class="tab-pane fade" id="salesByClient">
+                    <div id="myTabContent" class="tab-content">
+                        <div class="tab-pane fade show active">
+                            <h:form>
+                                <label class="col-form-label" for="inputDefault">Client email</label>
+                                <h:inputText value="#{reportBean.email}" class="form-control" required="true" />
+
+                                <label class="col-form-label" for="inputDefault">Start date</label>
+                                <h:inputText value="#{reportBean.startDate}" class="form-control" required="true">
+                                    <f:convertDateTime pattern="yyyy-MM-dd" />
+                                </h:inputText>
+
+                                <label class="col-form-label" for="inputDefault">End date</label>
+                                <h:inputText value="#{reportBean.endDate}" class="form-control" required="true">
+                                    <f:convertDateTime pattern="yyyy-MM-dd" />
+                                </h:inputText>
+
+                                <h:commandButton style="margin-top: 3%; margin-bottom: 3%;" class="btn btn-primary formbutton" 
+                                                 value="#{internationalization.submit}" action="#{reportBean.getSalesByClient()}" />
+                            </h:form>
+                            <c:if test="#{reportBean.searched == true}">
+                                <table class="table text-centered">
+                                    <thead>
+                                        <tr>
+                                            <th>Inventory type</th>
+                                            <th>Title</th>
+                                            <th>Total sales</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <ui:repeat value="#{reportBean.getSalesByClient()}" var="record">
+                                            <tr>
+                                                <td>#{record.type}</td>
+                                                <td>#{record.name}</td>
+                                                <td>#{record.sales}</td>
+                                            </tr>
+                                        </ui:repeat>  
+                                    </tbody>    
+                                </table>             
+                            </c:if> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </h:body>
+</html>

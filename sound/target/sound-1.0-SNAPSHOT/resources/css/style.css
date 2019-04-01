@@ -64,8 +64,8 @@ a{
 }
 
 .albumTable{
-    width: 73.5%;
-    margin: 0 auto;
+    width: 100%;
+    text-align: center;
 }
 
 .navcenter{
@@ -93,7 +93,6 @@ a{
 
 .trackPic{
     height: 150px;
-    border-radius: 50%;
     width: auto;
 }
 .languagebutton{
@@ -465,13 +464,14 @@ button{
 }
 .searchList{
     position: absolute;
-    top: 50%;
+    top: 55%;
     width: 230px;
     max-height: 200px;
     overflow-y: scroll;
     overflow-x: hidden;
     z-index: 1;
 }
+<<<<<<< HEAD
 
 .parallax {
   /* The image used */
@@ -535,4 +535,80 @@ button{
     margin: 0px !important;
     padding: 0px !important;
     -webkit-box-reflect: below 8px -webkit-gradient(linear, right top, right bottom, from(transparent), color-stop(40%, transparent), to(rgba(255, 255, 255, 0.1)));
+=======
+#albumpanel{
+     margin: 0 auto;
+}
+#trackpanel{
+     margin: 0 auto;
+}
+.body{
+    margin-top: 10%;
+}
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: black;
+  font-weight: bold;
+  font-size: 30px;
+  transition: 0.6s ease;
+  user-select: none;
+}
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+  color: white;
+}
+.left-not-active {
+  right: 0;
+  pointer-events: none;
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  font-weight: bold;
+  font-size: 30px;
+  transition: 0.6s ease;
+}
+.right-not-active{
+  pointer-events: none;
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  font-weight: bold;
+  font-size: 30px;
+  transition: 0.6s ease;
+}
+.dateSymbol{
+    height: 50px;
+    width:auto;
+    opacity: 0.3;
+}
+.panel-group{
+    width: 90%;
+    padding: 2%;
+    margin-left: 3%;
+>>>>>>> af19b48f7ea7c62dba02cfc24732cf7693ea55c0
 }

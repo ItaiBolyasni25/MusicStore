@@ -60,6 +60,7 @@ public class Album implements EntityModel, Serializable {
     private Timestamp removal_date;
     private String image;
     private String genre;
+    private int total_sales;
 
     public int getId() {
         return album_id;
@@ -157,4 +158,11 @@ public class Album implements EntityModel, Serializable {
         this.genre = genre;
     }
 
+    public int getTotal_sales() {
+        return total_sales;
+    }
+
+    public void setTotal_sales(int total_sales) {
+        this.total_sales = total_sales;
+    }
 }

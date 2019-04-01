@@ -30,7 +30,6 @@ public class AlbumBean implements Serializable {
     private Album album3;
 
     public AlbumBean() {
-
     }
 
     public List<Album> getAll() {
