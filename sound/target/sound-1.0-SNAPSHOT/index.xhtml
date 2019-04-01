@@ -201,11 +201,9 @@
                                     <h3 class="card-header">#{internationalization.newalbums}</h3>
                                     <div class="card-body">
                                         <ul class="list-group list-group-flush">
-                                            <li class="list-group-item"><a href="#" class="card-link">Hello by gab</a></li>
-                                            <li class="list-group-item"> <a href="#" class="card-link">Hello by gab</a></li>
-                                            <li class="list-group-item"> <a href="#" class="card-link">Hello by gab</a></li>
-                                            <li class="list-group-item"> <a href="#" class="card-link">Hello by gab</a></li>
-
+                                            <ui:repeat var="o" value="#{IndexMusicBean.recentAlbum}">
+                                                <li class="list-group-item"><a href="#" class="card-link">#{o.title}</a></li>
+                                               </ui:repeat>
                                         </ul>
                                     </div>
                                 </div>

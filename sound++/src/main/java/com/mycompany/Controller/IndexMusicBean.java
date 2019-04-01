@@ -61,7 +61,9 @@ public class IndexMusicBean implements Serializable  {
     public List<Album> getAlbums() {
         return albums;
     }
-
+    public List<Album> getRecent(){
+        return dao.findRecent(new Album());
+    }
     public void setAlbums(List<Album> albums) {
         this.albums = albums;
     }
