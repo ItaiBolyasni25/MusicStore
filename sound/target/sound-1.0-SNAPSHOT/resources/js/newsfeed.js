@@ -2,8 +2,9 @@
  *  Requests RSS feed to rss2json API 
  */
 function news(newsfeed) {
+var $jq = jQuery.noConflict();
 
-    $('.index').slick({
+    $jq('.index').slick({
         infinite: true,
         speed: 300,
         fade: true,
@@ -14,31 +15,6 @@ function news(newsfeed) {
         dotsClass: 'dots'
     });
 
-    $('.grid').slick({
-        centerMode: true,
-        centerPadding: '60px',
-        slidesToShow: 3,
-        responsive: [
-            {
-                breakpoint: 768,
-                settings: {
-                    arrows: false,
-                    centerMode: true,
-                    centerPadding: '40px',
-                    slidesToShow: 3
-                }
-            },
-            {
-                breakpoint: 480,
-                settings: {
-                    arrows: false,
-                    centerMode: true,
-                    centerPadding: '40px',
-                    slidesToShow: 1
-                }
-            }
-        ]
-    });
 
     //https://rss2json.com/docs API used
     //Feed to parse
