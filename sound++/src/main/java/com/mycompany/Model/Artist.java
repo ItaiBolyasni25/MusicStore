@@ -28,6 +28,7 @@ import javax.persistence.Table;
 public class Artist implements EntityModel, Serializable {
 
     private String name;
+    private String image;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int artist_id;
@@ -52,6 +53,13 @@ public class Artist implements EntityModel, Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+     public String getImage(){
+        return this.image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public int getArtist_id() {

@@ -29,7 +29,7 @@ and open the template in the editor.
                     <br/>
                     <ul style='list-style-type:none'>
                         <ui:repeat var="cartItem" value="#{cartController.getCartItems(userObj)}">
-                            <c:if test="${cartItem.track == null}">
+                            <c:if test="${empty cartItem.track}">
 
                                 <li style='height: 50px'>
                                     <span style='font-size:18px;' class='pr-5 pt-3'>#{cartItem.album.title}</span>
@@ -47,10 +47,12 @@ and open the template in the editor.
                     <br/>
                     <ul style='list-style-type:none'>
                         <ui:repeat var="cartItem" value="#{cartController.getCartItems(userObj)}">
-                            <c:if test="${cartItem.track.title == ''}">
-                                <li>
+                            <c:if test="${empty cartItem.album}">
+                                <li style='height: 50px'>
                                     <span style='font-size:18px;' class='pr-5 pt-3'>#{cartItem.track.title}</span>
-                                    <a href='#' class='btn btn-danger' style='float:right'>Remove</a>
+                                    <h:form>
+                                        <a href='#' class='btn btn-danger' style='float:right'>Remove</a>
+                                    </h:form>
                                     <span class='pr-5' style='font-size: 14px; float:right'>#{cartItem.track.list_price}</span>                                
                                 </li>
                             </c:if>

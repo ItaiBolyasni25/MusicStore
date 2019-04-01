@@ -6,6 +6,7 @@ GRANT ALL ON songstore.* TO songstore@'localhost';
 FLUSH PRIVILEGES;
 Use songstore;
 
+
 CREATE TABLE Album (
     album_id int NOT NULL auto_increment,
     title varchar(256) NOT NULL,
@@ -20,6 +21,7 @@ CREATE TABLE Album (
     removal_date date NULL,
     image varchar(250) NULL,
     genre varchar(256) NOT NULL,
+    total_sales int,
     CONSTRAINT Album_pk PRIMARY KEY (album_id)
 );
 
@@ -35,6 +37,7 @@ CREATE TABLE Album_Review (
 CREATE TABLE Artist (
     artist_id int NOT NULL auto_increment,
     name varchar(30) NOT NULL,
+image varchar(250) NULL,
     CONSTRAINT Artist_pk PRIMARY KEY (artist_id)
 );
 
@@ -81,7 +84,7 @@ CREATE TABLE News (
 );
 
 -- Table: Order
-CREATE TABLE `Order` (
+CREATE TABLE `Orders` (
     order_id int NOT NULL auto_increment,
     invoice_id int NOT NULL,
     price int NOT NULL,
@@ -141,6 +144,7 @@ CREATE TABLE Track (
     individual bool NOT NULL,
     removal_status bool NOT NULL,
     removal_date date NULL,
+    total_sales int,
     CONSTRAINT Track_pk PRIMARY KEY (track_id)
 );
 
@@ -152,7 +156,6 @@ CREATE TABLE Track_Review (
     CONSTRAINT Track_Review_pk PRIMARY KEY (track_review_id)
 );
 
--- Table: User
 CREATE TABLE User (
     title varchar(30) NOT NULL,
     lastname varchar(30) NOT NULL,
@@ -174,6 +177,7 @@ CREATE TABLE User (
     salt varchar(300) NULL,
     CONSTRAINT User_pk PRIMARY KEY (email)
 );
+
 
 CREATE TABLE Roles (
     email varchar(50) NOT NULL,
@@ -207,15 +211,15 @@ ALTER TABLE Invoice ADD CONSTRAINT Invoice_User FOREIGN KEY Invoice_User (email)
     REFERENCES User (email);
 
 -- Reference: Order_Album (table: Order)
-ALTER TABLE `Order` ADD CONSTRAINT Order_Album FOREIGN KEY Order_Album (album_id)
+ALTER TABLE `Orders` ADD CONSTRAINT Order_Album FOREIGN KEY Order_Album (album_id)
     REFERENCES Album (album_id);
 
 -- Reference: Order_Invoice (table: Order)
-ALTER TABLE `Order` ADD CONSTRAINT Order_Invoice FOREIGN KEY Order_Invoice (invoice_id)
+ALTER TABLE `Orders` ADD CONSTRAINT Order_Invoice FOREIGN KEY Order_Invoice (invoice_id)
     REFERENCES Invoice (invoice_id);
 
 -- Reference: Order_Track (table: Order)
-ALTER TABLE `Order` ADD CONSTRAINT Order_Track FOREIGN KEY Order_Track (track_id)
+ALTER TABLE `Orders` ADD CONSTRAINT Order_Track FOREIGN KEY Order_Track (track_id)
     REFERENCES Track (track_id);
 
 -- Reference: Review_User (table: Review)

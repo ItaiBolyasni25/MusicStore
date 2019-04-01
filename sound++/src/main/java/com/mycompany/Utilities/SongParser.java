@@ -21,16 +21,15 @@ import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.servlet.ServletContext;
 
 /**
  *
  * @author 1633867
  */
-@SessionScoped
+@ApplicationScoped
 @Named("SongParser")
 public class SongParser implements Serializable {
 
@@ -38,18 +37,30 @@ public class SongParser implements Serializable {
     private DAO dao;
     Album album;
     Artist artist;
+    private boolean isLoaded = false;
 
     public void onLoad() throws Exception {
+        if(!isIsLoaded()){
         readCSVFile();
-        addNewsFeed();
     }
+    }
+
+    public boolean isIsLoaded() {
+        return isLoaded;
+    }
+
+    public void setIsLoaded(boolean isLoaded) {
+        this.isLoaded = isLoaded;
+    }
+    
 
     private void albumParser(String[] splittedCsv) throws ParseException {
         List<Artist> artists = null;
-            artists = dao.find(new Artist(), "name = '" + splittedCsv[3] + "'");
+            artists = dao.find(new Artist(), "name = '" + splittedCsv[3].trim() + "'");
              if(artists.size()< 1){
                  artist = new Artist();
                  artist.setName(splittedCsv[3].trim());
+                 artist.setImage(splittedCsv[21].trim());
                  artists.add(artist);
              }
        
@@ -118,7 +129,7 @@ public class SongParser implements Serializable {
     private java.sql.Date newDateFormat(String date) throws ParseException {
         String newString = "";
         String[] elements = date.split("/");
-        newString += elements[2] + "-" + elements[0] + "-" + elements[1];
+        newString += elements[2].trim() + "-" + elements[0].trim() + "-" + elements[1].trim();
         SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
         Date newdate = sdf1.parse(newString);
         java.sql.Date sqlDate = new java.sql.Date(newdate.getTime());

@@ -51,7 +51,7 @@ public class NewBean implements Serializable{
         this.feed = feed;
     }
     
-    public String newfeed(){
+   /* public String newfeed(){
         List<News> currentRss = DAO.find(new News(), "used LIKE '1'");
         for(int i = 0 ; i < currentRss.size(); i++){
             currentRss.get(i).setUsed("0");
@@ -60,12 +60,12 @@ public class NewBean implements Serializable{
         News newRss = new News(feed, "1");
         DAO.write(newRss);
         return "manager/surveymngt.xhtml";
-    }
+    }*/
     
-    public String getCurrentFeed(){
+   /* public String getCurrentFeed(){
         News news = DAO.find(new News(), "used LIKE '1'").get(0);
         return news.getFeed();
-    }
+    }*/
     
     public List<News> getNewsFeeds(){
         return DAO.findAll(new News());

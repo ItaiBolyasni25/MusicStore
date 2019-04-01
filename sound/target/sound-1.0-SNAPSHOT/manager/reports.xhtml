@@ -3,65 +3,27 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.2.1/lux/bootstrap.min.css" />
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.min.js" integrity="sha384-F13mJAeqdsVJS5kJv7MZ4PzYmJ+yXXZkt/gEnamJGTXZFzYgAcVtNg5wBDrRgLg9" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js" integrity="sha384-2Tnqs3x0ucZkxYqJ3UX1R/fkSRkMaDsdYWsUNc0hZVikDXRHamRor+AsNJ7Pi2DA" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" integrity="sha384-3J4adb6KqO9u+ZgVfdmUqKDG4qWyG2qxGdXYoCXh3YmBQURWveIDgFh22pw1E3a9" crossorigin="anonymous"></link>
+
         <h:outputStylesheet library="css" name="style.css"  />
+        <h:outputScript library="js" name="jquery-1.12.4.js" target="head" />
+        <h:outputScript library="js" name="report.js" target="head"/>
         <title>Sound++</title>
     </h:head>
     <h:body class="backgroundcolor">
         <ui:include src="../navbarmanager.xhtml" />
 
-        <p>
-            From this page a manager can request a number of reports on the inventory, orders, and clients. All reports accept a range of dates in addition to any details specific to the type of report. A report may just consist of a summary or as a detailed report. All sales report will show the total sales, total cost, and total profit. Any item that was valid during the report time frame but is now removed should indicate this fact. The required reports are:
-            <br></br><br></br>
-            Total Sales
-            <br></br>
-            Within the defined date range this report displays either the total sales for all items or displays a list of every item sold ordered by date in addition to the totals. 
-            <br></br>
-            <br></br>
-            Sales by Client
-            <br></br>
-            For a chosen client and within the defined date range this report displays either the total sales or displays a list ordered by date of every item purchased in addition to the totals.
-            <br></br>
-            <br></br>
-            Sales by Artist
-            <br></br>
-            For a chosen artist and within the defined date range this report displays the total sales for all items or displays a list of every item sold in addition to the totals.
-            <br></br><br></br>
-            Sales by Track
-            <br></br>
-            For a chosen track and within the defined date range this report displays either the total sales and downloads or displays a list ordered by date of every purchase in addition to the totals.
-            <br></br><br></br>
-            Sales by Album
-            <br></br>
-            For a chosen album and within the defined date range this report displays either the total sales and downloads or displays a list ordered by date of every purchase in addition to the totals.
-            <br></br><br></br>
-            Top Sellers
-            <br></br>
-            Within the defined date range this report displays the inventory in order of total sales. Items that have never been sold are not included.
-            <br></br><br></br>
-            Top Clients
-            <br></br>
-            Within the defined date range this report displays a list of clients in order of value of their total purchases. Clients who have never made a purchase are not included.
-            <br></br><br></br>
-            Zero Tracks
-            <br></br>
-            Within the defined date range this report displays all tracks that have never sold.
-            <br></br><br></br>
-            Zero Clients
-            <br></br>
-            Within the defined date range this report displays all clients that have never made a purchase.
-
-        </p>
-
-
-
-
-        <table class="table table-hover">
+        <!--table class="table table-hover">
             <thead>
                 <tr>
                     <th scope="col">Type</th>
@@ -81,7 +43,7 @@
                     <th scope="row">Sales by Tracks</th>
                 </tr>
                 <tr class="table-secondary">
-                    <th scope="row">Sales by Album</th>
+                    <th scope="row"> </th>
                 </tr>
                 <tr class="table-secondary">
                     <th scope="row">Top Sellers</th>
@@ -96,7 +58,237 @@
                     <th scope="row">Zero Clients</th>
                 </tr>
             </tbody>
-        </table> 
+        </table!-->
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#salesByAlbum">Sales by Album</a>
+                    </h4></div>
+
+                <div id="salesByAlbum" class="panel-collapse collapse">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <h:form class="searchForm" id="albumForm" >
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label" for="albumForm:pattern">Albums:</label>
+                                    <div class="col-sm-9">
+                                        <h:inputText onfocus="showSearchList();" autocomplete="off" id="pattern" class="form-control patternTextBox" title="#{internationalization.search}" value="#{reportBean.pattern}" >
+                                            <f:ajax event="keyup" listener="#{reportBean.patternALbumChanged()}" execute="pattern" render="searchList"></f:ajax>
+                                        </h:inputText></div>
+
+                                    <h:panelGroup id="searchList" class="resultSearch">
+                                        <ul class="list-group">
+                                            <ui:repeat value="#{reportBean.albums}" var="album">
+                                                <li class="list-group-item d-flex justify-content-between align-items-center searchItem"> 
+                                                    <h:commandLink  value="#{album.title}" onclick="setPattern(this);">           
+                                                        <f:ajax />
+                                                    </h:commandLink>
+                                                    <span class="badge badge-primary badge-pill">Album</span> 
+                                                </li>
+                                            </ui:repeat></ul> </h:panelGroup></div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label" for="daterange">Range: </label>
+                                    <div class="col-sm-9"><h:inputText id ="daterange" class="form-control daterange" value="#{reportBean.dateRange}">
+                                            <f:ajax execute="daterange"></f:ajax></h:inputText>
+                                    </div>
+                                </div>
+                                <h:commandButton class="btn btn-primary formbutton" value="#{internationalization.submit}" action="#{reportBean.getSalesByAlbums()}"><f:ajax execute="@form" render="dataAlbums"/></h:commandButton>                   
+                            </h:form>
+                        </div>
+                    </div>
+                    <h:panelGroup id="dataAlbums">
+                        <c:if test="#{reportBean.salesByAlbums != null}">
+                            <p>Total Sales: #{reportBean.salesByAlbums.totalSale}</p>
+                            <table class="table text-centered">
+                                <thead>
+                                    <tr>
+                                        <th>Invoice #</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <ui:repeat value="#{reportBean.salesByAlbums.invoice}" var="record">
+                                        <tr>
+                                            <td>#{record.invoice_id}</td>
+                                            <td>#{record.date}</td>
+                                        </tr>
+                                    </ui:repeat>  
+                                </tbody>    
+                            </table>             
+                        </c:if> </h:panelGroup>
+                </div>
+            </div>
+        </div>
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#topseller">Top Sellers</a>
+                    </h4></div>
+
+                <div id="topseller" class="panel-collapse collapse">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <h:form class="searchForm" id="topsellerForm" >
+                                <div class="form-group row"><label class="col-sm-3 col-form-label" for="daterange">Range: </label>
+                                    <div class="col-sm-9"><h:inputText id="rangeTopSell" class="form-control daterange" value="#{reportBean.dateRange}">
+                                            <f:ajax execute="rangeTopSell"></f:ajax></h:inputText>
+                                    </div></div>
+                                <h:commandButton class="btn btn-primary formbutton" value="#{internationalization.submit}" action="#{reportBean.getTopSellers()}"><f:ajax execute="@form" render="dataTopSell" /></h:commandButton>                        
+                            </h:form>
+                        </div>
+                    </div>
+                    <h:panelGroup id="dataTopSell">
+                        <c:if test="#{reportBean.topSellers != null}">
+                            <table class="table text-centered">
+                                <thead>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Type</th>
+                                        <th>Total Sale</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <ui:repeat value="#{reportBean.topSellers}" var="record">
+                                        <tr>
+                                            <td>#{record.name}</td>
+                                            <td>#{record.type}</td>
+                                            <td>#{record.sales}</td>
+                                        </tr>
+                                    </ui:repeat>  
+                                </tbody>    
+                            </table>             
+                        </c:if> </h:panelGroup>
+                </div>
+            </div>
+        </div>
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#topclient">Top Clients</a>
+                    </h4></div>
+
+                <div id="topclient" class="panel-collapse collapse">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <h:form class="searchForm" id="topclientForm" >
+                                <div class="form-group row"><label class="col-sm-3 col-form-label" for="daterange">Range: </label>
+                                    <div class="col-sm-9"><h:inputText id="rangeclient" class="form-control daterange" value="#{reportBean.dateRange}">
+                                            <f:ajax execute="rangeClient"></f:ajax></h:inputText>
+                                    </div></div>
+                                <h:commandButton class="btn btn-primary formbutton" value="#{internationalization.submit}" action="#{reportBean.getTopClient()}"><f:ajax execute="@form" render="dataClient" /></h:commandButton>                        
+                            </h:form>
+                        </div>
+                    </div>
+                    <h:panelGroup id="dataClient">
+                        <c:if test="#{reportBean.topClient != null}">
+                            <table class="table text-centered">
+                                <thead>
+                                    <tr>
+                                        <th>Email</th>
+                                        <th>Total Purchase</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <ui:repeat value="#{reportBean.topClient}" var="record">
+                                        <tr>
+                                            <td>#{record.user}</td>
+                                            <td>#{record.totalPurchase}</td>
+                                        </tr>
+                                    </ui:repeat>  
+                                </tbody>    
+                            </table>             
+                        </c:if> </h:panelGroup>
+                </div>
+            </div>
+        </div>
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#trackZR">Zero Tracks</a>
+                    </h4>
+                </div>
+
+                <div id="trackZR" class="panel-collapse collapse">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <h:form class="searchForm" id="trackForm" >
+                                <div class="form-group row"><label class="col-sm-3 col-form-label" for="daterange">Range: </label>
+                                    <div class="col-sm-9"><h:inputText id="rangetrack" class="form-control daterange" value="#{reportBean.dateRange}">
+                                            <f:ajax execute="rangetrack"></f:ajax></h:inputText>
+                                    </div></div>
+                                <h:commandButton class="btn btn-primary formbutton" value="#{internationalization.submit}" action="#{reportBean.getZeroTracks()}"><f:ajax execute="@form" render="dataTrack" /></h:commandButton>                        
+                            </h:form>
+                        </div>
+                    </div>
+                    <h:panelGroup id="dataTrack">
+                        <c:if test="#{reportBean.zeroTracks != null}">
+                            <table class="table text-centered">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Track</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <ui:repeat value="#{reportBean.zeroTracks}" var="record">
+                                        <tr>
+                                            <td>#{record.title}</td>
+                                        </tr>
+                                    </ui:repeat>  
+                                </tbody>    
+                            </table>             
+                        </c:if> </h:panelGroup>
+                </div>
+            </div>
+        </div>
+          <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#clientZR">Zero Clients</a>
+                    </h4>
+                </div>
+
+         <div id="clientZR" class="panel-collapse collapse">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <h:form class="searchForm" id="clientForm" >
+                                <div class="form-group row"><label class="col-sm-3 col-form-label" for="daterange">Range: </label>
+                                    <div class="col-sm-9"><h:inputText id="rangeclientk" class="form-control daterange" value="#{reportBean.dateRange}">
+                                            <f:ajax execute="rangetrack"></f:ajax></h:inputText>
+                                    </div></div>
+                                <h:commandButton class="btn btn-primary formbutton" value="#{internationalization.submit}" action="#{reportBean.getZeroClient()}"><f:ajax execute="@form" render="dataClientZr" /></h:commandButton>                        
+                            </h:form>
+                        </div>
+                    </div>
+                    <h:panelGroup id="dataClientZr">
+                        <c:if test="#{reportBean.zeroClient != null}">
+                            <table class="table text-centered">
+                                <thead>
+                                    <tr>
+                                        <th>Email</th>
+                                        <th>Last Name</th>
+                                        <th>First Name</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <ui:repeat value="#{reportBean.zeroClient}" var="record">
+                                        <tr>
+                                            <td>#{record.email}</td>
+                                            <td>#{record.lastname}</td>
+                                            <td>#{record.firstname}</td>
+                                        </tr>
+                                    </ui:repeat>  
+                                </tbody>    
+                            </table>             
+                        </c:if> </h:panelGroup>
+                </div>
+            </div>
+        </div>
 
     </h:body>
 </html>

@@ -11,9 +11,11 @@ package com.mycompany.Controller;
  *
  * @author maian
  */
+import com.mycompany.Model.Artist;
 import com.mycompany.Model.Track;
 import com.mycompany.Persistence.DAO;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.component.html.HtmlInputHidden;
@@ -57,7 +59,11 @@ public class SelectedTrack implements Serializable {
          else{
             genre = track.getGenre();
          }
-         List<Track> tracks = dao.findWithLimitGenre(new Track(), 3, genre, "title", track.getTitle());
+          List<String> artists = new ArrayList<>();
+         for(Artist a: track.getAlbum().getArtists()){
+             artists.add(a.getName());
+         }
+         List<Track> tracks = dao.findWithLimitGenreTrack(new Track(), 3, genre,artists, track.getTitle());
          return tracks;
          }
          return null;

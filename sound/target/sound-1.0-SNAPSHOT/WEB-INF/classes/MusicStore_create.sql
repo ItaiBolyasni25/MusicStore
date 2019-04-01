@@ -1,10 +1,19 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+drop database songstore;
+=======
 drop database if exists songstore;
+>>>>>>> b27a66cf69df2aec717bb6602211ba95496b2715
+=======
+drop database if exists songstore;
+>>>>>>> a1e225dbe7cd0ab157803ea41f30e8459fa6b980
 create database songstore;
 DROP USER IF EXISTS songstore@localhost;
 CREATE USER songstore@'localhost' IDENTIFIED WITH mysql_native_password BY 'dawson123' REQUIRE NONE;
 GRANT ALL ON songstore.* TO songstore@'localhost';
 FLUSH PRIVILEGES;
 Use songstore;
+
 
 CREATE TABLE Album (
     album_id int NOT NULL auto_increment,
@@ -20,6 +29,7 @@ CREATE TABLE Album (
     removal_date date NULL,
     image varchar(250) NULL,
     genre varchar(256) NOT NULL,
+    total_sales int,
     CONSTRAINT Album_pk PRIMARY KEY (album_id)
 );
 
@@ -35,6 +45,7 @@ CREATE TABLE Album_Review (
 CREATE TABLE Artist (
     artist_id int NOT NULL auto_increment,
     name varchar(30) NOT NULL,
+image varchar(250) NULL,
     CONSTRAINT Artist_pk PRIMARY KEY (artist_id)
 );
 
@@ -141,6 +152,7 @@ CREATE TABLE Track (
     individual bool NOT NULL,
     removal_status bool NOT NULL,
     removal_date date NULL,
+    total_sales int,
     CONSTRAINT Track_pk PRIMARY KEY (track_id)
 );
 
@@ -152,7 +164,6 @@ CREATE TABLE Track_Review (
     CONSTRAINT Track_Review_pk PRIMARY KEY (track_review_id)
 );
 
--- Table: User
 CREATE TABLE User (
     title varchar(30) NOT NULL,
     lastname varchar(30) NOT NULL,
@@ -174,6 +185,7 @@ CREATE TABLE User (
     salt varchar(300) NULL,
     CONSTRAINT User_pk PRIMARY KEY (email)
 );
+
 
 CREATE TABLE Roles (
     email varchar(50) NOT NULL,

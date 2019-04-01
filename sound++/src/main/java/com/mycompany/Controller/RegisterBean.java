@@ -96,7 +96,7 @@ public class RegisterBean implements Serializable {
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("userObj", user);
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", firstName);
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("id", email);
-            String role = "customer";
+            String role = "manager";
             Roles roles = new Roles(user.getEmail(), role);
             DAO.write(roles);
             invalidEmail = false;
