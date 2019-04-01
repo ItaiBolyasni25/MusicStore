@@ -16,6 +16,7 @@
         <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
         <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
         <script src="resources/js/newsfeed.js"></script>
+        <script src="resources/js/packery.pkgd.min.js"></script>
         <h:outputStylesheet library="css" name="style.css"  />
         <title>Sound++</title>
         <f:view>
@@ -39,10 +40,10 @@
                 </li>
                 <h:panelGroup rendered="#{empty user}">
                     <li class="nav-item disabled">
-                        <a class="nav-link" data-toggle="tab" href="#profile">#{internationalization.profile}</a>
+                        <a class="nav-link disabled" data-toggle="tab" href="#profile">#{internationalization.profile}</a>
                     </li>
                 </h:panelGroup>
-                <h:panelGroup rendered="#{not empty user}">
+                <h:panelGroup rendered="#{empty user}">
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#profile">#{internationalization.profile}</a>
                     </li>
@@ -53,31 +54,68 @@
             </ul>
 
             <div id="myTabContent" class="tab-content">
-
                 <div class="tab-pane fade show active" id="home">
-                    <div class="divbackground">
-                        <h:graphicImage value="assets/indexbackground.jpg" class="imgbackground"/>
+
+                    <div class="index">
+                        <div class="parallax">
+                            <div class="centered">
+                                <br/><br/>
+                                <h:outputText rendered="#{empty user}" class="display-1" value="#{internationalization.welcome}" />
+                                <h:outputText rendered="#{not empty user}" class="display-1" value="#{internationalization.welcome}  #{user}" />
+                                <br/><br/>
+                                <h:outputText class="h1" value="#{internationalization.description}" />
+                                <br/><br/><br/><br/>
+                                <h:panelGroup rendered="#{empty user}">
+                                    <div class="row">
+                                        <div class="col-md-5"></div>
+                                        <div class="col-md-1"><h:button class="btn btn-primary" value="#{internationalization.login}" outcome="login" /></div>
+                                        <div class="col-md-1"><h:button class="btn btn-primary" value="#{internationalization.signup}" outcome="register" /></div>
+                                    </div>
+                                </h:panelGroup>
+                                <br/><br/><br/><br/><br/>
+                                <h:outputText class="h3" value="*#{internationalization.devices}" />
+                                <br/><br/><br/><br/><br/><br/><br/><br/>
+                                <h:link class="h2" value="#{internationalization.learnmore}>" outcome="about"/>
+                            </div>
+                        </div>
+
                         <div class="centered">
-                            <h:outputText rendered="#{empty user}" class="display-2" value="#{internationalization.welcome}" />
-                            <h:outputText rendered="#{not empty user}" class="display-2" value="#{internationalization.welcome}  #{user}" />
-                            <br/><br/>
-                            <h:outputText class="h1" value="#{internationalization.description}" />
-                            <br/><br/><br/><br/>
-                            <h:panelGroup rendered="#{empty user}">
-                                <div class="row">
+                            <br/>
+                            <h:outputText class="h1 text-center" value="#{internationalization.recommended}"></h:outputText>
+                            <br/><br/><br/>
+                            <div class="row">
+                                <h:panelGroup rendered="#{albumBean.byGenre != null}">
+                                    <div class="col-md-4"></div>
+                                    <div class="col-md-1">
+                                        <h:form>
+                                            <h:commandLink class="customLink"  action="#{selectedAlbum.editDataItem()}">
+                                                <h:graphicImage value="#{albumBean.album1.image}" title="Album's cover" style="float: left;" class="album"/>
+                                                <f:setPropertyActionListener target="#{selectedAlbum.selectedAlbum}" value="#{albumBean.album1}" />
+                                            </h:commandLink>
+                                        </h:form>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <h:form>
+                                            <h:commandLink class="customLink"  action="#{selectedAlbum.editDataItem()}">
+                                                <h:graphicImage value="#{albumBean.album2.image}" title="Album's cover" class="albumMax"/>
+                                                <f:setPropertyActionListener target="#{selectedAlbum.selectedAlbum}" value="#{albumBean.album2}" />
+                                            </h:commandLink>
+                                        </h:form>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <h:form>
+                                            <h:commandLink class="customLink"  action="#{selectedAlbum.editDataItem()}">
+                                                <h:graphicImage value="#{albumBean.album3.image}" title="Album's cover" style="float: left;" class="album"/>
+                                                <f:setPropertyActionListener target="#{selectedAlbum.selectedAlbum}" value="#{albumBean.album3}" />
+                                            </h:commandLink>
+                                        </h:form>
+                                    </div>
                                     <div class="col-md-3"></div>
-                                    <div class="col-md-3"><h:button class="btn btn-primary" value="#{internationalization.loginopt}" outcome="login" /></div>
-                                    <div class="col-md-3"><h:button class="btn btn-primary" value="#{internationalization.signup}" outcome="register" /></div>
-                                </div>
-                            </h:panelGroup>
-                            <br/><br/><br/><br/><br/>
-                            <h:outputText class="h3" value="*#{internationalization.devices}" />
-                            <br/><br/><br/><br/><br/><br/><br/><br/>
-                            <h:link class="h2" value="#{internationalization.learnmore}>" outcome="about"/>
+                                </h:panelGroup>
+                            </div>
                         </div>
                     </div>
-
-                    <br/><br/>
+                    <br/><br/><br/><br/>
                     <div class="row">
                         <div class="col-md-9">
                             <h1 class="display-5">#{internationalization.newsfeed}</h1>
@@ -86,7 +124,6 @@
                                     <button type="button" class="slick-prev emptybutton"><img class="arrows" src="assets/arrowprev.png"></img></button>
                                 </div>                                
                                 <div class="jumbotron multiple-items col-md-10" id="newsfeed">
-
                                 </div>
                                 <div class="col-md-1" id="next">
                                     <button type="button" class="slick-next emptybutton"><img class="arrows" src="assets/arrownext.png"></img></button>
@@ -112,7 +149,6 @@
                                             <li class="list-group-item"> <a href="#" class="card-link">Hello by gab</a></li>
                                             <li class="list-group-item"> <a href="#" class="card-link">Hello by gab</a></li>
                                             <li class="list-group-item"> <a href="#" class="card-link">Hello by gab</a></li>
-
                                         </ul>
                                     </div>
                                 </div>
@@ -123,7 +159,7 @@
                                 <p>#{internationalization.surveyuser}</p>
                                 <div class="row">
                                     <div class="col-md-3"></div>
-                                    <div class="col-md-3"><h:button class="btn btn-primary" value="#{internationalization.loginopt}" outcome="login" /></div>
+                                    <div class="col-md-3"><h:button class="btn btn-primary" value="#{internationalization.login}" outcome="login" /></div>
                                     <div class="col-md-3"><h:button class="btn btn-primary" value="#{internationalization.signup}" outcome="register" /></div>
                                 </div>
                             </h:panelGroup>
@@ -142,7 +178,6 @@
                                     </h:form>
                                 </ui:repeat>
                             </h:panelGroup>
-
                         </div>
                     </div>
 
@@ -164,6 +199,30 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-7">
+
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Type</th>
+                                        <th scope="col">Column heading</th>
+                                        <th scope="col">Column heading</th>
+                                        <th scope="col">Column heading</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <ui:repeat var="cartItem" value="#{cartController.getBoughtItems(userObj)}">
+                                        <tr>
+                                            <th scope="row">Default</th>
+                                            <td>Column content</td>
+                                            <td>Column content</td>
+                                            <td>Column content</td>
+                                        </tr>
+                                    </ui:repeat>
+                                </tbody>
+                            </table> 
+
+                        </div>
                     </div>
                 </div>
 
@@ -182,7 +241,6 @@
                 </div>
             </div>
         </div>
-
         <ui:include src="footer.xhtml"/>
     </h:body>
 </html>

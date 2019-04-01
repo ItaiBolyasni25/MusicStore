@@ -5,6 +5,7 @@ C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Mode
 C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Controller\RegisterBean.java
 C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Controller\SurveyResultBean.java
 C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Controller\AlbumBean.java
+C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Controller\ProfileBean.java
 C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Persistence\DAO.java
 C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Controller\ResultBean.java
 C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Controller\GenreSearchBean.java
@@ -14,7 +15,6 @@ C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Mode
 C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Controller\SurveyBean.java
 C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Model\Survey.java
 C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Interface\EntityModel.java
-C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Controller\LoginBean.java
 C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Controller\SelectedTrack.java
 C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Controller\TrackPaginationBean.java
 C:\Users\Gabriela\Desktop\csdmusicstore\sound++\src\main\java\com\mycompany\Controller\CartController.java

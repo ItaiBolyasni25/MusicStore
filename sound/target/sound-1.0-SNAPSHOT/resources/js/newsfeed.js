@@ -1,19 +1,60 @@
 /** 
  *  Requests RSS feed to rss2json API 
  */
-function news() {
+function news(newsfeed) {
+
+    $('.index').slick({
+        infinite: true,
+        speed: 300,
+        fade: true,
+        cssEase: 'linear',
+        autoplay: true,
+        arrows: false,
+        dots: true,
+        dotsClass: 'dots'
+    });
+
+    $('.grid').slick({
+        centerMode: true,
+        centerPadding: '60px',
+        slidesToShow: 3,
+        responsive: [
+            {
+                breakpoint: 768,
+                settings: {
+                    arrows: false,
+                    centerMode: true,
+                    centerPadding: '40px',
+                    slidesToShow: 3
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    arrows: false,
+                    centerMode: true,
+                    centerPadding: '40px',
+                    slidesToShow: 1
+                }
+            }
+        ]
+    });
+
     //https://rss2json.com/docs API used
     //Feed to parse
-    var feed = "https://rss.cbc.ca/lineup/arts.xml";
+    var feed = "https://www.cbc.ca/cmlink/rss-arts";
     //Do Ajax request to get RSS feed 
     $.ajax({
         url: 'https://api.rss2json.com/v1/api.json',
         method: 'GET',
         dataType: 'json',
         data: {
-            rss_url: feed
+            rss_url: feed,
+            api_key: "ahtjmmolm5ip6nd4rucf2d1hxdtuh2usxwgswjg3"
         }
     }).done(handleResponse);
+
+
 }
 
 /**
@@ -25,7 +66,6 @@ function handleResponse(response) {
     if (response.status != 'ok') {
         throw response.message;
     }
-
     //Loop through most recent items of the RSS news feed
     for (var i = 0; i < 9; i++)
     {
@@ -37,6 +77,9 @@ function handleResponse(response) {
         var $description = $("<p>", {"class": "card-text"}).append(item.description);
         var $link = $("<a>", {"class": "card-link"}).attr("href", item.link).append("link");
         var $footer = $("<div>", {"class": "card-footer text-muted"}).append(item.pubDate);
+        var $img = $("<img>", {"class": "newsimg"}).attr('src', item.enclosure.link);
+
+
         //Append elements to its correspondent parent
         $body.append($description);
         $body.append($link);
@@ -57,8 +100,3 @@ function handleResponse(response) {
         nextArrow: "#next"
     });
 }
-
-$(document).ready(function () {
-    //Call news function to request the latest news of the moment when page is loaded
-    news();
-});

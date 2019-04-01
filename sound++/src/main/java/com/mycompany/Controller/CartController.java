@@ -78,4 +78,8 @@ public class CartController implements Serializable {
         this.songName = songName;
     }
 
+    public List<Cart> getBoughtItems(User user) {
+        return dao.find(new Cart(), "invoice.invoice_id IS NOT NULL AND user.email = '" + user.getEmail() + "'");
+    }
+
 }

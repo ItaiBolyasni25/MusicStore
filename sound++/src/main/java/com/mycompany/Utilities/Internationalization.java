@@ -80,10 +80,6 @@ public class Internationalization implements Serializable {
         return language.equals("English") ? "About" : "A propos";
     }
 
-    public String getLogin() {
-        return language.equals("English") ? "Log In/ Sign Up" : "Se Registrer/ Se Connecter";
-    }
-
     public String getCart() {
         return language.equals("English") ? "Cart" : "Panier";
     }
@@ -174,7 +170,7 @@ public class Internationalization implements Serializable {
         return language.equals("English") ? "Album Cover" : "Image Album";
     }
 
-    public String getLoginopt() {
+    public String getLogin() {
         return language.equals("English") ? "Log In" : "Se Connecter";
     }
 
@@ -424,5 +420,13 @@ public class Internationalization implements Serializable {
     
     public String getSearchUser(){
         return language.equals("English") ? "Search the user you want to change its information for" : "Cherchez l'utilisitaure duquel vous voulez changer leur information";
+    }
+    
+    public String getPurchases(){
+        return language.equals("English") ? "Purchases" : "Achats";
+    }
+    
+    public String getRecommended(){
+        return language.equals("English") ? "Recommended for you" : "Recommandé pour vous";
     }
 }

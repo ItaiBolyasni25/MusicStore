@@ -2,6 +2,44 @@
  *  Requests RSS feed to rss2json API 
  */
 function news(newsfeed) {
+
+    $('.index').slick({
+        infinite: true,
+        speed: 300,
+        fade: true,
+        cssEase: 'linear',
+        autoplay: true,
+        arrows: false,
+        dots: true,
+        dotsClass: 'dots'
+    });
+
+    $('.grid').slick({
+        centerMode: true,
+        centerPadding: '60px',
+        slidesToShow: 3,
+        responsive: [
+            {
+                breakpoint: 768,
+                settings: {
+                    arrows: false,
+                    centerMode: true,
+                    centerPadding: '40px',
+                    slidesToShow: 3
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    arrows: false,
+                    centerMode: true,
+                    centerPadding: '40px',
+                    slidesToShow: 1
+                }
+            }
+        ]
+    });
+
     //https://rss2json.com/docs API used
     //Feed to parse
     var feed = "https://www.cbc.ca/cmlink/rss-arts";
@@ -15,6 +53,8 @@ function news(newsfeed) {
             api_key: "ahtjmmolm5ip6nd4rucf2d1hxdtuh2usxwgswjg3"
         }
     }).done(handleResponse);
+
+
 }
 
 /**
@@ -37,9 +77,9 @@ function handleResponse(response) {
         var $description = $("<p>", {"class": "card-text"}).append(item.description);
         var $link = $("<a>", {"class": "card-link"}).attr("href", item.link).append("link");
         var $footer = $("<div>", {"class": "card-footer text-muted"}).append(item.pubDate);
-        var $img = $("<img>", {"class" : "newsimg"}).attr('src', item.enclosure.link);
+        var $img = $("<img>", {"class": "newsimg"}).attr('src', item.enclosure.link);
 
-        
+
         //Append elements to its correspondent parent
         $body.append($description);
         $body.append($link);

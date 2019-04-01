@@ -90,10 +90,10 @@ public class RegisterBean implements Serializable {
      */
     public String addUser() {
         User user = new User(firstName, lastName, email, password, title);
-        if(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("lastgenre") != null){
-            user.setLast_genre((String)(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("lastgenre")));
+        if (FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("lastgenre") != null) {
+            user.setLast_genre((String) (FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("lastgenre")));
         }
-        if (!Validator.emailExists(user, DAO)){
+        if (!Validator.emailExists(user, DAO)) {
             DAO.write(user);
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("userObj", user);
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", firstName);
@@ -107,5 +107,11 @@ public class RegisterBean implements Serializable {
             invalidEmail = true;
             return "register.xhtml";
         }
+    }
+
+    public void signOut() {
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("userObj");
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("user");
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("id");
     }
 }
