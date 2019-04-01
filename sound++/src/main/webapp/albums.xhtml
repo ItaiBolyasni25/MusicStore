@@ -15,6 +15,8 @@
         <h:outputStylesheet library="css" name="style.css"  />
         <h:outputScript library="js" name="jquery-1.12.4.js" />
         <h:outputScript library="js" name="itemInfo.js" />
+        <meta http-equiv="Pragma" content="no-cache"/>
+            <meta http-equiv="Cache-Control" content="no-cache"></meta>
     <f:metadata>
         <f:viewAction action="#{AlbumPaginationBean.initialize()}" />
     </f:metadata>
@@ -25,8 +27,8 @@
         <p id = "top"></p>
         <h:panelGroup id="table" class="grid">
             <div class="albumTable">
-                <h:panelGrid id = "panel" columns = "3"
-                             cellpadding = "55%">
+                <h:panelGrid id = "albumpanel" columns = "3"
+                             cellpadding = "60%">
                     <c:forEach var="album" items="#{AlbumPaginationBean.datalist}">
                         <h:form class="flip-box">
                             <div class="flip-box-inner">
@@ -48,14 +50,18 @@
                                         <p>#{internationalization.albumdate}: #{album.releasedate}</p>
                                     </div>
                                     <f:setPropertyActionListener target="#{selectedAlbum.selectedAlbum}" value="#{album}" />
-                                   </h:commandLink></div></h:form>
+                                </h:commandLink>
+                            </div>
+                        </h:form>
                     </c:forEach>
                 </h:panelGrid>
                 <h:form class="paginationForm">
                     <ul class="pagination" >
                         <c:if  test="#{AlbumPaginationBean.current_page != 1}">
                             <li class="page-item">
-                                <h:commandLink class="page-link" value="&laquo;" actionListener="#{AlbumPaginationBean.prev()}"/>
+                                  <h:commandLink class="page-link" value="&laquo;" action="#{AlbumPaginationBean.redirect()}">
+                                    <f:setPropertyActionListener target="#{AlbumPaginationBean.current_page}" value="#{AlbumPaginationBean.current_page-1}" />
+                                </h:commandLink>
                             </li>
                         </c:if>
                         <c:if  test="#{AlbumPaginationBean.current_page == 1}">
@@ -65,15 +71,16 @@
                         </c:if>
                         <c:forEach begin="1" end="#{AlbumPaginationBean.total_pages}" var="i" >
                             <li class="page-item #{AlbumPaginationBean.current_page == i ? 'active':''}">
-                                <h:commandLink class="page-link" action="#{AlbumPaginationBean.updateView()}" value="#{i}">
+                                <h:commandLink class="page-link" action="#{AlbumPaginationBean.redirect()}" value="#{i}">
                                     <f:setPropertyActionListener target="#{AlbumPaginationBean.current_page}" value="#{i}" />
-                                    <f:ajax render="table"></f:ajax>
                                 </h:commandLink>
                             </li> 
                         </c:forEach>
                         <c:if  test="#{AlbumPaginationBean.current_page != AlbumPaginationBean.total_pages}">
                             <li class="page-item">
-                                <h:commandLink class="page-link" value="&raquo;" actionListener="#{AlbumPaginationBean.next()}"/>
+                                  <h:commandLink class="page-link" value="&raquo;" action="#{AlbumPaginationBean.redirect()}">
+                                    <f:setPropertyActionListener target="#{AlbumPaginationBean.current_page}" value="#{AlbumPaginationBean.current_page+1}" />
+                                  </h:commandLink>
                             </li>
                         </c:if>
                         <c:if test="#{AlbumPaginationBean.current_page == AlbumPaginationBean.total_pages}">

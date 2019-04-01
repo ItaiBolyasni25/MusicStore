@@ -15,14 +15,16 @@
         <h:outputScript library="js" name="jquery-1.12.4.js" />
         <h:outputScript library="js" name="itemInfo.js" />
         <title>Sound++</title>
+        <f:metadata>
+            <f:viewAction action="#{TrackPaginationBean.initialize()}" />
+        </f:metadata>
     </h:head>
     <h:body class="backgroundcolor body">
         <ui:include src="navbar.xhtml" />
         <p id = "top"></p>
         <h:panelGroup id="table" class="grid">
             <div class="albumTable">
-                <h:panelGrid id = "panel" columns = "3"
-                             cellpadding = "55%">
+                <h:panelGrid id = "trackpanel" columns = "3" cellpadding = "55%">
                     <c:forEach var="track" items="#{TrackPaginationBean.datalist}">
                         <h:form class="flip-box">
                             <div class="flip-box-inner">
@@ -44,14 +46,18 @@
                                         <p>#{internationalization.albumdate} #{track.album.releasedate}</p>
                                     </div>
                                     <f:setPropertyActionListener target="#{selectedTrack.selectedTrack}" value="#{track}" />
-                                   </h:commandLink></div></h:form>
+                                   </h:commandLink>
+                            </div>
+                        </h:form>
                     </c:forEach>
                 </h:panelGrid>
                 <h:form class="paginationForm">
                     <ul class="pagination" >
                         <c:if  test="#{TrackPaginationBean.current_page != 1}">
                             <li class="page-item">
-                                <h:commandLink class="page-link" value="&laquo;" actionListener="#{TrackPaginationBean.prev()}"/>
+                                <h:commandLink class="page-link" value="&laquo;" action="#{TrackPaginationBean.redirect()}">
+                                    <f:setPropertyActionListener target="#{TrackPaginationBean.current_page}" value="#{TrackPaginationBean.current_page-1}" />
+                                </h:commandLink>
                             </li>
                         </c:if>
                         <c:if  test="#{TrackPaginationBean.current_page == 1}">
@@ -61,9 +67,8 @@
                         </c:if>
                         <c:forEach begin="1" end="#{TrackPaginationBean.total_pages}" var="i" >
                             <li class="page-item #{TrackPaginationBean.current_page == i ? 'active':''}">
-                                <h:commandLink class="page-link" action="#{TrackPaginationBean.updateView()}" value="#{i}">
+                                <h:commandLink class="page-link" action="#{TrackPaginationBean.redirect()}" value="#{i}">
                                     <f:setPropertyActionListener target="#{TrackPaginationBean.current_page}" value="#{i}" />
-                                    <f:ajax render="table"></f:ajax>
                                 </h:commandLink>
                             </li> 
                         </c:forEach>
@@ -72,7 +77,7 @@
             </div>
             <script>assignEventsRows();</script>
         </h:panelGroup> 
-        
+
         <ui:include src="footer.xhtml" />
     </h:body>
 </html>

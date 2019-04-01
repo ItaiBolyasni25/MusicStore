@@ -8,12 +8,14 @@ package com.mycompany.Model;
 import com.mycompany.Interface.EntityModel;
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -24,6 +26,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Invoice")
 public class Invoice implements EntityModel, Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public int invoice_id;
@@ -33,9 +36,27 @@ public class Invoice implements EntityModel, Serializable {
     public double hst;
     public double pst;
     public double total_gross;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "email", referencedColumnName = "email")
     private User user;
+    @OneToMany(mappedBy = "invoice")
+    private List<Cart> cartItems;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public List<Cart> getCartItems() {
+        return cartItems;
+    }
+
+    public void setCartItems(List<Cart> cartItems) {
+        this.cartItems = cartItems;
+    }
 
     public int getInvoice_id() {
         return invoice_id;
@@ -92,5 +113,5 @@ public class Invoice implements EntityModel, Serializable {
     public void setTotal_gross(double total_gross) {
         this.total_gross = total_gross;
     }
-    
+
 }

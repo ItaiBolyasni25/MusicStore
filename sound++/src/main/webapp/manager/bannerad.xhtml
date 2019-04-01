@@ -14,10 +14,19 @@
     </h:head>
     <h:body class="backgroundcolor">
         <ui:include src="../navbarmanager.xhtml" />
-
         <p>
             From this page a manager can define the banner ads presented on the front page. Previous banner ads must be saved so that they may be reused.
         </p>
-
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <h:form enctype="multipart/form-data"  prependId="false">
+                    <h:outputText value="File: "></h:outputText>
+                    <h:inputFile value="#{bannerAddBean.uploadedFile}"  />
+                    <h:commandButton value="Save" type="submit" action="#{bannerAddBean.saveImage}" style="color: red;"></h:commandButton>
+                </h:form>
+            </div>
+        </div>
+        <ui:include src="../footer.xhtml" />
     </h:body>
 </html>

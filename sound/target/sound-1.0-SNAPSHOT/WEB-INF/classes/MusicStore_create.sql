@@ -1,10 +1,19 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
 drop database songstore;
+=======
+drop database if exists songstore;
+>>>>>>> b27a66cf69df2aec717bb6602211ba95496b2715
+=======
+drop database if exists songstore;
+>>>>>>> a1e225dbe7cd0ab157803ea41f30e8459fa6b980
 create database songstore;
 DROP USER IF EXISTS songstore@localhost;
 CREATE USER songstore@'localhost' IDENTIFIED WITH mysql_native_password BY 'dawson123' REQUIRE NONE;
 GRANT ALL ON songstore.* TO songstore@'localhost';
 FLUSH PRIVILEGES;
 Use songstore;
+
 
 CREATE TABLE Album (
     album_id int NOT NULL auto_increment,
@@ -20,6 +29,7 @@ CREATE TABLE Album (
     removal_date date NULL,
     image varchar(250) NULL,
     genre varchar(256) NOT NULL,
+    total_sales int,
     CONSTRAINT Album_pk PRIMARY KEY (album_id)
 );
 
@@ -27,6 +37,7 @@ CREATE TABLE Album (
 CREATE TABLE Artist (
     artist_id int NOT NULL auto_increment,
     name varchar(30) NOT NULL,
+image varchar(250) NULL,
     CONSTRAINT Artist_pk PRIMARY KEY (artist_id)
 );
 
@@ -38,14 +49,7 @@ CREATE TABLE album_artist (
     CONSTRAINT album_artist_pk PRIMARY KEY (album_artist_id)
 );
 
--- Table: Cart
-CREATE TABLE Cart (
-    cart_id int NOT NULL auto_increment,
-    email varchar(50) NOT NULL,
-    track_id int NULL,
-    album_id int NULL,
-    CONSTRAINT Cart_pk PRIMARY KEY (cart_id)
-);
+
 
 -- Table: Invoice
 CREATE TABLE Invoice (
@@ -58,6 +62,17 @@ CREATE TABLE Invoice (
     total_gross double(5,2) NOT NULL,
     email varchar(50) NOT NULL,
     CONSTRAINT Invoice_pk PRIMARY KEY (invoice_id)
+);
+-- Table: Cart
+CREATE TABLE Cart (
+    cart_id int NOT NULL auto_increment,
+    email varchar(50) NOT NULL,
+    track_id int NULL,
+    album_id int NULL,
+    invoice_id int NULL,
+    
+    CONSTRAINT Cart_pk PRIMARY KEY (cart_id),
+    FOREIGN KEY (invoice_id) REFERENCES Invoice(invoice_id)
 );
 
 -- Table: News
@@ -131,10 +146,22 @@ CREATE TABLE Track (
     individual bool NOT NULL,
     removal_status bool NOT NULL,
     removal_date date NULL,
+    total_sales int,
     CONSTRAINT Track_pk PRIMARY KEY (track_id)
 );
 
+<<<<<<< HEAD
 -- Table: User
+=======
+-- Table: Track_Review
+CREATE TABLE Track_Review (
+    track_review_id int NOT NULL auto_increment,
+    track_id int NOT NULL,
+    review_id int NOT NULL,
+    CONSTRAINT Track_Review_pk PRIMARY KEY (track_review_id)
+);
+
+>>>>>>> 484d52702ba0e99bdf4d354d4b15b2c344c50fe6
 CREATE TABLE User (
     title varchar(30) NOT NULL,
     lastname varchar(30) NOT NULL,
@@ -156,6 +183,7 @@ CREATE TABLE User (
     salt varchar(300) NULL,
     CONSTRAINT User_pk PRIMARY KEY (email)
 );
+
 
 CREATE TABLE Roles (
     email varchar(50) NOT NULL,

@@ -64,8 +64,8 @@ a{
 }
 
 .albumTable{
-    width: 73.5%;
-    margin: 0 auto;
+    width: 100%;
+    text-align: center;
 }
 
 .navcenter{
@@ -90,9 +90,9 @@ a{
     height: 200px;
     width: auto;
 }
+
 .trackPic{
     height: 150px;
-    border-radius: 50%;
     width: auto;
 }
 .languagebutton{
@@ -357,15 +357,7 @@ button{
   margin-top:100px;
 }
 
-.divbackground{
-    opacity: 0.5;
-}
-
 .centered {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   color: black;
   text-align: center;
   font-weight: bold;
@@ -472,10 +464,149 @@ button{
 }
 .searchList{
     position: absolute;
-    top: 50%;
+    top: 55%;
     width: 230px;
     max-height: 200px;
     overflow-y: scroll;
     overflow-x: hidden;
     z-index: 1;
+}
+
+.parallax {
+  /* The image used */
+  background-image: url("../../assets/indexbackground.jpg");
+  
+  /* Set a specific height */
+  min-height: 800px; 
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#slick-slide-control00{
+    border-radius: 50%;
+}
+
+#slick-slide-control01{
+    border-radius: 50%;
+}
+
+.dots{
+    list-style-type:none;
+    float: left;
+    margin-left: 48%;
+}
+
+.dots li{
+    display: inline;
+    padding-right: 5px;
+}
+
+.dots button{
+  background-color: white;
+  color: black;
+  border: 2px solid #555555;
+  
+}
+
+.dots button:hover {
+  background-color: #555555;
+  color: white;
+}
+
+.grid-item { width: 25%; }
+.grid-item--width2 { width: 50%; }
+
+.album{
+    height: auto;
+    width: 100%;
+    padding: 0px !important;
+    margin-top: 50% ;
+    -webkit-box-reflect: below 8px -webkit-gradient(linear, right top, right bottom, from(transparent), color-stop(40%, transparent), to(rgba(255, 255, 255, 0.1)));
+}
+
+.albumMax{
+    height: auto;
+    width: 100%;;
+    margin: 0px !important;
+    padding: 0px !important;
+    -webkit-box-reflect: below 8px -webkit-gradient(linear, right top, right bottom, from(transparent), color-stop(40%, transparent), to(rgba(255, 255, 255, 0.1)));
+}
+    #albumpanel{
+     margin: 0 auto;
+}
+#trackpanel{
+     margin: 0 auto;
+}
+.body{
+    margin-top: 10%;
+}
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: black;
+  font-weight: bold;
+  font-size: 30px;
+  transition: 0.6s ease;
+  user-select: none;
+}
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+  color: white;
+}
+.left-not-active {
+  right: 0;
+  pointer-events: none;
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  font-weight: bold;
+  font-size: 30px;
+  transition: 0.6s ease;
+}
+.right-not-active{
+  pointer-events: none;
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  font-weight: bold;
+  font-size: 30px;
+  transition: 0.6s ease;
+}
+.dateSymbol{
+    height: 50px;
+    width:auto;
+    opacity: 0.3;
+}
+.panel-group{
+    width: 90%;
+    padding: 2%;
+    margin-left: 3%;
 }

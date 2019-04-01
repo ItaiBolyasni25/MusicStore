@@ -1,0 +1,161 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.2.1/lux/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"></link>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+        <h:outputStylesheet library="css" name="style.css" />
+        <h:outputScript library="js" name="jquery-1.12.4.js" />
+        <h:outputScript library="js" name="itemInfo.js" />
+        <title>Sound++</title>
+    </h:head>
+    <h:body>
+        <ui:include src="navbar.xhtml" />
+        <div class="body">
+
+            <h:panelGroup>
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <br/>
+                        <h1 class="text-center">#{genreSearchBean.selectedGenre}</h1><br/>
+                        <h2 class="text-center">#{internationalization.tracks}</h2><br/>
+                        <h:panelGrid columns ="5" cellpadding="20%">
+                            <c:forEach var="track" items="#{genreSearchBean.tracks}">
+                                <h:form class="flip-box">
+                                    <div class="flip-box-inner">
+                                        <h:commandLink class="customLink"  action="#{selectedTrack.editDataItem()}">
+                                            <div class="flip-box-front">
+                                                <h:graphicImage value="#{track.album.image}" title="Album's cover" class="trackPic"/><br/>
+                                                <br/><h:outputText  value=" #{track.title}"/><br/>
+                                                <ui:repeat var="artist" value="#{track.album.artists}">
+                                                    <h:outputText class="smallText" value="#{artist.name}"></h:outputText>     
+                                                </ui:repeat><br/>
+                                                <h:outputText class="smallText" value="CAD #{track.cost}"/>
+                                            </div>
+                                            <div class = "flip-box-back">
+                                                <p class="title"><h:outputText  value="#{track.title}"/></p>
+                                                <p><ui:repeat var="artist" value="#{track.album.artists}">
+                                                        <h:outputText value="Artist: #{artist.name}"></h:outputText>     
+                                                    </ui:repeat></p>
+                                                <p>#{internationalization.playlength}: #{track.play_length}</p>
+                                                <p>#{internationalization.genres}: #{track.genre}</p>
+                                                <p>#{internationalization.albumdate} #{track.album.releasedate}</p>
+                                            </div>
+                                            <f:setPropertyActionListener target="#{selectedTrack.selectedTrack}" value="#{track}" />
+                                        </h:commandLink>
+                                    </div>
+                                </h:form>
+                            </c:forEach>
+                        </h:panelGrid>
+                        <h:form class="paginationForm">
+                            <ul class="pagination" >
+                                <c:if  test="#{TrackPaginationBean.current_page != 1}">
+                                    <li class="page-item">
+                                        <h:commandLink class="page-link" value="&laquo;" actionListener="#{TrackPaginationBean.prev()}"/>
+                                    </li>
+                                </c:if>
+                                <c:if  test="#{TrackPaginationBean.current_page == 1}">
+                                    <li class="page-item disabled">
+                                        <h:commandLink class="page-link" value="&laquo;"/>
+                                    </li>
+                                </c:if>
+                                <c:forEach begin="1" end="#{TrackPaginationBean.total_pages}" var="i" >
+                                    <li class="page-item #{TrackPaginationBean.current_page == i ? 'active':''}">
+                                        <h:commandLink class="page-link" action="#{TrackPaginationBean.updateView()}" value="#{i}">
+                                            <f:setPropertyActionListener target="#{TrackPaginationBean.current_page}" value="#{i}" />
+                                            <f:ajax render="table"></f:ajax>
+                                        </h:commandLink>
+                                    </li> 
+                                </c:forEach>
+                            </ul>
+                        </h:form>
+                    </div>
+                </div>
+                <script>assignEventsRows();</script>
+            </h:panelGroup>
+
+            <h:panelGroup>
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <h2 class="text-center">#{internationalization.albums}</h2><br/>
+                        <h:panelGrid cellpadding="20%" columns = "5">
+                            <c:forEach var="album" items="#{genreSearchBean.albums}">
+                                <h:form class="flip-box">
+                                    <div class="flip-box-inner">
+                                        <h:commandLink class="customLink"  action="#{selectedAlbum.editDataItem()}">
+                                            <div class="flip-box-front">
+                                                <h:graphicImage value="#{album.image}" title="Album's cover" class="albumPic"/><br/><br/>
+                                                <h:outputText value=" #{album.title}"/>
+                                                <ui:repeat var="artist" value="#{album.artists}"><br/>
+                                                    <h:outputText class="smallText" value="#{artist.name}"></h:outputText>   
+                                                </ui:repeat><br/>
+                                                <h:outputText class="smallText" value=" CAD #{album.cost}"/>
+                                            </div>
+                                            <div class = "flip-box-back">
+                                                <p class="title"><h:outputText  value="#{album.title}"/></p>
+                                                <p><ui:repeat var="artist" value="#{album.artists}">
+                                                        <h:outputText value="Artist: #{artist.name}"></h:outputText>     
+                                                    </ui:repeat></p>
+                                                <p>Number of song: #{album.numberofsong}</p>
+                                                <p>#{internationalization.genres}: #{album.genre}</p>
+                                                <p>#{internationalization.albumdate}: #{album.releasedate}</p>
+                                            </div>
+                                            <f:setPropertyActionListener target="#{selectedAlbum.selectedAlbum}" value="#{album}" />
+                                        </h:commandLink>
+                                    </div>
+                                </h:form>
+                            </c:forEach>
+                        </h:panelGrid>
+                        <h:form class="paginationForm">
+                            <ul class="pagination" >
+                                <c:if  test="#{AlbumPaginationBean.current_page != 1}">
+                                    <li class="page-item">
+                                        <h:commandLink class="page-link" value="&laquo;" actionListener="#{AlbumPaginationBean.prev()}"/>
+                                    </li>
+                                </c:if>
+                                <c:if  test="#{AlbumPaginationBean.current_page == 1}">
+                                    <li class="page-item disabled">
+                                        <h:commandLink class="page-link" value="&laquo;"/>
+                                    </li>
+                                </c:if>
+                                <c:forEach begin="1" end="#{AlbumPaginationBean.total_pages}" var="i" >
+                                    <li class="page-item #{AlbumPaginationBean.current_page == i ? 'active':''}">
+                                        <h:commandLink class="page-link" action="#{AlbumPaginationBean.updateView()}" value="#{i}">
+                                            <f:setPropertyActionListener target="#{AlbumPaginationBean.current_page}" value="#{i}" />
+                                            <f:ajax render="table"></f:ajax>
+                                        </h:commandLink>
+                                    </li> 
+                                </c:forEach>
+                                <c:if  test="#{AlbumPaginationBean.current_page != AlbumPaginationBean.total_pages}">
+                                    <li class="page-item">
+                                        <h:commandLink class="page-link" value="&raquo;" actionListener="#{AlbumPaginationBean.next()}"/>
+                                    </li>
+                                </c:if>
+                                <c:if test="#{AlbumPaginationBean.current_page == AlbumPaginationBean.total_pages}">
+                                    <li class="page-item disabled">
+                                        <h:commandLink class="page-link" value="&raquo;"/>
+                                    </li>
+                                </c:if>
+                            </ul>
+                        </h:form>
+                    </div>
+                </div>
+                <script>assignEventsRows();</script>
+            </h:panelGroup>
+
+            <p>#{genreSearchBean.selectedGenre}</p>
+            <h:inputText a:placeholder="Readonly input here…" ></h:inputText>
+        </div>
+    </h:body>
+</html>
+

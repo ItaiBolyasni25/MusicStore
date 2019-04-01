@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.Controller;
 
 import com.mycompany.Model.News;
@@ -25,10 +20,6 @@ public class NewBean implements Serializable{
     @Inject
     private DAO DAO;
         
-    private String[] feeds = {"https://www.cbc.ca/cmlink/rss-arts",
-                              "https://globalnews.ca/entertainment/feed/",
-                              "https://www.ctvnews.ca/rss/ctvnews-ca-entertainment-public-rss-1.822292",
-                              "http://rss.nytimes.com/services/xml/rss/nyt/Music.xml"};
     private String feed;
 
     public List<String> getRecommendations() {
@@ -37,10 +28,6 @@ public class NewBean implements Serializable{
         news.add("CTV News : https://www.ctvnews.ca/rss/ctvnews-ca-entertainment-public-rss-1.822292");
         news.add("NY Times : http://rss.nytimes.com/services/xml/rss/nyt/Music.xml");
         return news;
-    }
-
-    public void setFeeds(String[] feeds) {
-        this.feeds = feeds;
     }
 
     public String getFeed() {

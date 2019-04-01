@@ -17,6 +17,7 @@ function assignEventsRows() {
     $(".customLink").click(function () {
         currentlyShowingAlbum = true;
     });
+    
 }
 
 function setAlbumList() {

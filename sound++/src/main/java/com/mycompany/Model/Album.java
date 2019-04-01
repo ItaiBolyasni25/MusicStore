@@ -65,6 +65,7 @@ public class Album implements EntityModel, Serializable {
     @JoinColumn(name = "review_id")
     private List<Review> reviews;
 
+    private int total_sales;
 
     public int getId() {
         return album_id;
@@ -168,5 +169,12 @@ public class Album implements EntityModel, Serializable {
 
     public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
+    }
+    public int getTotal_sales() {
+        return total_sales;
+    }
+
+    public void setTotal_sales(int total_sales) {
+        this.total_sales = total_sales;
     }
 }
