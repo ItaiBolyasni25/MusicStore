@@ -245,7 +245,7 @@
                 </div>
             </div>
         </div>
-          <div class="panel-group">
+        <div class="panel-group">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
@@ -253,7 +253,7 @@
                     </h4>
                 </div>
 
-         <div id="clientZR" class="panel-collapse collapse">
+                <div id="clientZR" class="panel-collapse collapse">
                     <div class="row">
                         <div class="col-md-2">
                             <h:form class="searchForm" id="clientForm" >
@@ -289,6 +289,68 @@
                 </div>
             </div>
         </div>
+                <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#salesByArtist">Sales by Artist</a>
+                    </h4></div>
 
+                <div id="salesByArtist" class="panel-collapse collapse">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <h:form class="searchForm" id="artistForm" >
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label" for="artistForm:pattern">Artists:</label>
+                                    <div class="col-sm-9">
+                                        <h:inputText onfocus="showSearchList();" autocomplete="off" id="pattern" class="form-control patternTextBox" title="#{internationalization.search}" value="#{reportBean.artist}" >
+                                            <f:ajax event="keyup" listener="#{reportBean.patternArtistChanged()}" execute="pattern" render="searchList"></f:ajax>
+                                        </h:inputText></div>
+
+                                    <h:panelGroup id="searchList" class="resultSearch">
+                                        <ul class="list-group">
+                                            <ui:repeat value="#{reportBean.artists}" var="artist">
+                                                <li class="list-group-item d-flex justify-content-between align-items-center searchItem"> 
+                                                    <h:commandLink  value="#{artist.name}" onclick="setPattern(this);">           
+                                                        <f:ajax />
+                                                    </h:commandLink>
+                                                    <span class="badge badge-primary badge-pill">Sales by artist:</span> 
+                                                </li>
+                                            </ui:repeat></ul> </h:panelGroup></div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label" for="daterange">Range: </label>
+                                    <div class="col-sm-9"><h:inputText id ="daterange" class="form-control daterange" value="#{reportBean.dateRange}">
+                                            <f:ajax execute="daterange"></f:ajax></h:inputText>
+                                    </div>
+                                </div>
+                                <h:commandButton class="btn btn-primary formbutton" value="#{internationalization.submit}" action="#{reportBean.getSalesByArtist()}"><f:ajax execute="@form" render="dataArtist"/></h:commandButton>                   
+                            </h:form>
+                        </div>
+                    </div>
+                    <h:panelGroup id="dataArtist">
+                        <c:if test="#{not empty reportBean.salesByArtist}">
+                                <table class="table text-centered">
+                                    <thead>
+                                        <tr>
+                                            <th>Inventory type</th>
+                                            <th>Title</th>
+                                            <th>Total sales</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <ui:repeat value="#{reportBean.getSalesByArtist()}" var="artist">
+                                            <tr>
+                                                <td>#{artist.type}</td>
+                                                <td>#{artist.name}</td>
+                                                <td>#{artist.sales}</td>
+                                            </tr>
+                                        </ui:repeat>  
+                                    </tbody>    
+                                </table>           
+                        </c:if>
+                    </h:panelGroup>
+                </div>
+            </div>
+        </div>
     </h:body>
 </html>

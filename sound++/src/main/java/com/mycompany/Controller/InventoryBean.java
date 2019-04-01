@@ -85,7 +85,7 @@ public class InventoryBean implements Serializable {
         track.setSale_price(trackSalePrice);
         track.setDate_added(sqlDate);
         track.setIndividual(true);
-
+        System.out.println("Gothere");
         dao.write(track);
         success = true;
         fail = false;
