@@ -42,7 +42,6 @@ public class CartController implements Serializable {
     public String addTrack(Track track, User user) {
         Cart cart = new Cart();
         cart.setTrack(track);
-        cart.setAlbum(track.getAlbum());
         cart.setUser(user);
         dao.write(cart);
         return "albums.xhtml";
@@ -57,8 +56,12 @@ public class CartController implements Serializable {
         return "albums.xhtml";
     }
 
-    public List<Cart> getCartItems(User user) {     
-        return dao.find(new Cart(), "user.email = '" + user.getEmail() + "'");
+    public List<Cart> getCartItems(User user) {
+        return dao.find(new Cart(), "user.email = '" + user.getEmail() + "' + AND invoice.invoice_id IS NULL");
+    }
+    
+    public List<Cart> getBoughtItems(User user) {
+        return dao.find(new Cart(), "invoice.invoice_id IS NOT NULL AND user.email = '" + user.getEmail() + "'");
     }
 
     public int addPrice(int price) {

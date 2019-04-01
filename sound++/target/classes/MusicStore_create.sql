@@ -1,4 +1,4 @@
-drop database songstore;
+drop database if exists songstore;
 create database songstore;
 DROP USER IF EXISTS songstore@localhost;
 CREATE USER songstore@'localhost' IDENTIFIED WITH mysql_native_password BY 'dawson123' REQUIRE NONE;
@@ -49,14 +49,7 @@ CREATE TABLE album_artist (
     CONSTRAINT album_artist_pk PRIMARY KEY (album_artist_id)
 );
 
--- Table: Cart
-CREATE TABLE Cart (
-    cart_id int NOT NULL auto_increment,
-    email varchar(50) NOT NULL,
-    track_id int NULL,
-    album_id int NULL,
-    CONSTRAINT Cart_pk PRIMARY KEY (cart_id)
-);
+
 
 -- Table: Invoice
 CREATE TABLE Invoice (
@@ -69,6 +62,17 @@ CREATE TABLE Invoice (
     total_gross double(5,2) NOT NULL,
     email varchar(50) NOT NULL,
     CONSTRAINT Invoice_pk PRIMARY KEY (invoice_id)
+);
+-- Table: Cart
+CREATE TABLE Cart (
+    cart_id int NOT NULL auto_increment,
+    email varchar(50) NOT NULL,
+    track_id int NULL,
+    album_id int NULL,
+    invoice_id int NULL,
+    
+    CONSTRAINT Cart_pk PRIMARY KEY (cart_id),
+    FOREIGN KEY (invoice_id) REFERENCES Invoice(invoice_id)
 );
 
 -- Table: News
