@@ -548,3 +548,8 @@ button{
     width:auto;
     opacity: 0.3;
 }
+.panel-group{
+    width: 90%;
+    padding: 2%;
+    margin-left: 3%;
+}

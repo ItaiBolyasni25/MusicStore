@@ -39,6 +39,7 @@ public class Track implements EntityModel, Serializable {
     private Date removal_date;
     @OneToOne(mappedBy="track")
     private Cart cart;
+    private int total_sales;
 
     public Track() {
         super();
@@ -154,5 +155,13 @@ public class Track implements EntityModel, Serializable {
 
     public void setRemoval_date(Date removal_date) {
         this.removal_date = removal_date;
+    }
+
+    public int getTotal_sales() {
+        return total_sales;
+    }
+
+    public void setTotal_sales(int total_sales) {
+        this.total_sales = total_sales;
     }
 }

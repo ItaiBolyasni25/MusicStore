@@ -21,6 +21,7 @@ CREATE TABLE Album (
     removal_date date NULL,
     image varchar(250) NULL,
     genre varchar(256) NOT NULL,
+    total_sales int,
     CONSTRAINT Album_pk PRIMARY KEY (album_id)
 );
 
@@ -79,7 +80,7 @@ CREATE TABLE News (
 );
 
 -- Table: Order
-CREATE TABLE `Order` (
+CREATE TABLE `Orders` (
     order_id int NOT NULL auto_increment,
     invoice_id int NOT NULL,
     price int NOT NULL,
@@ -139,6 +140,7 @@ CREATE TABLE Track (
     individual bool NOT NULL,
     removal_status bool NOT NULL,
     removal_date date NULL,
+    total_sales int,
     CONSTRAINT Track_pk PRIMARY KEY (track_id)
 );
 
@@ -205,15 +207,15 @@ ALTER TABLE Invoice ADD CONSTRAINT Invoice_User FOREIGN KEY Invoice_User (email)
     REFERENCES User (email);
 
 -- Reference: Order_Album (table: Order)
-ALTER TABLE `Order` ADD CONSTRAINT Order_Album FOREIGN KEY Order_Album (album_id)
+ALTER TABLE `Orders` ADD CONSTRAINT Order_Album FOREIGN KEY Order_Album (album_id)
     REFERENCES Album (album_id);
 
 -- Reference: Order_Invoice (table: Order)
-ALTER TABLE `Order` ADD CONSTRAINT Order_Invoice FOREIGN KEY Order_Invoice (invoice_id)
+ALTER TABLE `Orders` ADD CONSTRAINT Order_Invoice FOREIGN KEY Order_Invoice (invoice_id)
     REFERENCES Invoice (invoice_id);
 
 -- Reference: Order_Track (table: Order)
-ALTER TABLE `Order` ADD CONSTRAINT Order_Track FOREIGN KEY Order_Track (track_id)
+ALTER TABLE `Orders` ADD CONSTRAINT Order_Track FOREIGN KEY Order_Track (track_id)
     REFERENCES Track (track_id);
 
 -- Reference: Review_User (table: Review)
