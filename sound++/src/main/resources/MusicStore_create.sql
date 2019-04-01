@@ -5,8 +5,7 @@ CREATE USER songstore@'localhost' IDENTIFIED WITH mysql_native_password BY 'daws
 GRANT ALL ON songstore.* TO songstore@'localhost';
 FLUSH PRIVILEGES;
 Use songstore;
-
-
+    
 CREATE TABLE Album (
     album_id int NOT NULL auto_increment,
     title varchar(256) NOT NULL,
@@ -183,6 +182,13 @@ CREATE TABLE Roles (
     email varchar(50) NOT NULL,
     roles varchar(50) NOT NULL,
     CONSTRAINT Groups_pk PRIMARY KEY (email)
+);
+
+CREATE TABLE Banner(
+    banner_id int NOT NULL auto_increment,
+    banner varchar(300) NOT NULL,
+    used varchar(1) NOT NULL,
+    CONSTRAINT Banner_pk PRIMARY KEY (banner_id) 
 );
 
 -- foreign keys

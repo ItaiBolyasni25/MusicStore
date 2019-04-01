@@ -8,16 +8,21 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.2.1/lux/bootstrap.min.css"/>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"></link>
+<<<<<<< HEAD
+        <h:outputStylesheet library="css" name="style.css"  />
+=======
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.min.js" integrity="sha384-F13mJAeqdsVJS5kJv7MZ4PzYmJ+yXXZkt/gEnamJGTXZFzYgAcVtNg5wBDrRgLg9" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js" integrity="sha384-2Tnqs3x0ucZkxYqJ3UX1R/fkSRkMaDsdYWsUNc0hZVikDXRHamRor+AsNJ7Pi2DA" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" integrity="sha384-3J4adb6KqO9u+ZgVfdmUqKDG4qWyG2qxGdXYoCXh3YmBQURWveIDgFh22pw1E3a9" crossorigin="anonymous"></link>
+>>>>>>> af19b48f7ea7c62dba02cfc24732cf7693ea55c0
         <title>Sound++</title>
     </h:head>
     <ui:composition>
@@ -57,12 +62,21 @@ and open the template in the editor.
                     </li>
                     <h:panelGroup rendered="#{empty user}">
                         <li class="nav-item">
-                            <h:link class="nav-link" value="#{internationalization.login}" outcome="register"/>
+                            <h:link class="nav-link" value="#{internationalization.signup}" outcome="register"/>
+                        </li>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{empty user}">
+                        <li class="nav-item">
+                            <h:link class="nav-link" value="#{internationalization.login}" outcome="login"/>
                         </li>
                     </h:panelGroup>
                     <h:panelGroup rendered="#{not empty user}">
                         <li class="nav-item">
-                            <h:link class="nav-link" value="#{internationalization.signOut}" outcome="register"/>
+                            <h:form>
+                                <h:commandLink class="nav-link" value="#{internationalization.signOut}" action="#{request.logout()}">
+                                    <f:actionListener binding="#{registerBean.signOut()}"/>
+                                </h:commandLink>
+                            </h:form>
                         </li>
                     </h:panelGroup>
                     <li class="nav-item">
@@ -76,9 +90,8 @@ and open the template in the editor.
                             <h:selectOneMenu onchange="submit()" valueChangeListener="#{internationalization.languageChange}"  class="custom-select mr-sm-3 ml-4">
                                 <f:selectItem itemValue="en" itemLabel="#{internationalization.english}" />
                                 <f:selectItem itemValue="fr" itemLabel="#{internationalization.french}" />
-                            </h:selectOneMenu> 
+                            </h:selectOneMenu>                            
                         </h:form>
-
                     </div>
                 </li>
                 <h:form class="form-inline my-2 my-lg-0 searchForm" id="searchform" >
@@ -126,8 +139,5 @@ and open the template in the editor.
                 </h:form>
             </div>
         </nav>
-
-
-
     </ui:composition>
 </html>

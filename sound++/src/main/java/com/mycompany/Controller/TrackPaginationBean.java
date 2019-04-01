@@ -27,7 +27,7 @@ public class TrackPaginationBean implements Serializable {
     @Inject
     private DAO dao;
     private List<Track> dataList;
-    ;
+    
     private int totalRows;
     private int currentPage;
     private int itemPerPage;
@@ -36,7 +36,6 @@ public class TrackPaginationBean implements Serializable {
     public TrackPaginationBean() {
         this.itemPerPage = 12;
         this.currentPage = 1;
-
     }
     
      public void initialize(){
@@ -106,14 +105,25 @@ public class TrackPaginationBean implements Serializable {
     public void setCurrent_page(int newCurrentPage) throws IOException {
         currentPage = newCurrentPage;
         updateView();
-
     }
 
     public void updateView() {
         int offset = getOffset();
         setDatalist(dao.findWithLimit(new Track(), offset, itemPerPage));
     }
+    public void next() {
+        if (this.currentPage < totalPages) {
+            this.currentPage++;
+        }
+        updateView();
+    }
 
+    public void prev() {
+        if (this.currentPage > 1) {
+            this.currentPage--;
+        }
+        updateView();
+    }
      public String redirect(){
         return "tracks?faces-redirect=true&page="+this.currentPage;  
     }

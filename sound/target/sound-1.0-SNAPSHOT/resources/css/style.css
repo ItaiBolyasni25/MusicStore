@@ -90,6 +90,7 @@ a{
     height: 200px;
     width: auto;
 }
+
 .trackPic{
     height: 150px;
     width: auto;
@@ -356,15 +357,7 @@ button{
   margin-top:100px;
 }
 
-.divbackground{
-    opacity: 0.5;
-}
-
 .centered {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   color: black;
   text-align: center;
   font-weight: bold;
@@ -478,6 +471,71 @@ button{
     overflow-x: hidden;
     z-index: 1;
 }
+<<<<<<< HEAD
+
+.parallax {
+  /* The image used */
+  background-image: url("../../assets/indexbackground.jpg");
+  
+  /* Set a specific height */
+  min-height: 800px; 
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#slick-slide-control00{
+    border-radius: 50%;
+}
+
+#slick-slide-control01{
+    border-radius: 50%;
+}
+
+.dots{
+    list-style-type:none;
+    float: left;
+    margin-left: 48%;
+}
+
+.dots li{
+    display: inline;
+    padding-right: 5px;
+}
+
+.dots button{
+  background-color: white;
+  color: black;
+  border: 2px solid #555555;
+  
+}
+
+.dots button:hover {
+  background-color: #555555;
+  color: white;
+}
+
+.grid-item { width: 25%; }
+.grid-item--width2 { width: 50%; }
+
+.album{
+    height: auto;
+    width: 100%;
+    padding: 0px !important;
+    margin-top: 50% ;
+    -webkit-box-reflect: below 8px -webkit-gradient(linear, right top, right bottom, from(transparent), color-stop(40%, transparent), to(rgba(255, 255, 255, 0.1)));
+}
+
+.albumMax{
+    height: auto;
+    width: 100%;;
+    margin: 0px !important;
+    padding: 0px !important;
+    -webkit-box-reflect: below 8px -webkit-gradient(linear, right top, right bottom, from(transparent), color-stop(40%, transparent), to(rgba(255, 255, 255, 0.1)));
+=======
 #albumpanel{
      margin: 0 auto;
 }
@@ -552,4 +610,5 @@ button{
     width: 90%;
     padding: 2%;
     margin-left: 3%;
+>>>>>>> af19b48f7ea7c62dba02cfc24732cf7693ea55c0
 }

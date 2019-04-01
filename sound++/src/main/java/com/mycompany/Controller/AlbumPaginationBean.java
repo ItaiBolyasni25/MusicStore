@@ -52,8 +52,6 @@ public class AlbumPaginationBean implements Serializable {
         }
         updateView();
     }
-        
-    
     public List<Album> getDatalist() {
         return dataList;
     }
@@ -108,6 +106,10 @@ public class AlbumPaginationBean implements Serializable {
 
     public void setCurrent_page(int newCurrentPage) {
         currentPage = newCurrentPage;
+        FacesContext.getCurrentInstance()
+                .getExternalContext()
+                .getRequestMap()
+                .put("current", this.currentPage);
         updateView();
     }
 
@@ -120,13 +122,18 @@ public class AlbumPaginationBean implements Serializable {
         if (this.currentPage < totalPages) {
             setCurrent_page(this.currentPage + 1);
             return "albums?faces-redirect=true&page="+(this.currentPage);
-   
         }
         return "";
     }
 
-     public String redirect(){
-              
+
+    public void prev() {
+        if (this.currentPage > 1) {
+            setCurrent_page(this.currentPage - 1);
+        }
+        updateView();
+    }
+     public String redirect(){         
         return "albums?faces-redirect=true&page="+this.currentPage;  
     }
 }

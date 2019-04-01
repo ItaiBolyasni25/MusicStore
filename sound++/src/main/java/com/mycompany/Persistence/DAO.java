@@ -88,9 +88,9 @@ public class DAO {
         return q.getResultList();
     }
 
-    public <E extends EntityModel> List<E> findWithLimitPattern(E entityModel, int offset, int display, String pattern) {
+    public <E extends EntityModel> List<E> findWithLimitPattern(E entityModel, int offset, int display, String pattern, String column) {
         String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
-        Query q = em.createQuery("Select identifier FROM " + className + " identifier WHERE identifier.title like :pattern ORDER BY identifier.title ASC");
+        Query q = em.createQuery("FROM " + className + " identifier WHERE identifier." + column + " like :pattern ORDER BY identifier.title ASC");
         q.setParameter("pattern", pattern + "%");
         if (offset != 0) {
             q.setFirstResult(offset);
@@ -120,7 +120,8 @@ public class DAO {
         q.setMaxResults(display);
         return q.getResultList();
     }
-    public <E extends EntityModel> List<E> findWithOnlyPatternAlbum(E entityModel,String pattern) {
+
+    public <E extends EntityModel> List<E> findWithOnlyPatternAlbum(E entityModel, String pattern) {
         String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
         Query q = em.createQuery("Select identifier FROM " + className + " identifier  JOIN identifier.artists at WHERE at.name = '" + pattern + "' OR at.name like :pattern OR identifier.title like :pattern OR identifier.title ='" + pattern + "' ORDER BY identifier.title ASC");
         q.setParameter("pattern", pattern + "%");
@@ -198,13 +199,13 @@ public class DAO {
         q.setMaxResults(3);
         return q.getResultList();
     }
-     public <E extends EntityModel> List<E> findLimitRandom(E entityModel) {
+
+    public <E extends EntityModel> List<E> findLimitRandom(E entityModel) {
         String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
         Query q = em.createQuery("Select identifier FROM " + className + " identifier order by function('RAND')");
         q.setMaxResults(9);
         return q.getResultList();
     }
-
 
     public <E extends EntityModel> boolean delete(E entityModel) {
         try {
@@ -241,18 +242,25 @@ public class DAO {
             Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
+    public List<String> findGenres() {
+        Query q = em.createNativeQuery("SELECT genre FROM track GROUP BY genre");
+         return q.getResultList();
+    }
+
     public <E extends EntityModel> List<E> customFind(E entityModel, String afterTableName) {
         String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
         Query q = em.createNativeQuery("SELECT t.* FROM " + className + " t " + afterTableName);
         return q.getResultList();
     }
-     public <E extends EntityModel> List<E> customFindDB(E entityModel, String query) {
+
+    public <E extends EntityModel> List<E> customFindDB(E entityModel, String query) {
         String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
         Query q = em.createQuery(query);
         return q.getResultList();
     }
-      public List<Object[]> customFindObject(String query) {
+
+    public List<Object[]> customFindObject(String query) {
         Query q = em.createQuery(query);
         return q.getResultList();
     }

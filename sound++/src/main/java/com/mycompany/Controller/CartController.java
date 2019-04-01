@@ -57,11 +57,11 @@ public class CartController implements Serializable {
     }
 
     public List<Cart> getCartItems(User user) {
-        return dao.find(new Cart(), "user.email = '" + user.getEmail() + "' + AND invoice.invoice_id IS NULL");
+        return dao.find(new Cart(), "user.email = '" + user.getEmail() + "' AND identifier.invoice IS NULL" );
     }
     
     public List<Cart> getBoughtItems(User user) {
-        return dao.find(new Cart(), "invoice.invoice_id IS NOT NULL AND user.email = '" + user.getEmail() + "'");
+        return dao.find(new Cart(), "invoice.invoice_id IS NOT NULL AND identifier.user.email = '" + user.getEmail() + "'");
     }
 
     public int addPrice(int price) {
