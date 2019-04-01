@@ -64,7 +64,6 @@ public class SelectedAlbum implements Serializable{
              artists.add(a.getName());
          }
          List<Album> albums = dao.findWithLimitGenreAlbum(new Album(), 3, genre,artists, album.getTitle());
-         System.out.println(albums.size());
          return albums;
          }
          return null;

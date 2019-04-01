@@ -61,11 +61,3 @@ function handleResponse(response) {
         nextArrow: "#next"
     });
 }
-<<<<<<< HEAD:sound++/src/main/webapp/js/newsfeed.js
-=======
-
-$(document).ready(function () {
-    //Call news function to request the latest news of the moment when page is loaded
-    news();
-});
->>>>>>> 484d52702ba0e99bdf4d354d4b15b2c344c50fe6:sound/target/sound-1.0-SNAPSHOT/resources/js/newsfeed.js~HEAD

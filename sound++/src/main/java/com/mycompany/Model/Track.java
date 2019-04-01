@@ -6,9 +6,9 @@ package com.mycompany.Model;
  * and open the template in the editor.
  */
 import com.mycompany.Interface.EntityModel;
-import com.mycompany.Model.Album;
 import java.sql.Date;
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.*;
 
 /**
@@ -39,6 +39,9 @@ public class Track implements EntityModel, Serializable {
     private Date removal_date;
     @OneToOne(mappedBy="track")
     private Cart cart;
+    @OneToMany
+    @JoinColumn(name = "review_id")
+    private List<Review> reviews;
     private int total_sales;
 
     public Track() {
@@ -157,6 +160,14 @@ public class Track implements EntityModel, Serializable {
         this.removal_date = removal_date;
     }
 
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
+    
     public int getTotal_sales() {
         return total_sales;
     }

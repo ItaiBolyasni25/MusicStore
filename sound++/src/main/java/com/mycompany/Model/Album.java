@@ -9,7 +9,6 @@ package com.mycompany.Model;
 import com.mycompany.Interface.EntityModel;
 import java.io.Serializable;
 import java.sql.Date;
-import java.sql.Timestamp;
 import java.util.List;
 import javax.persistence.*;
 
@@ -57,9 +56,14 @@ public class Album implements EntityModel, Serializable {
     private double list_price;
     private double sale_price;
     private boolean removal_status;
-    private Timestamp removal_date;
+    private Date removal_date;
     private String image;
     private String genre;
+    
+    @OneToMany
+    @JoinColumn(name = "review_id")
+    private List<Review> reviews;
+
     private int total_sales;
 
     public int getId() {
@@ -134,11 +138,11 @@ public class Album implements EntityModel, Serializable {
         this.removal_status = removalStatus;
     }
 
-    public Timestamp getRemoval_date() {
+    public Date getRemoval_date() {
         return removal_date;
     }
 
-    public void setRemoval_date(Timestamp removalDate) {
+    public void setRemoval_date(Date removalDate) {
         this.removal_date = removalDate;
     }
 
@@ -158,6 +162,13 @@ public class Album implements EntityModel, Serializable {
         this.genre = genre;
     }
 
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
     public int getTotal_sales() {
         return total_sales;
     }

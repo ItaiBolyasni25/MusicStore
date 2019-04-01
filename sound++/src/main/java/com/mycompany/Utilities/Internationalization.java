@@ -139,7 +139,7 @@ public class Internationalization implements Serializable {
     }
 
     public String getAlbumdate() {
-        return language.equals("English") ? "Release Date" : "Date de Sortie";
+        return language.equals("English") ? "Date" : "Date de Sortie";
     }
 
     public String getArtist() {
@@ -434,5 +434,93 @@ public class Internationalization implements Serializable {
     }
     public String getPopularTracks(){
         return language.equals("English")? "Popular Tracks": "Chansons Populaires";
+    }
+    
+    public String getSubmitReview() {
+        return language.equals("English")? "Submit review" : "Poster le commentaire";
+    }
+    
+    public String getApprove() {
+        return language.equals("English")? "Approve review" : "Approuver la révision"; 
+    }
+    
+    public String getDelete() {
+        return language.equals("English")? "Delete review" : "Supprimer la critique";
+    }
+    
+    public String getReviewed() {
+        return language.equals("English")? "Reviewed" : "Critiqué";
+    }
+    
+    public String getReviews() {
+        return language.equals("English")? "Reviews" : "Critiques";
+    }
+    
+    public String getReviewText() {
+        return language.equals("English")? "Review text" : "Texte de révision";
+    }
+    
+    public String getReviewRating() {
+        return language.equals("English")? "Review rating" : "Note d'évaluation";
+    }
+    
+    public String getSuccess() {
+        return language.equals("English")? "Operation succeeded": "Opération réussie";
+    }
+    
+    public String getFail() {
+        return language.equals("English")? "Operation failed": "L'opération a échoué";
+    }
+    
+    public String getSongwriter() {
+        return language.equals("English")? "Songwriter": "Auteur compositeur";
+    }
+    
+    public String getListPrice() {
+        return language.equals("English")? "List price": "Prix ​​catalogue";
+    }
+    
+    public String getSalePrice() {
+        return language.equals("English")? "Sale price": "Prix ​​de vente";
+    }
+    
+    public String getAddTrack() {
+        return language.equals("English")? "Add track": "Ajouter une chanson";
+    }
+    
+    public String getAddAlbum() {
+        return language.equals("English")? "Add album": "Ajouter un album";
+    }
+    
+    public String getEditTrack() {
+        return language.equals("English")? "Edit track": "Editer une chanson";
+    }
+    
+    public String getEditAlbum() {
+        return language.equals("English")? "Edit album": "Editer un album";
+    }
+    
+    public String getRemoveTrack() {
+        return language.equals("English")? "Remove track": "Supprimer une chanson";
+    }
+    
+    public String getRemoveAlbum() {
+        return language.equals("English")? "Remove album": "Supprimer un album";
+    }
+    
+    public String getAlbum() {
+        return language.equals("English")? "Album (leave blank if single)" : "Album (laissez vide si simple)";
+    }
+    
+    public String getRecordingLabel() {
+        return language.equals("English")? "Recording label" : "Étiquette d'enregistrement";
+    }
+    
+    public String getImagePath() {
+        return language.equals("English")? "Image path" : "Chemin de l'image";
+    }
+    
+    public String getBackToInventory() {
+        return language.equals("English")? "Back to inventory management" : "Retour à la gestion des stocks";
     }
 }
