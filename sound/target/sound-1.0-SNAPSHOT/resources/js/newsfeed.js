@@ -2,17 +2,6 @@
  *  Requests RSS feed to rss2json API 
  */
 function news(newsfeed) {
-    
-    $('.index').slick({
-        infinite: true,
-        speed: 300,
-        fade: true,
-        cssEase: 'linear',
-        autoplay: true,
-        arrows: false,
-        dots: true,
-        dotsClass: 'dots'
-    });
     //https://rss2json.com/docs API used
     //Do Ajax request to get RSS feed 
     $.ajax({
@@ -21,7 +10,7 @@ function news(newsfeed) {
         dataType: 'json',
         data: {
             rss_url: newsfeed,
-            api_key: "ahtjmmolm5ip6nd4rucf2d1hxdtuh2usxwgswjg3"
+            api_key: "38tsevs2nmzz7kmvni97irfiexgh4u63xyodhntp"
         }
     }).done(handleResponse);
 }
@@ -41,9 +30,10 @@ function handleResponse(response) {
     {
         var item = response.items[i];
         var link = $(listItem[i]).children();
-        console.log($(link).children().get(0));
+        console.log(item);
         $(link).attr("href", item.link);
-        $($(link).children().get(0)).css('background-image', 'url(' + item.thumbnail + ')');
+        
+        $($(link).children().get(0)).css('background-image', 'url(' + item.enclosure.link + ')');
         $($($(link[0]).children()).children().get(0)).text(item.title);
         $($($(link[0]).children()).children().get(1)).text(item.author);
     }

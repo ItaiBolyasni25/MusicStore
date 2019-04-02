@@ -139,7 +139,7 @@ public class SongParser implements Serializable {
     }
 
     private void addNewsFeed() {
-        News news = new News("https://www.ctvnews.ca/rss/ctvnews-ca-entertainment-public-rss-1.822292", "1");
+        News news = new News("https://globalnews.ca/entertainment/feed/", "1");
         dao.write(news);
     }
     
