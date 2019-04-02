@@ -117,8 +117,9 @@ section .section-title {
     text-transform: uppercase;
 }
 #info {
-    width: 90%;
+    width: 100%;
     height: 40%;
+    margin-top: 10%;
     margin-left: 5%;
 }
 #footer {
@@ -357,22 +358,32 @@ button{
 }
 
 .divbackground{
-    opacity: 0.5;
+    opacity: 0.7;
+    position: relative;
 }
 
 .centered {
+  transition: .5s ease;
+  opacity: 0;
   position: absolute;
   top: 50%;
   left: 50%;
+  background: black;
+  color: white;
+  width: 100%;
+  height: 100%;
   transform: translate(-50%, -50%);
-  color: black;
+  -ms-transform: translate(-50%, -50%);
   text-align: center;
-  font-weight: bold;
+}
+.textStyle{
+    margin-top: 20%;
 }
 
 .container {
   width: 100%;
   height: 40%;
+  opacity: 1;
   color: black;
 }
 
@@ -380,6 +391,9 @@ button{
   width:100%;
   color: black;
   height: auto;
+  object-fit: cover;
+  transition: .5s ease;
+  backface-visibility: hidden;
 }
 
 .display-5{
@@ -552,4 +566,96 @@ button{
     width: 90%;
     padding: 2%;
     margin-left: 3%;
+}
+.container {
+  position: relative;
+  width: 50%;
+}
+.containerCustom{
+  position: relative;
+  width: 100%;
+}
+.containerCustom:hover .image {
+  opacity: 0.3;
+}
+.containerCustom:hover .centered {
+  opacity: 0.8;
+}
+
+.image {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.container:hover .image {
+  opacity: 0.3;
+}
+
+.container:hover .middle {
+  opacity: 1;
+}
+.icon{
+    height: 120px;
+    width: auto;
+}
+.info{
+    padding-left: 5%;
+    font-size: 20px;
+}
+.slides{
+  max-height: 1000px;
+}
+.textColor{
+    color: white !important;
+    opacity: 1 !important;
+}
+.itemContainer{
+  position: relative;
+  width: 100%;
+}
+.itemInfo{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: black;
+  overflow: hidden;
+  width: 100%;
+  height: 0;
+  transition: .5s ease;
+}
+.itemContainer:hover .itemInfo {
+  height: 20%;
+  opacity: 0.6;
+}
+.text {
+  color: white;
+  opacity: 1 !important;
+  font-size: 50px;
+  position: absolute;
+  top: 50%;
+  left: 20%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: left;
+}
+.smallText{
+    color: white;
+     font-size: 25px;
 }

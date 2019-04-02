@@ -12,11 +12,14 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"></link>
         <!--Library for sliding carousel -->
+        
         <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
         <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
         <script src="resources/js/newsfeed.js"></script>
         <script src="resources/js/indexJS.js"></script>
         <h:outputStylesheet library="css" name="style.css"  />
+        <h:outputStylesheet library="css" name="bamboo.min.css"/>
+        <script src="resources/js/bamboo.min.js"></script>
         <title>Sound++</title>
         <f:view>
             <f:event type="preRenderView" listener="#{SongParser.onLoad()}"/>
@@ -53,27 +56,43 @@
             <div id="myTabContent" class="tab-content">
 
                 <div class="tab-pane fade show active" id="home">
-                    <div class="divbackground">
+                    <div class="slideshows">
+  <div class="slides">
+      <div class="divbackground" onmouseover="stopSlide()" onmouseout="playSlide()">
+        <div class="containerCustom">
                         <h:graphicImage value="assets/indexbackground.jpg" class="imgbackground"/>
                         <div class="centered">
-                            <h:outputText rendered="#{empty user}" class="display-2" value="#{internationalization.welcome}" />
-                            <h:outputText rendered="#{not empty user}" class="display-2" value="#{internationalization.welcome}  #{user}" />
+                            <div class="textStyle"><h:outputText rendered="#{empty user}" class="display-2" value="#{internationalization.welcome}" />
+                            <h:outputText rendered="#{not empty user}" class="display-2 textColor" value="#{internationalization.welcome}  #{user}" />
                             <br/><br/>
-                            <h:outputText class="h1" value="#{internationalization.description}" />
+                            <h:outputText class="h1 textColor" value="#{internationalization.description}" />
                             <br/><br/><br/><br/>
                             <h:panelGroup rendered="#{empty user}">
                                 <div class="row">
                                     <div class="col-md-3"></div>
-                                    <div class="col-md-3"><h:button class="btn btn-primary" value="#{internationalization.loginopt}" outcome="login" /></div>
-                                    <div class="col-md-3"><h:button class="btn btn-primary" value="#{internationalization.signup}" outcome="register" /></div>
+                                    <div class="col-md-3"><h:button class="btn btn-secondary" value="#{internationalization.loginopt}" outcome="login" /></div>
+                                    <div class="col-md-3"><h:button class="btn btn-secondary" value="#{internationalization.signup}" outcome="register" /></div>
                                 </div>
                             </h:panelGroup>
                             <br/><br/><br/><br/><br/>
-                            <h:outputText class="h3" value="*#{internationalization.devices}" />
+                            <h:outputText class="h3 textColor" value="*#{internationalization.devices}" />
                             <br/><br/><br/><br/><br/><br/><br/><br/>
-                            <h:link class="h2" value="#{internationalization.learnmore}>" outcome="about"/>
+                            <h:link class="h2 textColor" value="#{internationalization.learnmore}>" outcome="about"/></div>
                         </div>
-                    </div>
+        </div></div>
+      
+      <ui:repeat var="al" value="#{IndexMusicBean.recentAlbum}">
+          <div class="itemContainer"><h:graphicImage value="#{al.image}" class="imgbackground"></h:graphicImage>
+          <div class="itemInfo">
+              <div class="text"><h:outputText value="#{al.title}" />
+                  <p class="smallText"><ui:repeat var="ar" value="#{al.artists}">
+                          <h:outputText value="#{ar.name}"></h:outputText></ui:repeat></p>
+                            </div>
+          </div></div>
+   </ui:repeat>
+  </div> 
+</div>
+                    
 
                     <br/><br/>
                     <div class="row">
@@ -113,12 +132,15 @@
                                                 <h:form class="specAlbum">
                                                         <div>
                                                             <h:commandLink class="customLink"  action="#{selectedAlbum.editDataItem()}">
-                                                                <div><h:graphicImage value="#{album.image}" title="Album's cover" class="albumPic"/>
-                                                                    <div><h:outputText value=" #{album.title}"/>
+                                                                <div><div class="container">
+                                                                        <h:graphicImage value="#{album.image}" title="Album's cover" class="image albumPic"/>
+                                                                        <div class="middle"> <div><img class="icon" src="assets/Play-512.png"></img></div></div>
+                                                                    </div>
+                                                                    <div class="info"><h:outputText value=" #{album.title}"/>
                                                                     <ui:repeat var="artist" value="#{album.artists}"><br/>
-                                                                        <h:outputText class="smallText" value="#{artist.name}"></h:outputText>   
+                                                                        <h:outputText value="#{artist.name}"></h:outputText>   
                                                                     </ui:repeat><br/>
-                                                                    <h:outputText class="smallText" value=" CAD #{album.cost}"/></div>
+                                                                    <h:outputText value=" CAD #{album.cost}"/></div>
                                                                 </div>
                                                                 <f:setPropertyActionListener target="#{selectedAlbum.selectedAlbum}" value="#{album}" />
                                                             </h:commandLink></div></h:form></div>
@@ -162,12 +184,15 @@
                                                 <h:form class="specAlbum">
                                                         <div>
                                                             <h:commandLink class="customLink"  action="#{selectedTrack.editDataItem()}">
-                                                                <div><h:graphicImage value="#{track.album.image}" title="Album's cover" class="albumPic"/>
-                                                                    <div><h:outputText value=" #{track.title}"/>
+                                                                <div><div class="container">
+                                                                        <h:graphicImage value="#{track.album.image}" title="Album's cover" class="image albumPic"/>
+                                                                         <div class="middle"> <div><img class="icon" src="assets/Play-512.png"></img></div></div>
+                                                                    </div>
+                                                                    <div><h:outputText class="info" value=" #{track.title}"/>
                                                                     <ui:repeat var="artist" value="#{track.album.artists}"><br/>
-                                                                        <h:outputText class="smallText" value="#{artist.name}"></h:outputText>   
+                                                                        <h:outputText class="info" value="#{artist.name}"></h:outputText>   
                                                                     </ui:repeat><br/>
-                                                                    <h:outputText class="smallText" value=" CAD #{track.cost}"/></div>
+                                                                    <h:outputText class="info" value=" CAD #{track.cost}"/></div>
                                                                 </div>
                                                                 <f:setPropertyActionListener target="#{selectedTrack.selectedTrack}" value="#{track}" />
                                                             </h:commandLink></div></h:form></div>

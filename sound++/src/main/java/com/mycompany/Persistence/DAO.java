@@ -66,6 +66,7 @@ public class DAO {
 
     public <E extends EntityModel> List<E> findWithLimitGenreAlbum(E entityModel, int display, String genre, List<String> artist, String name) {
         String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
+
         Query q = em.createQuery("SELECT DISTINCT a FROM " + className + " a JOIN a.artists at WHERE a.genre = '" + genre + "' AND a.title" + "!= :title AND at.name NOT IN :artists ORDER BY a.title ASC");
         q.setParameter("title", name);
         q.setParameter("artists", artist);
@@ -207,7 +208,14 @@ public class DAO {
 
 
     public <E extends EntityModel> boolean delete(E entityModel) {
-        em.remove(entityModel);
+        try {
+            userTransaction.begin();
+            em.remove(entityModel);
+            userTransaction.commit();
+
+        } catch (NotSupportedException | SystemException | RollbackException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException ex) {
+            Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return true;
     }
 
