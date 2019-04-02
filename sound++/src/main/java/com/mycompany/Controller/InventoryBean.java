@@ -21,7 +21,6 @@ public class InventoryBean implements Serializable {
 
     private boolean success;
     private boolean fail;
-    private boolean searched;
     private final Date date = new java.sql.Date(Calendar.getInstance().getTimeInMillis());
 
     // Track
@@ -85,7 +84,7 @@ public class InventoryBean implements Serializable {
         track.setSale_price(trackSalePrice);
         track.setDate_added(sqlDate);
         track.setIndividual(true);
-        System.out.println("Gothere");
+
         dao.write(track);
         success = true;
         fail = false;
@@ -179,9 +178,9 @@ public class InventoryBean implements Serializable {
             fail = true;
         }
     }
-
-    public void searchMethod() {
-        searched = true;
+    
+    public String backToInventory() {
+        return "inventory.xhtml";
     }
 
     // ---------- Getters and setters ---------- //
@@ -191,7 +190,7 @@ public class InventoryBean implements Serializable {
     
     public String setSuccess(boolean success) {
         this.success = success;
-        return "managerinventory.xhtml";
+        return "manager/inventory.xhtml";
     }
 
     public boolean isFail() {
@@ -200,14 +199,6 @@ public class InventoryBean implements Serializable {
     
     public void setFail(boolean fail) {
         this.fail = fail;
-    }
-
-    public boolean isSearched() {
-        return searched;
-    }
-
-    public void setSearched(boolean searched) {
-        this.searched = searched;
     }
 
     public String getAlbumName() {
