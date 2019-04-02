@@ -84,7 +84,7 @@ public class InventoryBean implements Serializable {
         track.setSale_price(trackSalePrice);
         track.setDate_added(sqlDate);
         track.setIndividual(true);
-
+        System.out.println("Gothere");
         dao.write(track);
         success = true;
         fail = false;
@@ -180,7 +180,7 @@ public class InventoryBean implements Serializable {
     }
     
     public String backToInventory() {
-        return "inventory.xhtml";
+        return "manager/inventory.xhtml";
     }
 
     // ---------- Getters and setters ---------- //
@@ -190,7 +190,7 @@ public class InventoryBean implements Serializable {
     
     public String setSuccess(boolean success) {
         this.success = success;
-        return "manager/inventory.xhtml";
+        return "manager/inventory";
     }
 
     public boolean isFail() {
