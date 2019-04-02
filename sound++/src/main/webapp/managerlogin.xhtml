@@ -127,17 +127,17 @@
 
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">#{internationalization.email}</label>
-                                                <h:inputText  value="#{loginBean.email}" class="form-control" id="loginEmail" />
+                                                <h:inputText  value="#{registerBean.email}" class="form-control" id="loginEmail" />
                                                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
 
 
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputPassword1">#{internationalization.password}</label>
-                                                <h:inputSecret value="#{loginBean.password}" class="form-control" id="loginPassword" />
+                                                <h:inputSecret value="#{registerBean.password}" class="form-control" id="loginPassword" />
                                             </div>
 
-                                            <h:commandButton type="submit" class="btn btn-primary formbutton" value="#{internationalization.loginopt}" action="#{loginBean.canLogIn}"/>
+                                            <h:commandButton type="submit" class="btn btn-primary formbutton" value="#{internationalization.loginopt}" action="#{registerBean.canLogIn}"/>
                                         </fieldset>
                                     </h:form>
 

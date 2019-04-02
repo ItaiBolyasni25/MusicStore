@@ -89,8 +89,8 @@ public class AlbumTrackBean implements Serializable {
 
         if (pattern != null && !pattern.isEmpty() && !pattern.equals("")) {
             if (filter.equals("false")) {
-                setAlbums(dao.findWithLimitPattern(new Album(), 0, 3, pattern));
-                setTracks(dao.findWithLimitPattern(new Track(), 0, 3, pattern));
+                setAlbums(dao.findWithLimitPattern(new Album(), 0, 3, pattern, "album"));
+                setTracks(dao.findWithLimitPattern(new Track(), 0, 3, pattern, "track"));
                 setArtists(dao.findWithLimitPatternArtist(new Artist(), 0, 3, pattern));             
             }
         } else {

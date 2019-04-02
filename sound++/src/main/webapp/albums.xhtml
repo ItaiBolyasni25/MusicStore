@@ -50,7 +50,9 @@
                                         <p>#{internationalization.albumdate}: #{album.releasedate}</p>
                                     </div>
                                     <f:setPropertyActionListener target="#{selectedAlbum.selectedAlbum}" value="#{album}" />
-                                   </h:commandLink></div></h:form>
+                                </h:commandLink>
+                            </div>
+                        </h:form>
                     </c:forEach>
                 </h:panelGrid>
                 <h:form class="paginationForm">

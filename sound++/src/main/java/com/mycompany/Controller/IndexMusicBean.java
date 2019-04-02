@@ -46,8 +46,8 @@ public class IndexMusicBean implements Serializable  {
     public void init(){
         albumPagination.initialTotalRow();
         trackPagination.initialTotalRow();
-        allAlbums = dao.findLimitRandom(new Album());
-        allTracks = dao.findLimitRandom(new Track());
+        allAlbums = dao.findLimitRandom(new Album(),9);
+        allTracks = dao.findLimitRandom(new Track(),9);
         updateAlbumsView();
         updateTrackView();
     }

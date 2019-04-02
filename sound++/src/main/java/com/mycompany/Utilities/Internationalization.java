@@ -5,10 +5,14 @@ package com.mycompany.Utilities;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import com.mycompany.Model.User;
+import com.mycompany.Persistence.DAO;
 import java.io.Serializable;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
+import javax.inject.Inject;
 
 /**
  *
@@ -19,27 +23,40 @@ import javax.faces.event.ValueChangeEvent;
 public class Internationalization implements Serializable {
 
     private String language = "English";
+    
+    @Inject
+    private DAO dao;
 
     /**
      * Creates a new instance of Internationalization
      */
     public Internationalization() {
+        if (FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user") == null) {
+            String lan = (String) (FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("language"));
+            language = lan == null? language: lan;
+        } else {
+            User user = (User)(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("userObj"));
+            language = user.getLanguage() == null? language: user.getLanguage();
+        }
     }
 
-//    public void setLanguage(String lan) {
-//    public void setLanguage(String lan) {
-//        if (lan.equals("fr")) {
-//            language = "Francais";
-//        } else if (lan.equals("en")) {
-//            language = "English";
-//        }
-//    }
     public void languageChange(ValueChangeEvent e) {
         String lan = e.getNewValue().toString();
         if (lan.equals("fr")) {
             language = "Francais";
         } else if (lan.equals("en")) {
             language = "English";
+        }
+        storeInSession();
+    }
+
+    public void storeInSession() {
+        if (FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user") == null) {
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("language", language);
+        } else {
+            User user = (User)(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("userObj"));
+            user.setLanguage(language);
+            dao.updateEntity(user);
         }
     }
 
@@ -61,10 +78,6 @@ public class Internationalization implements Serializable {
 
     public String getAbout() {
         return language.equals("English") ? "About" : "A propos";
-    }
-
-    public String getLogin() {
-        return language.equals("English") ? "Log In/ Sign Up" : "Se Registrer/ Se Connecter";
     }
 
     public String getCart() {
@@ -126,7 +139,7 @@ public class Internationalization implements Serializable {
     }
 
     public String getAlbumdate() {
-        return language.equals("English") ? "Release Date" : "Date de Sortie";
+        return language.equals("English") ? "Date" : "Date de Sortie";
     }
 
     public String getArtist() {
@@ -157,7 +170,7 @@ public class Internationalization implements Serializable {
         return language.equals("English") ? "Album Cover" : "Image Album";
     }
 
-    public String getLoginopt() {
+    public String getLogin() {
         return language.equals("English") ? "Log In" : "Se Connecter";
     }
 
@@ -364,50 +377,150 @@ public class Internationalization implements Serializable {
     public String getInvalidlength() {
         return language.equals("English") ? "Invalid length minimum 10, maximum 160" : "Longueur invalide entre 10 et 160 caracteres";
     }
-    
-    public String getSlogan(){
+
+    public String getSlogan() {
         return language.equals("English") ? "When words fail, music speaks." : "Quand les mots manquent, la musique parle.";
     }
 
     public String getAboutText1() {
         return language.equals("English")
                 ? "Sound++ makes it easy to find the right music for any moment on any device"
-                : "Sound++ permet l'access facile a la bonne musique dans n'importe quel moment sur n'importe quel appareil."
-                ;
+                : "Sound++ permet l'access facile a la bonne musique dans n'importe quel moment sur n'importe quel appareil.";
     }
-    
+
     public String getAboutText2() {
         return language.equals("English")
                 ? "We have an imense variety of albums, tracks and artists for everyone."
-                : "Nous avons une immense variete de chansons, albums et artistes pour tout le monde. "
-                ;
+                : "Nous avons une immense variete de chansons, albums et artistes pour tout le monde. ";
     }
-    
+
     public String getAboutText3() {
         return language.equals("English")
                 ? " Whether you’re partying, relaxing or working, the right music is at every moment a click away."
-                : "Ce soit pour faire la fete, relaxer ou travailler, A tout moment vous etes a un click de la bonne musique."
-                ;
+                : "Ce soit pour faire la fete, relaxer ou travailler, A tout moment vous etes a un click de la bonne musique.";
     }
 
     public String getAboutText4() {
         return language.equals("English")
                 ? "You will also know the latest news about your favourite artists and you can prove your extensive knowledge in music through different surveys."
-                : "Vous allez aussi en savoir les dernieres nouvelles de vos artistes favoris et vous pouvez prendre des questionnaires pour en demontrer vos connaissances."
-                ;
+                : "Vous allez aussi en savoir les dernieres nouvelles de vos artistes favoris et vous pouvez prendre des questionnaires pour en demontrer vos connaissances.";
+    }
+
+    public String getAnswer() {
+        return language.equals("English") ? "Submit" : "Soumettre";
+    }
+
+    public String getSignOut() {
+        return language.equals("English") ? "Sign Out" : "Se deconnecter";
     }
     
-    public String getAnswer(){
-        return language.equals("English")? "Submit": "Soumettre";
+    public String getUser(){
+        return language.equals("English") ? "User" : "Utilisateur";
     }
     
-    public String getSignOut(){
-        return language.equals("English")? "Sign Out": "Se deconnecter";
+    public String getSearchUser(){
+        return language.equals("English") ? "Search the user you want to change its information for" : "Cherchez l'utilisitaure duquel vous voulez changer leur information";
+    }
+    
+    public String getPurchases(){
+        return language.equals("English") ? "Purchases" : "Achats";
+    }
+    
+    public String getRecommended(){
+        return language.equals("English") ? "Recommended for you" : "Recommandé pour vous";
     }
     public String getPopularAlbums(){
         return language.equals("English")? "Popular Albums": "Albums Populaires";
     }
     public String getPopularTracks(){
         return language.equals("English")? "Popular Tracks": "Chansons Populaires";
+    }
+    
+    public String getSubmitReview() {
+        return language.equals("English")? "Submit review" : "Poster le commentaire";
+    }
+    
+    public String getApprove() {
+        return language.equals("English")? "Approve review" : "Approuver la révision"; 
+    }
+    
+    public String getDelete() {
+        return language.equals("English")? "Delete review" : "Supprimer la critique";
+    }
+    
+    public String getReviewed() {
+        return language.equals("English")? "Reviewed" : "Critiqué";
+    }
+    
+    public String getReviews() {
+        return language.equals("English")? "Reviews" : "Critiques";
+    }
+    
+    public String getReviewText() {
+        return language.equals("English")? "Review text" : "Texte de révision";
+    }
+    
+    public String getReviewRating() {
+        return language.equals("English")? "Review rating" : "Note d'évaluation";
+    }
+    
+    public String getSuccess() {
+        return language.equals("English")? "Operation succeeded": "Opération réussie";
+    }
+    
+    public String getFail() {
+        return language.equals("English")? "Operation failed": "L'opération a échoué";
+    }
+    
+    public String getSongwriter() {
+        return language.equals("English")? "Songwriter": "Auteur compositeur";
+    }
+    
+    public String getListPrice() {
+        return language.equals("English")? "List price": "Prix ​​catalogue";
+    }
+    
+    public String getSalePrice() {
+        return language.equals("English")? "Sale price": "Prix ​​de vente";
+    }
+    
+    public String getAddTrack() {
+        return language.equals("English")? "Add track": "Ajouter une chanson";
+    }
+    
+    public String getAddAlbum() {
+        return language.equals("English")? "Add album": "Ajouter un album";
+    }
+    
+    public String getEditTrack() {
+        return language.equals("English")? "Edit track": "Editer une chanson";
+    }
+    
+    public String getEditAlbum() {
+        return language.equals("English")? "Edit album": "Editer un album";
+    }
+    
+    public String getRemoveTrack() {
+        return language.equals("English")? "Remove track": "Supprimer une chanson";
+    }
+    
+    public String getRemoveAlbum() {
+        return language.equals("English")? "Remove album": "Supprimer un album";
+    }
+    
+    public String getAlbum() {
+        return language.equals("English")? "Album (leave blank if single)" : "Album (laissez vide si simple)";
+    }
+    
+    public String getRecordingLabel() {
+        return language.equals("English")? "Recording label" : "Étiquette d'enregistrement";
+    }
+    
+    public String getImagePath() {
+        return language.equals("English")? "Image path" : "Chemin de l'image";
+    }
+    
+    public String getBackToInventory() {
+        return language.equals("English")? "Back to inventory management" : "Retour à la gestion des stocks";
     }
 }

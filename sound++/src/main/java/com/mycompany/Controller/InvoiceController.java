@@ -74,6 +74,7 @@ public class InvoiceController implements Serializable {
         this.invoice_id_generated = invoice.invoice_id;
         for (Cart cart : cartItems) {
             cart.setInvoice(invoice);
+            System.out.println("Updated cart with " + invoice.invoice_id);
             dao.updateEntity(cart);
         }
         return "invoice.xhtml";

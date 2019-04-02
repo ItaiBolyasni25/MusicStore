@@ -90,6 +90,7 @@ a{
     height: 200px;
     width: auto;
 }
+
 .trackPic{
     height: 150px;
     width: auto;
@@ -118,9 +119,8 @@ section .section-title {
 }
 #info {
     width: 100%;
-    height: 40%;
     margin-top: 10%;
-    margin-left: 5%;
+    background-color: white;
 }
 #footer {
     margin-top: 10%;
@@ -492,7 +492,73 @@ button{
     overflow-x: hidden;
     z-index: 1;
 }
-#albumpanel{
+.RECOMMENDEDIMG{
+    height: 70px;
+}
+.parallax {
+  /* The image used */
+  background-image: url("../../assets/indexbackground.jpg");
+  
+  /* Set a specific height */
+  min-height: 800px; 
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#slick-slide-control00{
+    border-radius: 50%;
+}
+
+#slick-slide-control01{
+    border-radius: 50%;
+}
+
+.dots{
+    list-style-type:none;
+    float: left;
+    margin-left: 48%;
+}
+
+.dots li{
+    display: inline;
+    padding-right: 5px;
+}
+
+.dots button{
+  background-color: white;
+  color: black;
+  border: 2px solid #555555;
+  
+}
+
+.dots button:hover {
+  background-color: #555555;
+  color: white;
+}
+
+.grid-item { width: 25%; }
+.grid-item--width2 { width: 50%; }
+
+.album{
+    height: auto;
+    width: 100%;
+    padding: 0px !important;
+    margin-top: 50% ;
+    -webkit-box-reflect: below 8px -webkit-gradient(linear, right top, right bottom, from(transparent), color-stop(40%, transparent), to(rgba(255, 255, 255, 0.1)));
+}
+
+.albumMax{
+    height: auto;
+    width: 100%;;
+    margin: 0px !important;
+    padding: 0px !important;
+    -webkit-box-reflect: below 8px -webkit-gradient(linear, right top, right bottom, from(transparent), color-stop(40%, transparent), to(rgba(255, 255, 255, 0.1)));
+}
+    #albumpanel{
      margin: 0 auto;
 }
 #trackpanel{
@@ -658,7 +724,89 @@ button{
   transform: translate(-50%, -50%);
   text-align: left;
 }
-.smallText{
+.smallTextSlide{
     color: white;
      font-size: 25px;
+}
+.list-group-item:hover{
+    background-color:#ECE8ED;
+}
+.band {
+  width: 85%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding-bottom: 3%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  grid-gap: 20px;
+}
+@media (min-width: 30em) {
+  .band {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (min-width: 60em) {
+  .band {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.card {
+  background: white;
+  text-decoration: none;
+  color: #444;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  position: relative;
+  top: 0;
+  transition: all 0.1s ease-in;
+}
+.card:hover {
+  top: -2px;
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
+}
+.card article {
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.card h1 {
+  font-size: 20px;
+  margin: 0;
+  color: #333;
+  font-weight: 20px;
+}
+.card p {
+  flex: 1;
+  line-height: 1.4;
+}
+.card span {
+  font-size: 12px;
+  font-weight: bold;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 2em 0 0 0;
+}
+.card .thumb {
+  padding-bottom: 60%;
+  background-size: cover;
+  background-position: center center;
+}
+
+@media (min-width: 60em) {
+  .item-1 {
+    grid-column: 1/span 2;
+  }
+  .item-1 h1 {
+    font-size: 24px;
+  }
+}
+.customFont{
+    font-weight:900;
 }

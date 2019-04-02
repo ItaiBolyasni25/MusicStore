@@ -3,7 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.2.1/lux/bootstrap.min.css" />
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -14,61 +16,108 @@
     </h:head>
     <h:body class="backgroundcolor">
         <ui:include src="../navbarmanager.xhtml" />
-
-        <h:form class="form-inline my-2 my-lg-0">
-            <h:inputText class="form-control mr-sm-2" value="#{internationalization.search}"/>
-            <h:commandButton class="btn btn-outline-primary" value="#{internationalization.search}" action="search"/>
-        </h:form>
-        <p>
-            From this page a manager can search for any client to edit their registration information. If a search returns multiple results, then the manager can choose from the list of results. The total value of all purchases by the client is shown. 
-        </p>
-
-        <div class="row">
-            <div class="col-md-1"></div>
-
-            <div class="col-md-4 pt-4">
-                <h2> Users Overview: </h2>
+        <div class="body">
+            <h3 class="text-center">#{internationalization.searchUser}</h3>
+            <div class="row">
+                <div class="col-md-5"></div>
+                <div class="col-md-2">
+                    <h:form class="form-inline my-2 my-lg-0 searchForm" >
+                        <h:panelGroup id="input">
+                            <h:inputText onfocus="showSearchList();" autocomplete="off" id="pattern" class="form-control mr-sm-2 patternTextBox border border-dark" title="#{internationalization.search}" value="#{clientManagementBean.pattern}" >
+                                <f:ajax event="keyup" listener="#{clientManagementBean.patternChanged()}" execute="pattern" render="searchList"></f:ajax>
+                            </h:inputText>
+                        </h:panelGroup>
+                        <h:panelGroup id="searchList" >
+                            <ul class="list-group">
+                                <ui:repeat value="#{clientManagementBean.usersByEmail}" var="user">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center searchItem"> 
+                                        <h:commandButton class="btn btn-secondary" action="#{clientManagementBean.redirect()}" value="#{user.email}" onclick="setPattern(this);">           
+                                            <f:ajax />
+                                            <f:setPropertyActionListener target="#{clientManagementBean.chosen}" value="#{user}" />
+                                        </h:commandButton>
+                                        <span class="badge badge-primary badge-pill">#{internationalization.user}</span> 
+                                    </li>
+                                </ui:repeat>
+                                <ui:repeat  value="#{clientManagementBean.usersByName}" var="user">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <h:commandButton class="btn btn-secondary" action="#{clientManagementBean.redirect()}" value="#{user.firstname}" onclick="setPattern(this);">           
+                                            <f:ajax />
+                                            <f:setPropertyActionListener target="#{clientManagementBean.chosen}" value="#{user}" />
+                                            <span class="badge badge-primary badge-pill">#{internationalization.user}</span>
+                                        </h:commandButton>
+                                    </li>
+                                </ui:repeat>
+                            </ul>
+                        </h:panelGroup>
+                    </h:form>
+                </div>
             </div>
 
-        </div>
+            <br/>
+            <h:panelGroup rendered="#{clientManagementBean.getChosen() != null}">
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8 card text-white bg-dark">
+                        <br/>
+                        <h:form>
+                            <div class="form-group row">
+                                <label for="title" class="col-sm-1 col-form-label">#{internationalization.title}</label>
+                                <div class="col-sm-3">
+                                    <h:inputText  value="#{clientManagementBean.chosen.title}" class="form-control" id="title"/>
+                                </div>
+                                <label for="name" class="col-sm-1 col-form-label">#{internationalization.firstname}</label>
+                                <div class="col-sm-3">
+                                    <h:inputText  value="#{clientManagementBean.chosen.firstname}" class="form-control" id="name"/>
+                                </div>
+                                <label for="lastname" class="col-sm-1 col-form-label">#{internationalization.lastname}</label>
+                                <div class="col-sm-3">
+                                    <h:inputText  value="#{clientManagementBean.chosen.lastname}" class="form-control" id="lastname"/>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="email" class="col-sm-1 col-form-label">#{internationalization.email}</label>
+                                <div class="col-sm-3">
+                                    <h:inputText readonly="true" disabled="true" value="#{clientManagementBean.chosen.email}" class="form-control" id="email"/>
+                                </div>
+                                <label for="cellphone" class="col-sm-1 col-form-label">#{internationalization.cellphone}</label>
+                                <div class="col-sm-3">
+                                    <h:inputText value="#{clientManagementBean.chosen.cellphone}" class="form-control" id="cellphone"/>
+                                </div>
+                                <label for="company" class="col-sm-1 col-form-label">#{internationalization.company}</label>
+                                <div class="col-sm-3">
+                                    <h:inputText  value="#{clientManagementBean.chosen.company_name}" class="form-control" id="company"/>
+                                </div>
+                            </div>
 
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th scope="col">#{internationalization.albumimage}</th>
-                    <th scope="col">#{internationalization.songtitle}</th>
-                    <th scope="col">#{internationalization.albumtitle}</th>
-                    <th scope="col">#{internationalization.artist}</th>
-                    <th scope="col">#{internationalization.songdate}</th>
-                    <th scope="col">#{internationalization.playlength}</th>
-                    <th scope="col">#{internationalization.cost}</th>
-                    <th scope="col">#{internationalization.albumimage}</th>
-                    <th scope="col">#{internationalization.songtitle}</th>
-                    <th scope="col">#{internationalization.albumtitle}</th>
-                    <th scope="col">#{internationalization.artist}</th>
-                    <th scope="col">#{internationalization.songdate}</th>
-                    <th scope="col">#{internationalization.playlength}</th>
-                </tr>
-            </thead>
-            <tbody>
-                <ui:repeat var="tr" value="#{UserBean.all}" > 
-                    <tr class="table-secondary">
-                        <th>#{tr.user_Id}</th>
-                        <td>#{tr.firstname}</td>
-                        <td>#{tr.lastname}</td>
-                        <td>#{tr.email}</td>
-                        <td>#{tr.company_name}</td>
-                        <td>#{tr.address1}</td>
-                        <td>#{tr.address2}</td>
-                        <td>#{tr.city}</td>
-                        <td>#{tr.province}</td>
-                        <td>#{tr.postal_code}</td>
-                        <td>#{tr.country}</td>
-                        <td>#{tr.cellphone}</td>
-                        <td>#{tr.home_telephone}</td>
-                    </tr>
-                </ui:repeat>
-            </tbody>
-        </table>
+                            <div class="form-group row">
+                                <label for="address1" class="col-sm-1 col-form-label">#{internationalization.address}</label>
+                                <div class="col-sm-2">
+                                    <h:inputText  value="#{clientManagementBean.chosen.address1}" class="form-control" id="address1"/>
+                                </div>
+                                <label for="city" class="col-sm-1 col-form-label">#{internationalization.city}</label>
+                                <div class="col-sm-2">
+                                    <h:inputText  value="#{clientManagementBean.chosen.city}" class="form-control" id="city"/>
+                                </div>
+                                <label for="province" class="col-sm-1 col-form-label">#{internationalization.province}</label>
+                                <div class="col-sm-2">
+                                    <h:inputText  value="#{clientManagementBean.chosen.province}" class="form-control" id="province"/>
+                                </div>
+                                <label for="country" class="col-sm-1 col-form-label">#{internationalization.country}</label>
+                                <div class="col-sm-2">
+                                    <h:inputText  value="#{clientManagementBean.chosen.country}" class="form-control" id="country"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5"></div>
+                                <div class="col-md-2">
+                                    <h:commandButton id="submit-button" value="#{internationalization.change}" class="btn btn-primary" action="#{clientManagementBean.updateUser()}" type="submit"/>
+                                </div>
+                            </div>
+                        </h:form>
+                        <br/>
+                    </div>
+                </div>
+            </h:panelGroup>
+        </div>
     </h:body>
 </html>

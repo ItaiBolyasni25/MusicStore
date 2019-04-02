@@ -9,16 +9,18 @@
 
     <h:head>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.2.1/lux/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
         <h:outputStylesheet library="css" name="style.css"  />
         <h:outputScript library="js" name="jquery-1.12.4.js" />
         <h:outputScript library="js" name="itemInfo.js" />
-
+        <h:outputScript library="js" name="ratingToStars.js" />
         <title>Sound++</title>
     </h:head>
-    <h:body class="body">
+    <h:body>
+        <c:set target="#{reviewBean}" property="trackOrAlbum" value="album" /> 
         <ui:include src="navbar.xhtml" />  
          <div class="card border-light mb-3" id ="info">
             <h:panelGroup id="result">
@@ -73,8 +75,31 @@
                                     <h:outputText value="CAD #{similarAlbum.cost}"></h:outputText>
                                 </div></h:form></ui:repeat>                    
                     </div>
-                    <h5 class="detail">REVIEWS</h5>
+                    <h5 class="detail">#{internationalization.reviews}</h5>
                     <hr class="style"/>
+                    <h:panelGroup layout="block" rendered="#{not empty user}">
+                        <ui:include src="reviewpage.xhtml" />
+                    </h:panelGroup>
+                    <h:panelGroup layout="block" rendered="#{reviewBean.getAlbumReviews(selectedAlbum.selectedAlbum).isEmpty()}">
+                        <div class="container-fluid">
+                            <table class="table text-centered">
+                                <thead>
+                                    <tr>
+                                        <th>#{internationalization.reviewText}</th>
+                                        <th>#{internationalization.reviewRating}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <ui:repeat value="#{reviewBean.getAlbumReviews(selectedAlbum.selectedAlbum)}" var="review">
+                                        <tr>
+                                            <td>#{review.text}</td>
+                                            <td class="rating">#{review.rating}</td>
+                                        </tr>
+                                    </ui:repeat>
+                                </tbody>    
+                            </table>
+                        </div>
+                    </h:panelGroup>
                 </div>
             </h:panelGroup> 
         </div>
