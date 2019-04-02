@@ -68,26 +68,31 @@ and open the template in the editor.
                                 </tr>
                             </thead>
                             <tbody>
+
                                 <ui:repeat var="cartItem" value="#{invoiceController.getCartItems()}">
-                                    <tr>
-                                        <c:choose>
-                                            <c:when test="${not empty cartItem.track}">
-                                                <td class="left strong">#{cartItem.track.title}</td>
-                                                <td class="left">Single Track</td>
 
-                                                <td class="right">#{cartItem.track.list_price}</td>
-                                                <td class="right">#{cartItem.track.cost}</td>
-                                            </c:when>
-                                            <c:otherwise>
-                                                <td class="left strong">#{cartItem.album.title}</td>
-                                                <td class="left">Full Album</td>
+                                    <c:choose>
+                                        <c:when test="#{empty cartItem.track}">
+                                            <tr>
+                                                <td>#{cartItem.track.title}</td>
+                                                <td>Single Track</td>
 
-                                                <td class="right">#{cartItem.album.list_Price}</td>
-                                                <td class="right">#{cartItem.album.cost}</td>
-                                            </c:otherwise>
-                                        </c:choose>
+                                                <td>#{cartItem.track.list_price}</td>
+                                                <td>#{cartItem.track.cost}</td>
+                                            </tr>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <tr>
+                                                <td>#{cartItem.album.title}</td>
+                                                <td>Full Album</td>
 
-                                    </tr>
+                                                <td>#{cartItem.album.list_Price}</td>
+                                                <td>#{cartItem.album.cost}</td>
+                                            </tr>
+                                        </c:otherwise>
+                                    </c:choose>
+
+
                                 </ui:repeat>
                             </tbody>
                         </table>

@@ -60,6 +60,25 @@ public class CartController implements Serializable {
         return dao.find(new Cart(), "user.email = '" + user.getEmail() + "' AND identifier.invoice IS NULL" );
     }
     
+    
+    public List<Track> getCartTracks(User user) {
+        List<Cart> list = dao.find(new Cart(), "user.email = '" + user.getEmail() + "' AND identifier.invoice IS NULL AND identifier.album IS NULL");
+        List<Track> tracks = new ArrayList<>();
+        for (Cart c : list) {
+            tracks.add(c.getTrack());
+        }
+        return tracks;
+    }
+
+    public List<Album> getCartAlbum(User user) {
+        List<Cart> list = dao.find(new Cart(), "user.email = '" + user.getEmail() + "' AND identifier.invoice IS NULL AND identifier.track IS NULL");
+        List<Album> albums = new ArrayList<>();
+        for (Cart c : list) {
+            albums.add(c.getAlbum());
+        }
+        return albums;
+    }
+    
     public List<Cart> getBoughtItems(User user) {
         return dao.find(new Cart(), "invoice.invoice_id IS NOT NULL AND identifier.user.email = '" + user.getEmail() + "'");
     }
