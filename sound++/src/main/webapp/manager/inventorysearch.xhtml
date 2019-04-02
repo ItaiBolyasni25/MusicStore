@@ -26,8 +26,7 @@
         <h:form>
             <h:commandButton class="btn btn-dark" style="display: block; margin: auto;
                              margin-top: 2%;" value="#{internationalization.backToInventory}" 
-                             action="#{inventoryBean.backToInventory()}">
-                <f:actionListener binding="#{inventoryBean.setFail(false)}"/>
+                             action="#{inventoryBean.setSuccess(false)}">
                 <f:actionListener binding="#{inventoryBean.setFail(false)}"/>
             </h:commandButton>
         </h:form>
