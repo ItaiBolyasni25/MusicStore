@@ -33,7 +33,7 @@ function handleResponse(response) {
         console.log(item);
         $(link).attr("href", item.link);
         
-        $($(link).children().get(0)).css('background-image', 'url(' + item.thumbnail + ')');
+        $($(link).children().get(0)).css('background-image', 'url(' + item.enclosure.link + ')');
         $($($(link[0]).children()).children().get(0)).text(item.title);
         $($($(link[0]).children()).children().get(1)).text(item.author);
     }
