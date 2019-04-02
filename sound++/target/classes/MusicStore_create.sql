@@ -78,8 +78,7 @@ CREATE TABLE `Orders` (
     order_id int NOT NULL auto_increment,
     invoice_id int NOT NULL,
     price int NOT NULL,
-    track_id int NOT NULL,
-    album_id int NOT NULL,
+    
     CONSTRAINT Order_pk PRIMARY KEY (order_id)
 );
 
@@ -193,17 +192,11 @@ ALTER TABLE Cart ADD CONSTRAINT Cart_User FOREIGN KEY Cart_User (email)
 ALTER TABLE Invoice ADD CONSTRAINT Invoice_User FOREIGN KEY Invoice_User (email)
     REFERENCES User (email);
 
--- Reference: Order_Album (table: Order)
-ALTER TABLE `Orders` ADD CONSTRAINT Order_Album FOREIGN KEY Order_Album (album_id)
-    REFERENCES Album (album_id);
 
 -- Reference: Order_Invoice (table: Order)
 ALTER TABLE `Orders` ADD CONSTRAINT Order_Invoice FOREIGN KEY Order_Invoice (invoice_id)
     REFERENCES Invoice (invoice_id);
 
--- Reference: Order_Track (table: Order)
-ALTER TABLE `Orders` ADD CONSTRAINT Order_Track FOREIGN KEY Order_Track (track_id)
-    REFERENCES Track (track_id);
 
 -- Reference: Review_User (table: Review)
 ALTER TABLE Review ADD CONSTRAINT Review_User FOREIGN KEY Review_User (email)

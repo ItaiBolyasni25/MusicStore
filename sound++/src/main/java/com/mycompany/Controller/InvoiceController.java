@@ -7,6 +7,7 @@ package com.mycompany.Controller;
 
 import com.mycompany.Model.Cart;
 import com.mycompany.Model.Invoice;
+import com.mycompany.Model.Orders;
 import com.mycompany.Model.User;
 import com.mycompany.Persistence.DAO;
 import java.io.Serializable;
@@ -72,6 +73,12 @@ public class InvoiceController implements Serializable {
         invoice.setTotal_cost(total_cost);
         invoice = dao.write(invoice);
         this.invoice_id_generated = invoice.invoice_id;
+        
+        Orders order = new Orders();
+        order.setInvoiceId(invoice);
+        order.setPrice(this.total_cost);
+        dao.write(order);
+        
         for (Cart cart : cartItems) {
             cart.setInvoice(invoice);
             System.out.println("Updated cart with " + invoice.invoice_id);

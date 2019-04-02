@@ -102,75 +102,7 @@
                     <br/><br/>
                     <div class="row">
                         <div class="col-md-9">
-                            <h1 class="display-5 customFont">#{internationalization.newsfeed}</h1>
-                            <div class="band">
-                                <div class="item-1">
-                                    <a href="" class="card">
-                                        <div class="thumb" id="item1"></div>
-                                        <article>
-                                            <h1 id="title1"></h1>
-                                            <span id="author1"></span>
-                                        </article>
-                                    </a>
-                                </div>
-                                <div class="item-2">
-                                    <a class="card">
-                                        <div class="thumb"></div>
-                                        <article>
-                                            <h1></h1>
-                                            <span></span>
-                                        </article>
-                                    </a>
-                                </div>
-                                <div class="item-3">
-                                    <a class="card">
-                                        <div class="thumb"></div>
-                                        <article>
-                                            <h1></h1>
-                                            <span></span>
-                                        </article>
-                                    </a>
-                                </div>
-                                <div class="item-4">
-                                    <a class="card">
-                                        <div class="thumb"></div>
-                                        <article>
-                                            <h1></h1>
-                                            
-                                            <span></span>
-                                        </article>
-                                    </a>
-                                </div>
-                                <div class="item-5">
-                                    <a class="card">
-                                        <div class="thumb"></div>
-                                        <article>
-                                            <h1></h1>
-                                            <span></span>
-                                        </article>
-                                    </a>
-                                </div>
-                                <div class="item-6">
-                                    <a class="card">
-                                        <div class="thumb"></div>
-                                        <article>
-                                            <h1></h1>
-
-                                            <span></span>
-                                        </article>
-                                    </a>
-                                </div>
-                                <div class="item-7">
-                                    <a href="https://webdesign.tutsplus.com/articles/notes-from-behind-the-firewall-the-state-of-web-design-in-china--cms-22281" class="card">
-                                        <div class="thumb" ></div>
-                                        <article>
-                                            <h1></h1>
-                                            <span></span>
-                                        </article>
-                                    </a>
-                                </div>
-                            </div>
-                            <h:panelGroup id="albumtable" class="col-md-9">
+                             <h:panelGroup id="albumtable" class="col-md-9">
                                 <h1 class="display-5 customFont">#{internationalization.popularAlbums}</h1>
                                 <div class="row">  
                                     <c:if  test="#{IndexMusicBean.albumCurrentPage != 1}">
@@ -270,6 +202,75 @@
                                 </div>
 
                             </h:panelGroup>
+                            <h1 class="display-5 customFont">#{internationalization.newsfeed}</h1>
+                            <div class="band">
+                                <div class="item-1">
+                                    <a href="" class="card">
+                                        <div class="thumb" id="item1"></div>
+                                        <article>
+                                            <h1 id="title1"></h1>
+                                            <span id="author1"></span>
+                                        </article>
+                                    </a>
+                                </div>
+                                <div class="item-2">
+                                    <a class="card">
+                                        <div class="thumb"></div>
+                                        <article>
+                                            <h1></h1>
+                                            <span></span>
+                                        </article>
+                                    </a>
+                                </div>
+                                <div class="item-3">
+                                    <a class="card">
+                                        <div class="thumb"></div>
+                                        <article>
+                                            <h1></h1>
+                                            <span></span>
+                                        </article>
+                                    </a>
+                                </div>
+                                <div class="item-4">
+                                    <a class="card">
+                                        <div class="thumb"></div>
+                                        <article>
+                                            <h1></h1>
+                                            
+                                            <span></span>
+                                        </article>
+                                    </a>
+                                </div>
+                                <div class="item-5">
+                                    <a class="card">
+                                        <div class="thumb"></div>
+                                        <article>
+                                            <h1></h1>
+                                            <span></span>
+                                        </article>
+                                    </a>
+                                </div>
+                                <div class="item-6">
+                                    <a class="card">
+                                        <div class="thumb"></div>
+                                        <article>
+                                            <h1></h1>
+
+                                            <span></span>
+                                        </article>
+                                    </a>
+                                </div>
+                                <div class="item-7">
+                                    <a href="https://webdesign.tutsplus.com/articles/notes-from-behind-the-firewall-the-state-of-web-design-in-china--cms-22281" class="card">
+                                        <div class="thumb" ></div>
+                                        <article>
+                                            <h1></h1>
+                                            <span></span>
+                                        </article>
+                                    </a>
+                                </div>
+                            </div>
+                           
                         </div>
 
                         <div class="col-md-3">
@@ -278,36 +279,18 @@
                                     <h3 class="card-header">#{internationalization.recommended}</h3>
                                     <div class="card-body">
                                         <ul class="list-group list-group-flush">  
-                                            <li class="list-group-item">  <h:form>
-                                                    <div class="row">
-                                                        <div class="col-md-4">    
-                                                            <h:graphicImage value="#{albumBean.album1.image}" title="Album's cover" class="RECOMMENDEDIMG"/></div>
-                                                        <div class="col-md-8"> <h:commandLink class="customLink"  action="#{selectedAlbum.editDataItem()}" value="#{albumBean.album1.title}">
-                                                                <f:setPropertyActionListener target="#{selectedAlbum.selectedAlbum}" value="#{albumBean.album1}" />
-                                                            </h:commandLink>
-                                                            <p class="smallText"><c:forEach var="item" items="#{albumBean.album1.artists}">#{item.name}</c:forEach><br/>$#{albumBean.album1.cost}</p>
-                                                        </div></div>
-                                                </h:form></li>
-                                            <li class="list-group-item">  <h:form>
-                                                    <div class="row">
-                                                        <div class="col-md-4">    
-                                                            <h:graphicImage value="#{albumBean.album2.image}" title="Album's cover" class="RECOMMENDEDIMG"/></div>
-                                                        <div class="col-md-8"> <h:commandLink class="customLink"  action="#{selectedAlbum.editDataItem()}" value="#{albumBean.album2.title}">
-                                                                <f:setPropertyActionListener target="#{selectedAlbum.selectedAlbum}" value="#{albumBean.album2}" />
-                                                            </h:commandLink>
-                                                            <p class="smallText"><c:forEach var="item" items="#{albumBean.album2.artists}">#{item.name}</c:forEach><br/>$#{albumBean.album2.cost}</p>
-                                                        </div></div>
-                                                </h:form></li>
-                                            <li class="list-group-item">  <h:form>
-                                                    <div class="row">
-                                                        <div class="col-md-4">    
-                                                            <h:graphicImage value="#{albumBean.album3.image}" title="Album's cover" class="RECOMMENDEDIMG"/></div>
-                                                        <div class="col-md-8"> <h:commandLink class="customLink"  action="#{selectedAlbum.editDataItem()}" value="#{albumBean.album3.title}">
-                                                                <f:setPropertyActionListener target="#{selectedAlbum.selectedAlbum}" value="#{albumBean.album3}" />
-                                                            </h:commandLink>
-                                                            <p class="smallText"><c:forEach var="item" items="#{albumBean.album3.artists}">#{item.name}</c:forEach><br/>$#{albumBean.album3.cost}</p>
-                                                        </div></div>
-                                                </h:form></li>
+                                            <c:forEach var="album" items="#{albumBean.byGenre}">
+                                                <li class="list-group-item">  <h:form>
+                                                        <div class="row">
+                                                            <div class="col-md-4">    
+                                                                <h:graphicImage value="#{album.image}" title="Album's cover" class="RECOMMENDEDIMG"/></div>
+                                                            <div class="col-md-8"> <h:commandLink class="customLink"  action="#{selectedAlbum.editDataItem()}" value="#{album.title}">
+                                                                    <f:setPropertyActionListener target="#{selectedAlbum.selectedAlbum}" value="#{album}" />
+                                                                </h:commandLink>
+                                                                <p class="smallText"><c:forEach var="item" items="#{album.artists}">#{item.name}</c:forEach><br/>$#{album.cost}</p>
+                                                            </div></div>
+                                                    </h:form></li>
+                                            </c:forEach>
                                             <c:forEach var="track" items="#{albumBean.byGenreTrack}">
                                                 <li class="list-group-item">  <h:form>
                                                         <div class="row">

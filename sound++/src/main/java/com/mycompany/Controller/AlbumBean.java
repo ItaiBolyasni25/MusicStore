@@ -65,9 +65,6 @@ public class AlbumBean implements Serializable {
         } else {
             albums = dao.find(new Album(), "genre = '" + genre + "'");
         }
-        this.album1 = albums.get(0);
-        this.album2 = albums.get(1);
-        this.album3 = albums.get(2);
         return albums;
     }
     
