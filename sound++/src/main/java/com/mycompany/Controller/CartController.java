@@ -56,6 +56,11 @@ public class CartController implements Serializable {
 
     public List<Cart> getCartItems(User user) {
         List<Cart> list = dao.find(new Cart(), "user.email = '" + user.getEmail() + "' AND identifier.invoice IS NULL");
+        for (Cart c : list) {
+            System.out.println(c.getAlbum() == null ? "Album is null" : "Album not null");
+            System.out.println(c.getTrack() == null ? "Track is null" : "Track not null");
+
+        }
         return list;
     }
 

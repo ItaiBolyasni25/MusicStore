@@ -38,7 +38,7 @@
                     <div class="card-body">
                         <h:outputText class="card-title h3" value="#{internationalization.currentAds}"></h:outputText>
                         <div class="ads">
-                            <h:graphicImage style="height: 200px; width: 100%; display: block;" value="../assets/banners/#{bannerAddBean.currentBannerUsed.banner}" alt="Card image"/>
+                            <h:graphicImage style="height: 200px; width: 100%; display: block;" value="/banners/#{bannerAddBean.currentBannerUsed.banner}" alt="Card image"/>
                         </div>
                     </div>
                 </div>
@@ -48,7 +48,7 @@
                         <h:outputText class="card-title h3" value="#{internationalization.previousAds}"></h:outputText>
                         <ui:repeat value="#{bannerAddBean.bannersNotUsed}" var="ad">
                             <div class="ads card mb-3">
-                                <img style="height: 100px; width: 100%; display: block;" src="../assets/banners/ads.png" alt="Card image"/>
+                                <h:graphicImage style="hgeight: 100px; width: 100%; display: block;" value="/banners/#{ad.banner}" alt="Card image"/>
                             </div>
                         </ui:repeat>
                         <br/>

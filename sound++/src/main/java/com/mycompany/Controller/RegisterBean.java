@@ -103,7 +103,7 @@ public class RegisterBean implements Serializable {
             Roles roles = new Roles(user.getEmail(), role);
             DAO.write(roles);
             invalidEmail = false;
-            return "index.xhtml";
+            return "index.xhtml?faces-redirect=true";
         } else {
             invalidEmail = true;
             return "register.xhtml";
@@ -117,10 +117,9 @@ public class RegisterBean implements Serializable {
     }
 
     public void logIn() {
-        //FacesContext context = FacesContext.getCurrentInstance();
-        //HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
-        System.out.println("HELOOOOOOOOOOOOOOOOOOOOOOOOOOOOO0");
-        System.out.println("REMOTE USER ----- " /*+request.getRemoteUser()*/);
-        System.out.println("REMOTE USER NAME PRINCIPAL ----- " /*+ request.getUserPrincipal().getName()*/);
+        FacesContext context = FacesContext.getCurrentInstance();
+        HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+        System.out.println("REMOTE USER ----- " +request.getRemoteUser());
+        System.out.println("REMOTE USER NAME PRINCIPAL ----- " + request.getUserPrincipal().getName());
     }
 }

@@ -88,7 +88,12 @@ public class InvoiceController implements Serializable {
     }
     
     public List<Cart> getCartItems() {
-        return dao.find(new Cart(), "invoice.invoice_id = '" + this.invoice_id_generated + "'");
+        List<Cart> list = dao.find(new Cart(), "invoice.invoice_id = '" + this.invoice_id_generated + "'");
+        for(Cart c: list) {
+
+                
+        }
+        return list;
     }
 
     public Invoice getInvoice() {
