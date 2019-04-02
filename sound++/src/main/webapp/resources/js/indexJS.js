@@ -3,7 +3,7 @@ var sildeshow;
 $(document).ready(function () {
     var element = document.querySelector('.slideshows');
      sildeshow = bamboo(element, 'roll',{
-        speed: 2600,
+        speed: 2900,
         autoFitImg: false,
          hideArrow: true
 

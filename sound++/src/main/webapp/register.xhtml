@@ -13,67 +13,57 @@
         <title>Sound++</title>
     </h:head>
     <h:body class="backgroundcolor">
+
         <ui:include src="navbar.xhtml" />
 
-        <ul class="nav nav-tabs">
-            <li class="nav-item navcenter navlogin">
-                <a class="nav-link active" data-toggle="tab" href="#signup">#{internationalization.signup}</a>
-            </li>
-        </ul>
+        <div class="row">
+            <div class="col-md-4 centerform">
+                <br/><br/>
+                <h:form>
+                    <fieldset>
+                        <legend>#{internationalization.signup}</legend>
 
-        <div id="myTabContent" class="tab-content">
-            <div class="tab-pane fade show active" id="signup">
-                <div class="row">
-                    <div class ="col-md-12">
-                        <div class="col-md-4 centerform">
-                            <h:form>
-                                <fieldset>
-                                    <legend>#{internationalization.signup}</legend>
+                        <h:panelGroup layout="block" class="alert alert-danger" rendered="#{registerBean.invalidEmail == true}">
+                            <h:outputText class="text-danger" value="#{internationalization.invalidEmail}" />
+                        </h:panelGroup>
 
-                                    <h:panelGroup layout="block" class="alert alert-danger" rendered="#{registerBean.invalidEmail == true}">
-                                        <h:outputText class="text-danger" value="#{internationalization.invalidEmail}" />
-                                    </h:panelGroup>
-
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <label class="col-form-label" for="inputDefault">#{internationalization.title}</label>
-                                            <h:selectOneMenu  class="custom-select" value="#{registerBean.title}">
-                                                <f:selectItem itemValue="Miss" itemLabel="Miss" />
-                                                <f:selectItem itemValue="Mrs." itemLabel="Mrs." />
-                                                <f:selectItem itemValue="Ms." itemLabel="Ms." />
-                                            </h:selectOneMenu>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label class="col-form-label" for="inputDefault">#{internationalization.firstname}</label>
-                                                <h:inputText value="#{registerBean.firstName}" class="form-control" id="firstname" required="true"/>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-5">
-                                            <div class="form-group">
-                                                <label class="col-form-label" for="inputDefault">#{internationalization.lastname}</label>
-                                                <h:inputText value="#{registerBean.lastName}" class="form-control" id="lastname" required="true"/>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">#{internationalization.email}</label>
-                                        <h:inputText  value="#{registerBean.email}" class="form-control" id="registerEmail" />
-                                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">#{internationalization.password}</label>
-                                        <h:inputSecret value="#{registerBean.password}" class="form-control" id="registerPassword" />
-                                    </div>
-
-                                    <h:commandButton type="submit" class="btn btn-primary formbutton" value="#{internationalization.signup}" action="#{registerBean.addUser}"/>
-                                </fieldset>
-                            </h:form>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="col-form-label" for="inputDefault">#{internationalization.title}</label>
+                                <h:selectOneMenu  class="custom-select" value="#{registerBean.title}">
+                                    <f:selectItem itemValue="Miss" itemLabel="Miss" />
+                                    <f:selectItem itemValue="Mrs." itemLabel="Mrs." />
+                                    <f:selectItem itemValue="Ms." itemLabel="Ms." />
+                                </h:selectOneMenu>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="col-form-label" for="inputDefault">#{internationalization.firstname}</label>
+                                    <h:inputText value="#{registerBean.firstName}" class="form-control" id="firstname" required="true"/>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label class="col-form-label" for="inputDefault">#{internationalization.lastname}</label>
+                                    <h:inputText value="#{registerBean.lastName}" class="form-control" id="lastname" required="true"/>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">#{internationalization.email}</label>
+                            <h:inputText  value="#{registerBean.email}" class="form-control" id="registerEmail" />
+                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">#{internationalization.password}</label>
+                            <h:inputSecret value="#{registerBean.password}" class="form-control" id="registerPassword" />
+                        </div>
+
+                        <h:commandButton type="submit" class="btn btn-primary formbutton" value="#{internationalization.signup}" action="#{registerBean.addUser}"/>
+                    </fieldset>
+                </h:form>
             </div>
         </div>
     </h:body>

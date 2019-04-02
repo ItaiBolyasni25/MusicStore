@@ -523,4 +523,28 @@ public class Internationalization implements Serializable {
     public String getBackToInventory() {
         return language.equals("English")? "Back to inventory management" : "Retour à la gestion des stocks";
     }
+    
+    public String getPreviousAds() {
+        return language.equals("English")? "Previous Ads" : "Annonces precedentes";
+    }
+    
+    public String getCurrentAds() {
+        return language.equals("English")? "Current Banner Ad" : "Bande annonce courante";
+    }
+    
+    public String getErrorFile() {
+        return language.equals("English")? "Error processing request - Assure of selecting a valid file" : "Une erreur est survenue - Assurez vous de selection un fichier valide";
+    }
+    
+    public String getName(){
+        return language.equals("English")? "Name" : "Nom";
+    }
+    
+    public String getDuration(){
+        return language.equals("English")? "Duration" : "Duration";
+    }
+    
+    public String getDownload(){
+        return language.equals("English")? "Download" : "Telecharger";
+    }
 }
