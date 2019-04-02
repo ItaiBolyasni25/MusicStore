@@ -111,7 +111,7 @@
                                 <label class="col-form-label" for="inputDefault">#{internationalization.imagePath}</label>
                                 <h:inputText value="#{inventoryBean.image}" class="form-control" />
 
-                                <p:commandButton type="submit" value="#{internationalization.submit}" class="btn btn-primary formbutton" 
+                                <p:commandButton style="margin-bottom: 2%;" type="submit" value="#{internationalization.submit}" class="btn btn-primary formbutton" 
                                                  actionListener="#{inventoryBean.addAlbum}" process="@this, form2" update="form2"/>
 
                                 <h:panelGroup layout="block" class="alert alert-success" rendered="#{inventoryBean.success == true}">
