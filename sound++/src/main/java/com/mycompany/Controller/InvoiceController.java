@@ -27,9 +27,9 @@ public class InvoiceController implements Serializable {
 
     private Date date;
     private double total_cost;
-    private double gst = 1.7;
-    private double hst = 1.8;
-    private double pst = 1.2;
+    private double gst = 1.07;
+    private double hst = 1.08;
+    private double pst = 1.02;
     private double total_gross = 0;
     private String email;
     private int invoice_id_generated;

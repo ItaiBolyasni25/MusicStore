@@ -39,7 +39,7 @@ a{
     border: 0px;
 }
 
-#ads{
+.ads{
     width: 70%;
     height: 10%;
     margin-left: 15%;
@@ -118,9 +118,9 @@ section .section-title {
     text-transform: uppercase;
 }
 #info {
-    width: 90%;
-    height: 40%;
-    margin-left: 5%;
+    width: 100%;
+    margin-top: 10%;
+    background-color: white;
 }
 #footer {
     margin-top: 10%;
@@ -271,11 +271,10 @@ section .section-title {
 }
 
 .genresimg{
-    height: 40%;
-    width: 40%;
+    height: 300px;
+    width: 300px;
     display: block;
-    margin-left: 20%;
-    margin-top: 5%;
+    border-radius: 50%;
 }
 
 #logomanager{
@@ -285,7 +284,6 @@ section .section-title {
 
 .managernav{
     margin-top: 2%;
-
 }
 
 .addsurvey{
@@ -347,7 +345,7 @@ button{
 
 #navsound{
   position: fixed;
-  height: 100px;
+  height: 10%;
   top: 0;
   width: 100%;
   z-index: 2;
@@ -355,17 +353,37 @@ button{
 
 .body{
   margin-top:100px;
+  width: 100%;
+  height: 100%;
+}
+
+.divbackground{
+    opacity: 0.7;
+    position: relative;
 }
 
 .centered {
-  color: black;
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: black;
+  color: white;
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
   text-align: center;
-  font-weight: bold;
+}
+.textStyle{
+    margin-top: 20%;
 }
 
 .container {
   width: 100%;
   height: 40%;
+  opacity: 1;
   color: black;
 }
 
@@ -373,6 +391,9 @@ button{
   width:100%;
   color: black;
   height: auto;
+  object-fit: contain;
+  transition: .5s ease;
+  backface-visibility: hidden;
 }
 
 .display-5{
@@ -471,8 +492,9 @@ button{
     overflow-x: hidden;
     z-index: 1;
 }
-<<<<<<< HEAD
-
+.RECOMMENDEDIMG{
+    height: 70px;
+}
 .parallax {
   /* The image used */
   background-image: url("../../assets/indexbackground.jpg");
@@ -535,8 +557,8 @@ button{
     margin: 0px !important;
     padding: 0px !important;
     -webkit-box-reflect: below 8px -webkit-gradient(linear, right top, right bottom, from(transparent), color-stop(40%, transparent), to(rgba(255, 255, 255, 0.1)));
-=======
-#albumpanel{
+}
+    #albumpanel{
      margin: 0 auto;
 }
 #trackpanel{
@@ -610,5 +632,185 @@ button{
     width: 90%;
     padding: 2%;
     margin-left: 3%;
->>>>>>> af19b48f7ea7c62dba02cfc24732cf7693ea55c0
+}
+.container {
+  position: relative;
+  width: 50%;
+}
+.containerCustom{
+  position: relative;
+  width: 100%;
+}
+.containerCustom:hover .image {
+  opacity: 0.3;
+}
+.containerCustom:hover .centered {
+  opacity: 0.8;
+}
+
+.image {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.container:hover .image {
+  opacity: 0.3;
+}
+
+.container:hover .middle {
+  opacity: 1;
+}
+.icon{
+    height: 120px;
+    width: auto;
+}
+.info{
+    padding-left: 5%;
+    font-size: 20px;
+}
+.slideshows{
+    border: 5px solid white;
+}
+.slides{
+  max-height: 1000px;
+}
+.textColor{
+    color: white !important;
+    opacity: 1 !important;
+}
+.itemContainer{
+  position: relative;
+  width: 100%;
+}
+.itemInfo{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: black;
+  overflow: hidden;
+  width: 100%;
+  height: 0;
+  transition: .5s ease;
+}
+.itemContainer:hover .itemInfo {
+  height: 20%;
+  opacity: 0.6;
+}
+.text {
+  color: white;
+  opacity: 1 !important;
+  font-size: 50px;
+  position: absolute;
+  top: 50%;
+  left: 20%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: left;
+}
+.smallTextSlide{
+    color: white;
+     font-size: 25px;
+}
+.list-group-item:hover{
+    background-color:#ECE8ED;
+}
+.band {
+  width: 85%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding-bottom: 3%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  grid-gap: 20px;
+}
+@media (min-width: 30em) {
+  .band {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (min-width: 60em) {
+  .band {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.card {
+  background: white;
+  text-decoration: none;
+  color: #444;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  position: relative;
+  top: 0;
+  transition: all 0.1s ease-in;
+}
+.card:hover {
+  top: -2px;
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
+}
+.card article {
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.card h1 {
+  font-size: 20px;
+  margin: 0;
+  color: #333;
+  font-weight: 20px;
+}
+.card p {
+  flex: 1;
+  line-height: 1.4;
+}
+.card span {
+  font-size: 12px;
+  font-weight: bold;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 2em 0 0 0;
+}
+.card .thumb {
+  padding-bottom: 60%;
+  background-size: cover;
+  background-position: center center;
+}
+
+@media (min-width: 60em) {
+  .item-1 {
+    grid-column: 1/span 2;
+  }
+  .item-1 h1 {
+    font-size: 24px;
+  }
+}
+.customFont{
+    font-weight:900;
+}
+
+.nav-item{
+    list-style-type: none !important;
 }

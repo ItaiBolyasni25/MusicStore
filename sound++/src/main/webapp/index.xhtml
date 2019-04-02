@@ -9,22 +9,27 @@
     <h:head>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.2.1/lux/bootstrap.min.css" />
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"></link>
+
+        <script src="resources/js/indexJS.js"></script>
         <!--Library for sliding carousel -->
         <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
         <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
         <script src="resources/js/newsfeed.js"></script>
-        <script src="resources/js/indexJS.js"></script>
         <h:outputStylesheet library="css" name="style.css"  />
+        <h:outputStylesheet library="css" name="bamboo.min.css"/>
+        <script src="resources/js/bamboo.min.js"></script>  
+        
+
         <title>Sound++</title>
         <f:view>
             <f:event type="preRenderView" listener="#{SongParser.onLoad()}"/>
         </f:view>
-            <f:metadata>
-        <f:viewAction action="#{IndexMusicBean.init}" />
-    </f:metadata>
+        <f:metadata>
+            <f:viewAction action="#{IndexMusicBean.init}" />
+        </f:metadata>
     </h:head>
     <h:body class="backgroundcolor">
 
@@ -34,7 +39,9 @@
                 news("#{newsBean.currentFeed}");
             });
         </script>
+
         <ui:include src="navbar.xhtml"/>
+        <script src="resources/js/newsfeed.js"></script>
         <div class="body">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
@@ -45,7 +52,7 @@
                         <a class="nav-link disabled" data-toggle="tab" href="#profile">#{internationalization.profile}</a>
                     </li>
                 </h:panelGroup>
-                <h:panelGroup rendered="#{empty user}">
+                <h:panelGroup rendered="#{not empty user}">
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#profile">#{internationalization.profile}</a>
                     </li>
@@ -57,194 +64,242 @@
 
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane fade show active" id="home">
-
                     <div class="index">
-                        <div class="parallax">
-                            <div class="centered">
-                                <br/><br/>
-                                <h:outputText rendered="#{empty user}" class="display-1" value="#{internationalization.welcome}" />
-                                <h:outputText rendered="#{not empty user}" class="display-1" value="#{internationalization.welcome}  #{user}" />
-                                <br/><br/>
-                                <h:outputText class="h1" value="#{internationalization.description}" />
-                                <br/><br/><br/><br/>
-                                <h:panelGroup rendered="#{empty user}">
-                                    <div class="row">
-                                        <div class="col-md-5"></div>
-                                        <div class="col-md-1"><h:button class="btn btn-primary" value="#{internationalization.login}" outcome="login" /></div>
-                                        <div class="col-md-1"><h:button class="btn btn-primary" value="#{internationalization.signup}" outcome="register" /></div>
-                                    </div>
-                                </h:panelGroup>
-                                <br/><br/><br/><br/><br/>
-                                <h:outputText class="h3" value="*#{internationalization.devices}" />
-                                <br/><br/><br/><br/><br/><br/><br/><br/>
-                                <h:link class="h2" value="#{internationalization.learnmore}>" outcome="about"/>
-                            </div>
-                        </div>
+                        <div class="slideshows">
+                            <div class="slides">
+                                <div class="divbackground" onmouseover="stopSlide()" onmouseout="playSlide()">
+                                    <div class="containerCustom">
+                                        <div class="parallax">
+                                            <h:graphicImage value="assets/indexbackground.jpg" class="imgbackground"/>
+                                            <div class="centered">
+                                                <div class="textStyle"><h:outputText rendered="#{empty user}" class="display-2" value="#{internationalization.welcome}" />
+                                                    <h:outputText rendered="#{not empty user}" class="display-2 textColor" value="#{internationalization.welcome}  #{user}" />
+                                                    <br/><br/>
+                                                    <h:outputText class="h1 textColor" value="#{internationalization.description}" />
+                                                    <br/><br/><br/><br/>
+                                                    <h:panelGroup rendered="#{empty user}">
+                                                        <div class="row">
+                                                            <div class="col-md-3"></div>
+                                                            <div class="col-md-3"><h:button class="btn btn-secondary" value="#{internationalization.login}" outcome="login" /></div>
+                                                            <div class="col-md-3"><h:button class="btn btn-secondary" value="#{internationalization.signup}" outcome="register" /></div>
+                                                        </div>
+                                                    </h:panelGroup>
+                                                    <br/><br/><br/><br/><br/>
+                                                    <h:outputText class="h3 textColor" value="*#{internationalization.devices}" />
+                                                    <br/><br/><br/><br/><br/><br/><br/><br/>
+                                                    <h:link class="h2 textColor" value="#{internationalization.learnmore}>" outcome="about"/></div>
+                                            </div></div>
+                                    </div></div>
 
-                        <div class="centered">
-                            <br/>
-                            <h:outputText class="h1 text-center" value="#{internationalization.recommended}"></h:outputText>
-                            <br/><br/><br/>
-                            <div class="row">
-                                <h:panelGroup rendered="#{albumBean.byGenre != null}">
-                                    <div class="col-md-4"></div>
-                                    <div class="col-md-1">
-                                        <h:form>
-                                            <h:commandLink class="customLink"  action="#{selectedAlbum.editDataItem()}">
-                                                <h:graphicImage value="#{albumBean.album1.image}" title="Album's cover" style="float: left;" class="album"/>
-                                                <f:setPropertyActionListener target="#{selectedAlbum.selectedAlbum}" value="#{albumBean.album1}" />
-                                            </h:commandLink>
-                                        </h:form>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <h:form>
-                                            <h:commandLink class="customLink"  action="#{selectedAlbum.editDataItem()}">
-                                                <h:graphicImage value="#{albumBean.album2.image}" title="Album's cover" class="albumMax"/>
-                                                <f:setPropertyActionListener target="#{selectedAlbum.selectedAlbum}" value="#{albumBean.album2}" />
-                                            </h:commandLink>
-                                        </h:form>
-                                    </div>
-                                    <div class="col-md-1">
-                                        <h:form>
-                                            <h:commandLink class="customLink"  action="#{selectedAlbum.editDataItem()}">
-                                                <h:graphicImage value="#{albumBean.album3.image}" title="Album's cover" style="float: left;" class="album"/>
-                                                <f:setPropertyActionListener target="#{selectedAlbum.selectedAlbum}" value="#{albumBean.album3}" />
-                                            </h:commandLink>
-                                        </h:form>
-                                    </div>
-                                    <div class="col-md-3"></div>
-                                </h:panelGroup>
-                            </div>
-                        </div>
-                    </div>
-                    <br/><br/><br/><br/>
+                                <ui:repeat var="al" value="#{IndexMusicBean.recentAlbum}">
+                                    <div class="itemContainer"><h:graphicImage value="#{al.image}" class="imgbackground"></h:graphicImage>
+                                        <div class="itemInfo">
+                                            <div class="text"><h:outputText value="#{al.title}" />
+                                                <p class="smallTextSlide"><ui:repeat var="ar" value="#{al.artists}">
+                                                        <h:outputText value="#{ar.name}"></h:outputText></ui:repeat></p>
+                                            </div>
+                                        </div></div>
+                                </ui:repeat>
+                            </div> 
+                        </div></div>
+
+
+                    <br/><br/>
                     <div class="row">
                         <div class="col-md-9">
-                            <h1 class="display-5">#{internationalization.newsfeed}</h1>
-                            <div class="row">
-                                <div class="col-md-1" id="prev">
-                                    <button type="button" class="slick-prev emptybutton"><img class="arrows" src="assets/arrowprev.png"></img></button>
-                                </div>                                
-                                <div class="jumbotron multiple-items col-md-10" id="newsfeed">
-                                </div>
-                                <div class="col-md-1" id="next">
-                                    <button type="button" class="slick-next emptybutton"><img class="arrows" src="assets/arrownext.png"></img></button>
-                                </div>
-                            </div>
-                            <h:panelGroup id="albumtable" class="col-md-9">
-                                <h1 class="display-5">#{internationalization.popularAlbums}</h1>
+                             <h:panelGroup id="albumtable" class="col-md-9">
+                                <h1 class="display-5 customFont">#{internationalization.popularAlbums}</h1>
                                 <div class="row">  
                                     <c:if  test="#{IndexMusicBean.albumCurrentPage != 1}">
                                         <h:form class="col-md-1">
-                                        <h:commandLink class="prev" value="&laquo;" actionListener="#{IndexMusicBean.albumPrev()}">
-                                             <f:ajax execute="@form" render="albumtable" /></h:commandLink>
-                                    </h:form> </c:if>
-                                <c:if  test="#{IndexMusicBean.albumCurrentPage == 1}">
-                                     <h:form class="col-md-1">
-                                 
-                                        <h:commandLink class="right-not-active" value="&laquo;">
+                                            <h:commandLink class="prev" value="&laquo;" actionListener="#{IndexMusicBean.albumPrev()}">
+                                                <f:ajax execute="@form" render="albumtable" /></h:commandLink>
+                                        </h:form> </c:if>
+                                    <c:if  test="#{IndexMusicBean.albumCurrentPage == 1}">
+                                        <h:form class="col-md-1">
+
+                                            <h:commandLink class="right-not-active" value="&laquo;">
                                             </h:commandLink>
-                                    </h:form>
-                                </c:if>
-                                     <div class="jumbotron multiple-items col-md-10">
-                                         <div class="row">
+                                        </h:form>
+                                    </c:if>
+                                    <div class="jumbotron multiple-items col-md-10">
+                                        <div class="row">
                                             <c:forEach var="album" items="#{IndexMusicBean.albums}">
-                                                 <div class="col-lg-4">
-                                                <h:form class="specAlbum">
+                                                <div class="col-lg-4">
+                                                    <h:form class="specAlbum">
                                                         <div>
                                                             <h:commandLink class="customLink"  action="#{selectedAlbum.editDataItem()}">
                                                                 <div><h:graphicImage value="#{album.image}" title="Album's cover" class="albumPic"/>
                                                                     <div><h:outputText value=" #{album.title}"/>
-                                                                    <ui:repeat var="artist" value="#{album.artists}"><br/>
-                                                                        <h:outputText class="smallText" value="#{artist.name}"></h:outputText>   
-                                                                    </ui:repeat><br/>
-                                                                    <h:outputText class="smallText" value=" CAD #{album.cost}"/></div>
+                                                                        <ui:repeat var="artist" value="#{album.artists}"><br/>
+                                                                            <h:outputText class="smallText" value="#{artist.name}"></h:outputText>   
+                                                                        </ui:repeat><br/>
+                                                                        <h:outputText class="smallText" value=" CAD #{album.cost}"/></div>
                                                                 </div>
                                                                 <f:setPropertyActionListener target="#{selectedAlbum.selectedAlbum}" value="#{album}" />
                                                             </h:commandLink></div></h:form></div>
                                             </c:forEach></div></div>
-                                        <c:if  test="#{IndexMusicBean.albumCurrentPage != IndexMusicBean.albumTotalPage}">
-                                    <h:form class="col-md-1">
-                                        <h:commandLink class="next" value="&raquo;" actionListener="#{IndexMusicBean.albumNext()}">
-                                             <f:ajax execute="@form" render="albumtable" /></h:commandLink>
-                                   </h:form>
-                                </c:if>
-                                     <c:if  test="#{IndexMusicBean.albumCurrentPage == IndexMusicBean.albumTotalPage}">
-                                    <h:form class="col-md-1">
-                                        <h:commandLink class="left-not-active" value="&raquo;" actionListener="#{IndexMusicBean.albumNext()}">
-                                             <f:ajax execute="@form" render="albumtable" /></h:commandLink>   </h:form>
-                                                            
-
-                                </c:if>
+                                    <c:if  test="#{IndexMusicBean.albumCurrentPage != IndexMusicBean.albumTotalPage}">
+                                        <h:form class="col-md-1">
+                                            <h:commandLink class="next" value="&raquo;" actionListener="#{IndexMusicBean.albumNext()}">
+                                                <f:ajax execute="@form" render="albumtable" /></h:commandLink>
+                                        </h:form>
+                                    </c:if>
+                                    <c:if  test="#{IndexMusicBean.albumCurrentPage == IndexMusicBean.albumTotalPage}">
+                                        <h:form class="col-md-1">
+                                            <h:commandLink class="left-not-active" value="&raquo;" actionListener="#{IndexMusicBean.albumNext()}">
+                                                <f:ajax execute="@form" render="albumtable" /></h:commandLink>   </h:form>
+                                    </c:if>
                                 </div>
-                               
+
                             </h:panelGroup>
-                             <h:panelGroup id="tracktable" class="col-md-9">
-                                 <h1 class="display-5">#{internationalization.popularTracks}</h1>
+                            <h:panelGroup id="tracktable" class="col-md-9">
+                                <h1 class="display-5">#{internationalization.popularTracks}</h1>
                                 <div class="row">  
-                                    
+
                                     <c:if  test="#{IndexMusicBean.trackCurrentPage != 1}">
                                         <h:form class="col-md-1">
                                             <h:commandLink class="prev" value="&laquo;" actionListener="#{IndexMusicBean.trackPrev()}">
-                                             <f:ajax execute="@form" render="tracktable" /></h:commandLink>
-                                    </h:form> </c:if>
-                                <c:if  test="#{IndexMusicBean.trackCurrentPage == 1}">
-                                     <h:form class="col-md-1">
-                                 
-                                        <h:commandLink class="right-not-active" value="&laquo;">
+                                                <f:ajax execute="@form" render="tracktable" /></h:commandLink>
+                                        </h:form> </c:if>
+                                    <c:if  test="#{IndexMusicBean.trackCurrentPage == 1}">
+                                        <h:form class="col-md-1">
+
+                                            <h:commandLink class="right-not-active" value="&laquo;">
                                             </h:commandLink>
-                                    </h:form>
-                                </c:if>
-                                     <div class="jumbotron multiple-items col-md-10">
-                                         <div class="row">
-                                             <c:forEach var="track" items="#{IndexMusicBean.tracks}">
-                                                 <div class="col-lg-4">
-                                                <h:form class="specAlbum">
+                                        </h:form>
+                                    </c:if>
+                                    <div class="jumbotron multiple-items col-md-10">
+                                        <div class="row">
+                                            <c:forEach var="track" items="#{IndexMusicBean.tracks}">
+                                                <div class="col-lg-4">
+                                                    <h:form class="specAlbum">
                                                         <div>
                                                             <h:commandLink class="customLink"  action="#{selectedTrack.editDataItem()}">
                                                                 <div><h:graphicImage value="#{track.album.image}" title="Album's cover" class="albumPic"/>
                                                                     <div><h:outputText value=" #{track.title}"/>
-                                                                    <ui:repeat var="artist" value="#{track.album.artists}"><br/>
-                                                                        <h:outputText class="smallText" value="#{artist.name}"></h:outputText>   
-                                                                    </ui:repeat><br/>
-                                                                    <h:outputText class="smallText" value=" CAD #{track.cost}"/></div>
+                                                                        <ui:repeat var="artist" value="#{track.album.artists}"><br/>
+                                                                            <h:outputText class="smallText" value="#{artist.name}"></h:outputText>   
+                                                                        </ui:repeat><br/>
+                                                                        <h:outputText class="smallText" value=" CAD #{track.cost}"/></div>
                                                                 </div>
                                                                 <f:setPropertyActionListener target="#{selectedTrack.selectedTrack}" value="#{track}" />
                                                             </h:commandLink></div></h:form></div>
                                             </c:forEach></div></div>
                                     <c:if  test="#{IndexMusicBean.trackCurrentPage != IndexMusicBean.trackTotalPage}">
-                                    <h:form class="col-md-1">
-                                        <h:commandLink class="next" value="&raquo;" actionListener="#{IndexMusicBean.trackNext()}">
-                                             <f:ajax execute="@form" render="tracktable" /></h:commandLink>
-                                   </h:form>
-                                </c:if>
-                                     <c:if  test="#{IndexMusicBean.trackCurrentPage == IndexMusicBean.trackTotalPage}">
-                                    <h:form class="col-md-1">
-                                        <h:commandLink class="left-not-active" value="&raquo;"/>  </h:form>                                                         
-                                </c:if>
+                                        <h:form class="col-md-1">
+                                            <h:commandLink class="next" value="&raquo;" actionListener="#{IndexMusicBean.trackNext()}">
+                                                <f:ajax execute="@form" render="tracktable" /></h:commandLink>
+                                        </h:form>
+                                    </c:if>
+                                    <c:if  test="#{IndexMusicBean.trackCurrentPage == IndexMusicBean.trackTotalPage}">
+                                        <h:form class="col-md-1">
+                                            <h:commandLink class="left-not-active" value="&raquo;"/>  </h:form>                                                         
+                                    </c:if>
                                 </div>
-                               
+
                             </h:panelGroup>
+                            <h1 class="display-5 customFont">#{internationalization.newsfeed}</h1>
+                            <div class="band">
+                                <div class="item-1">
+                                    <a href="" class="card">
+                                        <div class="thumb" id="item1"></div>
+                                        <article>
+                                            <h1 id="title1"></h1>
+                                            <span id="author1"></span>
+                                        </article>
+                                    </a>
+                                </div>
+                                <div class="item-2">
+                                    <a class="card">
+                                        <div class="thumb"></div>
+                                        <article>
+                                            <h1></h1>
+                                            <span></span>
+                                        </article>
+                                    </a>
+                                </div>
+                                <div class="item-3">
+                                    <a class="card">
+                                        <div class="thumb"></div>
+                                        <article>
+                                            <h1></h1>
+                                            <span></span>
+                                        </article>
+                                    </a>
+                                </div>
+                                <div class="item-4">
+                                    <a class="card">
+                                        <div class="thumb"></div>
+                                        <article>
+                                            <h1></h1>
+                                            
+                                            <span></span>
+                                        </article>
+                                    </a>
+                                </div>
+                                <div class="item-5">
+                                    <a class="card">
+                                        <div class="thumb"></div>
+                                        <article>
+                                            <h1></h1>
+                                            <span></span>
+                                        </article>
+                                    </a>
+                                </div>
+                                <div class="item-6">
+                                    <a class="card">
+                                        <div class="thumb"></div>
+                                        <article>
+                                            <h1></h1>
+
+                                            <span></span>
+                                        </article>
+                                    </a>
+                                </div>
+                                <div class="item-7">
+                                    <a href="https://webdesign.tutsplus.com/articles/notes-from-behind-the-firewall-the-state-of-web-design-in-china--cms-22281" class="card">
+                                        <div class="thumb" ></div>
+                                        <article>
+                                            <h1></h1>
+                                            <span></span>
+                                        </article>
+                                    </a>
+                                </div>
+                            </div>
+                           
                         </div>
 
                         <div class="col-md-3">
                             <div id="newreleases">
-                                <h1 class="display-5">#{internationalization.newreleases}</h1>
                                 <div class="card border-primary mb-3">
-                                    <h3 class="card-header">#{internationalization.newsongs}</h3>
+                                    <h3 class="card-header">#{internationalization.recommended}</h3>
                                     <div class="card-body">
-                                        <ul class="list-group list-group-flush">
-                                            <li class="list-group-item"><a href="#" class="card-link">Hello by gab</a></li>
-                                            <li class="list-group-item"> <a href="#" class="card-link">Hello by gab</a></li>
-                                        </ul>
-                                    </div>
-                                    <h3 class="card-header">#{internationalization.newalbums}</h3>
-                                    <div class="card-body">
-                                        <ul class="list-group list-group-flush">
-                                            <li class="list-group-item"><a href="#" class="card-link">Hello by gab</a></li>
-                                            <li class="list-group-item"> <a href="#" class="card-link">Hello by gab</a></li>
-                                            <li class="list-group-item"> <a href="#" class="card-link">Hello by gab</a></li>
-                                            <li class="list-group-item"> <a href="#" class="card-link">Hello by gab</a></li>
+                                        <ul class="list-group list-group-flush">  
+                                            <c:forEach var="album" items="#{albumBean.byGenre}">
+                                                <li class="list-group-item">  <h:form>
+                                                        <div class="row">
+                                                            <div class="col-md-4">    
+                                                                <h:graphicImage value="#{album.image}" title="Album's cover" class="RECOMMENDEDIMG"/></div>
+                                                            <div class="col-md-8"> <h:commandLink class="customLink"  action="#{selectedAlbum.editDataItem()}" value="#{album.title}">
+                                                                    <f:setPropertyActionListener target="#{selectedAlbum.selectedAlbum}" value="#{album}" />
+                                                                </h:commandLink>
+                                                                <p class="smallText"><c:forEach var="item" items="#{album.artists}">#{item.name}</c:forEach><br/>$#{album.cost}</p>
+                                                            </div></div>
+                                                    </h:form></li>
+                                            </c:forEach>
+                                            <c:forEach var="track" items="#{albumBean.byGenreTrack}">
+                                                <li class="list-group-item">  <h:form>
+                                                        <div class="row">
+                                                            <div class="col-md-4">    
+                                                                <h:graphicImage value="#{track.album.image}" title="Album's cover" class="RECOMMENDEDIMG"/></div>
+                                                            <div class="col-md-8"> <h:commandLink class="customLink"  action="#{selectedTrack.editDataItem()}" value="#{track.title}">
+                                                                    <f:setPropertyActionListener target="#{selectedTrack.selectedTrack}" value="#{track}" />
+                                                                </h:commandLink>
+                                                                <p class="smallText"><c:forEach var="item" items="#{track.album.artists}">#{item.name}</c:forEach><br/>$#{track.cost}</p>
+                                                            </div></div>
+                                                    </h:form></li>
+                                            </c:forEach>
                                         </ul>
                                     </div>
                                 </div>
@@ -264,7 +319,7 @@
                                 <ui:repeat var="survey" value="#{surveyResultBean.surveysNotAnswered}" size="1">
                                     <h:form>
                                         <h1>#{survey.question}</h1>
-                                        <h:selectOneRadio value="#{surveyResultBean.answer}">
+                                        <h:selectOneRadio  class="form-check-input" value="#{surveyResultBean.answer}">
                                             <f:selectItems var="option" value="#{survey.options}"
                                                            itemValue="#{option}" itemLabel="#{option}"/>
                                         </h:selectOneRadio>
@@ -296,18 +351,37 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-1"></div>
                         <div class="col-md-7">
-
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
-                                        <th scope="col">Type</th>
-                                        <th scope="col">Column heading</th>
-                                        <th scope="col">Column heading</th>
-                                        <th scope="col">Column heading</th>
+                                        <th scope="col">#{internationalization.name}</th>
+                                        <th scope="col">#{internationalization.duration}</th>
+                                        <th scope="col"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <h:panelGroup rendered="#{not empty userObj}">
+                                        <ui:repeat value="#{cartController.getBoughtItems(userObj)}" var="item">
+                                            <h:panelGroup rendered="#{item.track != null}">
+                                                <tr>
+                                                    <td>#{item.track.title}</td>
+                                                    <td>#{item.track.play_length}</td>
+                                                    <td><button type="button" class="btn btn-primary">#{internationalization.download}</button></td>
+                                                </tr>
+                                            </h:panelGroup>
+                                        </ui:repeat>
+                                        <ui:repeat value="#{cartController.getBoughtItems(userObj)}" var="item">
+                                            <h:panelGroup rendered="#{item.album != null}">
+                                                <tr>
+                                                    <td>#{item.track.title}</td>
+                                                    <td>#{item.track.play_length}</td>
+                                                    <td><button type="button" class="btn btn-primary">#{internationalization.download}</button></td>
+                                                </tr>
+                                            </h:panelGroup>
+                                        </ui:repeat>
+                                    </h:panelGroup>
                                 </tbody>
                             </table> 
 
@@ -316,7 +390,7 @@
                 </div>
 
                 <div class="tab-pane fade col-md-12" id="genres">
-                    <h:panelGrid columns="3">
+                    <h:panelGrid columns="4" cellpadding="100px">
                         <c:forEach var="genre" items="#{genreSearchBean.genres}">
                             <h:form>
                                 <h:commandLink class="customLink" action="#{genreSearchBean.searchGenre}">
@@ -331,7 +405,7 @@
             </div>
         </div>
         <ui:include src="footer.xhtml"/>
-    <br />
-<h:link outcome="welcomePrimefaces" value="Primefaces welcome page" />
-</h:body>
+        <br />
+        <h:link outcome="welcomePrimefaces" value="Primefaces welcome page" />
+    </h:body>
 </html>
