@@ -156,7 +156,10 @@
                                         </ui:repeat>
                                     </ul>
                                 </h:panelGroup>
-                                <h:commandButton class="btn btn-outline-primary" value="#{internationalization.search}"  action="#{SearchBean.redirect()}" />
+                                <h:commandButton class="btn btn-outline-primary" value="#{internationalization.search}"  action="#{SearchBean.redirect()}">
+                                    <f:actionListener binding="#{inventoryBean.setSuccess(false)}" />
+                                    <f:actionListener binding="#{inventoryBean.setFail(false)}" />
+                                </h:commandButton>
                             </h:form>
                         </div>
                     </div>
