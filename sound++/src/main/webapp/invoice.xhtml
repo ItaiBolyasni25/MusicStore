@@ -115,20 +115,20 @@ and open the template in the editor.
                                         <td class="left">
                                             <strong>GST (7%)</strong>
                                         </td>
-                                        <td class="right">#{invoiceController.gst}</td>
+                                        <td class="right">#{0.07 * invoiceController.total_gross}</td>
                                     </tr>
                                     <tr>
                                         <td class="left">
                                             <strong>PST (8%)</strong>
                                         </td>
-                                        <td class="right">$679,76</td>
+                                        <td class="right">#{0.08 * invoiceController.total_gross}</td>
                                     </tr>
                                     <tr>
                                         <td class="left">
                                             <strong>Total</strong>
                                         </td>
                                         <td class="right">
-                                            <strong>#{invoiceController.total_cost  }</strong>
+                                            <strong>#{invoiceController.total_cost}</strong>
                                         </td>
                                     </tr>
                                 </tbody>
