@@ -51,7 +51,6 @@ public class CartController implements Serializable {
         cart.setAlbum(album);
         cart.setUser(user);
         dao.write(cart);
-        System.out.println("test");
         return "albums.xhtml";
     }
 

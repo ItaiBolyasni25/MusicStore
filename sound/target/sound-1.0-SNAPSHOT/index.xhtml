@@ -12,15 +12,12 @@
 
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"></link>
-<<<<<<< HEAD
 
         <script src="resources/js/indexJS.js"></script>
-=======
         <!--Library for sliding carousel -->
         <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
         <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
         <script src="resources/js/newsfeed.js"></script>
->>>>>>> add details to manager websites, mobile compability, change images for genres and style login page
         <h:outputStylesheet library="css" name="style.css"  />
         <h:outputStylesheet library="css" name="bamboo.min.css"/>
         <script src="resources/js/bamboo.min.js"></script>  
@@ -132,24 +129,12 @@
                                                     <h:form class="specAlbum">
                                                         <div>
                                                             <h:commandLink class="customLink"  action="#{selectedAlbum.editDataItem()}">
-<<<<<<< HEAD
-                                                                <div><div class="container">
-                                                                        <h:graphicImage value="#{album.image}" title="Album's cover" class="image albumPic"/>
-                                                                        <div class="middle"> <div><img class="icon" src="assets/Play-512.png"></img></div></div>
-                                                                    </div>
-                                                                    <div class="info"><h:outputText value=" #{album.title}"/>
-                                                                        <ui:repeat var="artist" value="#{album.artists}"><br/>
-                                                                            <h:outputText value="#{artist.name}"></h:outputText>   
-                                                                        </ui:repeat><br/>
-                                                                        <h:outputText value=" CAD #{album.cost}"/></div>
-=======
                                                                 <div><h:graphicImage value="#{album.image}" title="Album's cover" class="albumPic"/>
                                                                     <div><h:outputText value=" #{album.title}"/>
                                                                         <ui:repeat var="artist" value="#{album.artists}"><br/>
                                                                             <h:outputText class="smallText" value="#{artist.name}"></h:outputText>   
                                                                         </ui:repeat><br/>
                                                                         <h:outputText class="smallText" value=" CAD #{album.cost}"/></div>
->>>>>>> add details to manager websites, mobile compability, change images for genres and style login page
                                                                 </div>
                                                                 <f:setPropertyActionListener target="#{selectedAlbum.selectedAlbum}" value="#{album}" />
                                                             </h:commandLink></div></h:form></div>
@@ -164,23 +149,12 @@
                                         <h:form class="col-md-1">
                                             <h:commandLink class="left-not-active" value="&raquo;" actionListener="#{IndexMusicBean.albumNext()}">
                                                 <f:ajax execute="@form" render="albumtable" /></h:commandLink>   </h:form>
-<<<<<<< HEAD
-
-
-=======
-
-
->>>>>>> add details to manager websites, mobile compability, change images for genres and style login page
                                     </c:if>
                                 </div>
 
                             </h:panelGroup>
                             <h:panelGroup id="tracktable" class="col-md-9">
-<<<<<<< HEAD
-                                <h1 class="display-5 customFont">#{internationalization.popularTracks}</h1>
-=======
                                 <h1 class="display-5">#{internationalization.popularTracks}</h1>
->>>>>>> add details to manager websites, mobile compability, change images for genres and style login page
                                 <div class="row">  
 
                                     <c:if  test="#{IndexMusicBean.trackCurrentPage != 1}">
@@ -202,24 +176,12 @@
                                                     <h:form class="specAlbum">
                                                         <div>
                                                             <h:commandLink class="customLink"  action="#{selectedTrack.editDataItem()}">
-<<<<<<< HEAD
-                                                                <div><div class="container">
-                                                                        <h:graphicImage value="#{track.album.image}" title="Album's cover" class="image albumPic"/>
-                                                                        <div class="middle"> <div><img class="icon" src="assets/Play-512.png"></img></div></div>
-                                                                    </div>
-                                                                    <div><h:outputText class="info" value=" #{track.title}"/>
-                                                                        <ui:repeat var="artist" value="#{track.album.artists}"><br/>
-                                                                            <h:outputText class="info" value="#{artist.name}"></h:outputText>   
-                                                                        </ui:repeat><br/>
-                                                                        <h:outputText class="info" value=" CAD #{track.cost}"/></div>
-=======
                                                                 <div><h:graphicImage value="#{track.album.image}" title="Album's cover" class="albumPic"/>
                                                                     <div><h:outputText value=" #{track.title}"/>
                                                                         <ui:repeat var="artist" value="#{track.album.artists}"><br/>
                                                                             <h:outputText class="smallText" value="#{artist.name}"></h:outputText>   
                                                                         </ui:repeat><br/>
                                                                         <h:outputText class="smallText" value=" CAD #{track.cost}"/></div>
->>>>>>> add details to manager websites, mobile compability, change images for genres and style login page
                                                                 </div>
                                                                 <f:setPropertyActionListener target="#{selectedTrack.selectedTrack}" value="#{track}" />
                                                             </h:commandLink></div></h:form></div>
@@ -410,7 +372,7 @@
                                                 </tr>
                                             </h:panelGroup>
                                         </ui:repeat>
-                                        <ui:repeat value="#{cartController.getBoughtItems(user)}" var="item">
+                                        <ui:repeat value="#{cartController.getBoughtItems(userObj)}" var="item">
                                             <h:panelGroup rendered="#{item.album != null}">
                                                 <tr>
                                                     <td>#{item.track.title}</td>

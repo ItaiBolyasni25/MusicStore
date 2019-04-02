@@ -2,8 +2,6 @@
  *  Requests RSS feed to rss2json API 
  */
 function news(newsfeed) {
-<<<<<<< HEAD
-=======
     
     $('.index').slick({
         infinite: true,
@@ -15,8 +13,6 @@ function news(newsfeed) {
         dots: true,
         dotsClass: 'dots'
     });
->>>>>>> add details to manager websites, mobile compability, change images for genres and style login page
-
     //https://rss2json.com/docs API used
     //Do Ajax request to get RSS feed 
     $.ajax({
