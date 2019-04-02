@@ -27,35 +27,34 @@ and open the template in the editor.
                 <section class='col-md-9 pt-0'>
                     <h3>Full Albums</h3>
                     <br/>
-                    <ul style='list-style-type:none'>
-                        <ui:repeat var="cartItem" value="#{cartController.getCartItems(userObj)}">
-                            <c:if test="${empty cartItem.track}">
-
+                    <h:form>
+                        <ul style='list-style-type:none'>
+                            <ui:repeat var="album" value="#{cartController.getCartAlbum(userObj)}">
                                 <li style='height: 50px'>
-                                    <span style='font-size:18px;' class='pr-5 pt-3'>#{cartItem.album.title}</span>
-                                    <h:form>
-                                        <a href='#' class='btn btn-danger' style='float:right'>Remove</a>
-                                    </h:form>
-                                    <span class='pr-5' style='font-size: 14px; float:right'>#{cartItem.album.list_Price}</span>                                
+
+
+                                    <span style='font-size:18px;' class='pr-5 pt-3'>#{album.title}</span>
+                                    <a href='#' class='btn btn-danger' style='float:right'>Remove</a>
+                                    
+
+                                    <span class='pr-5' style='font-size: 14px; float:right'>#{album.list_Price}</span>                                
                                 </li>
-                            </c:if>
-                        </ui:repeat>
-                    </ul>
+                            </ui:repeat>
+                        </ul>
+                    </h:form>
                 </section>
                 <section class='col-md-9 pt-0'>
                     <h3>Individual Tracks</h3>
                     <br/>
                     <ul style='list-style-type:none'>
-                        <ui:repeat var="cartItem" value="#{cartController.getCartItems(userObj)}">
-                            <c:if test="${empty cartItem.album}">
-                                <li style='height: 50px'>
-                                    <span style='font-size:18px;' class='pr-5 pt-3'>#{cartItem.track.title}</span>
-                                    <h:form>
-                                        <a href='#' class='btn btn-danger' style='float:right'>Remove</a>
-                                    </h:form>
-                                    <span class='pr-5' style='font-size: 14px; float:right'>#{cartItem.track.list_price}</span>                                
-                                </li>
-                            </c:if>
+                        <ui:repeat var="track" value="#{cartController.getCartTracks(userObj)}">
+                            <li style='height: 50px'>
+                                <span style='font-size:18px;' class='pr-5 pt-3'>#{track.title}</span>
+                                <h:form>
+                                    <a href='#' class='btn btn-danger' style='float:right'>Remove</a>
+                                </h:form>
+                                <span class='pr-5' style='font-size: 14px; float:right'>#{track.list_price}</span>                                
+                            </li>
                         </ui:repeat>
                     </ul>
                 </section>

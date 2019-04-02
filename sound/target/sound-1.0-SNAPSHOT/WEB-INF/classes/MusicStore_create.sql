@@ -1,4 +1,4 @@
-drop database songstore;
+drop database if exists songstore;
 create database songstore;
 DROP USER IF EXISTS songstore@localhost;
 CREATE USER songstore@'localhost' IDENTIFIED WITH mysql_native_password BY 'dawson123' REQUIRE NONE;
@@ -69,12 +69,11 @@ CREATE TABLE News (
 );
 
 -- Table: Order
-CREATE TABLE `Order` (
+CREATE TABLE `Orders` (
     order_id int NOT NULL auto_increment,
     invoice_id int NOT NULL,
     price int NOT NULL,
-    track_id int NOT NULL,
-    album_id int NOT NULL,
+    
     CONSTRAINT Order_pk PRIMARY KEY (order_id)
 );
 
@@ -163,7 +162,13 @@ CREATE TABLE Roles (
     CONSTRAINT Groups_pk PRIMARY KEY (email)
 );
 
--- foreign keys	
+CREATE TABLE Banner(
+    banner_id int NOT NULL auto_increment,
+    banner varchar(300) NOT NULL,
+    used varchar(1) NOT NULL,
+    CONSTRAINT Banner_pk PRIMARY KEY (banner_id) 
+);
+
 -- Reference: Cart_Album (table: Cart)
 ALTER TABLE Cart ADD CONSTRAINT Cart_Album FOREIGN KEY Cart_Album (album_id)
     REFERENCES Album (album_id);
@@ -180,17 +185,11 @@ ALTER TABLE Cart ADD CONSTRAINT Cart_User FOREIGN KEY Cart_User (email)
 ALTER TABLE Invoice ADD CONSTRAINT Invoice_User FOREIGN KEY Invoice_User (email)
     REFERENCES User (email);
 
--- Reference: Order_Album (table: Order)
-ALTER TABLE `Order` ADD CONSTRAINT Order_Album FOREIGN KEY Order_Album (album_id)
-    REFERENCES Album (album_id);
 
 -- Reference: Order_Invoice (table: Order)
-ALTER TABLE `Order` ADD CONSTRAINT Order_Invoice FOREIGN KEY Order_Invoice (invoice_id)
+ALTER TABLE `Orders` ADD CONSTRAINT Order_Invoice FOREIGN KEY Order_Invoice (invoice_id)
     REFERENCES Invoice (invoice_id);
 
--- Reference: Order_Track (table: Order)
-ALTER TABLE `Order` ADD CONSTRAINT Order_Track FOREIGN KEY Order_Track (track_id)
-    REFERENCES Track (track_id);
 
 -- Reference: Review_User (table: Review)
 ALTER TABLE Review ADD CONSTRAINT Review_User FOREIGN KEY Review_User (email)
