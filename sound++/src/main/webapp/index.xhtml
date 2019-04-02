@@ -9,11 +9,15 @@
     <h:head>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.2.1/lux/bootstrap.min.css" />
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"></link>
 
         <script src="resources/js/indexJS.js"></script>
+        <!--Library for sliding carousel -->
+        <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+        <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+        <script src="resources/js/newsfeed.js"></script>
         <h:outputStylesheet library="css" name="style.css"  />
         <h:outputStylesheet library="css" name="bamboo.min.css"/>
         <script src="resources/js/bamboo.min.js"></script>  
@@ -35,6 +39,7 @@
                 news("#{newsBean.currentFeed}");
             });
         </script>
+
         <ui:include src="navbar.xhtml"/>
         <script src="resources/js/newsfeed.js"></script>
         <div class="body">
@@ -47,7 +52,7 @@
                         <a class="nav-link disabled" data-toggle="tab" href="#profile">#{internationalization.profile}</a>
                     </li>
                 </h:panelGroup>
-                <h:panelGroup rendered="#{empty user}">
+                <h:panelGroup rendered="#{not empty user}">
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#profile">#{internationalization.profile}</a>
                     </li>
@@ -124,15 +129,12 @@
                                                     <h:form class="specAlbum">
                                                         <div>
                                                             <h:commandLink class="customLink"  action="#{selectedAlbum.editDataItem()}">
-                                                                <div><div class="container">
-                                                                        <h:graphicImage value="#{album.image}" title="Album's cover" class="image albumPic"/>
-                                                                        <div class="middle"> <div><img class="icon" src="assets/Play-512.png"></img></div></div>
-                                                                    </div>
-                                                                    <div class="info"><h:outputText value=" #{album.title}"/>
+                                                                <div><h:graphicImage value="#{album.image}" title="Album's cover" class="albumPic"/>
+                                                                    <div><h:outputText value=" #{album.title}"/>
                                                                         <ui:repeat var="artist" value="#{album.artists}"><br/>
-                                                                            <h:outputText value="#{artist.name}"></h:outputText>   
+                                                                            <h:outputText class="smallText" value="#{artist.name}"></h:outputText>   
                                                                         </ui:repeat><br/>
-                                                                        <h:outputText value=" CAD #{album.cost}"/></div>
+                                                                        <h:outputText class="smallText" value=" CAD #{album.cost}"/></div>
                                                                 </div>
                                                                 <f:setPropertyActionListener target="#{selectedAlbum.selectedAlbum}" value="#{album}" />
                                                             </h:commandLink></div></h:form></div>
@@ -147,14 +149,12 @@
                                         <h:form class="col-md-1">
                                             <h:commandLink class="left-not-active" value="&raquo;" actionListener="#{IndexMusicBean.albumNext()}">
                                                 <f:ajax execute="@form" render="albumtable" /></h:commandLink>   </h:form>
-
-
                                     </c:if>
                                 </div>
 
                             </h:panelGroup>
                             <h:panelGroup id="tracktable" class="col-md-9">
-                                <h1 class="display-5 customFont">#{internationalization.popularTracks}</h1>
+                                <h1 class="display-5">#{internationalization.popularTracks}</h1>
                                 <div class="row">  
 
                                     <c:if  test="#{IndexMusicBean.trackCurrentPage != 1}">
@@ -176,15 +176,12 @@
                                                     <h:form class="specAlbum">
                                                         <div>
                                                             <h:commandLink class="customLink"  action="#{selectedTrack.editDataItem()}">
-                                                                <div><div class="container">
-                                                                        <h:graphicImage value="#{track.album.image}" title="Album's cover" class="image albumPic"/>
-                                                                        <div class="middle"> <div><img class="icon" src="assets/Play-512.png"></img></div></div>
-                                                                    </div>
-                                                                    <div><h:outputText class="info" value=" #{track.title}"/>
+                                                                <div><h:graphicImage value="#{track.album.image}" title="Album's cover" class="albumPic"/>
+                                                                    <div><h:outputText value=" #{track.title}"/>
                                                                         <ui:repeat var="artist" value="#{track.album.artists}"><br/>
-                                                                            <h:outputText class="info" value="#{artist.name}"></h:outputText>   
+                                                                            <h:outputText class="smallText" value="#{artist.name}"></h:outputText>   
                                                                         </ui:repeat><br/>
-                                                                        <h:outputText class="info" value=" CAD #{track.cost}"/></div>
+                                                                        <h:outputText class="smallText" value=" CAD #{track.cost}"/></div>
                                                                 </div>
                                                                 <f:setPropertyActionListener target="#{selectedTrack.selectedTrack}" value="#{track}" />
                                                             </h:commandLink></div></h:form></div>
@@ -322,7 +319,7 @@
                                 <ui:repeat var="survey" value="#{surveyResultBean.surveysNotAnswered}" size="1">
                                     <h:form>
                                         <h1>#{survey.question}</h1>
-                                        <h:selectOneRadio value="#{surveyResultBean.answer}">
+                                        <h:selectOneRadio  class="form-check-input" value="#{surveyResultBean.answer}">
                                             <f:selectItems var="option" value="#{survey.options}"
                                                            itemValue="#{option}" itemLabel="#{option}"/>
                                         </h:selectOneRadio>
@@ -354,18 +351,35 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-1"></div>
                         <div class="col-md-7">
-
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
-                                        <th scope="col">Type</th>
-                                        <th scope="col">Column heading</th>
-                                        <th scope="col">Column heading</th>
-                                        <th scope="col">Column heading</th>
+                                        <th scope="col">#{internationalization.name}</th>
+                                        <th scope="col">#{internationalization.duration}</th>
+                                        <th scope="col"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <ui:repeat value="#{cartController.getBoughtItems(user)}" var="item">
+                                        <h:panelGroup rendered="#{item.track != null}">
+                                            <tr>
+                                                <td>#{item.track.title}</td>
+                                                <td>#{item.track.play_length}</td>
+                                                <td><button type="button" class="btn btn-primary">#{internationalization.download}</button></td>
+                                            </tr>
+                                        </h:panelGroup>
+                                    </ui:repeat>
+                                    <ui:repeat value="#{cartController.getBoughtItems(user)}" var="item">
+                                        <h:panelGroup rendered="#{item.album != null}">
+                                            <tr>
+                                                <td>#{item.track.title}</td>
+                                                <td>#{item.track.play_length}</td>
+                                                <td><button type="button" class="btn btn-primary">#{internationalization.download}</button></td>
+                                            </tr>
+                                        </h:panelGroup>
+                                    </ui:repeat>
                                 </tbody>
                             </table> 
 
@@ -374,7 +388,7 @@
                 </div>
 
                 <div class="tab-pane fade col-md-12" id="genres">
-                    <h:panelGrid columns="3">
+                    <h:panelGrid columns="4" cellpadding="100px">
                         <c:forEach var="genre" items="#{genreSearchBean.genres}">
                             <h:form>
                                 <h:commandLink class="customLink" action="#{genreSearchBean.searchGenre}">

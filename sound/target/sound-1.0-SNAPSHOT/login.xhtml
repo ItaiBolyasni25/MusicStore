@@ -13,15 +13,28 @@
         <h:outputStylesheet library="css" name="style.css"  />
         <title>Sound++</title>
     </h:head>
-    <h:body>
-        <p:panel header="Login From">
-            <form method="POST" action="j_security_check">
-                Username: <input type="text" name="j_username" />
-                Password: <input type="password" name="j_password" />
-                <br />
-                <input type="submit" value="Login" />
-                <input type="reset" value="Reset" />
-            </form>
-        </p:panel>
+    <h:body class="backgroundcolor">
+
+        <ui:include src="navbar.xhtml" />
+
+        <div class="row">
+            <div class="col-md-4 centerform">
+                <br/><br/>
+                <p:panel>
+                    <legend>#{internationalization.login}</legend>
+                    <form method="POST" action="j_security_check">
+                        #{internationalization.email} <input class="form-control" type="text" name="j_username" />
+                        #{internationalization.password} <input class="form-control" type="password" name="j_password" />
+                        <br />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h:commandButton class="btn btn-primary formbutton" type="submit" value="Login" immediate="true" actionListener="#{registerBean.logIn()}"/><br/></div>
+                            <div class="col-md-6">
+                                <h:commandButton class="btn btn-primary formbutton" type="reset" value="Reset" /></div>
+                        </div>
+                    </form>
+                </p:panel>
+            </div>
+        </div>
     </h:body>
 </html>

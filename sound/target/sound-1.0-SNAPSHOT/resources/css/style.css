@@ -39,7 +39,7 @@ a{
     border: 0px;
 }
 
-#ads{
+.ads{
     width: 70%;
     height: 10%;
     margin-left: 15%;
@@ -271,11 +271,10 @@ section .section-title {
 }
 
 .genresimg{
-    height: 40%;
-    width: 40%;
+    height: 300px;
+    width: 300px;
     display: block;
-    margin-left: 20%;
-    margin-top: 5%;
+    border-radius: 50%;
 }
 
 #logomanager{
@@ -285,7 +284,6 @@ section .section-title {
 
 .managernav{
     margin-top: 2%;
-
 }
 
 .addsurvey{
@@ -347,7 +345,7 @@ button{
 
 #navsound{
   position: fixed;
-  height: 100px;
+  height: 10%;
   top: 0;
   width: 100%;
   z-index: 2;
@@ -355,6 +353,8 @@ button{
 
 .body{
   margin-top:100px;
+  width: 100%;
+  height: 100%;
 }
 
 .divbackground{
@@ -492,9 +492,13 @@ button{
     overflow-x: hidden;
     z-index: 1;
 }
+<<<<<<< HEAD
 .RECOMMENDEDIMG{
     height: 70px;
 }
+=======
+
+>>>>>>> add details to manager websites, mobile compability, change images for genres and style login page
 .parallax {
   /* The image used */
   background-image: url("../../assets/indexbackground.jpg");
@@ -633,6 +637,7 @@ button{
     padding: 2%;
     margin-left: 3%;
 }
+<<<<<<< HEAD
 .container {
   position: relative;
   width: 50%;
@@ -809,4 +814,9 @@ button{
 }
 .customFont{
     font-weight:900;
+=======
+
+.nav-item{
+    list-style-type: none !important;
+>>>>>>> add details to manager websites, mobile compability, change images for genres and style login page
 }

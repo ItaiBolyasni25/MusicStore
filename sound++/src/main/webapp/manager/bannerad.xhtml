@@ -11,20 +11,49 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
         <h:outputStylesheet library="css" name="style.css"  />
         <title>Sound++</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
     </h:head>
     <h:body class="backgroundcolor">
         <ui:include src="../navbarmanager.xhtml" />
-        <p>
-            From this page a manager can define the banner ads presented on the front page. Previous banner ads must be saved so that they may be reused.
-        </p>
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
-                <h:form enctype="multipart/form-data"  prependId="false">
-                    <h:outputText value="File: "></h:outputText>
-                    <h:inputFile value="#{bannerAddBean.uploadedFile}"  />
-                    <h:commandButton value="Save" type="submit" action="#{bannerAddBean.saveImage}" style="color: red;"></h:commandButton>
-                </h:form>
+                <br/>
+                <h:panelGroup layout="block" class="alert alert-danger" rendered="#{bannerAddBean.messageError != null}">
+                    <h:outputText class="text-danger" value="#{internationalization.errorFile}" />
+                </h:panelGroup>
+                <br/>
+                <div class="card text-white bg-dark mb-3">
+                    <div class="card-body">
+                        <h:form class="form-group" enctype="multipart/form-data"  prependId="false">
+                            <h:outputText class="card-title h3" value="File: "></h:outputText>
+                            <h:inputFile value="#{bannerAddBean.uploadedFile}" />
+                            <h:commandButton class="btn btn-primary" value="#{internationalization.change}" type="submit" action="#{bannerAddBean.saveImage}"></h:commandButton>
+                        </h:form>
+                        <br/>
+                    </div>
+                </div>
+                <br/>
+                <div class="card bg-secondary mb-3">
+                    <div class="card-body">
+                        <h:outputText class="card-title h3" value="#{internationalization.currentAds}"></h:outputText>
+                        <div class="ads">
+                            <h:graphicImage style="height: 200px; width: 100%; display: block;" value="../assets/banners/#{bannerAddBean.currentBannerUsed.banner}" alt="Card image"/>
+                        </div>
+                    </div>
+                </div>
+                <br/>
+                <div class="card bg-secondary mb-3" style="overflow:scroll; height:600px;">
+                    <div class="card-body">
+                        <h:outputText class="card-title h3" value="#{internationalization.previousAds}"></h:outputText>
+                        <ui:repeat value="#{bannerAddBean.bannersNotUsed}" var="ad">
+                            <div class="ads card mb-3">
+                                <img style="height: 100px; width: 100%; display: block;" src="../assets/banners/ads.png" alt="Card image"/>
+                            </div>
+                        </ui:repeat>
+                        <br/>
+                    </div>
+                </div>
             </div>
         </div>
         <ui:include src="../footer.xhtml" />
