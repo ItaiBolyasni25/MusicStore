@@ -2,9 +2,8 @@
  *  Requests RSS feed to rss2json API 
  */
 function news(newsfeed) {
-var $jq = jQuery.noConflict();
-
-    $jq('.index').slick({
+    
+    $('.index').slick({
         infinite: true,
         speed: 300,
         fade: true,
@@ -15,22 +14,17 @@ var $jq = jQuery.noConflict();
         dotsClass: 'dots'
     });
 
-
     //https://rss2json.com/docs API used
-    //Feed to parse
-    var feed = "https://www.cbc.ca/cmlink/rss-arts";
     //Do Ajax request to get RSS feed 
     $.ajax({
         url: 'https://api.rss2json.com/v1/api.json',
         method: 'GET',
         dataType: 'json',
         data: {
-            rss_url: feed,
+            rss_url: newsfeed,
             api_key: "ahtjmmolm5ip6nd4rucf2d1hxdtuh2usxwgswjg3"
         }
     }).done(handleResponse);
-
-
 }
 
 /**
