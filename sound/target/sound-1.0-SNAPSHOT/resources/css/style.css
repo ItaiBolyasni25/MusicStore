@@ -39,7 +39,7 @@ a{
     border: 0px;
 }
 
-#ads{
+.ads{
     width: 70%;
     height: 10%;
     margin-left: 15%;
@@ -271,11 +271,10 @@ section .section-title {
 }
 
 .genresimg{
-    height: 40%;
-    width: 40%;
+    height: 300px;
+    width: 300px;
     display: block;
-    margin-left: 20%;
-    margin-top: 5%;
+    border-radius: 50%;
 }
 
 #logomanager{
@@ -285,7 +284,6 @@ section .section-title {
 
 .managernav{
     margin-top: 2%;
-
 }
 
 .addsurvey{
@@ -347,7 +345,7 @@ button{
 
 #navsound{
   position: fixed;
-  height: 100px;
+  height: 10%;
   top: 0;
   width: 100%;
   z-index: 2;
@@ -355,11 +353,16 @@ button{
 
 .body{
   margin-top:100px;
+  width: 100%;
+  height: 100%;
+<<<<<<< HEAD
 }
 
 .divbackground{
     opacity: 0.7;
     position: relative;
+=======
+>>>>>>> 9696e87fad279b2f39af5b97711708969a56167e
 }
 
 .centered {
@@ -809,4 +812,8 @@ button{
 }
 .customFont{
     font-weight:900;
+}
+
+.nav-item{
+    list-style-type: none !important;
 }

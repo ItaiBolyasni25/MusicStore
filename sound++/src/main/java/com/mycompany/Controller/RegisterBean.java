@@ -9,6 +9,7 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * ManagedBean for registering a user
@@ -113,5 +114,13 @@ public class RegisterBean implements Serializable {
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("userObj");
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("user");
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("id");
+    }
+
+    public void logIn() {
+        //FacesContext context = FacesContext.getCurrentInstance();
+        //HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+        System.out.println("HELOOOOOOOOOOOOOOOOOOOOOOOOOOOOO0");
+        System.out.println("REMOTE USER ----- " /*+request.getRemoteUser()*/);
+        System.out.println("REMOTE USER NAME PRINCIPAL ----- " /*+ request.getUserPrincipal().getName()*/);
     }
 }

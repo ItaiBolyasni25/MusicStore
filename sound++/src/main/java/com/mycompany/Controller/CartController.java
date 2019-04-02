@@ -33,11 +33,10 @@ public class CartController implements Serializable {
     private String songName;
     @Inject
     private DAO dao;
-    private Integer price = 0;
+    private double price = 0;
 
     @PersistenceContext(unitName = "usersPU")
     private EntityManager em;
-
 
     public String addTrack(Track track, User user) {
         Cart cart = new Cart();
@@ -52,15 +51,14 @@ public class CartController implements Serializable {
         cart.setAlbum(album);
         cart.setUser(user);
         dao.write(cart);
-        System.out.println("test");
         return "albums.xhtml";
     }
 
     public List<Cart> getCartItems(User user) {
-        return dao.find(new Cart(), "user.email = '" + user.getEmail() + "' AND identifier.invoice IS NULL" );
+        List<Cart> list = dao.find(new Cart(), "user.email = '" + user.getEmail() + "' AND identifier.invoice IS NULL");
+        return list;
     }
-    
-    
+
     public List<Track> getCartTracks(User user) {
         List<Cart> list = dao.find(new Cart(), "user.email = '" + user.getEmail() + "' AND identifier.invoice IS NULL AND identifier.album IS NULL");
         List<Track> tracks = new ArrayList<>();
@@ -78,18 +76,25 @@ public class CartController implements Serializable {
         }
         return albums;
     }
-    
+
     public List<Cart> getBoughtItems(User user) {
         return dao.find(new Cart(), "invoice.invoice_id IS NOT NULL AND identifier.user.email = '" + user.getEmail() + "'");
     }
 
-    public int addPrice(int price) {
-        this.price += price;
+    public double getPrice(User user) {
+        List<Cart> list = dao.find(new Cart(), "user.email = '" + user.getEmail() + "' AND identifier.invoice IS NULL");
+        for (Cart c : list) {
+            if (c.getAlbum() == null) {
+                this.price += c.getTrack().getList_price();
+            } else {
+                this.price += c.getAlbum().getList_Price();
+            }
+        }
         return price;
     }
 
-    public int getPrice() {
-        return this.price;
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     public String getSongName() {

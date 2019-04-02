@@ -8,6 +8,7 @@ package com.mycompany.Utilities;
  */
 import com.mycompany.Model.Album;
 import com.mycompany.Model.Artist;
+import com.mycompany.Model.Banner;
 import com.mycompany.Model.News;
 import com.mycompany.Model.Track;
 import com.mycompany.Persistence.DAO;
@@ -42,6 +43,7 @@ public class SongParser implements Serializable {
         if (!isIsLoaded()) {
             readCSVFile();
             this.addNewsFeed();
+            this.addAds();
         }
     }
 
@@ -139,5 +141,12 @@ public class SongParser implements Serializable {
     private void addNewsFeed() {
         News news = new News("https://www.ctvnews.ca/rss/ctvnews-ca-entertainment-public-rss-1.822292", "1");
         dao.write(news);
+    }
+    
+    private void addAds(){
+        Banner banner = new Banner();
+        banner.setBanner("ads.png");
+        banner.setUsed("1");
+        dao.write(banner);
     }
 }
