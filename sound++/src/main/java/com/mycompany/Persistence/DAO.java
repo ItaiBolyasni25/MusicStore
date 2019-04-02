@@ -90,7 +90,7 @@ public class DAO {
 
     public <E extends EntityModel> List<E> findWithLimitPattern(E entityModel, int offset, int display, String pattern, String column) {
         String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
-        Query q = em.createQuery("FROM " + className + " identifier WHERE identifier." + column + " like :pattern ORDER BY identifier.title ASC");
+        Query q = em.createQuery("FROM " + className + " identifier WHERE identifier.title like :pattern ORDER BY identifier.title ASC");
         q.setParameter("pattern", pattern + "%");
         if (offset != 0) {
             q.setFirstResult(offset);
@@ -209,10 +209,10 @@ public class DAO {
         return q.getResultList();
     }
 
-    public <E extends EntityModel> List<E> findLimitRandom(E entityModel) {
+    public <E extends EntityModel> List<E> findLimitRandom(E entityModel, int display) {
         String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
         Query q = em.createQuery("Select identifier FROM " + className + " identifier order by function('RAND')");
-        q.setMaxResults(9);
+        q.setMaxResults(display);
         return q.getResultList();
     }
 

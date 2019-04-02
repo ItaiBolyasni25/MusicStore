@@ -18,13 +18,19 @@
         <h:outputScript library="js" name="ratingToStars.js" />
         <title>Sound++</title>
     </h:head>
+<<<<<<< HEAD
+    <h:body>
+=======
     <h:body class="backgroundcolor body">
+>>>>>>> 064cf6880e32b3bbd703f6392ffb216978dab1a8
         <c:set target="#{reviewBean}" property="trackOrAlbum" value="track" /> 
         <ui:include src="navbar.xhtml" />
         <div class="card border-light mb-3" id ="info">
             <h:panelGroup id="result">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><h:link value = "Tracks" id="albumList" /> </li>
+                    <li class="breadcrumb-item"><h:form>
+                            <h:commandLink id="albumList" value="#{internationalization.tracks}" action="/tracks?faces-redirect=true"/>
+                        </h:form></li>
                     <li class="breadcrumb-item active" id="titleTrack">#{selectedTrack.selectedTrack.title}</li>
                 </ol>
                 <div class="card-body">
@@ -38,19 +44,9 @@
                         <hr/>
                         <p class="card-text" id = "cost"></p>
                         <h:form class="form-inline my-2 my-lg-0" id="quantityContainer">
-                            <select class="custom-select">
-                                <option selected="1" value="1">1</option>
-                                <c:forEach var = "i" begin = "2" end = "100">
-                                    <option value="${i}">${i}</option>
-                                </c:forEach>
-                            </select>
-                            <h:commandLink class="btn btn-secondary my-2 my-sm-0" value ="Add" actionListener = "#{cartController.addTrack(selectedTrack.selectedTrack, userObj)}"/>
+                            <h:commandLink class="btn btn-primary my-2 my-sm-0" value ="Add" actionListener = "#{cartController.addTrack(selectedTrack.selectedTrack, userObj)}"/>
                         </h:form>
-                    </div>
-                </div>
-
-                <div class = "detailInfo">
-                    <h5 class="detail">DESCRIPTION</h5>
+                              <h5 class="detail">DESCRIPTION</h5>
                     <hr class="style"/>
                     <div id="myTabContent" class="tab-content">
                         <div class="tab-pane fade show active" id="details">
@@ -61,6 +57,12 @@
                             <p id="songwriter"><span class="boldText">Label: </span> <h:outputText value="#{selectedTrack.selectedTrack.songwriter}"></h:outputText> </p>                       
                         </div>
                     </div>
+                    </div>
+              
+                </div>
+
+                <div class = "detailInfo">
+                    
                     <h5 class="detail">SIMILAR TRACKS</h5>
                     <hr class="style"/>
                     <c:choose>

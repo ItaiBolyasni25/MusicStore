@@ -80,10 +80,10 @@
                             <h:inputText style="margin-bottom: 3%;" value="#{inventoryBean.albumSalePrice}" class="form-control" />
 
                             <h:commandButton value="#{internationalization.inventoryedit}" action="#{inventoryBean.editAlbum(album.id)}" 
-                                             outcome="inventorysearch"/>
+                                             />
 
                             <h:commandButton style="margin-left: 3%;" value="Delete" action="#{inventoryBean.deleteAlbum(album.id)}"
-                                             outcome="inventorysearch"/>
+                                             />
                         </h:form>
 
                     </c:forEach>
@@ -164,10 +164,10 @@
                             <h:inputText style="margin-bottom: 3%;" value="#{inventoryBean.trackSalePrice}" class="form-control" />
 
                             <h:commandButton style="margin: 3%;" value="Change sale price" 
-                                             action="#{inventoryBean.editTrack(track.id)}" outcome="inventorysearch"/>
+                                             action="#{inventoryBean.editTrack(track.id)}" />
 
                             <h:commandButton style="margin-left: 3%;" value="Delete" 
-                                             action="#{inventoryBean.deleteTrack(track.id)}" outcome="inventorysearch"/>
+                                             action="#{inventoryBean.deleteTrack(track.id)}" />
                         </h:form>
                     </c:forEach>
                     <p><h:outputText value="Your search did not match any tracks.!" rendered="#{empty SearchBean.tracks}" /></p>
