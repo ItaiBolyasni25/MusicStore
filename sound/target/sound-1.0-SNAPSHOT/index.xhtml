@@ -400,24 +400,26 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <ui:repeat value="#{cartController.getBoughtItems(user)}" var="item">
-                                        <h:panelGroup rendered="#{item.track != null}">
-                                            <tr>
-                                                <td>#{item.track.title}</td>
-                                                <td>#{item.track.play_length}</td>
-                                                <td><button type="button" class="btn btn-primary">#{internationalization.download}</button></td>
-                                            </tr>
-                                        </h:panelGroup>
-                                    </ui:repeat>
-                                    <ui:repeat value="#{cartController.getBoughtItems(user)}" var="item">
-                                        <h:panelGroup rendered="#{item.album != null}">
-                                            <tr>
-                                                <td>#{item.track.title}</td>
-                                                <td>#{item.track.play_length}</td>
-                                                <td><button type="button" class="btn btn-primary">#{internationalization.download}</button></td>
-                                            </tr>
-                                        </h:panelGroup>
-                                    </ui:repeat>
+                                    <h:panelGroup rendered="#{not empty userObj}">
+                                        <ui:repeat value="#{cartController.getBoughtItems(userObj)}" var="item">
+                                            <h:panelGroup rendered="#{item.track != null}">
+                                                <tr>
+                                                    <td>#{item.track.title}</td>
+                                                    <td>#{item.track.play_length}</td>
+                                                    <td><button type="button" class="btn btn-primary">#{internationalization.download}</button></td>
+                                                </tr>
+                                            </h:panelGroup>
+                                        </ui:repeat>
+                                        <ui:repeat value="#{cartController.getBoughtItems(user)}" var="item">
+                                            <h:panelGroup rendered="#{item.album != null}">
+                                                <tr>
+                                                    <td>#{item.track.title}</td>
+                                                    <td>#{item.track.play_length}</td>
+                                                    <td><button type="button" class="btn btn-primary">#{internationalization.download}</button></td>
+                                                </tr>
+                                            </h:panelGroup>
+                                        </ui:repeat>
+                                    </h:panelGroup>
                                 </tbody>
                             </table> 
 
