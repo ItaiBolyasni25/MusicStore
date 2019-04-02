@@ -21,7 +21,6 @@ public class InventoryBean implements Serializable {
 
     private boolean success;
     private boolean fail;
-    private boolean searched;
     private final Date date = new java.sql.Date(Calendar.getInstance().getTimeInMillis());
 
     // Track
@@ -180,10 +179,6 @@ public class InventoryBean implements Serializable {
         }
     }
 
-    public void searchMethod() {
-        searched = true;
-    }
-
     // ---------- Getters and setters ---------- //
     public boolean isSuccess() {
         return success;
@@ -191,7 +186,7 @@ public class InventoryBean implements Serializable {
     
     public String setSuccess(boolean success) {
         this.success = success;
-        return "managerinventory.xhtml";
+        return "manager/inventory.xhtml";
     }
 
     public boolean isFail() {
@@ -200,14 +195,6 @@ public class InventoryBean implements Serializable {
     
     public void setFail(boolean fail) {
         this.fail = fail;
-    }
-
-    public boolean isSearched() {
-        return searched;
-    }
-
-    public void setSearched(boolean searched) {
-        this.searched = searched;
     }
 
     public String getAlbumName() {

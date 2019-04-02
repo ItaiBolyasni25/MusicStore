@@ -15,8 +15,6 @@
         <h:outputStylesheet library="css" name="style.css"  />
         <h:outputScript library="js" name="itemInfo.js" />
 
-
-
         <title>Sound++</title>
     </h:head>
     <h:body>
@@ -132,14 +130,22 @@
                 <div class="tab-pane fade" id="editandremove">
                     <div id="myTabContent" class="tab-content">
                         <div class="tab-pane fade show active">
-                            <h:form  class="form-inline my-2 my-lg-0 searchForm" >
-                                <h:panelGroup style="margin-top: 3%;" id="input">
-                                    <h:inputText onfocus="showSearchList();" autocomplete="off" id="pattern" class="form-control mr-sm-2 patternTextBox" title="#{internationalization.search}" value="#{AlbumTrackBean.pattern}" >
-                                        <f:ajax event="keyup" listener="#{AlbumTrackBean.patternChanged()}" execute="pattern" render="searchList"></f:ajax>
-                                    </h:inputText>
+                            <h:form class="form-inline my-2 my-lg-0 searchForm" >
+                                <h:panelGroup id="input">
+                                    <h:inputText onfocus="showSearchList();" autocomplete="off" id="pattern" class="form-control mr-sm-2 patternTextBox" title="#{internationalization.search}" value="#{SearchBean.pattern}" />
+                                      
                                 </h:panelGroup>
                                 <h:panelGroup id="searchList" class="searchList">
+
                                     <ul class="list-group">
+                                        <ui:repeat value="#{AlbumTrackBean.albums}" var="album">
+                                            <li class="list-group-item d-flex justify-content-between align-items-center searchItem"> 
+                                                <h:commandLink  value="#{album.title}" onclick="setPattern(this);">           
+                                                    <f:ajax />
+                                                </h:commandLink>
+                                                <span class="badge badge-primary badge-pill">Album</span> 
+                                            </li>
+                                        </ui:repeat>
                                         <ui:repeat  value="#{AlbumTrackBean.tracks}" var="track">
                                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                                 <h:commandLink  value="#{track.title}" onclick="setPattern(this);">           
@@ -150,10 +156,8 @@
                                         </ui:repeat>
                                     </ul>
                                 </h:panelGroup>
-                                <h:commandButton style="margin-top: 3%;" class="btn btn-outline-primary" value="#{internationalization.search}"  action="#{AlbumTrackBean.redirect()}">
-                                    <f:actionListener binding="#{inventoryBean.setSearched(true)}" />
-                                </h:commandButton>
-                            </h:form> 
+                                <h:commandButton class="btn btn-outline-primary" value="#{internationalization.search}"  action="#{SearchBean.redirect()}" />
+                            </h:form>
                         </div>
                     </div>
                 </div>
