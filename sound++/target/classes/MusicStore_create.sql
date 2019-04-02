@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1cdfe5f7c0c123439cf7199c89dbafa86d96a6cf
 drop database if exists songstore;
 create database songstore;
 DROP USER IF EXISTS songstore@localhost;

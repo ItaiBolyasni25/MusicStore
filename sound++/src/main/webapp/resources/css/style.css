@@ -391,7 +391,7 @@ button{
   width:100%;
   color: black;
   height: auto;
-  object-fit: cover;
+  object-fit: contain;
   transition: .5s ease;
   backface-visibility: hidden;
 }
@@ -616,6 +616,9 @@ button{
 .info{
     padding-left: 5%;
     font-size: 20px;
+}
+.slideshows{
+    border: 5px solid white;
 }
 .slides{
   max-height: 1000px;
