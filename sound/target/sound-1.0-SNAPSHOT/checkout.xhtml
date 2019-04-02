@@ -34,10 +34,10 @@ and open the template in the editor.
 
 
                                     <span style='font-size:18px;' class='pr-5 pt-3'>#{album.title}</span>
+                                    <a href='#' class='btn btn-danger' style='float:right'>Remove</a>
+                                    
 
-                                        <h:commandButton type="submit" class="btn btn-danger float-right" value="Remove" action="#{cartController.toString()}"/>
-
-                                        <span class='pr-5' style='font-size: 14px; float:right'>#{album.list_Price}</span>                                
+                                    <span class='pr-5' style='font-size: 14px; float:right'>#{album.list_Price}</span>                                
                                 </li>
                             </ui:repeat>
                         </ul>
@@ -47,14 +47,14 @@ and open the template in the editor.
                     <h3>Individual Tracks</h3>
                     <br/>
                     <ul style='list-style-type:none'>
-                        <ui:repeat var="track" value="#{cartController.getCartTracks(user)}">
-                                <li style='height: 50px'>
-                                    <span style='font-size:18px;' class='pr-5 pt-3'>#{track.title}</span>
-                                    <h:form>
-                                        <a href='#' class='btn btn-danger' style='float:right'>Remove</a>
-                                    </h:form>
-                                    <span class='pr-5' style='font-size: 14px; float:right'>#{track.list_price}</span>                                
-                                </li>
+                        <ui:repeat var="track" value="#{cartController.getCartTracks(userObj)}">
+                            <li style='height: 50px'>
+                                <span style='font-size:18px;' class='pr-5 pt-3'>#{track.title}</span>
+                                <h:form>
+                                    <a href='#' class='btn btn-danger' style='float:right'>Remove</a>
+                                </h:form>
+                                <span class='pr-5' style='font-size: 14px; float:right'>#{track.list_price}</span>                                
+                            </li>
                         </ui:repeat>
                     </ul>
                 </section>
