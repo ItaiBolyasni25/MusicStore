@@ -40,9 +40,9 @@ public class ResultBean implements Serializable {
     private int totalTrackPages;
 
     public ResultBean() {
-        this.albumPerPage = 2;
+        this.albumPerPage = 3;
         this.currentAlbumsPage = 1;
-        this.trackPerPage = 2;
+        this.trackPerPage = 3;
         this.currentTrackPage = 1;
     }
 
