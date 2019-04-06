@@ -3,7 +3,14 @@ package com.mycompany.Controller;
 import com.mycompany.Model.Album;
 import com.mycompany.Model.Track;
 import com.mycompany.Persistence.DAO;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.Date;
 import java.util.Calendar;
 import java.util.List;
@@ -175,6 +182,35 @@ public class InventoryBean implements Serializable {
 
     public String backToInventory() {
         return "inventory.xhtml";
+    }
+
+    // ---------- Helper methods ---------- //
+    public String saveAlbumCover(Part album) {
+        try {
+            InputStream in = album.getInputStream();
+            ByteArrayOutputStream os = new ByteArrayOutputStream();
+            byte[] buffer = new byte[1024]; // 1024 is buffer size
+            int len;
+            while ((len = in.read(buffer)) != -1) {
+                os.write(buffer, 0, len);
+            }
+
+            byte[] allBytes = os.toByteArray();
+
+            String randomFileName = java.util.UUID.randomUUID().toString();
+            String extension = album.getSubmittedFileName().substring(album.getSubmittedFileName().lastIndexOf("."));
+            String pathToSave = "assets/album_covers/" + randomFileName + extension;
+            String filePath = "C:\\Users\\austi\\Desktop\\SchoolStuff\\JavaServerSide\\Project\\csdmusicstore\\sound++\\src\\main\\webapp\\" + pathToSave;
+            
+            System.out.println("---\n\n " + filePath + "\n\n---");
+
+            Files.write(Paths.get(filePath), allBytes, StandardOpenOption.CREATE);
+            return pathToSave;
+        } catch (IOException e) {
+            System.out.println(e.getMessage() + "\n\n");
+            e.printStackTrace();
+            return "";
+        }
     }
 
     // ---------- Getters and setters ---------- //
