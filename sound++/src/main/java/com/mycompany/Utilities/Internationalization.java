@@ -547,7 +547,6 @@ public class Internationalization implements Serializable {
     public String getDownload(){
         return language.equals("English")? "Download" : "Telecharger";
     }
-    
 
     public String getReset(){
         return language.equals("English")? "Reset" : "Reinitialiser";
