@@ -547,4 +547,8 @@ public class Internationalization implements Serializable {
     public String getDownload(){
         return language.equals("English")? "Download" : "Telecharger";
     }
+    
+    public String getWriteReview(){
+        return language.equals("English")? "Write a review" : "Écrire une critique";
+    }
 }
