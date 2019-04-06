@@ -3,13 +3,21 @@ package com.mycompany.Controller;
 import com.mycompany.Model.Album;
 import com.mycompany.Model.Track;
 import com.mycompany.Persistence.DAO;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.Date;
 import java.util.Calendar;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.Part;
 
 /**
  *
@@ -41,7 +49,7 @@ public class InventoryBean implements Serializable {
     private double albumCost;
     private double albumListPrice;
     private double albumSalePrice;
-    private String image;
+    private Part image;
     private String albumGenre;
 
     @Inject
@@ -84,7 +92,6 @@ public class InventoryBean implements Serializable {
         track.setSale_price(trackSalePrice);
         track.setDate_added(sqlDate);
         track.setIndividual(true);
-        System.out.println("Gothere");
         dao.write(track);
         success = true;
         fail = false;
@@ -103,11 +110,10 @@ public class InventoryBean implements Serializable {
             album.setCost(albumCost);
             album.setList_price(albumListPrice);
             album.setSale_price(albumSalePrice);
-            album.setImage(image);
+            album.setImage(saveAlbumCover(image));
             album.setGenre(albumGenre);
 
-            dao.write(album);
-
+            //dao.write(album);
             success = true;
             fail = false;
         } catch (Exception e) {
@@ -178,16 +184,45 @@ public class InventoryBean implements Serializable {
             fail = true;
         }
     }
-    
+
     public String backToInventory() {
         return "manager/inventory.xhtml";
+    }
+
+    // ---------- Helper methods ---------- //
+    public String saveAlbumCover(Part album) {
+        try {
+            InputStream in = album.getInputStream();
+            ByteArrayOutputStream os = new ByteArrayOutputStream();
+            byte[] buffer = new byte[1024]; // 1024 is buffer size
+            int len;
+            while ((len = in.read(buffer)) != -1) {
+                os.write(buffer, 0, len);
+            }
+
+            byte[] allBytes = os.toByteArray();
+
+            String randomFileName = java.util.UUID.randomUUID().toString();
+            String extension = album.getSubmittedFileName().substring(album.getSubmittedFileName().lastIndexOf("."));
+            String pathToSave = "assets/album_covers/" + randomFileName + extension;
+            String filePath = "C:\\Users\\austi\\Desktop\\SchoolStuff\\JavaServerSide\\Project\\csdmusicstore\\sound++\\src\\main\\webapp\\" + pathToSave;
+            
+            System.out.println("---\n\n " + filePath + "\n\n---");
+
+            Files.write(Paths.get(filePath), allBytes, StandardOpenOption.CREATE);
+            return pathToSave;
+        } catch (IOException e) {
+            System.out.println(e.getMessage() + "\n\n");
+            e.printStackTrace();
+            return "";
+        }
     }
 
     // ---------- Getters and setters ---------- //
     public boolean isSuccess() {
         return success;
     }
-    
+
     public void setSuccess(boolean success) {
         this.success = success;
     }
@@ -195,7 +230,7 @@ public class InventoryBean implements Serializable {
     public boolean isFail() {
         return fail;
     }
-    
+
     public void setFail(boolean fail) {
         this.fail = fail;
     }
@@ -320,11 +355,11 @@ public class InventoryBean implements Serializable {
         this.albumSalePrice = albumSalePrice;
     }
 
-    public String getImage() {
+    public Part getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(Part image) {
         this.image = image;
     }
 
