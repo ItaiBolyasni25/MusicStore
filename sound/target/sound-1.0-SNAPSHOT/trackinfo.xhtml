@@ -16,6 +16,7 @@
         <h:outputScript library="js" name="jquery-1.12.4.js" />
         <h:outputScript library="js" name="itemInfo.js" />
         <h:outputScript library="js" name="ratingToStars.js" />
+        <h:outputScript library="js" name="stars.js" />
         <title>Sound++</title>
     </h:head>
     <h:body>
@@ -42,23 +43,23 @@
                         <h:form class="form-inline my-2 my-lg-0" id="quantityContainer">
                             <h:commandLink class="btn btn-primary my-2 my-sm-0" value ="Add" actionListener = "#{cartController.addTrack(selectedTrack.selectedTrack, userObj)}"/>
                         </h:form>
-                              <h5 class="detail">DESCRIPTION</h5>
-                    <hr class="style"/>
-                    <div id="myTabContent" class="tab-content">
-                        <div class="tab-pane fade show active" id="details">
-                            <p id="releasedate"><span class="boldText">Original Release Date: </span>  <h:outputText value="#{selectedTrack.selectedTrack.album.releasedate}"></h:outputText>  </p>
-                            <p id="addeddate"><span class="boldText">Added Date: </span> <h:outputText value="#{selectedTrack.selectedTrack.date_added}"></h:outputText> </p>
-                            <p id="label"><span class="boldText">Label: </span> <h:outputText value="#{selectedTrack.selectedTrack.album.label}"></h:outputText> </p>   
-                            <p id="genre"><span class="boldText">Genre: </span> <h:outputText value="#{selectedTrack.selectedTrack.genre}"></h:outputText> </p>
-                            <p id="songwriter"><span class="boldText">Label: </span> <h:outputText value="#{selectedTrack.selectedTrack.songwriter}"></h:outputText> </p>                       
+                        <h5 class="detail">DESCRIPTION</h5>
+                        <hr class="style"/>
+                        <div id="myTabContent" class="tab-content">
+                            <div class="tab-pane fade show active" id="details">
+                                <p id="releasedate"><span class="boldText">Original Release Date: </span>  <h:outputText value="#{selectedTrack.selectedTrack.album.releasedate}"></h:outputText>  </p>
+                                <p id="addeddate"><span class="boldText">Added Date: </span> <h:outputText value="#{selectedTrack.selectedTrack.date_added}"></h:outputText> </p>
+                                <p id="label"><span class="boldText">Label: </span> <h:outputText value="#{selectedTrack.selectedTrack.album.label}"></h:outputText> </p>   
+                                <p id="genre"><span class="boldText">Genre: </span> <h:outputText value="#{selectedTrack.selectedTrack.genre}"></h:outputText> </p>
+                                <p id="songwriter"><span class="boldText">Label: </span> <h:outputText value="#{selectedTrack.selectedTrack.songwriter}"></h:outputText> </p>                       
+                            </div>
                         </div>
                     </div>
-                    </div>
-              
+
                 </div>
 
                 <div class = "detailInfo">
-                    
+
                     <h5 class="detail">SIMILAR TRACKS</h5>
                     <hr class="style"/>
                     <c:choose>
@@ -85,7 +86,38 @@
                     <h5 class="detail">#{internationalization.reviews}</h5>
                     <hr class="style"/>
                     <h:panelGroup layout="block" rendered="#{not empty user}">
-                        <ui:include src="reviewpage.xhtml" />
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                                    <div class="card my-5">
+                                        <div class="card-body">
+                                            <h5 class="card-title text-center">#{internationalization.writeReview}</h5>
+                                            <h:form class="form">
+                                                <div class="form-group">
+                                                    <h:inputTextarea style="display: block; width: 80%; margin-left: auto; margin-right: auto;"
+                                                                     value="#{reviewBean.text}" cols="50" rows="5"/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <fieldset>
+                                                        <h:selectOneMenu class="unique" value="#{reviewBean.rating}">
+                                                            <f:selectItem itemValue="0"/>
+                                                            <label class="fa fa-star" id="star1"><f:selectItem class="star" itemValue="1"/></label>
+                                                            <label class="fa fa-star" id="star2"><f:selectItem class="star" itemValue="2"/></label>
+                                                            <label class="fa fa-star" id="star3"><f:selectItem class="star" itemValue="3"/></label>
+                                                            <label class="fa fa-star" id="star4"><f:selectItem class="star" itemValue="4"/></label>
+                                                            <label class="fa fa-star" id="star5"><f:selectItem class="star" itemValue="5"/></label>
+                                                        </h:selectOneMenu>
+                                                    </fieldset>
+                                                </div>
+                                                <div class="form-group">
+                                                    <h:commandButton class="btn btn-md btn-primary btn-block text-uppercase" type="submit" value="#{internationalization.submitReview}" action="#{reviewBean.saveReview()}"/>
+                                                </div>
+                                            </h:form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </h:panelGroup>
                     <h:panelGroup layout="block" rendered="#{!reviewBean.getTrackReviews(selectedTrack.selectedTrack).isEmpty()}">
                         <div class="container-fluid">

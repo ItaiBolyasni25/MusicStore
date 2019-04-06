@@ -22,7 +22,7 @@
     <h:body>
         <c:set target="#{reviewBean}" property="trackOrAlbum" value="album" /> 
         <ui:include src="navbar.xhtml" />  
-         <div class="card border-light mb-3" id ="info">
+        <div class="card border-light mb-3" id ="info">
             <h:panelGroup id="result">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><h:form>
@@ -43,17 +43,17 @@
                         <h:form class="form-inline my-2 my-lg-0" id="quantityContainer">
                             <h:commandLink class="btn btn-primary" value="#{internationalization.add}" actionListener="#{cartController.addAlbum(selectedAlbum.selectedAlbum, userObj)}" />
                         </h:form>
-                         <h5 class="detail">DESCRIPTION</h5>
-                    <hr class="style"/>
-                    <div id="myTabContent" class="tab-content">
-                        <div class="tab-pane fade show active" id="details">
-                            <p id="releasedate"><span class="boldText">Original Release Date: </span>  <h:outputText value="#{selectedAlbum.selectedAlbum.releasedate}"></h:outputText>  </p>
-                            <p id="addeddate"><span class="boldText">Added Date: </span> <h:outputText value="#{selectedAlbum.selectedAlbum.addedDate}"></h:outputText> </p>
-                            <p id="label"><span class="boldText">Label: </span> <h:outputText value="#{selectedAlbum.selectedAlbum.label}"></h:outputText> </p>                       
+                        <h5 class="detail">DESCRIPTION</h5>
+                        <hr class="style"/>
+                        <div id="myTabContent" class="tab-content">
+                            <div class="tab-pane fade show active" id="details">
+                                <p id="releasedate"><span class="boldText">Original Release Date: </span>  <h:outputText value="#{selectedAlbum.selectedAlbum.releasedate}"></h:outputText>  </p>
+                                <p id="addeddate"><span class="boldText">Added Date: </span> <h:outputText value="#{selectedAlbum.selectedAlbum.addedDate}"></h:outputText> </p>
+                                <p id="label"><span class="boldText">Label: </span> <h:outputText value="#{selectedAlbum.selectedAlbum.label}"></h:outputText> </p>                       
+                            </div>
                         </div>
                     </div>
-                    </div>
-                                       
+
                 </div>
 
                 <div class = "detailInfo">
@@ -78,9 +78,6 @@
                     <h5 class="detail">#{internationalization.reviews}</h5>
                     <hr class="style"/>
                     <h:panelGroup layout="block" rendered="#{not empty user}">
-<<<<<<< HEAD
-                        <ui:include src="reviewpage.xhtml" />
-=======
                         <div class="container">
                             <div class="row">
                                 <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
@@ -113,7 +110,6 @@
                                 </div>
                             </div>
                         </div>
->>>>>>> Fix back to inventory button
                     </h:panelGroup>
                     <h:panelGroup layout="block" rendered="#{reviewBean.getAlbumReviews(selectedAlbum.selectedAlbum).isEmpty()}">
                         <div class="container-fluid">
