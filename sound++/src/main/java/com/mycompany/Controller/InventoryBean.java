@@ -110,10 +110,10 @@ public class InventoryBean implements Serializable {
             album.setCost(albumCost);
             album.setList_price(albumListPrice);
             album.setSale_price(albumSalePrice);
-            album.setImage(saveAlbumCover(image));
+            album.setImage("assets/album_covers/" + image.getSubmittedFileName());
             album.setGenre(albumGenre);
 
-            //dao.write(album);
+            dao.write(album);
             success = true;
             fail = false;
         } catch (Exception e) {
@@ -187,35 +187,6 @@ public class InventoryBean implements Serializable {
 
     public String backToInventory() {
         return "manager/inventory.xhtml";
-    }
-
-    // ---------- Helper methods ---------- //
-    public String saveAlbumCover(Part album) {
-        try {
-            InputStream in = album.getInputStream();
-            ByteArrayOutputStream os = new ByteArrayOutputStream();
-            byte[] buffer = new byte[1024]; // 1024 is buffer size
-            int len;
-            while ((len = in.read(buffer)) != -1) {
-                os.write(buffer, 0, len);
-            }
-
-            byte[] allBytes = os.toByteArray();
-
-            String randomFileName = java.util.UUID.randomUUID().toString();
-            String extension = album.getSubmittedFileName().substring(album.getSubmittedFileName().lastIndexOf("."));
-            String pathToSave = "assets/album_covers/" + randomFileName + extension;
-            String filePath = "C:\\Users\\austi\\Desktop\\SchoolStuff\\JavaServerSide\\Project\\csdmusicstore\\sound++\\src\\main\\webapp\\" + pathToSave;
-            
-            System.out.println("---\n\n " + filePath + "\n\n---");
-
-            Files.write(Paths.get(filePath), allBytes, StandardOpenOption.CREATE);
-            return pathToSave;
-        } catch (IOException e) {
-            System.out.println(e.getMessage() + "\n\n");
-            e.printStackTrace();
-            return "";
-        }
     }
 
     // ---------- Getters and setters ---------- //
