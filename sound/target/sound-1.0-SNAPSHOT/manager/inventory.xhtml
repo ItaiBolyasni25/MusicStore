@@ -58,16 +58,13 @@
                                 <label class="col-form-label" for="inputDefault">Genre</label>
                                 <h:inputText value="#{inventoryBean.trackGenre}" class="form-control" required="true" />
 
-                                <label class="col-form-label" for="inputDefault">#{internationalization.cost}</label>
-                                <h:inputText value="#{inventoryBean.trackCost}" class="form-control" required="true" />
-
                                 <label class="col-form-label" for="inputDefault">#{internationalization.listPrice}</label>
                                 <h:inputText value="#{inventoryBean.trackListPrice}" class="form-control" />
 
-                                <label class="col-form-label" for="inputDefault">#{internationalization.salePrice}</label>
+                                <label class="col-form-label" for="inputDefault">#{internationalization.salePrice} (%)</label>
                                 <h:inputText value="#{inventoryBean.trackSalePrice}" class="form-control" />
 
-                                <p:commandButton type="submit" value="#{internationalization.submit}" class="btn btn-primary formbutton" 
+                                <p:commandButton style="margin-bottom: 2%;" type="submit" value="#{internationalization.submit}" class="btn btn-primary formbutton" 
                                                  actionListener="#{inventoryBean.addTrack}" process="@this, form1" update="form1"/>
 
                                 <h:panelGroup layout="block" class="alert alert-success" rendered="#{inventoryBean.success == true}">
@@ -81,7 +78,7 @@
                         </div>
 
                         <div class="tab-pane fade form-group" id="aalbum">
-                            <h:form id="form2">               
+                            <h:form enctype="multipart/form-data" id="form2">               
                                 <label class="col-form-label" for="inputDefault">#{internationalization.title}</label>
                                 <h:inputText value="#{inventoryBean.albumTitle}" class="form-control" required="true"/>
 
@@ -99,19 +96,16 @@
                                 <label class="col-form-label" for="inputDefault">#{internationalization.numberSongs}</label>
                                 <h:inputText value="#{inventoryBean.numberSongs}" class="form-control" required="true" />
 
-                                <label class="col-form-label" for="inputDefault">#{internationalization.cost}</label>
-                                <h:inputText value="#{inventoryBean.albumCost}" class="form-control" required="true" />
-
                                 <label class="col-form-label" for="inputDefault">#{internationalization.listPrice}</label>
                                 <h:inputText value="#{inventoryBean.albumListPrice}" class="form-control" />
 
-                                <label class="col-form-label" for="inputDefault">#{internationalization.salePrice}</label>
+                                <label class="col-form-label" for="inputDefault">#{internationalization.salePrice} (%)</label>
                                 <h:inputText value="#{inventoryBean.albumSalePrice}" class="form-control" />
 
-                                <label class="col-form-label" for="inputDefault">#{internationalization.imagePath}</label>
-                                <h:inputText value="#{inventoryBean.image}" class="form-control" />
+                                <label class="col-form-label" for="inputDefault">#{internationalization.addImage}</label>
+                                <h:inputFile value="#{inventoryBean.image}" class="form-control" />
 
-                                <p:commandButton type="submit" value="#{internationalization.submit}" class="btn btn-primary formbutton" 
+                                <p:commandButton style="margin-bottom: 2%;" type="submit" value="#{internationalization.submit}" class="btn btn-primary formbutton" 
                                                  actionListener="#{inventoryBean.addAlbum}" process="@this, form2" update="form2"/>
 
                                 <h:panelGroup layout="block" class="alert alert-success" rendered="#{inventoryBean.success == true}">

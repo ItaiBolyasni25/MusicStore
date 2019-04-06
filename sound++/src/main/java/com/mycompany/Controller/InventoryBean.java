@@ -3,14 +3,7 @@ package com.mycompany.Controller;
 import com.mycompany.Model.Album;
 import com.mycompany.Model.Track;
 import com.mycompany.Persistence.DAO;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.Serializable;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 import java.util.Date;
 import java.util.Calendar;
 import java.util.List;
@@ -37,7 +30,6 @@ public class InventoryBean implements Serializable {
     private String songwriter;
     private String playLength;
     private String trackGenre;
-    private double trackCost;
     private double trackListPrice;
     private double trackSalePrice;
 
@@ -46,7 +38,6 @@ public class InventoryBean implements Serializable {
     private Date releaseDate;
     private String recordingLabel;
     private int numberSongs;
-    private double albumCost;
     private double albumListPrice;
     private double albumSalePrice;
     private Part image;
@@ -73,7 +64,6 @@ public class InventoryBean implements Serializable {
             single.setAddedDate(sqlDate);
             single.setLabel(" ");
             single.setNumberofsong(1);
-            single.setCost(trackCost);
             single.setList_price(trackListPrice);
             single.setSale_price(trackSalePrice);
             single.setGenre(trackGenre);
@@ -87,7 +77,6 @@ public class InventoryBean implements Serializable {
         track.setSongwriter(songwriter);
         track.setPlay_length(playLength);
         track.setGenre(trackGenre);
-        track.setCost(trackCost);
         track.setList_price(trackListPrice);
         track.setSale_price(trackSalePrice);
         track.setDate_added(sqlDate);
@@ -107,7 +96,6 @@ public class InventoryBean implements Serializable {
             album.setAddedDate(new java.sql.Date(date.getTime()));
             album.setLabel(recordingLabel);
             album.setNumberofsong(numberSongs);
-            album.setCost(albumCost);
             album.setList_price(albumListPrice);
             album.setSale_price(albumSalePrice);
             album.setImage("assets/album_covers/" + image.getSubmittedFileName());
@@ -186,7 +174,7 @@ public class InventoryBean implements Serializable {
     }
 
     public String backToInventory() {
-        return "manager/inventory.xhtml";
+        return "inventory.xhtml";
     }
 
     // ---------- Getters and setters ---------- //
@@ -246,14 +234,6 @@ public class InventoryBean implements Serializable {
         this.trackGenre = trackGenre;
     }
 
-    public double getTrackCost() {
-        return trackCost;
-    }
-
-    public void setTrackCost(double trackCost) {
-        this.trackCost = trackCost;
-    }
-
     public double getTrackListPrice() {
         return trackListPrice;
     }
@@ -300,14 +280,6 @@ public class InventoryBean implements Serializable {
 
     public void setNumberSongs(int numberSongs) {
         this.numberSongs = numberSongs;
-    }
-
-    public double getAlbumCost() {
-        return albumCost;
-    }
-
-    public void setAlbumCost(double albumCost) {
-        this.albumCost = albumCost;
     }
 
     public double getAlbumListPrice() {

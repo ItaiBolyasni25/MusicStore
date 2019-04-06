@@ -78,7 +78,38 @@
                     <h5 class="detail">#{internationalization.reviews}</h5>
                     <hr class="style"/>
                     <h:panelGroup layout="block" rendered="#{not empty user}">
-                        <ui:include src="reviewpage.xhtml" />
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                                    <div class="card my-5">
+                                        <div class="card-body">
+                                            <h5 class="card-title text-center">#{internationalization.writeReview}</h5>
+                                            <h:form class="form">
+                                                <div class="form-group">
+                                                    <h:inputTextarea style="display: block; width: 80%; margin-left: auto; margin-right: auto;"
+                                                                     value="#{reviewBean.text}" cols="50" rows="5"/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <fieldset>
+                                                        <h:selectOneMenu class="unique" value="#{reviewBean.rating}">
+                                                            <f:selectItem itemValue="0"/>
+                                                            <label class="fa fa-star" id="star1"><f:selectItem class="star" itemValue="1"/></label>
+                                                            <label class="fa fa-star" id="star2"><f:selectItem class="star" itemValue="2"/></label>
+                                                            <label class="fa fa-star" id="star3"><f:selectItem class="star" itemValue="3"/></label>
+                                                            <label class="fa fa-star" id="star4"><f:selectItem class="star" itemValue="4"/></label>
+                                                            <label class="fa fa-star" id="star5"><f:selectItem class="star" itemValue="5"/></label>
+                                                        </h:selectOneMenu>
+                                                    </fieldset>
+                                                </div>
+                                                <div class="form-group">
+                                                    <h:commandButton class="btn btn-md btn-primary btn-block text-uppercase" type="submit" value="#{internationalization.submitReview}" action="#{reviewBean.saveReview()}"/>
+                                                </div>
+                                            </h:form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </h:panelGroup>
                     <h:panelGroup layout="block" rendered="#{reviewBean.getAlbumReviews(selectedAlbum.selectedAlbum).isEmpty()}">
                         <div class="container-fluid">
