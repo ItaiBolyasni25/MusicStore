@@ -81,7 +81,7 @@
                         </div>
 
                         <div class="tab-pane fade form-group" id="aalbum">
-                            <h:form id="form2">               
+                            <h:form enctype="multipart/form-data" id="form2">               
                                 <label class="col-form-label" for="inputDefault">#{internationalization.title}</label>
                                 <h:inputText value="#{inventoryBean.albumTitle}" class="form-control" required="true"/>
 
@@ -108,8 +108,8 @@
                                 <label class="col-form-label" for="inputDefault">#{internationalization.salePrice}</label>
                                 <h:inputText value="#{inventoryBean.albumSalePrice}" class="form-control" />
 
-                                <label class="col-form-label" for="inputDefault">#{internationalization.imagePath}</label>
-                                <h:inputText value="#{inventoryBean.image}" class="form-control" />
+                                <label class="col-form-label" for="inputDefault">#{internationalization.addImage}</label>
+                                <h:inputFile value="#{inventoryBean.image}" class="form-control" />
 
                                 <p:commandButton type="submit" value="#{internationalization.submit}" class="btn btn-primary formbutton" 
                                                  actionListener="#{inventoryBean.addAlbum}" process="@this, form2" update="form2"/>

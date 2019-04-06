@@ -516,8 +516,8 @@ public class Internationalization implements Serializable {
         return language.equals("English")? "Recording label" : "Étiquette d'enregistrement";
     }
     
-    public String getImagePath() {
-        return language.equals("English")? "Image path" : "Chemin de l'image";
+    public String getAddImage() {
+        return language.equals("English")? "Add image" : "Ajouter une image";
     }
     
     public String getBackToInventory() {
