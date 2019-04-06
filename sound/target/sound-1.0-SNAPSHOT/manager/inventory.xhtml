@@ -126,8 +126,10 @@
                         <div class="tab-pane fade show active">
                             <h:form class="form-inline my-2 my-lg-0 searchForm" >
                                 <h:panelGroup id="input">
-                                    <h:inputText onfocus="showSearchList();" autocomplete="off" id="pattern" class="form-control mr-sm-2 patternTextBox" title="#{internationalization.search}" value="#{SearchBean.pattern}" />
-                                      
+                                    <h:inputText onfocus="showSearchList();" autocomplete="off" id="pattern" class="form-control mr-sm-2 patternTextBox" title="#{internationalization.search}" value="#{SearchBean.pattern}">
+                                        <f:ajax event="keyup" listener="#{SearchBean.patternChanged()}" execute="pattern" render=":searchList"></f:ajax>
+                                    </h:inputText>
+
                                 </h:panelGroup>
                                 <h:panelGroup id="searchList" class="searchList">
 
