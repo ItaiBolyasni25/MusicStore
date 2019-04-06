@@ -517,7 +517,7 @@ public class Internationalization implements Serializable {
     }
     
     public String getAddImage() {
-        return language.equals("English")? "Add image" : "Ajouter une image";
+        return language.equals("English")? "Add image (You must save the image that you want in the assets/album_covers folder of the project before assigning it to the album)" : "Ajouter une image (Vous devez enregistrer l'image de votre choix dans le dossier assets / album_covers du projet avant de l'affecter à l'album)";
     }
     
     public String getBackToInventory() {
