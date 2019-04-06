@@ -12,8 +12,8 @@ import java.text.ParseException;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-import javax.enterprise.context.SessionScoped;
-import javax.faces.view.ViewScoped;
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import org.primefaces.context.RequestContext;
@@ -22,7 +22,7 @@ import org.primefaces.context.RequestContext;
  *
  * @author maian
  */
-@ViewScoped
+@ApplicationScoped
 @Named("IndexMusicBean")
 public class IndexMusicBean implements Serializable  {
     @Inject
@@ -137,6 +137,8 @@ public class IndexMusicBean implements Serializable  {
         }
          updateTrackView();
     }
-
+       public String createGreeting(String name) {
+        return "Hello, " + name + "!";
+    }
 
 }
