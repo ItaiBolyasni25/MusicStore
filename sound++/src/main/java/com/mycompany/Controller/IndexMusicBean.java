@@ -8,15 +8,10 @@ import com.mycompany.Model.Album;
 import com.mycompany.Model.Track;
 import com.mycompany.Persistence.DAO;
 import java.io.Serializable;
-import java.text.ParseException;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import org.primefaces.context.RequestContext;
 
 /**
  *
@@ -137,6 +132,8 @@ public class IndexMusicBean implements Serializable  {
         }
          updateTrackView();
     }
-
+       public String createGreeting(String name) {
+        return "Hello, " + name + "!";
+    }
 
 }
