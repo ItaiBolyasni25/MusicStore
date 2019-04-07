@@ -58,12 +58,10 @@ public class InventoryBean implements Serializable {
     public String addTrack() {
         List<Artist> artists = new ArrayList<>();
         Artist newArtist = new Artist();
+        Album single = new Album();
         newArtist.setName(artist);
-        if (dao.find(new Artist(), "name = '" + artist + "'").isEmpty()) {
-            artists.add(newArtist);
-        } else {
-            artists.add(dao.find(new Artist(), "name = '" + artist + "'").get(0));
-        }
+
+        artists.add(newArtist);
 
         java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 
@@ -75,9 +73,9 @@ public class InventoryBean implements Serializable {
                 track.setAlbum(albums.get(0));
             }
         } else {
-            Album single = new Album();
-            
-            single.setArtists(artists);
+            if (dao.find(new Artist(), "name = '" + artist + "'").isEmpty()) {
+                single.setArtists(artists);
+            }
             single.setTitle(trackTitle);
             single.setReleasedate(sqlDate);
             single.setAddedDate(sqlDate);
@@ -89,7 +87,17 @@ public class InventoryBean implements Serializable {
             single.setGenre(trackGenre);
 
             dao.write(single);
-
+            
+            if (!dao.find(new Artist(), "name = '" + artist + "'").isEmpty()) {
+                Artist existing = dao.find(new Artist(), "name = '" + artist + "'").get(0);
+                List<Album> allAlbums = dao.findAll(new Album());
+                Album justAdded = allAlbums.get(allAlbums.size() - 1);
+                List<Artist> albumArtists = new ArrayList<>();
+                albumArtists.add(existing);
+                justAdded.setArtists(albumArtists);
+                dao.updateEntity(justAdded);
+            }
+            
             track.setAlbum(single);
         }
 
