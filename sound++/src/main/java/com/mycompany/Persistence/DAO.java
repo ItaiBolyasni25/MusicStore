@@ -74,11 +74,13 @@ public class DAO {
     }
 
     public <E extends EntityModel> List<E> findWithLimitGenreTrack(E entityModel, int display, String genre, List<String> artist, String name) {
+        System.out.println("IN METHOD!!! ----------------------------------------------------");
         String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
         Query q = em.createQuery("SELECT DISTINCT a FROM " + className + " a JOIN a.album al JOIN al.artists at WHERE a.genre = '" + genre + "' AND a.title" + "!= :title AND at.name NOT IN :artists ORDER BY a.title ASC");
         q.setParameter("title", name);
         q.setParameter("artists", artist);
         q.setMaxResults(display);
+        System.out.println(q.getResultList().size() + " -----------------------------------------");
         return q.getResultList();
     }
 
