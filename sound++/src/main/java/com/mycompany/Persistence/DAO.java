@@ -31,6 +31,7 @@ import javax.transaction.UserTransaction;
 @RequestScoped
 public class DAO {
 
+    
     @PersistenceContext(unitName = "usersPU")
     private EntityManager em;
 
@@ -52,7 +53,6 @@ public class DAO {
     public <E extends EntityModel> List<E> read(E entityModel, int id) {
         String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
         Query q = em.createQuery("Select a FROM " + className + " a WHERE a." + className.toLowerCase() + "_id = '" + id + "'");
-
         return q.getResultList();
     }
 

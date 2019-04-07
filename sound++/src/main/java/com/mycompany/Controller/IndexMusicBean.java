@@ -8,21 +8,16 @@ import com.mycompany.Model.Album;
 import com.mycompany.Model.Track;
 import com.mycompany.Persistence.DAO;
 import java.io.Serializable;
-import java.text.ParseException;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
-import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.context.RequestScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import org.primefaces.context.RequestContext;
 
 /**
  *
  * @author maian
  */
-@ApplicationScoped
+@ViewScoped
 @Named("IndexMusicBean")
 public class IndexMusicBean implements Serializable  {
     @Inject

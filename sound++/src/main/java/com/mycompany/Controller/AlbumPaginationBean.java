@@ -5,12 +5,9 @@ import com.mycompany.Persistence.DAO;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Map;
 import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
