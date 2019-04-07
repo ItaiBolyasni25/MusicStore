@@ -49,8 +49,8 @@
                                 <label class="col-form-label" for="inputDefault">#{internationalization.title}</label>
                                 <h:inputText value="#{inventoryBean.trackTitle}" class="form-control" required="true"/>
 
-                                <label class="col-form-label" for="inputDefault">#{internationalization.songwriter}</label>
-                                <h:inputText value="#{inventoryBean.songwriter}" class="form-control" required="true"/>
+                                <label class="col-form-label" for="inputDefault">#{internationalization.artist}</label>
+                                <h:inputText value="#{inventoryBean.artist}" class="form-control" required="true"/>
 
                                 <label class="col-form-label" for="inputDefault">#{internationalization.playlength}</label>
                                 <h:inputText value="#{inventoryBean.playLength}" class="form-control" required="true" />
@@ -62,7 +62,7 @@
                                 <h:inputText value="#{inventoryBean.trackListPrice}" class="form-control" />
 
                                 <label class="col-form-label" for="inputDefault">#{internationalization.salePrice} (%)</label>
-                                <h:inputText value="#{inventoryBean.trackSalePrice}" class="form-control" />
+                                <h:inputText style="margin-bottom: 2%;" value="#{inventoryBean.trackSalePrice}" class="form-control" />
 
                                 <p:commandButton style="margin-bottom: 2%;" type="submit" value="#{internationalization.submit}" class="btn btn-primary formbutton" 
                                                  actionListener="#{inventoryBean.addTrack}" process="@this, form1" update="form1"/>
@@ -81,6 +81,9 @@
                             <h:form enctype="multipart/form-data" id="form2">               
                                 <label class="col-form-label" for="inputDefault">#{internationalization.title}</label>
                                 <h:inputText value="#{inventoryBean.albumTitle}" class="form-control" required="true"/>
+                                
+                                <label class="col-form-label" for="inputDefault">#{internationalization.artist}</label>
+                                <h:inputText value="#{inventoryBean.artist}" class="form-control" required="true"/>
 
                                 <label class="col-form-label" for="inputDefault">#{internationalization.genres}</label>
                                 <h:inputText value="#{inventoryBean.albumGenre}" class="form-control" required="true"/>
@@ -103,7 +106,7 @@
                                 <h:inputText value="#{inventoryBean.albumSalePrice}" class="form-control" />
 
                                 <label class="col-form-label" for="inputDefault">#{internationalization.addImage}</label>
-                                <h:inputFile value="#{inventoryBean.image}" class="form-control" />
+                                <h:inputFile style="margin-bottom: 2%;" value="#{inventoryBean.image}" class="form-control" />
 
                                 <p:commandButton style="margin-bottom: 2%;" type="submit" value="#{internationalization.submit}" class="btn btn-primary formbutton" 
                                                  actionListener="#{inventoryBean.addAlbum}" process="@this, form2" update="form2"/>
