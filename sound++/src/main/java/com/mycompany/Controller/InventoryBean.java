@@ -43,9 +43,14 @@ public class InventoryBean implements Serializable {
     private Part image;
     private String albumGenre;
 
-    @Inject
     private DAO dao;
 
+    @Inject 
+    public InventoryBean(DAO dao) {
+        this.dao = dao;
+    }
+    
+    public InventoryBean(){}
     public String addTrack() {
 
         java.sql.Date sqlDate = new java.sql.Date(date.getTime());
@@ -64,6 +69,7 @@ public class InventoryBean implements Serializable {
             single.setAddedDate(sqlDate);
             single.setLabel(" ");
             single.setNumberofsong(1);
+            single.setCost(trackListPrice - (trackListPrice * (trackSalePrice / 100)));
             single.setList_price(trackListPrice);
             single.setSale_price(trackSalePrice);
             single.setGenre(trackGenre);
@@ -77,6 +83,7 @@ public class InventoryBean implements Serializable {
         track.setSongwriter(songwriter);
         track.setPlay_length(playLength);
         track.setGenre(trackGenre);
+        track.setCost(trackListPrice - (trackListPrice * (trackSalePrice / 100)));
         track.setList_price(trackListPrice);
         track.setSale_price(trackSalePrice);
         track.setDate_added(sqlDate);
@@ -96,6 +103,7 @@ public class InventoryBean implements Serializable {
             album.setAddedDate(new java.sql.Date(date.getTime()));
             album.setLabel(recordingLabel);
             album.setNumberofsong(numberSongs);
+            album.setCost(albumListPrice - (albumListPrice * (albumSalePrice / 100)));
             album.setList_price(albumListPrice);
             album.setSale_price(albumSalePrice);
             album.setImage("assets/album_covers/" + image.getSubmittedFileName());

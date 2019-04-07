@@ -13,10 +13,8 @@ import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -29,7 +27,6 @@ public class SearchBean implements Serializable {
     private List<Track> tracks;
     private List<Artist> artists;
 
-    @Inject
     private DAO dao;
     private int totalAlbumsRows;
     private int currentAlbumsPage;
@@ -39,12 +36,21 @@ public class SearchBean implements Serializable {
     private int currentTrackPage;
     private int trackPerPage;
     private int totalTrackPages;
-
-    public SearchBean() {
+    
+    @Inject
+    public SearchBean(DAO dao) {
+        this.dao = dao;
         this.albumPerPage = 2;
         this.currentAlbumsPage = 1;
         this.trackPerPage = 2;
         this.currentTrackPage = 1;
+    }
+    
+    public SearchBean() {
+        this.albumPerPage = 2;
+        this.currentAlbumsPage = 1;
+        this.trackPerPage = 2;
+        this.currentTrackPage = 1;  
     }
 
     public void init() throws ParseException {

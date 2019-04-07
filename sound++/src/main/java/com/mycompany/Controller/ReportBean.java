@@ -5,7 +5,6 @@ import com.mycompany.Model.Artist;
 import com.mycompany.Model.Cart;
 import com.mycompany.Model.InventoryReport;
 import com.mycompany.Model.Invoice;
-import com.mycompany.Model.Orders;
 import com.mycompany.Model.PurchaseReport;
 import com.mycompany.Model.SaleReport;
 import com.mycompany.Model.Track;
@@ -16,7 +15,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
@@ -41,11 +39,14 @@ public class ReportBean implements Serializable {
     private List<Album> albums;
     private String dateRange;
 
-    @Inject
     private DAO dao;
-
-    public ReportBean() {
+    
+    @Inject
+    public ReportBean(DAO dao) {
+        this.dao = dao;
     }
+    
+    public ReportBean() {}
 
     public String getPattern() {
         return pattern;
@@ -63,17 +64,13 @@ public class ReportBean implements Serializable {
         this.dateRange = dateRange;
     }
 
-    public List<InventoryReport> getTotalSales() {
+    public List<InventoryReport> getTotalSales() throws ParseException {
         List<InventoryReport> reports = new ArrayList<>();
         if (dateRange != null) {
-            String pattern = "yyyy-MM-dd";
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+            String[] days = dateRange.split("-");
 
-            String stringStart = simpleDateFormat.format(startDate);
-            String stringEnd = simpleDateFormat.format(endDate);
-
-            List<Album> albums = dao.find(new Album(), "date_added between '" + stringStart + "' and '" + stringEnd + "'");
-            List<Track> tracks = dao.find(new Track(), "date_added between '" + stringStart + "' and '" + stringEnd + "'");
+            List<Album> albums = dao.find(new Album(), "date_added between '" + newDateFormat(days[0]) + "' and '" + newDateFormat(days[1]) + "'");
+            List<Track> tracks = dao.find(new Track(), "date_added between '" + newDateFormat(days[0]) + "' and '" + newDateFormat(days[1]) + "'");
 
             reports = getFullList(albums, tracks);
         }
@@ -88,14 +85,10 @@ public class ReportBean implements Serializable {
         this.albums = albums;
     }
 
-    public List<InventoryReport> getSalesByClient() {
+    public List<InventoryReport> getSalesByClient() throws ParseException {
         List<InventoryReport> reports = new ArrayList<>();
         if (dateRange != null) {
-            String pattern = "yyyy-MM-dd";
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-
-            String stringStart = simpleDateFormat.format(startDate);
-            String stringEnd = simpleDateFormat.format(endDate);
+            String[] days = dateRange.split("-");
 
             List<Cart> carts = dao.find(new Cart(), "invoice.invoice_id IS NOT NULL AND identifier.user.email = '" + email + "'");
             List<Album> albumsBought = new ArrayList<>();
@@ -106,9 +99,9 @@ public class ReportBean implements Serializable {
                 tracksBought.add(cart.getTrack());
             }
 
-            List<Album> albums = dao.find(new Album(), "date_added between '" + stringStart + "' and '" + stringEnd + "'");
+            List<Album> albums = dao.find(new Album(), "date_added between '" + newDateFormat(days[0]) + "' and '" + newDateFormat(days[1]) + "'");
 
-            List<Track> tracks = dao.find(new Track(), "date_added between '" + stringStart + "' and '" + stringEnd + "'");
+            List<Track> tracks = dao.find(new Track(), "date_added between '" + newDateFormat(days[0]) + "' and '" + newDateFormat(days[1]) + "'");
 
             reports = new ArrayList<>();
 
