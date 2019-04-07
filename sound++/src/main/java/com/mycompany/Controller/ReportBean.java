@@ -85,6 +85,7 @@ public class ReportBean implements Serializable {
         this.albums = albums;
     }
 
+
     public List<InventoryReport> getSalesByClient() throws ParseException {
         List<InventoryReport> reports = new ArrayList<>();
         if (dateRange != null) {
