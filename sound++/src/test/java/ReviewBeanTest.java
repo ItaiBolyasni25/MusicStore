@@ -24,7 +24,6 @@ import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 //import org.jboss.shrinkwrap.resolver.api.maven.Maven;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -87,5 +86,18 @@ public class ReviewBeanTest {
         Review latest = reviews.get(reviews.size() - 1);
         Assert.assertEquals("AMAZING SONG", latest.getText());
     }
-
+    
+    @Test
+    public void approveReview() {
+        System.out.println("IN METHOD ------------------");
+        ReviewBean reviewer = new ReviewBean();
+        reviewer.setDao(dao);
+        Review firstUnapproved = dao.find(new Review(), "isApproved = 0").get(0);
+        
+        System.out.println(firstUnapproved.getReview_id() + " ------------------");
+        reviewer.approveReview(firstUnapproved.getReview_id());
+        System.out.println("AFTER METHOD CALL ----------------");
+        Review shouldBeApproved= dao.read(new Review(), firstUnapproved.getReview_id()).get(0);
+        Assert.assertTrue(shouldBeApproved.getIsApproved() == true);
+    }
 }
