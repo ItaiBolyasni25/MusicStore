@@ -56,63 +56,68 @@ public class InventoryBean implements Serializable {
     }
 
     public String addTrack() {
-        List<Artist> artists = new ArrayList<>();
-        Artist newArtist = new Artist();
-        Album single = new Album();
-        newArtist.setName(artist);
+        try {
+            List<Artist> artists = new ArrayList<>();
+            Artist newArtist = new Artist();
+            Album single = new Album();
+            newArtist.setName(artist);
 
-        artists.add(newArtist);
+            artists.add(newArtist);
 
-        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 
-        Track track = new Track();
+            Track track = new Track();
 
-        if (!albumName.isEmpty()) {
-            List<Album> albums = dao.find(new Album(), "title = '" + albumName + "'");
-            if (!albums.isEmpty()) {
-                track.setAlbum(albums.get(0));
+            if (!albumName.isEmpty()) {
+                List<Album> albums = dao.customFindDB(new Album(), "select t from Album t inner join t.artists a where a.name = '" + artist + "' and t.title = '" + albumName + "'");
+                if (!albums.isEmpty()) {
+                    track.setAlbum(albums.get(0));
+                }
+            } else {
+                if (dao.find(new Artist(), "name = '" + artist + "'").isEmpty()) {
+                    single.setArtists(artists);
+                }
+                single.setTitle(trackTitle);
+                single.setReleasedate(sqlDate);
+                single.setAddedDate(sqlDate);
+                single.setLabel(" ");
+                single.setNumberofsong(1);
+                single.setCost(trackListPrice - (trackListPrice * (trackSalePrice / 100)));
+                single.setList_price(trackListPrice);
+                single.setSale_price(trackSalePrice);
+                single.setGenre(trackGenre);
+
+                dao.write(single);
+
+                if (!dao.find(new Artist(), "name = '" + artist + "'").isEmpty()) {
+                    Artist existing = dao.find(new Artist(), "name = '" + artist + "'").get(0);
+                    List<Album> allAlbums = dao.findAll(new Album());
+                    Album justAdded = allAlbums.get(allAlbums.size() - 1);
+                    List<Artist> albumArtists = new ArrayList<>();
+                    albumArtists.add(existing);
+                    justAdded.setArtists(albumArtists);
+                    dao.updateEntity(justAdded);
+                }
+
+                track.setAlbum(single);
             }
-        } else {
-            if (dao.find(new Artist(), "name = '" + artist + "'").isEmpty()) {
-                single.setArtists(artists);
-            }
-            single.setTitle(trackTitle);
-            single.setReleasedate(sqlDate);
-            single.setAddedDate(sqlDate);
-            single.setLabel(" ");
-            single.setNumberofsong(1);
-            single.setCost(trackListPrice - (trackListPrice * (trackSalePrice / 100)));
-            single.setList_price(trackListPrice);
-            single.setSale_price(trackSalePrice);
-            single.setGenre(trackGenre);
 
-            dao.write(single);
-            
-            if (!dao.find(new Artist(), "name = '" + artist + "'").isEmpty()) {
-                Artist existing = dao.find(new Artist(), "name = '" + artist + "'").get(0);
-                List<Album> allAlbums = dao.findAll(new Album());
-                Album justAdded = allAlbums.get(allAlbums.size() - 1);
-                List<Artist> albumArtists = new ArrayList<>();
-                albumArtists.add(existing);
-                justAdded.setArtists(albumArtists);
-                dao.updateEntity(justAdded);
-            }
-            
-            track.setAlbum(single);
+            track.setTitle(trackTitle);
+            track.setSongwriter(artist);
+            track.setPlay_length(playLength);
+            track.setGenre(trackGenre);
+            track.setCost(trackListPrice - (trackListPrice * (trackSalePrice / 100)));
+            track.setList_price(trackListPrice);
+            track.setSale_price(trackSalePrice);
+            track.setDate_added(sqlDate);
+            track.setIndividual(true);
+            dao.write(track);
+            success = true;
+            fail = false;
+        } catch (Exception e) {
+            success = false;
+            fail = true;
         }
-
-        track.setTitle(trackTitle);
-        track.setSongwriter(artist);
-        track.setPlay_length(playLength);
-        track.setGenre(trackGenre);
-        track.setCost(trackListPrice - (trackListPrice * (trackSalePrice / 100)));
-        track.setList_price(trackListPrice);
-        track.setSale_price(trackSalePrice);
-        track.setDate_added(sqlDate);
-        track.setIndividual(true);
-        dao.write(track);
-        success = true;
-        fail = false;
 
         return "manager/inventory.xhtml";
     }
@@ -128,12 +133,10 @@ public class InventoryBean implements Serializable {
                 newArtist.setName(artist);
 
                 artists.add(newArtist);
-            } else {
-                artists = dao.find(new Artist(), "name = '" + artist + "'");
+                album.setArtists(artists);
             }
 
             album.setTitle(albumTitle);
-            album.setArtists(artists);
             album.setReleasedate(new java.sql.Date(releaseDate.getTime()));
             album.setAddedDate(new java.sql.Date(date.getTime()));
             album.setLabel(recordingLabel);
@@ -141,10 +144,23 @@ public class InventoryBean implements Serializable {
             album.setCost(albumListPrice - (albumListPrice * (albumSalePrice / 100)));
             album.setList_price(albumListPrice);
             album.setSale_price(albumSalePrice);
-            album.setImage("assets/album_covers/" + image.getSubmittedFileName());
+            if (image != null) {
+                album.setImage("assets/album_covers/" + image.getSubmittedFileName());
+            }
             album.setGenre(albumGenre);
 
             dao.write(album);
+
+            if (!dao.find(new Artist(), "name = '" + artist + "'").isEmpty()) {
+                Artist existing = dao.find(new Artist(), "name = '" + artist + "'").get(0);
+                List<Album> allAlbums = dao.findAll(new Album());
+                Album justAdded = allAlbums.get(allAlbums.size() - 1);
+                List<Artist> albumArtists = new ArrayList<>();
+                albumArtists.add(existing);
+                justAdded.setArtists(albumArtists);
+                dao.updateEntity(justAdded);
+            }
+
             success = true;
             fail = false;
         } catch (Exception e) {

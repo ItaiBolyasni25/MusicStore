@@ -81,6 +81,9 @@
                             <h:form enctype="multipart/form-data" id="form2">               
                                 <label class="col-form-label" for="inputDefault">#{internationalization.title}</label>
                                 <h:inputText value="#{inventoryBean.albumTitle}" class="form-control" required="true"/>
+                                
+                                <label class="col-form-label" for="inputDefault">#{internationalization.artist}</label>
+                                <h:inputText value="#{inventoryBean.artist}" class="form-control" required="true"/>
 
                                 <label class="col-form-label" for="inputDefault">#{internationalization.genres}</label>
                                 <h:inputText value="#{inventoryBean.albumGenre}" class="form-control" required="true"/>
