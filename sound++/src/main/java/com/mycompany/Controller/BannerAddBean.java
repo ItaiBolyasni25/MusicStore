@@ -23,7 +23,8 @@ import javax.servlet.http.Part;
 public class BannerAddBean implements Serializable, EntityModel {
 
     private Part uploadedFile;
-    private String folder = "projects_w19/teamA/assets/banners/";
+    private String folder = "D:\\cygwin\\projects_w19\\TeamA\\banners\\";
+    //private String folder = "C:\\Users\\1635547\\Desktop\\banners\\";
     private String messageError = null;
 
     @Inject
@@ -50,7 +51,7 @@ public class BannerAddBean implements Serializable, EntityModel {
     public void setMessageError(String messageError) {
         this.messageError = messageError;
     }
-    
+
     public String saveImage() {
         if (this.uploadedFile != null) {
             try (InputStream input = uploadedFile.getInputStream()) {
@@ -59,21 +60,24 @@ public class BannerAddBean implements Serializable, EntityModel {
                 Banner banner = new Banner();
                 banner.setUsed("1");
                 unsetUsedBanner();
-                banner.setBanner(folder + fileName);
+                banner.setBanner(fileName);
                 dao.write(banner);
                 this.messageError = null;
+                System.out.println("hello 1");
             } catch (IOException e) {
                 e.printStackTrace();
+                System.out.println("hello 2");
                 this.messageError = "";
                 return "manager/bannerad.xhtml";
             }
+        } else {
+            this.messageError = "";
         }
-        this.messageError = "";
         return "manager/bannerad.xhtml";
     }
 
     private void unsetUsedBanner() {
-        List<Banner> banners = (List<Banner>) dao.find(new Banner(), "used LIKE '1");
+        List<Banner> banners = (List<Banner>) dao.find(new Banner(), "used LIKE '1'");
         for (int i = 0; i < banners.size(); i++) {
             banners.get(i).setUsed("0");
             dao.updateEntity(banners.get(i));
