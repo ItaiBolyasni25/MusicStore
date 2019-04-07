@@ -1,9 +1,11 @@
 package com.mycompany.Controller;
 
 import com.mycompany.Model.Album;
+import com.mycompany.Model.Artist;
 import com.mycompany.Model.Track;
 import com.mycompany.Persistence.DAO;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Calendar;
 import java.util.List;
@@ -27,7 +29,7 @@ public class InventoryBean implements Serializable {
     // Track
     private String albumName;
     private String trackTitle;
-    private String songwriter;
+    private String artist;
     private String playLength;
     private String trackGenre;
     private double trackListPrice;
@@ -45,13 +47,23 @@ public class InventoryBean implements Serializable {
 
     private DAO dao;
 
-    @Inject 
+    @Inject
     public InventoryBean(DAO dao) {
         this.dao = dao;
     }
-    
-    public InventoryBean(){}
+
+    public InventoryBean() {
+    }
+
     public String addTrack() {
+        List<Artist> artists = new ArrayList<>();
+        Artist newArtist = new Artist();
+        newArtist.setName(artist);
+        if (dao.find(new Artist(), "name = '" + artist + "'").isEmpty()) {
+            artists.add(newArtist);
+        } else {
+            artists.add(dao.find(new Artist(), "name = '" + artist + "'").get(0));
+        }
 
         java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 
@@ -64,6 +76,8 @@ public class InventoryBean implements Serializable {
             }
         } else {
             Album single = new Album();
+            
+            single.setArtists(artists);
             single.setTitle(trackTitle);
             single.setReleasedate(sqlDate);
             single.setAddedDate(sqlDate);
@@ -80,7 +94,7 @@ public class InventoryBean implements Serializable {
         }
 
         track.setTitle(trackTitle);
-        track.setSongwriter(songwriter);
+        track.setSongwriter(artist);
         track.setPlay_length(playLength);
         track.setGenre(trackGenre);
         track.setCost(trackListPrice - (trackListPrice * (trackSalePrice / 100)));
@@ -98,7 +112,20 @@ public class InventoryBean implements Serializable {
     public String addAlbum() {
         try {
             Album album = new Album();
+
+            List<Artist> artists = new ArrayList<>();
+
+            if (dao.find(new Artist(), "name = '" + artist + "'").isEmpty()) {
+                Artist newArtist = new Artist();
+                newArtist.setName(artist);
+
+                artists.add(newArtist);
+            } else {
+                artists = dao.find(new Artist(), "name = '" + artist + "'");
+            }
+
             album.setTitle(albumTitle);
+            album.setArtists(artists);
             album.setReleasedate(new java.sql.Date(releaseDate.getTime()));
             album.setAddedDate(new java.sql.Date(date.getTime()));
             album.setLabel(recordingLabel);
@@ -218,12 +245,12 @@ public class InventoryBean implements Serializable {
         this.trackTitle = trackTitle;
     }
 
-    public String getSongwriter() {
-        return songwriter;
+    public String getArtist() {
+        return artist;
     }
 
-    public void setSongwriter(String songwriter) {
-        this.songwriter = songwriter;
+    public void setArtist(String artist) {
+        this.artist = artist;
     }
 
     public String getPlayLength() {

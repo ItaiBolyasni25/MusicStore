@@ -64,21 +64,24 @@ public class ReviewBeanTest {
 
     @Inject
     DAO dao;
-    
+
     @Test
     public void testSaveReview() {
         User user = new User("Bob", "Bob", "something", "blahblah", "Mr");
-        dao.write(user);
         
+        if (dao.find(new User(), "email = 'something'").isEmpty()) {
+            dao.write(user);
+        }
+
         Track track = dao.findAll(new Track()).get(0);
         SelectedTrack selected = new SelectedTrack(dao);
         selected.setSelectedTrack(track);
-        
+
         ReviewBean reviewer = new ReviewBean(dao, selected, null);
         reviewer.setTrackOrAlbum("track");
         reviewer.setRating(3);
         reviewer.setText("AMAZING SONG");
-        
+
         reviewer.saveReview(user);
         List<Review> reviews = dao.findAll(new Review());
         Review latest = reviews.get(reviews.size() - 1);
