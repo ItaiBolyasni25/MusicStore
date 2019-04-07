@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 import com.mycompany.Controller.ReviewBean;
 import com.mycompany.Controller.SelectedAlbum;
@@ -13,10 +8,17 @@ import com.mycompany.Model.Track;
 import com.mycompany.Model.User;
 import com.mycompany.Persistence.DAO;
 import java.io.File;
-import java.util.Date;
 import java.util.List;
-import javax.faces.context.FacesContext;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.transaction.HeuristicMixedException;
+import javax.transaction.HeuristicRollbackException;
+import javax.transaction.NotSupportedException;
+import javax.transaction.RollbackException;
+import javax.transaction.SystemException;
+import javax.transaction.UserTransaction;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -33,6 +35,12 @@ import org.junit.runner.RunWith;
  */
 @RunWith(Arquillian.class)
 public class ReviewBeanTest {
+
+    @Inject
+    DAO dao;
+
+    @Resource
+    UserTransaction transaction;
 
     @Deployment
     public static WebArchive createDeployment() {
@@ -61,13 +69,10 @@ public class ReviewBeanTest {
         return webArchive;
     }
 
-    @Inject
-    DAO dao;
-
     @Test
     public void testSaveReview() {
         User user = new User("Bob", "Bob", "something", "blahblah", "Mr");
-        
+
         if (dao.find(new User(), "email = 'something'").isEmpty()) {
             dao.write(user);
         }
@@ -86,18 +91,34 @@ public class ReviewBeanTest {
         Review latest = reviews.get(reviews.size() - 1);
         Assert.assertEquals("AMAZING SONG", latest.getText());
     }
-    
+
     @Test
     public void approveReview() {
-        System.out.println("IN METHOD ------------------");
         ReviewBean reviewer = new ReviewBean();
         reviewer.setDao(dao);
         Review firstUnapproved = dao.find(new Review(), "isApproved = 0").get(0);
-        
-        System.out.println(firstUnapproved.getReview_id() + " ------------------");
+
         reviewer.approveReview(firstUnapproved.getReview_id());
-        System.out.println("AFTER METHOD CALL ----------------");
-        Review shouldBeApproved= dao.read(new Review(), firstUnapproved.getReview_id()).get(0);
+        Review shouldBeApproved = dao.read(new Review(), firstUnapproved.getReview_id()).get(0);
         Assert.assertTrue(shouldBeApproved.getIsApproved() == true);
+    }
+
+    @Test
+    public void deleteReview() {
+        ReviewBean reviewer = new ReviewBean();
+        reviewer.setDao(dao);
+        List<Review> reviews = dao.findAll(new Review());
+        int id = reviews.get(reviews.size() - 1).getReview_id();
+
+        try {
+            transaction.begin();
+            reviewer.deleteReview(id);
+            transaction.commit();
+        } catch (NotSupportedException | SystemException | RollbackException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException ex) {
+            Logger.getLogger(ReviewBeanTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        List<Review> shouldBeNull = dao.read(new Review(), id);
+        Assert.assertTrue(shouldBeNull.isEmpty());
     }
 }

@@ -216,14 +216,7 @@ public class DAO {
     }
 
     public <E extends EntityModel> boolean delete(E entityModel) {
-        try {
-            userTransaction.begin();
-            em.remove(entityModel);
-            userTransaction.commit();
-
-        } catch (NotSupportedException | SystemException | RollbackException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException ex) {
-            Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        em.remove(entityModel);
         return true;
     }
 
