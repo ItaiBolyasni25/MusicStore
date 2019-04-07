@@ -3,7 +3,7 @@
 document.addEventListener("DOMContentLoaded", function () {   
     var box = document.getElementsByClassName("unique")[0];
     box.addEventListener("click", function () {
-        var stars = document.getElementsByClassName("fa-star");
+        var stars = document.getElementsByClassName("toRate");
         var starsToChange = box.value;
 
         for (var j = 0; j < starsToChange; j++) {
