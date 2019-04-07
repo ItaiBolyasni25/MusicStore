@@ -547,4 +547,28 @@ public class Internationalization implements Serializable {
     public String getDownload(){
         return language.equals("English")? "Download" : "Telecharger";
     }
+     public String getDescriptionItem(){
+        return language.equals("English")? "Description" : "La Description";
+    }
+      public String getReleaseDate(){
+        return language.equals("English")? "Original Release Date: " : "Date De Sortie Initiale: ";
+    }
+       public String getAddedDate(){
+        return language.equals("English")? "Added Date: " : "Date ajoutée: ";
+    }
+       public String getLabel(){
+        return language.equals("English")? "Label: " : "Étiquette: ";
+    }
+       public String getGenre(){
+        return language.equals("English")? "Genre: " : "Genre: ";
+    }
+        public String getSongWriter(){
+        return language.equals("English")? "SongWriter: " : "Le Compositeur ";
+    }
+         public String getSimilarTrack(){
+        return language.equals("English")? "Similar Track" : "Morceaux Similaires";
+    }
+           public String getSimilarAlbum(){
+        return language.equals("English")? "Similar Album" : "Albums Similaires";
+    }
 }

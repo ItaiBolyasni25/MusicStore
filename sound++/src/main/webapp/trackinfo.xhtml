@@ -42,15 +42,15 @@
                         <h:form class="form-inline my-2 my-lg-0" id="quantityContainer">
                             <h:commandLink class="btn btn-primary my-2 my-sm-0" value ="Add" actionListener = "#{cartController.addTrack(selectedTrack.selectedTrack, userObj)}"/>
                         </h:form>
-                              <h5 class="detail">DESCRIPTION</h5>
+                        <h5 class="detail">#{internationalization.descriptionItem}</h5>
                     <hr class="style"/>
                     <div id="myTabContent" class="tab-content">
                         <div class="tab-pane fade show active" id="details">
-                            <p id="releasedate"><span class="boldText">Original Release Date: </span>  <h:outputText value="#{selectedTrack.selectedTrack.album.releasedate}"></h:outputText>  </p>
-                            <p id="addeddate"><span class="boldText">Added Date: </span> <h:outputText value="#{selectedTrack.selectedTrack.date_added}"></h:outputText> </p>
-                            <p id="label"><span class="boldText">Label: </span> <h:outputText value="#{selectedTrack.selectedTrack.album.label}"></h:outputText> </p>   
-                            <p id="genre"><span class="boldText">Genre: </span> <h:outputText value="#{selectedTrack.selectedTrack.genre}"></h:outputText> </p>
-                            <p id="songwriter"><span class="boldText">Label: </span> <h:outputText value="#{selectedTrack.selectedTrack.songwriter}"></h:outputText> </p>                       
+                            <p id="releasedate"><span class="boldText">>#{internationalization.releaseDate}</span>  <h:outputText value="#{selectedTrack.selectedTrack.album.releasedate}"></h:outputText>  </p>
+                            <p id="addeddate"><span class="boldText">#{internationalization.addedDate}</span> <h:outputText value="#{selectedTrack.selectedTrack.date_added}"></h:outputText> </p>
+                            <p id="label"><span class="boldText">#{internationalization.label} </span> <h:outputText value="#{selectedTrack.selectedTrack.album.label}"></h:outputText> </p>   
+                            <p id="genre"><span class="boldText">#{internationalization.genre} </span> <h:outputText value="#{selectedTrack.selectedTrack.genre}"></h:outputText> </p>
+                            <p id="songwriter"><span class="boldText">#{internationalization.songWriter} </span> <h:outputText value="#{selectedTrack.selectedTrack.songwriter}"></h:outputText> </p>                       
                         </div>
                     </div>
                     </div>
@@ -59,7 +59,7 @@
 
                 <div class = "detailInfo">
                     
-                    <h5 class="detail">SIMILAR TRACKS</h5>
+                    <h5 class="detail">#{internationalization.similarTrack}</h5>
                     <hr class="style"/>
                     <c:choose>
                         <c:when test="#{selectedTrack.similarTrack.size() > 0}">

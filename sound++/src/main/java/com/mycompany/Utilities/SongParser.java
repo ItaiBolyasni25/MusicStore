@@ -22,6 +22,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -29,7 +30,7 @@ import javax.inject.Named;
  *
  * @author 1633867
  */
-@ApplicationScoped
+@SessionScoped
 @Named("SongParser")
 public class SongParser implements Serializable {
 
@@ -87,6 +88,11 @@ public class SongParser implements Serializable {
             }
         }
         if (album != null) {
+            if (splittedCsv[2].contains("'")) {
+                    splittedCsv[2] = splittedCsv[2].replace("'", "''");
+                }
+            List<Track> tracks = dao.find(new Track(), "title = '" + splittedCsv[2] + "'");
+            if(tracks.size() < 1){        
             Track track = new Track();
             track.setSelection_number(Integer.parseInt(splittedCsv[6]));
             track.setTitle(splittedCsv[2]);
@@ -105,14 +111,16 @@ public class SongParser implements Serializable {
             track.setRemoval_status(false);
             track.setRemoval_date(null);
             dao.write(track);
+            
+        }
         }
 
     }
 
-    private void readCSVFile() throws IOException, ParseException {
-        //You need to change your path here, I will ask Dan on Friday .
+    public void readCSVFile() throws IOException, ParseException {
         InputStream inputStream
                 = getClass().getClassLoader().getResourceAsStream("dataPoints.csv");
+        System.out.println(Boolean.toString(inputStream == null));
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         String line;
         int counter = 0;
@@ -124,10 +132,14 @@ public class SongParser implements Serializable {
                     splittedCsv[0] = splittedCsv[0].replace("'", "''");
                 }
                 albumParser(splittedCsv);
-            }
+                isLoaded= true;
         }
     }
+    }
+    
+    
 
+    
     private java.sql.Date newDateFormat(String date) throws ParseException {
         String newString = "";
         String[] elements = date.split("/");
