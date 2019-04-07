@@ -10,7 +10,6 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.transaction.Transactional;
@@ -126,5 +125,10 @@ public class ReviewBean implements Serializable {
 
     public List<Review> getTrackReviews(Track track) {
         return dao.find(new Review(), "track.track_id = '" + track.getId() + "' AND identifier.isApproved = 1");
+    }
+    
+    @Inject
+    public void setDao(DAO dao){
+        this.dao = dao;
     }
 }

@@ -148,6 +148,10 @@ public class InventoryBean implements Serializable {
                 album.setImage("assets/album_covers/" + image.getSubmittedFileName());
             }
             album.setGenre(albumGenre);
+            
+            if (!dao.customFindDB(new Album(), "select t from Album t inner join t.artists a where a.name = '" + artist + "' "
+                    + "and t.title = '" + albumName + "'").isEmpty()) 
+                throw new Exception();
 
             dao.write(album);
 
