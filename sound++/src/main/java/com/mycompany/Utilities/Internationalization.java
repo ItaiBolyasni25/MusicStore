@@ -551,6 +551,7 @@ public class Internationalization implements Serializable {
     public String getReset(){
         return language.equals("English")? "Reset" : "Reinitialiser";
     }
+
     public String getWriteReview(){
         return language.equals("English")? "Write a review" : "Écrire une critique";
     }
