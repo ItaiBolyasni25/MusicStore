@@ -256,14 +256,7 @@ public class DAO {
          return q.getResultList();
     }
 
-    public <E extends EntityModel> List<E> customFind(E entityModel, String afterTableName) {
-        String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
-        Query q = em.createNativeQuery("SELECT t.* FROM " + className + " t " + afterTableName);
-        return q.getResultList();
-    }
-
     public <E extends EntityModel> List<E> customFindDB(E entityModel, String query) {
-        String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
         Query q = em.createQuery(query);
         return q.getResultList();
     }
