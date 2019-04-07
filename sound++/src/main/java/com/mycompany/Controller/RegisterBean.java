@@ -4,9 +4,13 @@ import com.mycompany.Model.Roles;
 import com.mycompany.Utilities.Validator;
 import com.mycompany.Persistence.DAO;
 import com.mycompany.Model.User;
+import java.io.IOException;
 import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +29,6 @@ public class RegisterBean implements Serializable {
     private String email;
     private String password;
     private String title;
-    private boolean is_manager;
     // Will be set to true if user tries to register with existing email
     private boolean invalidEmail;
 
@@ -38,14 +41,6 @@ public class RegisterBean implements Serializable {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public boolean isIs_manager() {
-        return is_manager;
-    }
-
-    public void setIs_manager(boolean is_manager) {
-        this.is_manager = is_manager;
     }
 
     public String getFirstName() {
@@ -118,9 +113,10 @@ public class RegisterBean implements Serializable {
     }
 
     public void logIn() {
-        FacesContext context = FacesContext.getCurrentInstance();
-        HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
-        System.out.println("REMOTE USER ----- " +request.getRemoteUser());
-        System.out.println("REMOTE USER NAME PRINCIPAL ----- " + request.getUserPrincipal().getName());
+        User user = DAO.find(new User(), "email = '" + email + "'").get(0);
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("userObj", user);
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", firstName);
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("id", email);
     }
+
 }

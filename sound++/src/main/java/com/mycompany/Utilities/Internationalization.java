@@ -570,5 +570,8 @@ public class Internationalization implements Serializable {
     }
            public String getSimilarAlbum(){
         return language.equals("English")? "Similar Album" : "Albums Similaires";
+           }
+    public String getReset(){
+        return language.equals("English")? "Reset" : "Reinitialiser";
     }
 }
