@@ -555,4 +555,8 @@ public class Internationalization implements Serializable {
     public String getWriteReview(){
         return language.equals("English")? "Write a review" : "Écrire une critique";
     }
+    
+    public String getTotalSales(){
+        return language.equals("English")? "Total sales" : "Ventes totales";
+    }
 }

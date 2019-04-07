@@ -64,23 +64,19 @@ public class ReportBean implements Serializable {
     }
 
     public List<InventoryReport> getTotalSales() {
-        String pattern = "yyyy-MM-dd";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        List<InventoryReport> reports = new ArrayList<>();
+        if (dateRange != null) {
+            String pattern = "yyyy-MM-dd";
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 
-        String stringStart = simpleDateFormat.format(startDate);
-        String stringEnd = simpleDateFormat.format(endDate);
+            String stringStart = simpleDateFormat.format(startDate);
+            String stringEnd = simpleDateFormat.format(endDate);
 
-        List<Album> albums = dao.find(new Album(), "date_added between '" + stringStart + "' and '" + stringEnd + "'");
-        List<Track> tracks = dao.find(new Track(), "date_added between '" + stringStart + "' and '" + stringEnd + "'");
+            List<Album> albums = dao.find(new Album(), "date_added between '" + stringStart + "' and '" + stringEnd + "'");
+            List<Track> tracks = dao.find(new Track(), "date_added between '" + stringStart + "' and '" + stringEnd + "'");
 
-        List<InventoryReport> reports = getFullList(albums, tracks);
-
-//        setTotalSales(true);
-//        setSalesByClient(false);
-//        setSalesByArtist(false);
-//        setSalesByTrack(false);
-//        
-//        setLastTab("sales");
+            reports = getFullList(albums, tracks);
+        }
         return reports;
     }
 
@@ -93,46 +89,43 @@ public class ReportBean implements Serializable {
     }
 
     public List<InventoryReport> getSalesByClient() {
-        String pattern = "yyyy-MM-dd";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-
-        String stringStart = simpleDateFormat.format(startDate);
-        String stringEnd = simpleDateFormat.format(endDate);
-
-        List<Cart> carts = dao.find(new Cart(), "invoice.invoice_id IS NOT NULL AND identifier.user.email = '" + email + "'");
-        List<Album> albumsBought = new ArrayList<>();
-        List<Track> tracksBought = new ArrayList<>();
-
-        for (Cart cart : carts) {
-            albumsBought.add(cart.getAlbum());
-            tracksBought.add(cart.getTrack());
-        }
-
-        List<Album> albums = dao.find(new Album(), "date_added between '" + stringStart + "' and '" + stringEnd + "'");
-
-        List<Track> tracks = dao.find(new Track(), "date_added between '" + stringStart + "' and '" + stringEnd + "'");
-
         List<InventoryReport> reports = new ArrayList<>();
+        if (dateRange != null) {
+            String pattern = "yyyy-MM-dd";
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 
-        for (Album album : albumsBought) {
-            if (albums.contains(album)) {
-                reports.add(new InventoryReport("Album", album.getTitle(), album.getTotal_sales()));
+            String stringStart = simpleDateFormat.format(startDate);
+            String stringEnd = simpleDateFormat.format(endDate);
+
+            List<Cart> carts = dao.find(new Cart(), "invoice.invoice_id IS NOT NULL AND identifier.user.email = '" + email + "'");
+            List<Album> albumsBought = new ArrayList<>();
+            List<Track> tracksBought = new ArrayList<>();
+
+            for (Cart cart : carts) {
+                albumsBought.add(cart.getAlbum());
+                tracksBought.add(cart.getTrack());
+            }
+
+            List<Album> albums = dao.find(new Album(), "date_added between '" + stringStart + "' and '" + stringEnd + "'");
+
+            List<Track> tracks = dao.find(new Track(), "date_added between '" + stringStart + "' and '" + stringEnd + "'");
+
+            reports = new ArrayList<>();
+
+            for (Album album : albumsBought) {
+                if (albums.contains(album)) {
+                    reports.add(new InventoryReport("Album", album.getTitle(), album.getTotal_sales()));
+                }
+            }
+
+            for (Track track : tracksBought) {
+                if (tracks.contains(track)) {
+                    reports.add(new InventoryReport("Track", track.getTitle(), track.getTotal_sales()));
+                }
             }
         }
-
-        for (Track track : tracksBought) {
-            if (tracks.contains(track)) {
-                reports.add(new InventoryReport("Track", track.getTitle(), track.getTotal_sales()));
-            }
-        }
-
-//        setSalesByClient(true);
-//        setTotalSales(false);
-//        setSalesByArtist(false);
-//        setSalesByTrack(false);
-//        
-//        setLastTab("client");
         return reports;
+
     }
 
     public void patternALbumChanged() {
@@ -307,36 +300,26 @@ public class ReportBean implements Serializable {
             List<Track> tracks = dao.customFindDB(new Track(), "Select t from Track t inner join t.album a inner join a.artists art "
                     + "where art.name = '" + artist + "' and (t.date_added between '" + newDateFormat(days[0]) + "' and '" + newDateFormat(days[1]) + "')");
 
-             reports = getFullList(albums, tracks);
+            reports = getFullList(albums, tracks);
 
-//        setSalesByArtist(true);
-//        setTotalSales(false);
-//        setSalesByClient(false);
-//        setSalesByTrack(false);
-//
-//        setLastTab("artist");
         }
         return reports;
     }
 
     public List<InventoryReport> getSalesByTrack() {
-        String pattern = "yyyy-MM-dd";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        List<InventoryReport> reports = new ArrayList<>();
+        if (dateRange != null) {
+            String pattern = "yyyy-MM-dd";
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 
-        String stringStart = simpleDateFormat.format(startDate);
-        String stringEnd = simpleDateFormat.format(endDate);
+            String stringStart = simpleDateFormat.format(startDate);
+            String stringEnd = simpleDateFormat.format(endDate);
 
-        List<Track> tracks = dao.find(new Track(), "title = '" + trackTitle + "' and "
-                + "(identifier.date_added between '" + stringStart + "' and '" + stringEnd + "')");
+            List<Track> tracks = dao.find(new Track(), "title = '" + trackTitle + "' and "
+                    + "(identifier.date_added between '" + stringStart + "' and '" + stringEnd + "')");
 
-        List<InventoryReport> reports = getFullList(new ArrayList<Album>(), tracks);
-
-//        setSalesByTrack(true);
-//        setTotalSales(false);
-//        setSalesByClient(false);
-//        setSalesByArtist(false);
-//        
-//        setLastTab("track");
+            reports = getFullList(new ArrayList<Album>(), tracks);
+        }
         return reports;
     }
 
@@ -370,6 +353,5 @@ public class ReportBean implements Serializable {
     public void setArtist(String artist) {
         this.artist = artist;
     }
-    
 
 }
