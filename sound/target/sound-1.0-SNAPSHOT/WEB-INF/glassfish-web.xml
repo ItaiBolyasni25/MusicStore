@@ -10,6 +10,7 @@
     
     <property name="alternatedocroot_1" value="from=/banners/* dir=C:\Users\austi\Desktop\SchoolStuff\JavaServerSide\Project\csdmusicstore\sound++\src\main\webapp\assets" />
     <!--<property name="alternatedocroot_1" value="from=/banners/* dir=D:\cygwin\projects_w19\TeamA" />-->
+    <!--<property name="alternatedocroot_1" value="from=/banners/* dir=C:\Users\maian\Desktop\csdmusicstore\sound++\src\main\webapp\assets" />-->
     
     <security-role-mapping>
         <role-name>manager</role-name>

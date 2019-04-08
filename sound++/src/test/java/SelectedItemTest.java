@@ -76,8 +76,8 @@ public class SelectedItemTest {
 
     @Before
     public void setUpSelectedTrackTest() throws IOException, ParseException {
-        track = dao.find(new Track(), "title = '2 Kids'").get(0);
-        selected.setTrack(track);
+       // track = dao.find(new Track(), "title = '2 Kids'").get(0);
+       // selected.setTrack(track);
     }
 
     @Test
