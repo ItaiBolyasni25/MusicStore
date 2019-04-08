@@ -27,31 +27,33 @@ and open the template in the editor.
                 <section class='col-md-9 pt-0'>
                     <h3>Full Albums</h3>
                     <br/>
-                    <h:form>
-                        <ul style='list-style-type:none'>
+                        <ul style='list-style-type:none' id="list">
                             <ui:repeat var="album" value="#{cartController.getCartAlbum(userObj)}">
                                 <li style='height: 50px'>
 
 
                                     <span style='font-size:18px;' class='pr-5 pt-3'>#{album.title}</span>
-                                    <a href='#' class='btn btn-danger' style='float:right'>Remove</a>
-                                    
+                                    <h:form>
+                                        <h:commandLink class = "btn btn-danger float-right" action="#{cartController.removeAlbum(album, userObj)}" value="Remove">
+                                        </h:commandLink>
+                                    </h:form>
+
 
                                     <span class='pr-5' style='font-size: 14px; float:right'>#{album.list_Price}</span>                                
                                 </li>
                             </ui:repeat>
                         </ul>
-                    </h:form>
                 </section>
                 <section class='col-md-9 pt-0'>
                     <h3>Individual Tracks</h3>
                     <br/>
-                    <ul style='list-style-type:none'>
+                    <ul style='list-style-type:none' id="list2" class="list2">
                         <ui:repeat var="track" value="#{cartController.getCartTracks(userObj)}">
                             <li style='height: 50px'>
                                 <span style='font-size:18px;' class='pr-5 pt-3'>#{track.title}</span>
                                 <h:form>
-                                    <a href='#' class='btn btn-danger' style='float:right'>Remove</a>
+                                    <h:commandLink class = "btn btn-danger float-right" action="#{cartController.removeTrack(track, userObj)}" value="Remove">
+                                    </h:commandLink>
                                 </h:form>
                                 <span class='pr-5' style='font-size: 14px; float:right'>#{track.list_price}</span>                                
                             </li>
