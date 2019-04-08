@@ -634,4 +634,64 @@ public class Internationalization implements Serializable {
         return language.equals("English") ? "Sign up to enjoy all the content!" : "Enregistrez vous pour profiter de tout le contenue";
     }
 
+    public String getCheckout() {
+        return language.equals("English") ? "Checkout" : "Check-out";
+    }
+
+    public String getFullAlbum() {
+        return language.equals("English") ? "Full Albums" : "Albums complets";
+    }
+
+    public String getIndvTracks() {
+        return language.equals("English") ? "Individual Tracks" : "Chansons Individuelles";
+    }
+
+    public String getPayment() {
+        return language.equals("English") ? "Payment" : "Paiement";
+    }
+
+    public String getNameOnCard() {
+        return language.equals("English") ? "Name on card" : "Nom sur carte";
+    }
+
+    public String getCCNumber() {
+        return language.equals("English") ? "Credit card number" : "Numéro de Carte de Crédit";
+    }
+
+    public String getExpiration() {
+        return language.equals("English") ? "Expiration Date" : "Date d'expiration";
+    }
+
+    public String getFrom() {
+        return language.equals("English") ? "From" : "De";
+    }
+
+    public String getTo() {
+        return language.equals("English") ? "To" : "À";
+    }
+
+    public String getItem() {
+        return language.equals("English") ? "Item" : "Article";
+    }
+
+    public String getProceed() {
+        return language.equals("English") ? "Proceed" : "Procéder";
+    }
+
+    public String getTotalPrice() {
+        return language.equals("English") ? "Total Price: " : "Prix ​​total:";
+    }
+
+    public String getBillingAddress() {
+        return language.equals("English") ? "Billing Address" : "Adresse de facturation";
+    }
+
+    public String getContinueToInvoice() {
+        return language.equals("English") ? "Continue to invoice" : "Continuer à facturer";
+    }
+
+    public String getShippingAddress() {
+        return language.equals("English") ? "Shipping address is the same as my billing address" : "L'adresse de livraison est la même que mon adresse de facturation";
+    }
+
 }

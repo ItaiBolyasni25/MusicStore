@@ -54,14 +54,14 @@
                         </div>
                     </div>
                 </form>
-                <h5 class="text-secondary" style="margin-top: 15px; margin-left: 5px">Total price: #{cartController.getPrice(userObj)}$</h5>
+                <h5 class="text-secondary" style="margin-top: 15px; margin-left: 5px">#{internationalization.totalPrice} #{cartController.getPrice(userObj)}$</h5>
             </div>
             <div class="col-md-8 order-md-1 ml-5 mt-4">
-                <h4 class="mb-3">Billing address</h4>
+                <h4 class="mb-3">#{internationalization.billingAddress}</h4>
                 <h:form class="needs-validation">
                     <div class="row">
                         <div class="mb-3 col-sm-4">
-                            <label for="address">Address</label>
+                            <label for="address">#{internationalization.address}</label>
                             <h:inputText value="#{invoiceController.address1}" class="form-control address" id="address1" a:placeholder='1234 Main St' required="true"/>
                             <div class="invalid-feedback">
                                 Please enter your shipping address.
@@ -69,28 +69,28 @@
                         </div>
 
                         <div class="mb-3 col-sm-4">
-                            <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
+                            <label for="address2">#{internationalization.address} 2 <span class="text-muted">(Optional)</span></label>
                             <h:inputText value="#{invoiceController.address2}" class="form-control" id="address2" a:placeholder='1234 Main St'/>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-4 mr-2 mb-3">
-                            <label for="country">Country</label>
+                            <label for="country">#{internationalization.country}</label>
                             <h:inputText value="#{invoiceController.country}" class="form-control country" id="country" a:placeholder='Canada' required="true"/>
                             <div class="invalid-feedback">
                                 Please select a valid country.
                             </div>
                         </div>
                         <div class="col-md-3 mb-3">
-                            <label for="state">Province</label>
+                            <label for="state">#{internationalization.province}</label>
                             <h:inputText value="#{invoiceController.state}" class="form-control province" id="state" a:placeholder='Quebec' required="true"/>
                             <div class="invalid-feedback">
-                                Please provide a valid state.
+                                Please provide a valid province.
                             </div>
                         </div>
                         <div class="col-md-2 mb-3">
-                            <label for="zip">Postal Code</label>
+                            <label for="zip">#{internationalization.postalcode}</label>
                             <h:inputText value="#{invoiceController.zip}" class="form-control postalCode" id="address" a:placeholder='H1H9Z5' required="true"/>
                             <div class="invalid-feedback">
                                 Postal code required.
@@ -100,17 +100,13 @@
                         <div class="row">
                             <div class="custom-control custom-checkbox col-md-4">
                                 <input type="checkbox" class="custom-control-input" id="same-address"/>
-                                <label class="custom-control-label" for="same-address">Shipping address is the same as my billing address</label>
-                            </div>
-                            <div class="custom-control custom-checkbox col-md-6">
-                                <input type="checkbox" class="custom-control-input" id="save-info"/>
-                                <label class="custom-control-label" for="save-info">Save this information for next time</label>
+                                <label class="custom-control-label" for="same-address">#{internationalization.shippingAddress}</label>
                             </div>
                         </div>
 
                         <div class="mb-4"></div>
 
-                        <h4 class="mb-3">Payment</h4>
+                        <h4 class="mb-3">#{internationalization.payment}</h4>
 
                         <div class="d-block my-3">
                             <div class="custom-control custom-radio">
@@ -122,7 +118,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6 mb-3">
-                                    <label for="cc-name">Name on card</label>
+                                    <label for="cc-name">#{internationalization.nameOnCard}</label>
                                     <h:inputText value="#{invoiceController.nameOfCard}" class="form-control nameOnCard" id="nameOnCard" a:placeholder='John Doe' required="true"/>
                                     <small class="text-muted">Full name as displayed on card</small>
                                     <div class="invalid-feedback">
@@ -130,7 +126,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label for="cc-number">Credit card number</label>
+                                    <label for="cc-number">#{internationalization.CCNumber}</label>
                                     <h:inputText value="#{invoiceController.creditNumber}" class="form-control ccNumber" id="creditNumber" a:placeholder='5415 2568 6668 9528' required="true"/>
                                     <div class="invalid-feedback">
                                         Credit card number is required
@@ -139,7 +135,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-3 mb-3">
-                                    <label for="cc-expiration">Expiration</label>
+                                    <label for="cc-expiration">#{internationalization.expiration}</label>
                                     <h:inputText value="#{invoiceController.expiration}" class="form-control expiry" id="expiration" a:placeholder='02/22' required="true"/>
                                     <div class="invalid-feedback">
                                         Expiration date required
@@ -155,7 +151,7 @@
 
                             </div>
                             <div class="mb-4"></div>
-                            <h:commandButton type="submit" class="btn btn-primary formbutton toInvoice" value="Continue to invoice" action="#{invoiceController.addInvoice(cartController.getCartItems(userObj), userObj)}"/>
+                            <h:commandButton type="submit" class="btn btn-primary formbutton toInvoice" value="#{internationalization.continueToInvoice}" action="#{invoiceController.addInvoice(cartController.getCartItems(userObj), userObj)}"/>
 
                         </div>
                 </h:form>
