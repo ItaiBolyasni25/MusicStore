@@ -30,7 +30,6 @@ import org.junit.Ignore;
  *
  * @author maian
  */
-@Ignore
 public class ResultBeanTest {
 
     @Deployment

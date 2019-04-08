@@ -1,5 +1,6 @@
-
 import io.github.bonigarcia.wdm.ChromeDriverManager;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -18,6 +19,14 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class RegistrationTest {
     
+    private static WebDriver driver;
+
+    @BeforeClass
+    public static void init() {
+        ChromeDriverManager.getInstance().setup();
+        driver = new ChromeDriver();
+        driver.get("http://localhost:8080/sound%20%20/");
+    }
     
     @Test
     public void runTest() throws InterruptedException {
@@ -97,4 +106,8 @@ public class RegistrationTest {
         element.click();
     }
 
+        @AfterClass
+    public static void close() {
+        driver.close();
+    }
 }
