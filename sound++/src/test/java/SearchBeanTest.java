@@ -54,11 +54,10 @@ public class SearchBeanTest {
                         new File("src/main/setup/glassfish-resources.xml"),
                         "glassfish-resources.xml")
                 .addAsResource(new File("src/main/resources/META-INF/persistence.xml"),
-                        "META-INF/persistence.xml")
-                ;//.addAsLibraries(dependencies);
+                        "META-INF/persistence.xml");//.addAsLibraries(dependencies);
         return webArchive;
     }
-    
+
     @Inject
     private DAO dao;
     @Inject
@@ -67,33 +66,30 @@ public class SearchBeanTest {
 
     @Test
     public void patternAlbumChanged() throws ParseException {
-       pattern = "H";
-       List<String> expectedAlbum = new ArrayList<>();
-       List<String> actualAlbum = new ArrayList<>();
-       expectedAlbum.add("Heard It In A Past Life [Explicit]");
-       search.setPattern(pattern);
-       search.updateView();
-       for(Album al : search.getAlbums()){
-           actualAlbum.add(al.getTitle());
-       }
-       Assert.assertArrayEquals(expectedAlbum.toArray(), actualAlbum.toArray());
-       }
-    @Test
-    public void patternTrackChanged() throws ParseException {
-       pattern = "H";
-       List<String> expectedTrack = new ArrayList<>();
-       List<String> actualTrack = new ArrayList<>();
-       expectedTrack.add("Havana (featuring Young Thug)");
-        expectedTrack.add("Homesick");
-       search.setPattern(pattern);
-       search.updateView();
-       for(Track al : search.getTracks()){
-           actualTrack.add(al.getTitle());
-       }
-       Assert.assertArrayEquals(expectedTrack.toArray(), actualTrack.toArray());
-       }
+        pattern = "H";
+        List<String> expectedAlbum = new ArrayList<>();
+        List<String> actualAlbum = new ArrayList<>();
+        expectedAlbum.add("Heard It In A Past Life [Explicit]");
+        search.setPattern(pattern);
+        search.updateView();
+        for (Album al : search.getAlbums()) {
+            actualAlbum.add(al.getTitle());
+        }
+        Assert.assertArrayEquals(expectedAlbum.toArray(), actualAlbum.toArray());
     }
 
-    
-
-
+    @Test
+    public void patternTrackChanged() throws ParseException {
+        pattern = "H";
+        List<String> expectedTrack = new ArrayList<>();
+        List<String> actualTrack = new ArrayList<>();
+        expectedTrack.add("Havana (featuring Young Thug)");
+        expectedTrack.add("Homesick");
+        search.setPattern(pattern);
+        search.updateView();
+        for (Track al : search.getTracks()) {
+            actualTrack.add(al.getTitle());
+        }
+        Assert.assertArrayEquals(expectedTrack.toArray(), actualTrack.toArray());
+    }
+}

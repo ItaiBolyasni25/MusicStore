@@ -115,6 +115,8 @@ public class InventoryBean implements Serializable {
             success = true;
             fail = false;
         } catch (Exception e) {
+            System.out.println("\n\n" + e.getMessage() + "\n\n");
+            e.printStackTrace();
             success = false;
             fail = true;
         }

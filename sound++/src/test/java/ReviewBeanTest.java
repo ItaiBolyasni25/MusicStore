@@ -7,12 +7,14 @@ import com.mycompany.Model.Review;
 import com.mycompany.Model.Track;
 import com.mycompany.Model.User;
 import com.mycompany.Persistence.DAO;
+import com.mycompany.Utilities.SongParser;
 import java.io.File;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.sql.DataSource;
 import javax.transaction.HeuristicMixedException;
 import javax.transaction.HeuristicRollbackException;
 import javax.transaction.NotSupportedException;
@@ -43,6 +45,12 @@ public class ReviewBeanTest {
 
     @Resource
     UserTransaction transaction;
+    
+    @Resource(name = "java:app/jdbc/Songstore")
+    DataSource ds;
+    
+    @Inject
+    SongParser songparser;
 
     @Deployment
     public static WebArchive createDeployment() {
@@ -61,13 +69,16 @@ public class ReviewBeanTest {
                 .addPackage(Track.class.getPackage())
                 .addPackage(SelectedAlbum.class.getPackage())
                 .addPackage(SelectedTrack.class.getPackage())
+                .addPackage(SongParser.class.getPackage())
                 .addPackage(User.class.getPackage())
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
                 .addAsWebInfResource(
                         new File("src/main/setup/glassfish-resources.xml"),
                         "glassfish-resources.xml")
                 .addAsResource(new File("src/main/resources/META-INF/persistence.xml"),
-                        "META-INF/persistence.xml");//.addAsLibraries(dependencies);
+                        "META-INF/persistence.xml")
+                ;//.addAsLibraries(dependencies);
+        
         return webArchive;
     }
 
@@ -119,7 +130,7 @@ public class ReviewBeanTest {
         } catch (NotSupportedException | SystemException | RollbackException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException ex) {
             Logger.getLogger(ReviewBeanTest.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         List<Review> shouldBeNull = dao.read(new Review(), id);
         Assert.assertTrue(shouldBeNull.isEmpty());
     }

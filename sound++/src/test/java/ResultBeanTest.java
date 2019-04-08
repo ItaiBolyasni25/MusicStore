@@ -35,8 +35,7 @@ import org.junit.Ignore;
  */
 @Ignore
 public class ResultBeanTest {
-    
-   
+
     @Deployment
     public static WebArchive createDeployment() {
         /*final File[] dependencies = Maven.resolver()
@@ -58,11 +57,10 @@ public class ResultBeanTest {
                         new File("src/main/setup/glassfish-resources.xml"),
                         "glassfish-resources.xml")
                 .addAsResource(new File("src/main/resources/META-INF/persistence.xml"),
-                        "META-INF/persistence.xml")
-                ;//.addAsLibraries(dependencies);
+                        "META-INF/persistence.xml");//.addAsLibraries(dependencies);
         return webArchive;
     }
-    
+
     @Inject
     private DAO dao;
     @Inject
@@ -70,5 +68,4 @@ public class ResultBeanTest {
     private String pattern;
     private String filter;
 
-   
 }
