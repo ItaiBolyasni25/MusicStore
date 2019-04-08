@@ -20,20 +20,26 @@ import javax.inject.Named;
  *
  * @author maian
  */
-
 @SessionScoped
 @Named("selectedAlbum")
-public class SelectedAlbum implements Serializable{
-    @Inject
-   private DAO dao;
+public class SelectedAlbum implements Serializable {
+
+    private DAO dao;
     private Album album;
     private HtmlInputHidden dataItemId = new HtmlInputHidden();
-    public SelectedAlbum(){
+    
+    @Inject
+    public SelectedAlbum(DAO dao) {
+        this.dao = dao;
     }
-     public String editDataItem() {
-         if(album !=null){
-        dataItemId.setValue(album.getId());}
-          return "albuminfo?faces-redirect=true";
+
+    public SelectedAlbum() {}
+
+    public String editDataItem() {
+        if (album != null) {
+            dataItemId.setValue(album.getId());
+        }
+        return "albuminfo?faces-redirect=true";
     }
 
     public Album getSelectedAlbum() {
@@ -43,6 +49,7 @@ public class SelectedAlbum implements Serializable{
     public HtmlInputHidden getAlbumId() {
         return dataItemId;
     }
+
     public void setSelectedAlbum(Album dataItem) {
         this.album = dataItem;
     }
@@ -50,23 +57,23 @@ public class SelectedAlbum implements Serializable{
     public void setDataItemId(HtmlInputHidden dataItemId) {
         this.dataItemId = dataItemId;
     }
-     public List<Album> getSimilarAlbum(){
-         String genre;
-         if(album!=null){
-         if(album.getGenre().contains("'")){
-             genre = album.getGenre().replace("'", "''");
-         }
-         else{
-            genre = album.getGenre();
-         }
-         List<String> artists = new ArrayList<>();
-         for(Artist a: album.getArtists()){
-             artists.add(a.getName());
-         }
-         List<Album> albums = dao.findWithLimitGenreAlbum(new Album(), 3, genre,artists, album.getTitle());
-         return albums;
-         }
-         return null;
+
+    public List<Album> getSimilarAlbum() {
+        String genre;
+        if (album != null) {
+            if (album.getGenre().contains("'")) {
+                genre = album.getGenre().replace("'", "''");
+            } else {
+                genre = album.getGenre();
+            }
+            List<String> artists = new ArrayList<>();
+            for (Artist a : album.getArtists()) {
+                artists.add(a.getName());
+            }
+            List<Album> albums = dao.findWithLimitGenreAlbum(new Album(), 3, genre, artists, album.getTitle());
+            return albums;
+        }
+        return null;
     }
 
 }

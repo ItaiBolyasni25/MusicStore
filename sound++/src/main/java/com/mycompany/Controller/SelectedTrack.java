@@ -5,8 +5,6 @@ package com.mycompany.Controller;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
 /**
  *
  * @author maian
@@ -25,15 +23,21 @@ import javax.inject.Named;
 @SessionScoped
 @Named("selectedTrack")
 public class SelectedTrack implements Serializable {
-    @Inject
-   private DAO dao;
+
+    private DAO dao;
     private Track track;
     private HtmlInputHidden dataItemId = new HtmlInputHidden();
-    public SelectedTrack(){
+    
+    @Inject
+    public SelectedTrack(DAO dao) {
+        this.dao = dao;
     }
-     public String editDataItem() {
+
+    public SelectedTrack() {}
+
+    public String editDataItem() {
         dataItemId.setValue(track.getId());
-         return "trackinfo?faces-redirect=true";
+        return "trackinfo?faces-redirect=true";
     }
 
     public Track getSelectedTrack() {
@@ -47,6 +51,7 @@ public class SelectedTrack implements Serializable {
     public HtmlInputHidden getTrackId() {
         return dataItemId;
     }
+
     public void setSelectedTrack(Track dataItem) {
         this.track = dataItem;
     }
@@ -54,22 +59,22 @@ public class SelectedTrack implements Serializable {
     public void setDataItemId(HtmlInputHidden dataItemId) {
         this.dataItemId = dataItemId;
     }
-     public List<Track> getSimilarTrack(){
-         String genre;
-         if(track!=null){
-         if(track.getGenre().contains("'")){
-             genre = track.getGenre().replace("'", "''");
-         }
-         else{
-            genre = track.getGenre();
-         }
-          List<String> artists = new ArrayList<>();
-         for(Artist a: track.getAlbum().getArtists()){
-             artists.add(a.getName());
-         }
-         List<Track> tracks = dao.findWithLimitGenreTrack(new Track(), 3, genre,artists, track.getTitle());
-         return tracks;
-         }
-         return null;
+
+    public List<Track> getSimilarTrack() {
+        String genre;
+        if (track != null) {
+            if (track.getGenre().contains("'")) {
+                genre = track.getGenre().replace("'", "''");
+            } else {
+                genre = track.getGenre();
+            }
+            List<String> artists = new ArrayList<>();
+            for (Artist a : track.getAlbum().getArtists()) {
+                artists.add(a.getName());
+            }
+            List<Track> tracks = dao.findWithLimitGenreTrack(new Track(), 3, genre, artists, track.getTitle());
+            return tracks;
+        }
+        return null;
     }
 }

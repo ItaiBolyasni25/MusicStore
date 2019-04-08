@@ -9,8 +9,7 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
-import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.transaction.Transactional;
@@ -20,7 +19,7 @@ import javax.transaction.Transactional;
  * @author aantoine97
  */
 @Named(value = "reviewBean")
-@ViewScoped
+@RequestScoped
 public class ReviewBean implements Serializable {
 
     private Integer review_id;
@@ -28,17 +27,20 @@ public class ReviewBean implements Serializable {
     private String text;
     private String trackOrAlbum;
     
-    @Inject
     private DAO dao;
 
-    @Inject
     private SelectedTrack track;
 
-    @Inject
     private SelectedAlbum album;
 
-    public ReviewBean() {
+    @Inject
+    public ReviewBean(DAO dao, SelectedTrack track, SelectedAlbum album) {
+        this.dao = dao;
+        this.track = track;
+        this.album = album;
     }
+    
+    public ReviewBean(){}
 
     public Integer getReview_Id() {
         return review_id;
@@ -80,14 +82,13 @@ public class ReviewBean implements Serializable {
         this.trackOrAlbum = trackOrAlbum;
     }
 
-    public void saveReview() {
+    public void saveReview(User user) {
         Review review = new Review();
         LocalDate date = LocalDate.now();
         Date sqlDate = Date.valueOf(date);
         review.setDate(sqlDate);
         review.setRating(rating);
         review.setText(text);
-        User user = (User) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("userObj");
         review.setUser(user);
 
         if (trackOrAlbum.equals("album")) {
@@ -124,5 +125,10 @@ public class ReviewBean implements Serializable {
 
     public List<Review> getTrackReviews(Track track) {
         return dao.find(new Review(), "track.track_id = '" + track.getId() + "' AND identifier.isApproved = 1");
+    }
+    
+    @Inject
+    public void setDao(DAO dao){
+        this.dao = dao;
     }
 }

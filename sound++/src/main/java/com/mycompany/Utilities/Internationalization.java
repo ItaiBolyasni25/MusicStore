@@ -23,7 +23,7 @@ import javax.inject.Inject;
 public class Internationalization implements Serializable {
 
     private String language = "English";
-    
+
     @Inject
     private DAO dao;
 
@@ -33,10 +33,10 @@ public class Internationalization implements Serializable {
     public Internationalization() {
         if (FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user") == null) {
             String lan = (String) (FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("language"));
-            language = lan == null? language: lan;
+            language = lan == null ? language : lan;
         } else {
-            User user = (User)(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("userObj"));
-            language = user.getLanguage() == null? language: user.getLanguage();
+            User user = (User) (FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("userObj"));
+            language = user.getLanguage() == null ? language : user.getLanguage();
         }
     }
 
@@ -54,7 +54,7 @@ public class Internationalization implements Serializable {
         if (FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user") == null) {
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("language", language);
         } else {
-            User user = (User)(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("userObj"));
+            User user = (User) (FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("userObj"));
             user.setLanguage(language);
             dao.updateEntity(user);
         }
@@ -413,165 +413,184 @@ public class Internationalization implements Serializable {
     public String getSignOut() {
         return language.equals("English") ? "Sign Out" : "Se deconnecter";
     }
-    
-    public String getUser(){
+
+    public String getUser() {
         return language.equals("English") ? "User" : "Utilisateur";
     }
-    
-    public String getSearchUser(){
+
+    public String getSearchUser() {
         return language.equals("English") ? "Search the user you want to change its information for" : "Cherchez l'utilisitaure duquel vous voulez changer leur information";
     }
-    
-    public String getPurchases(){
+
+    public String getPurchases() {
         return language.equals("English") ? "Purchases" : "Achats";
     }
-    
-    public String getRecommended(){
+
+    public String getRecommended() {
         return language.equals("English") ? "Recommended for you" : "Recommandé pour vous";
     }
-    public String getPopularAlbums(){
-        return language.equals("English")? "Popular Albums": "Albums Populaires";
+
+    public String getPopularAlbums() {
+        return language.equals("English") ? "Popular Albums" : "Albums Populaires";
     }
-    public String getPopularTracks(){
-        return language.equals("English")? "Popular Tracks": "Chansons Populaires";
+
+    public String getPopularTracks() {
+        return language.equals("English") ? "Popular Tracks" : "Chansons Populaires";
     }
-    
+
     public String getSubmitReview() {
-        return language.equals("English")? "Submit review" : "Poster le commentaire";
+        return language.equals("English") ? "Submit review" : "Poster le commentaire";
     }
-    
+
     public String getApprove() {
-        return language.equals("English")? "Approve review" : "Approuver la révision"; 
+        return language.equals("English") ? "Approve review" : "Approuver la révision";
     }
-    
+
     public String getDelete() {
-        return language.equals("English")? "Delete review" : "Supprimer la critique";
+        return language.equals("English") ? "Delete review" : "Supprimer la critique";
     }
-    
+
     public String getReviewed() {
-        return language.equals("English")? "Reviewed" : "Critiqué";
+        return language.equals("English") ? "Reviewed" : "Critiqué";
     }
-    
+
     public String getReviews() {
-        return language.equals("English")? "Reviews" : "Critiques";
+        return language.equals("English") ? "Reviews" : "Critiques";
     }
-    
+
     public String getReviewText() {
-        return language.equals("English")? "Review text" : "Texte de révision";
+        return language.equals("English") ? "Review text" : "Texte de révision";
     }
-    
+
     public String getReviewRating() {
-        return language.equals("English")? "Review rating" : "Note d'évaluation";
+        return language.equals("English") ? "Review rating" : "Note d'évaluation";
     }
-    
+
     public String getSuccess() {
-        return language.equals("English")? "Operation succeeded": "Opération réussie";
+        return language.equals("English") ? "Operation succeeded" : "Opération réussie";
     }
-    
+
     public String getFail() {
-        return language.equals("English")? "Operation failed": "L'opération a échoué";
+        return language.equals("English") ? "Operation failed" : "L'opération a échoué";
     }
-    
+
     public String getSongwriter() {
-        return language.equals("English")? "Songwriter": "Auteur compositeur";
+        return language.equals("English") ? "Songwriter" : "Auteur compositeur";
     }
-    
+
     public String getListPrice() {
-        return language.equals("English")? "List price": "Prix ​​catalogue";
+        return language.equals("English") ? "List price" : "Prix ​​catalogue";
     }
-    
+
     public String getSalePrice() {
-        return language.equals("English")? "Sale price": "Prix ​​de vente";
+        return language.equals("English") ? "Sale price" : "Prix ​​de vente";
     }
-    
+
     public String getAddTrack() {
-        return language.equals("English")? "Add track": "Ajouter une chanson";
+        return language.equals("English") ? "Add track" : "Ajouter une chanson";
     }
-    
+
     public String getAddAlbum() {
-        return language.equals("English")? "Add album": "Ajouter un album";
+        return language.equals("English") ? "Add album" : "Ajouter un album";
     }
-    
+
     public String getEditTrack() {
-        return language.equals("English")? "Edit track": "Editer une chanson";
+        return language.equals("English") ? "Edit track" : "Editer une chanson";
     }
-    
+
     public String getEditAlbum() {
-        return language.equals("English")? "Edit album": "Editer un album";
+        return language.equals("English") ? "Edit album" : "Editer un album";
     }
-    
+
     public String getRemoveTrack() {
-        return language.equals("English")? "Remove track": "Supprimer une chanson";
+        return language.equals("English") ? "Remove track" : "Supprimer une chanson";
     }
-    
+
     public String getRemoveAlbum() {
-        return language.equals("English")? "Remove album": "Supprimer un album";
+        return language.equals("English") ? "Remove album" : "Supprimer un album";
     }
-    
+
     public String getAlbum() {
-        return language.equals("English")? "Album (leave blank if single)" : "Album (laissez vide si simple)";
+        return language.equals("English") ? "Album (leave blank if single)" : "Album (laissez vide si simple)";
     }
-    
+
     public String getRecordingLabel() {
-        return language.equals("English")? "Recording label" : "Étiquette d'enregistrement";
+        return language.equals("English") ? "Recording label" : "Étiquette d'enregistrement";
     }
-    
-    public String getImagePath() {
-        return language.equals("English")? "Image path" : "Chemin de l'image";
+
+    public String getAddImage() {
+        return language.equals("English") ? "Add image (You must save the image that you want in the assets/album_covers folder of the project before assigning it to the album)" : "Ajouter une image (Vous devez enregistrer l'image de votre choix dans le dossier assets / album_covers du projet avant de l'affecter à l'album)";
     }
-    
+
     public String getBackToInventory() {
-        return language.equals("English")? "Back to inventory management" : "Retour à la gestion des stocks";
+        return language.equals("English") ? "Back to inventory management" : "Retour à la gestion des stocks";
     }
-    
+
     public String getPreviousAds() {
-        return language.equals("English")? "Previous Ads" : "Annonces precedentes";
+        return language.equals("English") ? "Previous Ads" : "Annonces precedentes";
     }
-    
+
     public String getCurrentAds() {
-        return language.equals("English")? "Current Banner Ad" : "Bande annonce courante";
+        return language.equals("English") ? "Current Banner Ad" : "Bande annonce courante";
     }
-    
+
     public String getErrorFile() {
-        return language.equals("English")? "Error processing request - Assure of selecting a valid file" : "Une erreur est survenue - Assurez vous de selection un fichier valide";
+        return language.equals("English") ? "Error processing request - Assure of selecting a valid file" : "Une erreur est survenue - Assurez vous de selection un fichier valide";
     }
-    
-    public String getName(){
-        return language.equals("English")? "Name" : "Nom";
+
+    public String getName() {
+        return language.equals("English") ? "Name" : "Nom";
     }
-    
-    public String getDuration(){
-        return language.equals("English")? "Duration" : "Duration";
+
+    public String getDuration() {
+        return language.equals("English") ? "Duration" : "Duration";
     }
-    
-    public String getDownload(){
-        return language.equals("English")? "Download" : "Telecharger";
+
+    public String getDownload() {
+        return language.equals("English") ? "Download" : "Telecharger";
     }
-     public String getDescriptionItem(){
-        return language.equals("English")? "Description" : "La Description";
+
+    public String getDescriptionItem() {
+        return language.equals("English") ? "Description" : "La Description";
     }
-      public String getReleaseDate(){
-        return language.equals("English")? "Original Release Date: " : "Date De Sortie Initiale: ";
+
+    public String getReleaseDate() {
+        return language.equals("English") ? "Original Release Date: " : "Date De Sortie Initiale: ";
     }
-       public String getAddedDate(){
-        return language.equals("English")? "Added Date: " : "Date ajoutée: ";
+
+    public String getAddedDate() {
+        return language.equals("English") ? "Added Date: " : "Date ajoutée: ";
     }
-       public String getLabel(){
-        return language.equals("English")? "Label: " : "Étiquette: ";
+
+    public String getLabel() {
+        return language.equals("English") ? "Label: " : "Étiquette: ";
     }
-       public String getGenre(){
-        return language.equals("English")? "Genre: " : "Genre: ";
+
+    public String getGenre() {
+        return language.equals("English") ? "Genre: " : "Genre: ";
     }
-        public String getSongWriter(){
-        return language.equals("English")? "SongWriter: " : "Le Compositeur ";
+
+    public String getSongWriter() {
+        return language.equals("English") ? "SongWriter: " : "Le Compositeur ";
     }
-         public String getSimilarTrack(){
-        return language.equals("English")? "Similar Track" : "Morceaux Similaires";
+
+    public String getSimilarTrack() {
+        return language.equals("English") ? "Similar Track" : "Morceaux Similaires";
     }
-           public String getSimilarAlbum(){
-        return language.equals("English")? "Similar Album" : "Albums Similaires";
-           }
-    public String getReset(){
-        return language.equals("English")? "Reset" : "Reinitialiser";
+
+    public String getSimilarAlbum() {
+        return language.equals("English") ? "Similar Album" : "Albums Similaires";
+    }
+
+    public String getReset() {
+        return language.equals("English") ? "Reset" : "Reinitialiser";
+    }
+
+    public String getWriteReview() {
+        return language.equals("English") ? "Write a review" : "Écrire une critique";
+    }
+
+    public String getTotalSales() {
+        return language.equals("English") ? "Total sales" : "Ventes totales";
     }
 }

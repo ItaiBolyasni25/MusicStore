@@ -7,9 +7,7 @@ package com.mycompany.Persistence;
  */
 import com.mycompany.Interface.EntityModel;
 import java.sql.Date;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
@@ -75,6 +73,7 @@ public class DAO {
 
     public <E extends EntityModel> List<E> findWithLimitGenreTrack(E entityModel, int display, String genre, List<String> artist, String name) {
         String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
+        System.out.println("SELECT DISTINCT a FROM " + className + " a JOIN a.album al JOIN al.artists at WHERE a.genre = '" + genre + "' AND a.title" + "!= :title AND at.name NOT IN :artists ORDER BY a.title ASC");
         Query q = em.createQuery("SELECT DISTINCT a FROM " + className + " a JOIN a.album al JOIN al.artists at WHERE a.genre = '" + genre + "' AND a.title" + "!= :title AND at.name NOT IN :artists ORDER BY a.title ASC");
         q.setParameter("title", name);
         q.setParameter("artists", artist);
@@ -111,10 +110,36 @@ public class DAO {
         }
         return q.getResultList();
     }
+    
+    public <E extends EntityModel> List<E> findWithLimitPatternClient(E entityModel, int offset, int display, String pattern) {
+        String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
+        Query q = em.createQuery("Select identifier FROM " + className + " identifier WHERE identifier.email like :pattern OR identifier.email ='" + pattern + "' ORDER BY identifier.email ASC");
+        q.setParameter("pattern", pattern + "%");
+        if (offset != 0) {
+            q.setFirstResult(offset);
+        }
+        if(display != 0){
+        q.setMaxResults(display);
+        }
+        return q.getResultList();
+    }
+    
+    public <E extends EntityModel> List<E> findWithLimitPatternAlbumReports(E entityModel, int offset, int display, String pattern) {
+        String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
+        Query q = em.createQuery("Select identifier FROM " + className + " identifier WHERE identifier.title like :pattern OR identifier.title ='" + pattern + "' ORDER BY identifier.title ASC");
+        q.setParameter("pattern", pattern + "%");
+        if (offset != 0) {
+            q.setFirstResult(offset);
+        }
+        if(display != 0){
+        q.setMaxResults(display);
+        }
+        return q.getResultList();
+    }
 
     public <E extends EntityModel> List<E> findWithLimitPatternAlbum(E entityModel, int offset, int display, String pattern) {
         String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
-        Query q = em.createQuery("Select identifier FROM " + className + " identifier  JOIN identifier.artists at WHERE at.name = '" + pattern + "' OR at.name like :pattern OR identifier.title like :pattern OR identifier.title ='" + pattern + "' ORDER BY identifier.title ASC");
+        Query q = em.createQuery("Select identifier FROM " + className + " identifier JOIN identifier.artists at WHERE at.name = '" + pattern + "' OR at.name like :pattern OR identifier.title like :pattern OR identifier.title ='" + pattern + "' ORDER BY identifier.title ASC");
         q.setParameter("pattern", pattern + "%");
         if (offset != 0) {
             q.setFirstResult(offset);
@@ -217,14 +242,7 @@ public class DAO {
     }
 
     public <E extends EntityModel> boolean delete(E entityModel) {
-        try {
-            userTransaction.begin();
-            em.remove(entityModel);
-            userTransaction.commit();
-
-        } catch (NotSupportedException | SystemException | RollbackException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException ex) {
-            Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        em.remove(entityModel);
         return true;
     }
 
@@ -257,14 +275,7 @@ public class DAO {
          return q.getResultList();
     }
 
-    public <E extends EntityModel> List<E> customFind(E entityModel, String afterTableName) {
-        String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
-        Query q = em.createNativeQuery("SELECT t.* FROM " + className + " t " + afterTableName);
-        return q.getResultList();
-    }
-
     public <E extends EntityModel> List<E> customFindDB(E entityModel, String query) {
-        String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
         Query q = em.createQuery(query);
         return q.getResultList();
     }

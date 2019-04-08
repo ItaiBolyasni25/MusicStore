@@ -42,8 +42,10 @@ import org.junit.runner.RunWith;
  *
  * @author maian
  */
+@Ignore
 @RunWith(Arquillian.class)
 public class SelectedItemTest {
+
     @Deployment
     public static WebArchive createDeployment() {
         /*final File[] dependencies = Maven.resolver()
