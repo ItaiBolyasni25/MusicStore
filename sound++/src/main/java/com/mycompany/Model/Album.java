@@ -21,7 +21,7 @@ import javax.persistence.*;
 public class Album implements EntityModel, Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int album_id;
 
     @ManyToMany(cascade = {CascadeType.ALL})

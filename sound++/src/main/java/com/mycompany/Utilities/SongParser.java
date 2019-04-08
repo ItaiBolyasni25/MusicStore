@@ -137,6 +137,23 @@ public class SongParser implements Serializable {
     }
     }
     
+     public void readCSVFile( InputStream inputStream) throws IOException, ParseException {
+        System.out.println(Boolean.toString(inputStream == null));
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+        String line;
+        int counter = 0;
+        while ((line = reader.readLine()) != null) {
+            counter++;
+            if (counter > 1) {
+                String[] splittedCsv = line.split(",");
+                if (splittedCsv[0].contains("'")) {
+                    splittedCsv[0] = splittedCsv[0].replace("'", "''");
+                }
+                albumParser(splittedCsv);
+                isLoaded= true;
+        }
+    }
+    }
     
 
     

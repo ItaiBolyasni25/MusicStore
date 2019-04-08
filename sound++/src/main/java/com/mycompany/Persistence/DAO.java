@@ -125,7 +125,7 @@ public class DAO {
 
     public <E extends EntityModel> List<E> findWithOnlyPatternAlbum(E entityModel, String pattern) {
         String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
-        Query q = em.createQuery("Select identifier FROM " + className + " identifier  JOIN identifier.artists at WHERE at.name = '" + pattern + "' OR at.name like :pattern OR identifier.title like :pattern OR identifier.title ='" + pattern + "' ORDER BY identifier.title ASC");
+        Query q = em.createQuery("Select identifier FROM " + className + " identifier WHERE identifier.title like :pattern OR identifier.title ='" + pattern + "' ORDER BY identifier.title ASC");
         q.setParameter("pattern", pattern + "%");
         return q.getResultList();
     }

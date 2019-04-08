@@ -20,7 +20,7 @@ import javax.persistence.*;
 public class Track implements EntityModel, Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int track_id;
     private int selection_number;
     private String title;
