@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.sql.DataSource;
 import javax.transaction.HeuristicMixedException;
 import javax.transaction.HeuristicRollbackException;
 import javax.transaction.NotSupportedException;
@@ -41,6 +42,9 @@ public class ReviewBeanTest {
 
     @Resource
     UserTransaction transaction;
+    
+    @Resource
+    DataSource ds;
 
     @Deployment
     public static WebArchive createDeployment() {
@@ -65,7 +69,9 @@ public class ReviewBeanTest {
                         new File("src/main/setup/glassfish-resources.xml"),
                         "glassfish-resources.xml")
                 .addAsResource(new File("src/main/resources/META-INF/persistence.xml"),
-                        "META-INF/persistence.xml");//.addAsLibraries(dependencies);
+                        "META-INF/persistence.xml")
+                ;//.addAsLibraries(dependencies);
+        
         return webArchive;
     }
 
