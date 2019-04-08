@@ -7,6 +7,7 @@ import com.mycompany.Model.Review;
 import com.mycompany.Model.Track;
 import com.mycompany.Model.User;
 import com.mycompany.Persistence.DAO;
+import com.mycompany.Utilities.SongParser;
 import java.io.File;
 import java.util.List;
 import java.util.logging.Level;
@@ -43,8 +44,11 @@ public class ReviewBeanTest {
     @Resource
     UserTransaction transaction;
     
-    @Resource
+    @Resource(name = "java:app/jdbc/Songstore")
     DataSource ds;
+    
+    @Inject
+    SongParser songparser;
 
     @Deployment
     public static WebArchive createDeployment() {
@@ -63,6 +67,7 @@ public class ReviewBeanTest {
                 .addPackage(Track.class.getPackage())
                 .addPackage(SelectedAlbum.class.getPackage())
                 .addPackage(SelectedTrack.class.getPackage())
+                .addPackage(SongParser.class.getPackage())
                 .addPackage(User.class.getPackage())
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
                 .addAsWebInfResource(
