@@ -42,106 +42,97 @@
                         <hr></hr>
                         <p class="card-text" id = "cost"></p>
                         <h:form class="form-inline my-2 my-lg-0" id="quantityContainer">
-                            <h:commandLink class="btn btn-primary" value="#{internationalization.add}" actionListener="#{cartController.addAlbum(selectedAlbum.selectedAlbum, userObj)}" />
+                            <h:commandLink id="add" class="btn btn-primary" value="#{internationalization.add}" actionListener="#{cartController.addAlbum(selectedAlbum.selectedAlbum, userObj)}" />
                         </h:form>
-<<<<<<< HEAD
-                        <h5 class="detail">DESCRIPTION</h5>
+
+                        <h5 class="detail">#{internationalization.descriptionItem}</h5>
                         <hr class="style"/>
                         <div id="myTabContent" class="tab-content">
                             <div class="tab-pane fade show active" id="details">
-                                <p id="releasedate"><span class="boldText">Original Release Date: </span>  <h:outputText value="#{selectedAlbum.selectedAlbum.releasedate}"></h:outputText>  </p>
-                                <p id="addeddate"><span class="boldText">Added Date: </span> <h:outputText value="#{selectedAlbum.selectedAlbum.addedDate}"></h:outputText> </p>
-                                <p id="label"><span class="boldText">Label: </span> <h:outputText value="#{selectedAlbum.selectedAlbum.label}"></h:outputText> </p>                       
+                                <p id="releasedate"><span class="boldText">#{internationalization.releaseDate}</span>  <h:outputText value="#{selectedAlbum.selectedAlbum.releasedate}"></h:outputText>  </p>
+                                <p id="addeddate"><span class="boldText">#{internationalization.addedDate}</span> <h:outputText value="#{selectedAlbum.selectedAlbum.addedDate}"></h:outputText> </p>
+                                <p id="label"><span class="boldText">#{internationalization.label}</span> <h:outputText value="#{selectedAlbum.selectedAlbum.label}"></h:outputText> </p>                       
                             </div>
-=======
-                        <h5 class="detail">#{internationalization.descriptionItem}</h5>
-                    <hr class="style"/>
-                    <div id="myTabContent" class="tab-content">
-                        <div class="tab-pane fade show active" id="details">
-                            <p id="releasedate"><span class="boldText">#{internationalization.releaseDate}</span>  <h:outputText value="#{selectedAlbum.selectedAlbum.releasedate}"></h:outputText>  </p>
-                            <p id="addeddate"><span class="boldText">#{internationalization.addedDate}</span> <h:outputText value="#{selectedAlbum.selectedAlbum.addedDate}"></h:outputText> </p>
-                            <p id="label"><span class="boldText">#{internationalization.label}</span> <h:outputText value="#{selectedAlbum.selectedAlbum.label}"></h:outputText> </p>                       
->>>>>>> b5aa199b0dd45bcf416e8c2f81dc52b900834023
                         </div>
+
                     </div>
 
-                </div>
+                    <div class = "detailInfo">
 
-                <div class = "detailInfo">
-
-                    <h5 class="detail">#{internationalization.similarAlbum} </h5>
-                    <hr class="style"/>
-                    <div class="row">
-                        <ui:repeat value="#{selectedAlbum.similarAlbum}" var="similarAlbum">
-                            <h:form class="column"><div>
-                                    <h:commandLink action="#{selectedAlbum.editDataItem()}">
-                                        <h:graphicImage value="#{similarAlbum.image}" title="Album's cover" class="similarAlbum"/><br/>
-                                        <br/><h:outputText  value=" #{similarAlbum.title}"/><br/>
-                                        <f:setPropertyActionListener target="#{selectedAlbum.selectedAlbum}" value="#{similarAlbum}" />
-                                        <f:ajax render="result"/>
-                                    </h:commandLink>
-                                    <ui:repeat var="artist" value="#{similarAlbum.artists}">
-                                        <h:outputText value="#{artist.name}"></h:outputText>     
-                                    </ui:repeat><br/>
-                                    <h:outputText value="CAD #{similarAlbum.cost}"></h:outputText>
-                                </div></h:form></ui:repeat>                    
-                    </div>
-                    <h5 class="detail">#{internationalization.reviews}</h5>
-                    <hr class="style"/>
-                    <h:panelGroup layout="block" rendered="#{not empty user}">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-                                    <div class="card my-5">
-                                        <div class="card-body">
-                                            <h5 class="card-title text-center">#{internationalization.writeReview}</h5>
-                                            <h:form class="form">
-                                                <div class="form-group">
-                                                    <h:inputTextarea style="display: block; width: 80%; margin-left: auto; margin-right: auto;"
-                                                                     value="#{reviewBean.text}" cols="50" rows="5"/>
-                                                </div>
-                                                <div class="form-group">
-                                                    <fieldset>
-                                                        <h:selectOneMenu class="unique" value="#{reviewBean.rating}">
-                                                            <f:selectItem itemValue="0"/>
-                                                            <label class="fa fa-star toRate" id="star1"><f:selectItem class="star" itemValue="1"/></label>
-                                                            <label class="fa fa-star toRate" id="star2"><f:selectItem class="star" itemValue="2"/></label>
-                                                            <label class="fa fa-star toRate" id="star3"><f:selectItem class="star" itemValue="3"/></label>
-                                                            <label class="fa fa-star toRate" id="star4"><f:selectItem class="star" itemValue="4"/></label>
-                                                            <label class="fa fa-star toRate" id="star5"><f:selectItem class="star" itemValue="5"/></label>
-                                                        </h:selectOneMenu>
-                                                    </fieldset>
-                                                </div>
-                                                <div class="form-group">
-                                                    <h:commandButton class="btn btn-md btn-primary btn-block text-uppercase" type="submit" value="#{internationalization.submitReview}" action="#{reviewBean.saveReview(userObj)}"/>
-                                                </div>
-                                            </h:form>
+                        <h5 class="detail">#{internationalization.similarAlbum} </h5>
+                        <hr class="style"/>
+                        <div class="row">
+                            <ui:repeat value="#{selectedAlbum.similarAlbum}" var="similarAlbum">
+                                <h:form class="column"><div>
+                                        <h:commandLink action="#{selectedAlbum.editDataItem()}">
+                                            <h:graphicImage value="#{similarAlbum.image}" title="Album's cover" class="similarAlbum"/><br/>
+                                            <br/><h:outputText  value=" #{similarAlbum.title}"/><br/>
+                                            <f:setPropertyActionListener target="#{selectedAlbum.selectedAlbum}" value="#{similarAlbum}" />
+                                            <f:ajax render="result"/>
+                                        </h:commandLink>
+                                        <ui:repeat var="artist" value="#{similarAlbum.artists}">
+                                            <h:outputText value="#{artist.name}"></h:outputText>     
+                                        </ui:repeat><br/>
+                                        <h:outputText value="CAD #{similarAlbum.cost}"></h:outputText>
+                                    </div></h:form></ui:repeat>                    
+                        </div>
+                        <h5 class="detail">#{internationalization.reviews}</h5>
+                        <hr class="style"/>
+                        <h:panelGroup layout="block" rendered="#{not empty user}">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                                        <div class="card my-5">
+                                            <div class="card-body">
+                                                <h5 class="card-title text-center">#{internationalization.writeReview}</h5>
+                                                <h:form class="form">
+                                                    <div class="form-group">
+                                                        <h:inputTextarea style="display: block; width: 80%; margin-left: auto; margin-right: auto;"
+                                                                         value="#{reviewBean.text}" cols="50" rows="5"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <fieldset>
+                                                            <h:selectOneMenu class="unique" value="#{reviewBean.rating}">
+                                                                <f:selectItem itemValue="0"/>
+                                                                <label class="fa fa-star toRate" id="star1"><f:selectItem class="star" itemValue="1"/></label>
+                                                                <label class="fa fa-star toRate" id="star2"><f:selectItem class="star" itemValue="2"/></label>
+                                                                <label class="fa fa-star toRate" id="star3"><f:selectItem class="star" itemValue="3"/></label>
+                                                                <label class="fa fa-star toRate" id="star4"><f:selectItem class="star" itemValue="4"/></label>
+                                                                <label class="fa fa-star toRate" id="star5"><f:selectItem class="star" itemValue="5"/></label>
+                                                            </h:selectOneMenu>
+                                                        </fieldset>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <h:commandButton class="btn btn-md btn-primary btn-block text-uppercase" type="submit" value="#{internationalization.submitReview}" action="#{reviewBean.saveReview(userObj)}"/>
+                                                    </div>
+                                                </h:form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </h:panelGroup>
-                    <h:panelGroup layout="block" rendered="#{reviewBean.getAlbumReviews(selectedAlbum.selectedAlbum).isEmpty()}">
-                        <div class="container-fluid">
-                            <table class="table text-centered">
-                                <thead>
-                                    <tr>
-                                        <th>#{internationalization.reviewText}</th>
-                                        <th>#{internationalization.reviewRating}</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <ui:repeat value="#{reviewBean.getAlbumReviews(selectedAlbum.selectedAlbum)}" var="review">
+                        </h:panelGroup>
+                        <h:panelGroup layout="block" rendered="#{reviewBean.getAlbumReviews(selectedAlbum.selectedAlbum).isEmpty()}">
+                            <div class="container-fluid">
+                                <table class="table text-centered">
+                                    <thead>
                                         <tr>
-                                            <td>#{review.text}</td>
-                                            <td class="rating">#{review.rating}</td>
+                                            <th>#{internationalization.reviewText}</th>
+                                            <th>#{internationalization.reviewRating}</th>
                                         </tr>
-                                    </ui:repeat>
-                                </tbody>    
-                            </table>
-                        </div>
-                    </h:panelGroup>
+                                    </thead>
+                                    <tbody>
+                                        <ui:repeat value="#{reviewBean.getAlbumReviews(selectedAlbum.selectedAlbum)}" var="review">
+                                            <tr>
+                                                <td>#{review.text}</td>
+                                                <td class="rating">#{review.rating}</td>
+                                            </tr>
+                                        </ui:repeat>
+                                    </tbody>    
+                                </table>
+                            </div>
+                        </h:panelGroup>
+                    </div>
                 </div>
             </h:panelGroup> 
         </div>
