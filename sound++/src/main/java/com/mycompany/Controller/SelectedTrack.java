@@ -44,6 +44,10 @@ public class SelectedTrack implements Serializable {
         return track;
     }
 
+    public void setTrack(Track track) {
+        this.track = track;
+    }
+
     public HtmlInputHidden getTrackId() {
         return dataItemId;
     }

@@ -42,7 +42,7 @@ public class SearchBean implements Serializable {
         this.dao = dao;
         this.albumPerPage = 2;
         this.currentAlbumsPage = 1;
-        this.trackPerPage = 2;
+        this.trackPerPage = 3;
         this.currentTrackPage = 1;
     }
     

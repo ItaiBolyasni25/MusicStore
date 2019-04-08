@@ -50,6 +50,9 @@ public class TrackPaginationBean implements Serializable {
     }
 
     public List<Track> getDatalist() {
+        for(Track tr : dataList){
+        System.out.println(tr.getTitle());
+                }
         return dataList;
     }
 

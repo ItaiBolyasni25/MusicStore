@@ -44,6 +44,7 @@
                         <h:form class="form-inline my-2 my-lg-0" id="quantityContainer">
                             <h:commandLink class="btn btn-primary" value="#{internationalization.add}" actionListener="#{cartController.addAlbum(selectedAlbum.selectedAlbum, userObj)}" />
                         </h:form>
+<<<<<<< HEAD
                         <h5 class="detail">DESCRIPTION</h5>
                         <hr class="style"/>
                         <div id="myTabContent" class="tab-content">
@@ -52,6 +53,15 @@
                                 <p id="addeddate"><span class="boldText">Added Date: </span> <h:outputText value="#{selectedAlbum.selectedAlbum.addedDate}"></h:outputText> </p>
                                 <p id="label"><span class="boldText">Label: </span> <h:outputText value="#{selectedAlbum.selectedAlbum.label}"></h:outputText> </p>                       
                             </div>
+=======
+                        <h5 class="detail">#{internationalization.descriptionItem}</h5>
+                    <hr class="style"/>
+                    <div id="myTabContent" class="tab-content">
+                        <div class="tab-pane fade show active" id="details">
+                            <p id="releasedate"><span class="boldText">#{internationalization.releaseDate}</span>  <h:outputText value="#{selectedAlbum.selectedAlbum.releasedate}"></h:outputText>  </p>
+                            <p id="addeddate"><span class="boldText">#{internationalization.addedDate}</span> <h:outputText value="#{selectedAlbum.selectedAlbum.addedDate}"></h:outputText> </p>
+                            <p id="label"><span class="boldText">#{internationalization.label}</span> <h:outputText value="#{selectedAlbum.selectedAlbum.label}"></h:outputText> </p>                       
+>>>>>>> b5aa199b0dd45bcf416e8c2f81dc52b900834023
                         </div>
                     </div>
 
@@ -59,7 +69,7 @@
 
                 <div class = "detailInfo">
 
-                    <h5 class="detail">SIMILAR ALBUMS</h5>
+                    <h5 class="detail">#{internationalization.similarAlbum} </h5>
                     <hr class="style"/>
                     <div class="row">
                         <ui:repeat value="#{selectedAlbum.similarAlbum}" var="similarAlbum">

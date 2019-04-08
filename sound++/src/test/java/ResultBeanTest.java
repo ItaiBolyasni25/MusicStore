@@ -4,41 +4,37 @@
  * and open the template in the editor.
  */
 
-import com.mycompany.Model.Album;
+import com.mycompany.Controller.AlbumTrackBean;
+import com.mycompany.Controller.ResultBean;
+import com.mycompany.Controller.SearchBean;
 import com.mycompany.Interface.EntityModel;
+import com.mycompany.Model.Album;
+import com.mycompany.Model.Track;
 import com.mycompany.Persistence.DAO;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.Reader;
-import java.io.StringReader;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.LinkedList;
+import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
-import javax.annotation.Resource;
-import javax.sql.DataSource;
 import javax.inject.Inject;
 import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Assert;
-//import org.jboss.shrinkwrap.resolver.api.maven.Maven;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
-import org.junit.runner.RunWith;
+import static org.junit.Assert.*;
 
 /**
  *
  * @author maian
  */
-@RunWith(Arquillian.class)
-public class DAOTest {
-
+public class ResultBeanTest {
+    
+   
     @Deployment
     public static WebArchive createDeployment() {
         /*final File[] dependencies = Maven.resolver()
@@ -53,6 +49,8 @@ public class DAOTest {
                 .addPackage(DAO.class.getPackage())
                 .addPackage(EntityModel.class.getPackage())
                 .addPackage(Album.class.getPackage())
+                .addPackage(Track.class.getPackage())
+                .addPackage(ResultBean.class.getPackage())
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
                 .addAsWebInfResource(
                         new File("src/main/setup/glassfish-resources.xml"),
@@ -64,13 +62,11 @@ public class DAOTest {
     }
     
     @Inject
-    DAO dao;
+    private DAO dao;
+    @Inject
+    private ResultBean search;
+    private String pattern;
+    private String filter;
 
-    @Test
-    public void testReadMethod() {
-        System.out.println("hey");
-        List<Album> albums = dao.read(new Album(), 1);
-        Assert.assertEquals("Assume Form", albums.get(0).getTitle());
-    }
-
+   
 }
