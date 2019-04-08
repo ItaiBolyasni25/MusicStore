@@ -617,5 +617,20 @@ public class Internationalization implements Serializable {
     public String getInvalidFormat(){
         return language.equals("English") ? "Invalid format : music@sound.com": "Format invalide : music@sound.com"; 
     }
-
+    
+    public String getHelp(){
+        return language.equals("English") ? "Help": "Aide"; 
+    }
+    
+    public String getIndex(){
+        return language.equals("English") ? "Navigate through the main page": "Naviguez sur la page principale"; 
+    }
+    
+    public String getTrackAlbum(){
+        return language.equals("English") ? "Buy your favourites songs and albums": "Acehetez vous albums et chansons preferees"; 
+    }
+    
+    public String getRegistration(){
+        return language.equals("English") ? "Sign up to enjoy all the content!": "Enregistrez vous pour profiter de tout le contenue"; 
+    }
 }
