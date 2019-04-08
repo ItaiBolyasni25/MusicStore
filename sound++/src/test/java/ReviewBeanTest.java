@@ -8,8 +8,18 @@ import com.mycompany.Model.Track;
 import com.mycompany.Model.User;
 import com.mycompany.Persistence.DAO;
 import com.mycompany.Utilities.SongParser;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Reader;
+import java.io.StringReader;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
@@ -27,6 +37,7 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Ignore;
 //import org.jboss.shrinkwrap.resolver.api.maven.Maven;
 import org.junit.Test;
@@ -48,9 +59,6 @@ public class ReviewBeanTest {
     
     @Resource(name = "java:app/jdbc/Songstore")
     DataSource ds;
-    
-    @Inject
-    SongParser songparser;
 
     @Deployment
     public static WebArchive createDeployment() {
@@ -69,7 +77,6 @@ public class ReviewBeanTest {
                 .addPackage(Track.class.getPackage())
                 .addPackage(SelectedAlbum.class.getPackage())
                 .addPackage(SelectedTrack.class.getPackage())
-                .addPackage(SongParser.class.getPackage())
                 .addPackage(User.class.getPackage())
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
                 .addAsWebInfResource(
@@ -118,10 +125,26 @@ public class ReviewBeanTest {
 
     @Test
     public void deleteReview() {
-        ReviewBean reviewer = new ReviewBean();
+        User user = new User("Bob", "Bob", "something", "blahblah", "Mr");
+
+        if (dao.find(new User(), "email = 'something'").isEmpty()) {
+            dao.write(user);
+        }
+
+        Track track = dao.findAll(new Track()).get(0);
+        SelectedTrack selected = new SelectedTrack(dao);
+        selected.setSelectedTrack(track);
+
+        ReviewBean reviewer = new ReviewBean(dao, selected, null);
+        reviewer.setTrackOrAlbum("track");
+        reviewer.setRating(3);
+        reviewer.setText("AMAZING SONG");
+
+        reviewer.saveReview(user);
+
         reviewer.setDao(dao);
         List<Review> reviews = dao.findAll(new Review());
-        int id = reviews.get(reviews.size() - 1).getReview_id();
+        int id = reviews.get(0).getReview_id();
 
         try {
             transaction.begin();
