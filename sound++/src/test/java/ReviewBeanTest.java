@@ -7,12 +7,24 @@ import com.mycompany.Model.Review;
 import com.mycompany.Model.Track;
 import com.mycompany.Model.User;
 import com.mycompany.Persistence.DAO;
+import com.mycompany.Utilities.SongParser;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Reader;
+import java.io.StringReader;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.sql.DataSource;
 import javax.transaction.HeuristicMixedException;
 import javax.transaction.HeuristicRollbackException;
 import javax.transaction.NotSupportedException;
@@ -43,6 +55,9 @@ public class ReviewBeanTest {
 
     @Resource
     UserTransaction transaction;
+    
+    @Resource(name = "java:app/jdbc/Songstore")
+    DataSource ds;
 
     @Deployment
     public static WebArchive createDeployment() {
@@ -67,7 +82,9 @@ public class ReviewBeanTest {
                         new File("src/main/setup/glassfish-resources.xml"),
                         "glassfish-resources.xml")
                 .addAsResource(new File("src/main/resources/META-INF/persistence.xml"),
-                        "META-INF/persistence.xml");//.addAsLibraries(dependencies);
+                        "META-INF/persistence.xml")
+                ;//.addAsLibraries(dependencies);
+        
         return webArchive;
     }
 
@@ -107,10 +124,26 @@ public class ReviewBeanTest {
 
     @Test
     public void deleteReview() {
-        ReviewBean reviewer = new ReviewBean();
+        User user = new User("Bob", "Bob", "something", "blahblah", "Mr");
+
+        if (dao.find(new User(), "email = 'something'").isEmpty()) {
+            dao.write(user);
+        }
+
+        Track track = dao.findAll(new Track()).get(0);
+        SelectedTrack selected = new SelectedTrack(dao);
+        selected.setSelectedTrack(track);
+
+        ReviewBean reviewer = new ReviewBean(dao, selected, null);
+        reviewer.setTrackOrAlbum("track");
+        reviewer.setRating(3);
+        reviewer.setText("AMAZING SONG");
+
+        reviewer.saveReview(user);
+
         reviewer.setDao(dao);
         List<Review> reviews = dao.findAll(new Review());
-        int id = reviews.get(reviews.size() - 1).getReview_id();
+        int id = reviews.get(0).getReview_id();
 
         try {
             transaction.begin();

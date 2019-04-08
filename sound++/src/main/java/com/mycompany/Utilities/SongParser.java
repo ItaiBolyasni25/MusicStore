@@ -89,30 +89,30 @@ public class SongParser implements Serializable {
         }
         if (album != null) {
             if (splittedCsv[2].contains("'")) {
-                    splittedCsv[2] = splittedCsv[2].replace("'", "''");
-                }
+                splittedCsv[2] = splittedCsv[2].replace("'", "''");
+            }
             List<Track> tracks = dao.find(new Track(), "title = '" + splittedCsv[2] + "'");
-            if(tracks.size() < 1){        
-            Track track = new Track();
-            track.setSelection_number(Integer.parseInt(splittedCsv[6]));
-            track.setTitle(splittedCsv[2]);
-            track.setSongwriter(splittedCsv[4]);
-            String[] play_length = splittedCsv[5].split(":");
-            track.setPlay_length(Integer.parseInt(play_length[0]) + ":" + "" + Integer.parseInt(play_length[1]));
-            track.setGenre(splittedCsv[7]);
+            if (tracks.size() < 1) {
+                Track track = new Track();
+                track.setSelection_number(Integer.parseInt(splittedCsv[6]));
+                track.setTitle(splittedCsv[2]);
+                track.setSongwriter(splittedCsv[4]);
+                String[] play_length = splittedCsv[5].split(":");
+                track.setPlay_length(Integer.parseInt(play_length[0]) + ":" + "" + Integer.parseInt(play_length[1]));
+                track.setGenre(splittedCsv[7]);
 
-            track.setAlbum(album);
-            track.setCost(Double.parseDouble(splittedCsv[9]));
-            track.setList_price(Double.parseDouble(splittedCsv[10]));
-            track.setSale_price(0);
-            Date javaDate = new Date();
-            track.setDate_added(new java.sql.Date(javaDate.getTime()));
-            track.setIndividual(!(splittedCsv[13]).equals("Album"));
-            track.setRemoval_status(false);
-            track.setRemoval_date(null);
-            dao.write(track);
-            
-        }
+                track.setAlbum(album);
+                track.setCost(Double.parseDouble(splittedCsv[9]));
+                track.setList_price(Double.parseDouble(splittedCsv[10]));
+                track.setSale_price(0);
+                Date javaDate = new Date();
+                track.setDate_added(new java.sql.Date(javaDate.getTime()));
+                track.setIndividual(!(splittedCsv[13]).equals("Album"));
+                track.setRemoval_status(false);
+                track.setRemoval_date(null);
+                dao.write(track);
+
+            }
         }
 
     }
@@ -132,14 +132,48 @@ public class SongParser implements Serializable {
                     splittedCsv[0] = splittedCsv[0].replace("'", "''");
                 }
                 albumParser(splittedCsv);
+                isLoaded = true;
+            }
+        }
+    }
+
+    public void readCSVFile(InputStream inputStream) throws IOException, ParseException {
+        System.out.println(Boolean.toString(inputStream == null));
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+        String line;
+        int counter = 0;
+        while ((line = reader.readLine()) != null) {
+            counter++;
+            if (counter > 1) {
+                String[] splittedCsv = line.split(",");
+                if (splittedCsv[0].contains("'")) {
+                    splittedCsv[0] = splittedCsv[0].replace("'", "''");
+                }
+                albumParser(splittedCsv);
+                isLoaded = true;
+            }
+        }
+    }
+    
+     public void readCSVFile( InputStream inputStream) throws IOException, ParseException {
+        System.out.println(Boolean.toString(inputStream == null));
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+        String line;
+        int counter = 0;
+        while ((line = reader.readLine()) != null) {
+            counter++;
+            if (counter > 1) {
+                String[] splittedCsv = line.split(",");
+                if (splittedCsv[0].contains("'")) {
+                    splittedCsv[0] = splittedCsv[0].replace("'", "''");
+                }
+                albumParser(splittedCsv);
                 isLoaded= true;
         }
     }
     }
     
-    
 
-    
     private java.sql.Date newDateFormat(String date) throws ParseException {
         String newString = "";
         String[] elements = date.split("/");
@@ -154,8 +188,8 @@ public class SongParser implements Serializable {
         News news = new News("https://globalnews.ca/entertainment/feed/", "1");
         dao.write(news);
     }
-    
-    private void addAds(){
+
+    private void addAds() {
         Banner banner = new Banner();
         banner.setBanner("ads.png");
         banner.setUsed("1");

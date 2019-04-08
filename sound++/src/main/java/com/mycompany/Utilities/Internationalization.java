@@ -521,6 +521,10 @@ public class Internationalization implements Serializable {
     public String getAddImage() {
         return language.equals("English") ? "Add image (You must save the image that you want in the assets/album_covers folder of the project before assigning it to the album)" : "Ajouter une image (Vous devez enregistrer l'image de votre choix dans le dossier assets / album_covers du projet avant de l'affecter à l'album)";
     }
+    
+    public String getImagePath() {
+        return language.equals("English") ? "Image path" : "Chemin de l'image";
+    }
 
     public String getBackToInventory() {
         return language.equals("English") ? "Back to inventory management" : "Retour à la gestion des stocks";
@@ -592,5 +596,41 @@ public class Internationalization implements Serializable {
 
     public String getTotalSales() {
         return language.equals("English") ? "Total sales" : "Ventes totales";
+    }
+
+    public String getFirstNameRequired() {
+        return language.equals("English") ? "Fisrt name is required" : "Prenom est necessaire";
+    }
+
+    public String getLastNameRequired() {
+        return language.equals("English") ? "Last name is required" : "Nom de famille est necessaire";
+    }
+
+    public String getPasswordRequired() {
+        return language.equals("English") ? "Password is required" : "Mot de passe est necessaire";
+    }
+
+    public String getEmailRequired() {
+        return language.equals("English") ? "Email is required" : "Courriel electronique est necessaire";
+    }
+    
+    public String getInvalidFormat(){
+        return language.equals("English") ? "Invalid format : music@sound.com": "Format invalide : music@sound.com"; 
+    }
+    
+    public String getHelp(){
+        return language.equals("English") ? "Help": "Aide"; 
+    }
+    
+    public String getIndex(){
+        return language.equals("English") ? "Navigate through the main page": "Naviguez sur la page principale"; 
+    }
+    
+    public String getTrackAlbum(){
+        return language.equals("English") ? "Buy your favourites songs and albums": "Acehetez vous albums et chansons preferees"; 
+    }
+    
+    public String getRegistration(){
+        return language.equals("English") ? "Sign up to enjoy all the content!": "Enregistrez vous pour profiter de tout le contenue"; 
     }
 }

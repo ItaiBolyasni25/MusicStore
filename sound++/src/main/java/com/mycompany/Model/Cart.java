@@ -27,7 +27,7 @@ import javax.persistence.Table;
 public class Cart implements EntityModel, Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int cart_id;
     @OneToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "email")
