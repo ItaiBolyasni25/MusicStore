@@ -1,3 +1,4 @@
+SET GLOBAL time_zone = '+5:00';
 drop database if exists songstore;
 create database songstore;
 DROP USER IF EXISTS songstore@localhost;

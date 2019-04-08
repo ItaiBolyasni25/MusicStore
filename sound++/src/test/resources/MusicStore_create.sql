@@ -1,3 +1,4 @@
+SET GLOBAL time_zone = '+5:00';
 
 drop database songstore;
 create database songstore;

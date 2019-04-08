@@ -62,7 +62,7 @@
                     <div class="row">
                         <div class="mb-3 col-sm-4">
                             <label for="address">Address</label>
-                            <h:inputText value="#{invoiceController.address1}" class="form-control" id="address1" a:placeholder='1234 Main St' required="true"/>
+                            <h:inputText value="#{invoiceController.address1}" class="form-control address" id="address1" a:placeholder='1234 Main St' required="true"/>
                             <div class="invalid-feedback">
                                 Please enter your shipping address.
                             </div>
@@ -77,23 +77,23 @@
                     <div class="row">
                         <div class="col-md-4 mr-2 mb-3">
                             <label for="country">Country</label>
-                            <h:inputText value="#{invoiceController.country}" class="form-control" id="country" a:placeholder='Canada' required="true"/>
+                            <h:inputText value="#{invoiceController.country}" class="form-control country" id="country" a:placeholder='Canada' required="true"/>
                             <div class="invalid-feedback">
                                 Please select a valid country.
                             </div>
                         </div>
                         <div class="col-md-3 mb-3">
-                            <label for="state">State</label>
-                            <h:inputText value="#{invoiceController.state}" class="form-control" id="state" a:placeholder='Quebec' required="true"/>
+                            <label for="state">Province</label>
+                            <h:inputText value="#{invoiceController.state}" class="form-control province" id="state" a:placeholder='Quebec' required="true"/>
                             <div class="invalid-feedback">
                                 Please provide a valid state.
                             </div>
                         </div>
                         <div class="col-md-2 mb-3">
-                            <label for="zip">Zip</label>
-                            <h:inputText value="#{invoiceController.zip}" class="form-control" id="address" a:placeholder='H1H9Z5' required="true"/>
+                            <label for="zip">Postal Code</label>
+                            <h:inputText value="#{invoiceController.zip}" class="form-control postalCode" id="address" a:placeholder='H1H9Z5' required="true"/>
                             <div class="invalid-feedback">
-                                Zip code required.
+                                Postal code required.
                             </div>
                         </div>
                     </div>
@@ -123,7 +123,7 @@
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label for="cc-name">Name on card</label>
-                                    <h:inputText value="#{invoiceController.nameOfCard}" class="form-control" id="nameOfCard" a:placeholder='John Doe' required="true"/>
+                                    <h:inputText value="#{invoiceController.nameOfCard}" class="form-control nameOnCard" id="nameOnCard" a:placeholder='John Doe' required="true"/>
                                     <small class="text-muted">Full name as displayed on card</small>
                                     <div class="invalid-feedback">
                                         Name on card is required
@@ -131,7 +131,7 @@
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="cc-number">Credit card number</label>
-                                    <h:inputText value="#{invoiceController.creditNumber}" class="form-control" id="creditNumber" a:placeholder='5415 2568 6668 9528' required="true"/>
+                                    <h:inputText value="#{invoiceController.creditNumber}" class="form-control ccNumber" id="creditNumber" a:placeholder='5415 2568 6668 9528' required="true"/>
                                     <div class="invalid-feedback">
                                         Credit card number is required
                                     </div>
@@ -140,14 +140,14 @@
                             <div class="row">
                                 <div class="col-md-3 mb-3">
                                     <label for="cc-expiration">Expiration</label>
-                                    <h:inputText value="#{invoiceController.expiration}" class="form-control" id="expiration" a:placeholder='02/22' required="true"/>
+                                    <h:inputText value="#{invoiceController.expiration}" class="form-control expiry" id="expiration" a:placeholder='02/22' required="true"/>
                                     <div class="invalid-feedback">
                                         Expiration date required
                                     </div>
                                 </div>
                                 <div class="col-md-2 mb-3">
                                     <label for="cc-expiration">CVV</label>
-                                    <h:inputText value="#{invoiceController.cvv}" class="form-control" id="cvv" a:placeholder='898' required="true"/>
+                                    <h:inputText value="#{invoiceController.cvv}" class="form-control cvv" id="cvv" a:placeholder='898' required="true"/>
                                     <div class="invalid-feedback">
                                         Security code required
                                     </div>
@@ -155,7 +155,7 @@
 
                             </div>
                             <div class="mb-4"></div>
-                            <h:commandButton type="submit" class="btn btn-primary formbutton" value="Continue to invoice" action="#{invoiceController.addInvoice(cartController.getCartItems(userObj), userObj)}"/>
+                            <h:commandButton type="submit" class="btn btn-primary formbutton toInvoice" value="Continue to invoice" action="#{invoiceController.addInvoice(cartController.getCartItems(userObj), userObj)}"/>
 
                         </div>
                 </h:form>
