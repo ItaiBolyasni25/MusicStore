@@ -117,34 +117,16 @@ public class ReportBean implements Serializable {
 
     public List<InventoryReport> getTopSellers() throws ParseException {
         List<InventoryReport> reports = new ArrayList<>();
-        List<Object[]> albums = new ArrayList<Object[]>();
-        List<Object[]> tracks = new ArrayList<Object[]>();
         if (dateRange != null) {
             String[] days = dateRange.split("-");
-            albums = dao.customFindObject("SELECT al.title, count(inv) from Orders ord join ord.invoice "
-                    + "inv join ord.album al where inv.date BETWEEN '" + newDateFormat(days[0]) + "' AND '"
-                    + newDateFormat(days[1]) + "' GROUP BY al.album_id ORDER BY COUNT(inv) DESC");
-            tracks = dao.customFindObject("SELECT tr.title, count(inv) from Orders ord join ord.invoice "
-                    + "inv join ord.track tr where inv.date BETWEEN '" + newDateFormat(days[0]) + "' AND '"
-                    + newDateFormat(days[1]) + "' GROUP BY tr.track_id ORDER BY COUNT(inv) DESC");
-        }
-        for (Object[] obj : albums) {
-            InventoryReport ir = new InventoryReport();
-            ir.setName(obj[0].toString());
-            ir.setType("Album");
-            ir.setSales(Integer.parseInt(obj[1].toString()));
-            reports.add(ir);
-        }
-        for (Object[] obj : tracks) {
-            InventoryReport ir = new InventoryReport();
-            ir.setName(obj[0].toString());
-            ir.setType("Track");
-            ir.setSales(Integer.parseInt(obj[1].toString()));
-            reports.add(ir);
-        }
 
+            List<Album> albums = dao.customFindDB(new Album(), "select t from Album t where (t.date_added between '" + newDateFormat(days[0]) + "' and '" + newDateFormat(days[1]) + "') and t.total_sales != 0 order by t.total_sales DESC");
+            List<Track> tracks = dao.customFindDB(new Track(), "select t from Track t where (t.date_added between '" + newDateFormat(days[0]) + "' and '" + newDateFormat(days[1]) + "') and t.total_sales != 0 order by t.total_sales DESC");
+
+            reports = getFullList(albums, tracks);
+        }
+        
         return reports;
-
     }
 
     public List<PurchaseReport> getTopClient() throws ParseException {

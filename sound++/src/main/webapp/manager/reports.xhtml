@@ -331,5 +331,50 @@
             </div>
         </div>
 
+        <!-- Top sellers  -->
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#topseller">Top Sellers</a>
+                    </h4></div>
+
+                <div id="topseller" class="panel-collapse collapse">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <h:form class="searchForm" id="topsellerForm" >
+                                <div class="form-group row"><label class="col-sm-3 col-form-label" for="daterange">Range: </label>
+                                    <div class="col-sm-9"><h:inputText id="rangeTopSell" class="form-control daterange" value="#{reportBean.dateRange}">
+                                            <f:ajax execute="rangeTopSell"></f:ajax></h:inputText>
+                                    </div></div>
+                                <h:commandButton class="btn btn-primary formbutton" value="#{internationalization.submit}" action="#{reportBean.getTopSellers()}"><f:ajax execute="@form" render="dataTopSell" /></h:commandButton>                        
+                            </h:form>
+                        </div>
+                    </div>
+                    <h:panelGroup id="dataTopSell">
+                        <c:if test="#{reportBean.topSellers != null}">
+                            <table class="table text-centered">
+                                <thead>
+                                    <tr>
+                                        <th>#{internationalization.inventory}</th>
+                                        <th>#{internationalization.title}</th>
+                                        <th>#{internationalization.sales}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <ui:repeat value="#{reportBean.topSellers}" var="record">
+                                        <tr>
+                                            <td>#{record.type}</td>
+                                            <td>#{record.name}</td>  
+                                            <td>#{record.sales}</td>
+                                        </tr>
+                                    </ui:repeat>  
+                                </tbody>    
+                            </table>             
+                        </c:if> </h:panelGroup>
+                </div>
+            </div>
+        </div>
+
     </h:body>
 </html>
