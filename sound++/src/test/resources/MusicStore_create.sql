@@ -1,4 +1,3 @@
-
 drop database songstore;
 create database songstore;
 DROP USER IF EXISTS songstore@localhost;
