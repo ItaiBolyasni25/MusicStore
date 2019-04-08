@@ -22,17 +22,24 @@
                 <br/><br/>
                 <p:panel>
                     <legend>#{internationalization.login}</legend>
-                    <form method="POST" action="j_security_check" id="loginForm">
-                        #{internationalization.email} <input class="form-control" type="text" name="j_username" />
-                        #{internationalization.password} <input class="form-control" type="password" name="j_password" />
+                    <h:form>
+                        <h:message for="email" class="alert alert-danger"></h:message><br/>
+                        #{internationalization.email} <h:inputText id="email" class="form-control" value="#{registerBean.email}" required="true" requiredMessage="#{internationalization.emailRequired}" validatorMessage="#{internationalization.invalidFormat}">
+                            <f:validateRegex pattern=".+\@.+\..+"/>
+                        </h:inputText>
+                        <h:message for="password" class="alert alert-danger"></h:message><br/>
+                        #{internationalization.password} <h:inputSecret id="password" class="form-control" value="#{registerBean.password}" required="true" requiredMessage="#{internationalization.passwordRequired}"/>
                         <br />
                         <div class="row">
                             <div class="col-md-6">
-                                <h:commandButton class="btn btn-primary formbutton" type="submit" value="Login"/><br/></div>
+                                <h:commandButton class="btn btn-primary formbutton" type="submit" value="#{internationalization.login}" action="#{request.login(registerBean.email, registerBean.password)}"
+                                                 actionListener="#{registerBean.logIn()}"/>
+                                <br/>
+                            </div>
                             <div class="col-md-6">
-                                <h:commandButton class="btn btn-primary formbutton" type="reset" value="Reset" /></div>
+                                <h:commandButton class="btn btn-primary formbutton" type="reset" value="#{internationalization.reset}" immediate="true"/></div>
                         </div>
-                    </form>
+                    </h:form>
                 </p:panel>
             </div>
         </div>

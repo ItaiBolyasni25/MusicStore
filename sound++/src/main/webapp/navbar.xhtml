@@ -52,7 +52,7 @@ and open the template in the editor.
                     </li>
                     <li class="nav-item">
                         <h:form>
-                            <h:commandLink class="nav-link" id="trackLink" value="#{internationalization.tracks}" action="/tracks?faces-redirect=true"/>
+                            <h:commandLink class="nav-link trackLink" id="trackLink" value="#{internationalization.tracks}" action="/tracks?faces-redirect=true"/>
                         </h:form>
                     </li>
                     <li class="nav-item">
@@ -79,6 +79,9 @@ and open the template in the editor.
                     </h:panelGroup>
                     <li class="nav-item">
                         <h:link class="nav-link checkout" value="#{internationalization.cart}" outcome="checkout"/>
+                    </li>
+                    <li class="nav-item">
+                        <h:link class="nav-link" value="#{internationalization.help}" outcome="help"/>
                     </li>
                 </ul>
 
