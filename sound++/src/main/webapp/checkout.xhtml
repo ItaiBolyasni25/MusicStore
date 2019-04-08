@@ -25,7 +25,7 @@ and open the template in the editor.
             <hr/>
             <section style='padding-top:0'>
                 <section class='col-md-9 pt-0'>
-                    <h3>Full Albums</h3>
+                    <h3>#{internationalization.fullAlbum}</h3>
                     <br/>
                         <ul style='list-style-type:none' id="list">
                             <ui:repeat var="album" value="#{cartController.getCartAlbum(userObj)}">
@@ -45,7 +45,7 @@ and open the template in the editor.
                         </ul>
                 </section>
                 <section class='col-md-9 pt-0'>
-                    <h3>Individual Tracks</h3>
+                    <h3>#{internationalization.indvTracks}</h3>
                     <br/>
                     <ul style='list-style-type:none' id="list2" class="list2">
                         <ui:repeat var="track" value="#{cartController.getCartTracks(userObj)}">
@@ -61,7 +61,7 @@ and open the template in the editor.
                     </ul>
                 </section>
             </section>
-            <h:link class='btn btn-success col-md-9 proceed' value="Proceed" outcome="cart"/>
+            <h:link class='btn btn-success col-md-9 proceed' value="#{internationalization.proceed}" outcome="cart"/>
         </section>
 
         <ui:include src="footer.xhtml"/>
