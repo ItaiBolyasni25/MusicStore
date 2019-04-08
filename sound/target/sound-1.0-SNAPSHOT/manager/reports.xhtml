@@ -22,7 +22,7 @@
     </h:head>
     <h:body class="backgroundcolor">
         <ui:include src="../navbarmanager.xhtml" />
-        
+
         <!-- Total sales -->
         <div class="panel-group">
             <div class="panel panel-default">
@@ -70,7 +70,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Sales by artist -->
         <div class="panel-group">
             <div class="panel panel-default">
@@ -135,7 +135,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Sales by client -->
         <div class="panel-group">
             <div class="panel panel-default">
@@ -200,7 +200,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Sales by track -->
         <div class="panel-group">
             <div class="panel panel-default">
@@ -265,6 +265,71 @@
                 </div>
             </div>
         </div>
-        
+
+        <!-- Sales by album -->
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#salesByAlbum">Sales by album</a>
+                    </h4></div>
+
+                <div id="salesByAlbum" class="panel-collapse collapse">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <h:form class="searchForm" id="albumForm" >
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label" for="albumForm:patternAlbum">Albums:</label>
+                                    <div class="col-sm-9">
+                                        <h:inputText onfocus="showSearchList();" autocomplete="off" id="patternTrack" class="form-control patternTextBox" title="#{internationalization.search}" value="#{reportBean.albumTitle}" >
+                                            <f:ajax event="keyup" listener="#{reportBean.patternAlbumChanged()}" execute="patternAlbum" render="searchList"></f:ajax>
+                                        </h:inputText></div>
+
+                                    <h:panelGroup id="searchList" class="resultSearch">
+                                        <ul class="list-group">
+                                            <ui:repeat value="#{reportBean.albums}" var="album">
+                                                <li class="list-group-item d-flex justify-content-between align-items-center searchItem"> 
+                                                    <h:commandLink  value="#{album.title}" onclick="setPattern(this);">           
+                                                        <f:ajax />
+                                                    </h:commandLink>
+                                                    <span class="badge badge-primary badge-pill">Sales by album:</span> 
+                                                </li>
+                                            </ui:repeat></ul> </h:panelGroup></div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label" for="daterange">Range: </label>
+                                    <div class="col-sm-9"><h:inputText id ="daterange" class="form-control daterange" value="#{reportBean.dateRange}">
+                                            <f:ajax execute="daterange"></f:ajax></h:inputText>
+                                    </div>
+                                </div>
+                                <h:commandButton class="btn btn-primary formbutton" value="#{internationalization.submit}" action="#{reportBean.getSalesByAlbum()}"><f:ajax execute="@form" render="dataAlbum"/></h:commandButton>                   
+                            </h:form>
+                        </div>
+                    </div>
+                    <h:panelGroup id="dataAlbum">
+                        <c:if test="#{not empty reportBean.salesByAlbum}">
+                            <table class="table text-centered">
+                                <thead>
+                                    <tr>
+                                        <th>#{internationalization.inventory}</th>
+                                        <th>#{internationalization.title}</th>
+                                        <th>#{internationalization.sales}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <ui:repeat value="#{reportBean.getSalesByAlbum()}" var="album">
+                                        <tr>
+                                            <td>#{album.type}</td>
+                                            <td>#{album.name}</td>
+                                            <td>#{album.sales}</td>
+                                        </tr>
+                                    </ui:repeat>  
+                                </tbody>    
+                            </table>           
+                        </c:if>
+                    </h:panelGroup>
+                </div>
+            </div>
+        </div>
+
     </h:body>
 </html>

@@ -35,6 +35,7 @@ public class ReportBean implements Serializable {
     private String pattern;
     private String artist;
     private String trackTitle;
+    private String albumTitle;
     private List<Artist> artists;
     private List<Album> albums;
     private List<User> clients;
@@ -101,16 +102,17 @@ public class ReportBean implements Serializable {
 
     }
 
-    public SaleReport getSalesByAlbums() throws ParseException {
-        SaleReport s = new SaleReport();
-        if (dateRange != null && pattern != null) {
+    public List<InventoryReport> getSalesByAlbum() throws ParseException {
+        List<InventoryReport> reports = new ArrayList<>();
+        if (dateRange != null) {
             String[] days = dateRange.split("-");
-            List<Invoice> invoices = dao.customFindDB(new Invoice(), "SELECT inv FROM Orders ord join ord.invoice inv join ord.album al where al.title = '" + this.pattern + "' AND inv.date BETWEEN '" + newDateFormat(days[0]) + "' AND '" + newDateFormat(days[1]) + "' ORDER BY inv.date ASC");
-            s.setTotalSale(invoices.size());
-            s.setInvoice(invoices);
-        }
-        return s;
+            List<Album> singleAlbum = dao.find(new Album(), "title = '" + albumTitle + "' and "
+                    + "(identifier.date_added between '" + newDateFormat(days[0]) + "' and '" + newDateFormat(days[1]) + "')");
 
+            reports = getFullList(singleAlbum, new ArrayList<Track>());
+        }
+
+        return reports;
     }
 
     public List<InventoryReport> getTopSellers() throws ParseException {
@@ -226,18 +228,19 @@ public class ReportBean implements Serializable {
         List<InventoryReport> reports = new ArrayList<>();
         if (dateRange != null) {
             String[] days = dateRange.split("-");
-            List<Track> tracks = dao.find(new Track(), "title = '" + trackTitle + "' and "
+            List<Track> singleTrack = dao.find(new Track(), "title = '" + trackTitle + "' and "
                     + "(identifier.date_added between '" + newDateFormat(days[0]) + "' and '" + newDateFormat(days[1]) + "')");
 
-            reports = getFullList(new ArrayList<Album>(), tracks);
+            reports = getFullList(new ArrayList<Album>(), singleTrack);
         }
+
         return reports;
     }
 
     // --- Pattern changers --- //
-    public void patternALbumChanged() {
-        if (pattern != null && !pattern.isEmpty() && !pattern.equals("")) {
-            albums = dao.findWithOnlyPatternAlbum(new Album(), pattern);
+    public void patternAlbumChanged() {
+        if (albumTitle != null && !albumTitle.isEmpty() && !albumTitle.equals("")) {
+            albums = dao.findWithLimitPatternAlbumReports(new Album(), 0, 0, albumTitle);
         }
     }
 
@@ -252,7 +255,7 @@ public class ReportBean implements Serializable {
             clients = dao.findWithLimitPatternClient(new User(), 0, 0, email);
         }
     }
-    
+
     public void patternTrackChanged() {
         if (trackTitle != null && !trackTitle.isEmpty() && !trackTitle.equals("")) {
             tracks = dao.findWithLimitPatternTrack(new Track(), 0, 0, trackTitle);
@@ -380,5 +383,13 @@ public class ReportBean implements Serializable {
 
     public void setTrackTitle(String trackTitle) {
         this.trackTitle = trackTitle;
+    }
+
+    public String getAlbumTitle() {
+        return albumTitle;
+    }
+
+    public void setAlbumTitle(String albumTitle) {
+        this.albumTitle = albumTitle;
     }
 }
