@@ -15,8 +15,11 @@ import org.openqa.selenium.chrome.ChromeDriver;
  *
  * @author GamingDanik
  */
+
 public class RegistrationTest {
     
+    
+    @Test
     public void runTest() throws InterruptedException {
         registerTest();
         buyAlbumTest();
