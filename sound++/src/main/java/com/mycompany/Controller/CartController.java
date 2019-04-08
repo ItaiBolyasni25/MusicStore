@@ -46,6 +46,18 @@ public class CartController implements Serializable {
         return "albums.xhtml";
     }
 
+    public String removeTrack(Track track, User user) {
+        Cart cart = dao.find(new Cart(), "track.track_id = '" + track.getId() + "' AND identifier.user.email = '" + user.getEmail() + "'").get(0);
+        dao.deleteCart(cart, true);
+        return "checkout.xhtml";
+    }
+
+    public String removeAlbum(Album album, User user) {
+        Cart cart = dao.find(new Cart(), "album.album_id = '" + album.getId() + "' AND identifier.user.email = '" + user.getEmail() + "'").get(0);
+        dao.deleteCart(cart, true);
+        return "checkout.xhtml";
+    }
+
     public String addAlbum(Album album, User user) {
         Cart cart = new Cart();
         cart.setAlbum(album);

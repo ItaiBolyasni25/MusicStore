@@ -120,10 +120,24 @@ public class ReportBean implements Serializable {
         if (dateRange != null) {
             String[] days = dateRange.split("-");
 
-            List<Album> albums = dao.customFindDB(new Album(), "select t from Album t where (t.date_added between '" + newDateFormat(days[0]) + "' and '" + newDateFormat(days[1]) + "') and t.total_sales != 0 order by t.total_sales DESC");
-            List<Track> tracks = dao.customFindDB(new Track(), "select t from Track t where (t.date_added between '" + newDateFormat(days[0]) + "' and '" + newDateFormat(days[1]) + "') and t.total_sales != 0 order by t.total_sales DESC");
-
-            reports = getFullList(albums, tracks);
+            List<Object[]> albums = dao.customFindObject("select t.title, count(inv) from Cart c join c.album t join c.invoice inv where inv.date BETWEEN '" + newDateFormat(days[0]) + "' AND '"
+                    + newDateFormat(days[1]) + "' GROUP BY t.album_id ORDER BY COUNT(inv) DESC");
+            List<Object[]> tracks = dao.customFindObject("select t.title, count(inv) from Cart c join c.track t join c.invoice inv where inv.date BETWEEN '" + newDateFormat(days[0]) + "' AND '"
+                    + newDateFormat(days[1]) + "' GROUP BY t.track_id ORDER BY COUNT(inv) DESC");
+             for (Object[] obj : albums) {
+            InventoryReport ir = new InventoryReport();
+            ir.setName(obj[0].toString());
+            ir.setSales(Integer.parseInt(obj[1].toString()));
+            ir.setType("Album");
+            reports.add(ir);
+        }
+          for (Object[] obj : tracks) {
+            InventoryReport ir = new InventoryReport();
+            ir.setName(obj[0].toString());
+            ir.setSales(Integer.parseInt(obj[1].toString()));
+            ir.setType("Track");
+            reports.add(ir);
+        }
         }
         
         return reports;
@@ -153,8 +167,7 @@ public class ReportBean implements Serializable {
         if (dateRange != null) {
 
             String[] days = dateRange.split("-");
-            tracks = dao.customFindObject("SELECT tr.title, tr.track_id from Track tr Where tr.track_id NOT IN (Select tr.track_id from Orders ord join ord.invoice "
-                    + "inv join ord.track tr where inv.date BETWEEN '" + newDateFormat(days[0]) + "' AND '"
+            tracks = dao.customFindObject("SELECT tr.title, tr.track_id from Track tr where tr.track_id NOT IN (Select tra.track_id from Cart t join t.track tra join t.invoice inv where tra.total_sales = 0 AND inv.date BETWEEN '" + newDateFormat(days[0]) + "' AND '"
                     + newDateFormat(days[1]) + "')");
         }
         for (Object[] obj : tracks) {

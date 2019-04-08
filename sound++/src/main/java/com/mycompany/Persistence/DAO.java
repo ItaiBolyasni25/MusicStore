@@ -6,6 +6,7 @@ package com.mycompany.Persistence;
  * and open the template in the editor.
  */
 import com.mycompany.Interface.EntityModel;
+import com.mycompany.Model.Cart;
 import java.sql.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -29,7 +30,6 @@ import javax.transaction.UserTransaction;
 @RequestScoped
 public class DAO {
 
-    
     @PersistenceContext(unitName = "usersPU")
     private EntityManager em;
 
@@ -105,8 +105,8 @@ public class DAO {
         if (offset != 0) {
             q.setFirstResult(offset);
         }
-        if(display != 0){
-        q.setMaxResults(display);
+        if (display != 0) {
+            q.setMaxResults(display);
         }
         return q.getResultList();
     }
@@ -154,8 +154,8 @@ public class DAO {
         q.setParameter("pattern", pattern + "%");
         return q.getResultList();
     }
-    
-        public <E extends EntityModel> List<E> findWithOnlyPatternArtist(E entityModel, String pattern) {
+
+    public <E extends EntityModel> List<E> findWithOnlyPatternArtist(E entityModel, String pattern) {
         String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
         Query q = em.createQuery("Select identifier FROM " + className + " identifier  JOIN identifier.artists at WHERE at.name = '" + pattern + "' OR at.name like :pattern OR identifier.title like :pattern OR identifier.title ='" + pattern + "' ORDER BY identifier.title ASC");
         q.setParameter("pattern", pattern + "%");
@@ -242,7 +242,27 @@ public class DAO {
     }
 
     public <E extends EntityModel> boolean delete(E entityModel) {
-        em.remove(entityModel);
+        try {
+            userTransaction.begin();
+            em.remove(entityModel);
+            System.out.println("removed");
+            userTransaction.commit();
+        } catch (NotSupportedException | SystemException | RollbackException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException ex) {
+            System.out.println("removed " + ex.getStackTrace());
+        }
+        return true;
+    }
+
+
+    public <E extends EntityModel> boolean deleteCart(Cart cart, boolean nativeSQL) {
+        try {
+            userTransaction.begin();
+            Query q = em.createNativeQuery("DELETE FROM Cart WHERE cart_id = '" + cart.getCart_id() + "'");
+            q.executeUpdate();
+            userTransaction.commit();
+        } catch (NotSupportedException | SystemException | RollbackException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException ex) {
+            System.out.println("removed " + ex.getStackTrace());
+        }
         return true;
     }
 
@@ -265,14 +285,16 @@ public class DAO {
             userTransaction.begin();
             em.merge(entityModel);
             userTransaction.commit();
+
         } catch (RollbackException | NotSupportedException | SystemException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException ex) {
-            Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DAO.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     public List<String> findGenres() {
         Query q = em.createNativeQuery("SELECT genre FROM track GROUP BY genre");
-         return q.getResultList();
+        return q.getResultList();
     }
 
     public <E extends EntityModel> List<E> customFindDB(E entityModel, String query) {

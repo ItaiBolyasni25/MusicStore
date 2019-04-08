@@ -521,7 +521,7 @@ public class Internationalization implements Serializable {
     public String getAddImage() {
         return language.equals("English") ? "Add image (You must save the image that you want in the assets/album_covers folder of the project before assigning it to the album)" : "Ajouter une image (Vous devez enregistrer l'image de votre choix dans le dossier assets / album_covers du projet avant de l'affecter à l'album)";
     }
-    
+
     public String getImagePath() {
         return language.equals("English") ? "Image path" : "Chemin de l'image";
     }
@@ -613,24 +613,85 @@ public class Internationalization implements Serializable {
     public String getEmailRequired() {
         return language.equals("English") ? "Email is required" : "Courriel electronique est necessaire";
     }
-    
-    public String getInvalidFormat(){
-        return language.equals("English") ? "Invalid format : music@sound.com": "Format invalide : music@sound.com"; 
+
+    public String getInvalidFormat() {
+        return language.equals("English") ? "Invalid format : music@sound.com" : "Format invalide : music@sound.com";
     }
-    
-    public String getHelp(){
-        return language.equals("English") ? "Help": "Aide"; 
+
+    public String getHelp() {
+        return language.equals("English") ? "Help" : "Aide";
     }
-    
-    public String getIndex(){
-        return language.equals("English") ? "Navigate through the main page": "Naviguez sur la page principale"; 
+
+    public String getIndex() {
+        return language.equals("English") ? "Navigate through the main page" : "Naviguez sur la page principale";
     }
-    
-    public String getTrackAlbum(){
-        return language.equals("English") ? "Buy your favourites songs and albums": "Acehetez vous albums et chansons preferees"; 
+
+    public String getTrackAlbum() {
+        return language.equals("English") ? "Buy your favourites songs and albums" : "Acehetez vous albums et chansons preferees";
     }
-    
-    public String getRegistration(){
-        return language.equals("English") ? "Sign up to enjoy all the content!": "Enregistrez vous pour profiter de tout le contenue"; 
+
+    public String getRegistration() {
+        return language.equals("English") ? "Sign up to enjoy all the content!" : "Enregistrez vous pour profiter de tout le contenue";
     }
+
+    public String getCheckout() {
+        return language.equals("English") ? "Checkout" : "Check-out";
+    }
+
+    public String getFullAlbum() {
+        return language.equals("English") ? "Full Albums" : "Albums complets";
+    }
+
+    public String getIndvTracks() {
+        return language.equals("English") ? "Individual Tracks" : "Chansons Individuelles";
+    }
+
+    public String getPayment() {
+        return language.equals("English") ? "Payment" : "Paiement";
+    }
+
+    public String getNameOnCard() {
+        return language.equals("English") ? "Name on card" : "Nom sur carte";
+    }
+
+    public String getCCNumber() {
+        return language.equals("English") ? "Credit card number" : "Numéro de Carte de Crédit";
+    }
+
+    public String getExpiration() {
+        return language.equals("English") ? "Expiration Date" : "Date d'expiration";
+    }
+
+    public String getFrom() {
+        return language.equals("English") ? "From" : "De";
+    }
+
+    public String getTo() {
+        return language.equals("English") ? "To" : "À";
+    }
+
+    public String getItem() {
+        return language.equals("English") ? "Item" : "Article";
+    }
+
+    public String getProceed() {
+        return language.equals("English") ? "Proceed" : "Procéder";
+    }
+
+    public String getTotalPrice() {
+        return language.equals("English") ? "Total Price: " : "Prix ​​total:";
+    }
+
+    public String getBillingAddress() {
+        return language.equals("English") ? "Billing Address" : "Adresse de facturation";
+    }
+
+    public String getContinueToInvoice() {
+        return language.equals("English") ? "Continue to invoice" : "Continuer à facturer";
+    }
+
+    public String getShippingAddress() {
+        return language.equals("English") ? "Shipping address is the same as my billing address" : "L'adresse de livraison est la même que mon adresse de facturation";
+    }
+
 }

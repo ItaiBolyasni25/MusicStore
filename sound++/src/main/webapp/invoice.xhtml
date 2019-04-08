@@ -25,7 +25,6 @@ and open the template in the editor.
             <div class="card">
                 <div class="card-header">
                     Invoice
-                    <strong>01/01/01/2018</strong> 
 
 
                 </div>
@@ -38,7 +37,7 @@ and open the template in the editor.
                             </div>
                             <div>Dawson College</div>
                             <div>Quebec, Montreal</div>
-                            <div>Email: info@sound++.com</div>
+                            <div>#{internationalization.email}: info@sound++.com</div>
                             <div>Phone: 514-558-6969</div>
                         </div>
 
@@ -48,7 +47,7 @@ and open the template in the editor.
                                 <strong>#{userObj.firstname} #{userObj.lastname}</strong>
                             </div>
                             <div>#{userObj.address1}</div>
-                            <div>Email: #{userObj.email}</div>
+                            <div>#{internationalization.email}: #{userObj.email}</div>
                             <div>Phone: +48 123 456 789</div>
                         </div>
 
@@ -60,11 +59,11 @@ and open the template in the editor.
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>Item</th>
-                                    <th>Description</th>
+                                    <th>#{internationalization.item}</th>
+                                    <th>#{internationalization.description}</th>
 
-                                    <th class="right">List Price</th>
-                                    <th class="center">Cost</th>
+                                    <th class="right">#{internationalization.listPrice}</th>
+                                    <th class="center">#{internationalization.cost}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -75,7 +74,7 @@ and open the template in the editor.
                                     <h:panelGroup rendered="#{item.track != null}">
                                         <tr>
                                             <td>#{item.track.title}</td>
-                                            <td>Single Track</td>
+                                            <td>#{internationalization.indvTracks}</td>
 
                                             <td>#{item.track.list_price}</td>
                                             <td>#{item.track.cost}</td>
@@ -86,7 +85,7 @@ and open the template in the editor.
                                     <h:panelGroup rendered="#{item.album != null}">
                                         <tr>
                                             <td>#{item.album.title}</td>
-                                            <td>Full Album</td>
+                                            <td>#{internationalization.fullAlbum}</td>
 
                                             <td>#{item.album.list_Price}</td>
                                             <td>#{item.album.cost}</td>
