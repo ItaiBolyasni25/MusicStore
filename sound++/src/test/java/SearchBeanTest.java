@@ -170,5 +170,4 @@ public class SearchBeanTest {
         return line.startsWith("--") || line.startsWith("//")
                 || line.startsWith("/*");
     }
-    }
 }

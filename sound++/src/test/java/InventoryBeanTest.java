@@ -33,6 +33,7 @@ import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 //import org.jboss.shrinkwrap.resolver.api.maven.Maven;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -41,6 +42,7 @@ import org.junit.runner.RunWith;
  *
  * @author aantoine97
  */
+@Ignore
 @RunWith(Arquillian.class)
 public class InventoryBeanTest {
 
