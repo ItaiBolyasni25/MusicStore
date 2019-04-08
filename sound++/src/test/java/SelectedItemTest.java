@@ -42,7 +42,6 @@ import org.junit.runner.RunWith;
  *
  * @author maian
  */
-@Ignore
 @RunWith(Arquillian.class)
 public class SelectedItemTest {
 

@@ -71,7 +71,7 @@ and open the template in the editor.
 
 
 
-                                <ui:repeat value="#{cartController.getCartItems(userObj)}" var="item">
+                                <ui:repeat value="#{invoiceController.cartItems}" var="item">
                                     <h:panelGroup rendered="#{item.track != null}">
                                         <tr>
                                             <td>#{item.track.title}</td>
@@ -82,7 +82,7 @@ and open the template in the editor.
                                         </tr>
                                     </h:panelGroup>
                                 </ui:repeat>
-                                <ui:repeat value="#{cartController.getBoughtItems(userObj)}" var="item">
+                                <ui:repeat value="#{invoiceController.cartItems}" var="item">
                                     <h:panelGroup rendered="#{item.album != null}">
                                         <tr>
                                             <td>#{item.album.title}</td>

@@ -1,5 +1,6 @@
-
+/*
 import io.github.bonigarcia.wdm.ChromeDriverManager;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -15,6 +16,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
  *
  * @author GamingDanik
  */
+/*@Ignore
 public class RegistrationTest {
     
     public void runTest() throws InterruptedException {
@@ -95,3 +97,4 @@ public class RegistrationTest {
     }
 
 }
+*/

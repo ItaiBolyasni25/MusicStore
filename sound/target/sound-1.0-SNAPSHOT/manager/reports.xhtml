@@ -330,7 +330,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Top sellers  -->
         <div class="panel-group">
             <div class="panel panel-default">
@@ -356,16 +356,16 @@
                             <table class="table text-centered">
                                 <thead>
                                     <tr>
-                                        <th>Title</th>
-                                        <th>Type</th>
-                                        <th>Total Sale</th>
+                                        <th>#{internationalization.inventory}</th>
+                                        <th>#{internationalization.title}</th>
+                                        <th>#{internationalization.sales}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <ui:repeat value="#{reportBean.topSellers}" var="record">
                                         <tr>
-                                            <td>#{record.name}</td>
                                             <td>#{record.type}</td>
+                                            <td>#{record.name}</td>  
                                             <td>#{record.sales}</td>
                                         </tr>
                                     </ui:repeat>  
