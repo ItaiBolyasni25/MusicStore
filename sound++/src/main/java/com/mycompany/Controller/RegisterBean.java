@@ -98,7 +98,6 @@ public class RegisterBean implements Serializable {
             Roles roles = new Roles(user.getEmail(), role);
             DAO.write(roles);
             invalidEmail = false;
-
             return "index.xhtml?faces-redirect=true";
         } else {
             invalidEmail = true;
@@ -112,11 +111,16 @@ public class RegisterBean implements Serializable {
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("id");
     }
 
-    public void logIn() {
-        User user = DAO.find(new User(), "email = '" + email + "'").get(0);
-        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("userObj", user);
-        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", firstName);
-        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("id", email);
+    public String logIn() {
+        if (DAO.find(new User(), "email = '" + email + "'").size() != 1) {
+            return "login.xthml";
+        } else {
+            User user = DAO.find(new User(), "email = '" + email + "'").get(0);
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("userObj", user);
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", firstName);
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("id", email);
+            return null;
+        }
     }
 
 }

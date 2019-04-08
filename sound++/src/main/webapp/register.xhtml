@@ -17,7 +17,7 @@
         <ui:include src="navbar.xhtml" />
 
         <div class="row">
-            <div class="col-md-4 centerform">
+            <div class="col-md-5 centerform">
                 <br/><br/>
                 <h:form>
                     <fieldset>
@@ -37,31 +37,37 @@
                                 </h:selectOneMenu>
                             </div>
                             <div class="col-md-4">
+                                <h:message for="firstname" class="alert alert-danger"><p></p></h:message><br/>
                                 <div class="form-group">
-                                    <label class="col-form-label" for="inputDefault">#{internationalization.firstname}</label>
-                                    <h:inputText value="#{registerBean.firstName}" class="form-control" id="firstname" required="true"/>
+                                    <label class="col-form-label" for="fname">#{internationalization.firstname}</label>
+                                    <h:inputText id="firstname" value="#{registerBean.firstName}" class="form-control firstname" required="true" requiredMessage="#{internationalization.firstNameRequired}"/>
                                 </div>
                             </div>
                             <div class="col-md-5">
+                                <h:message for="lastname" class="alert alert-danger"></h:message><br/>
                                 <div class="form-group">
                                     <label class="col-form-label" for="inputDefault">#{internationalization.lastname}</label>
-                                    <h:inputText value="#{registerBean.lastName}" class="form-control" id="lastname" required="true"/>
+                                    <h:inputText value="#{registerBean.lastName}" class="form-control lastname" id="lastname" required="true" requiredMessage="#{internationalization.lastNameRequired}"/>
                                 </div>
                             </div>
                         </div>
 
+                        <h:message for="registerEmail" class="alert alert-danger"></h:message><br/>
                         <div class="form-group">
                             <label for="exampleInputEmail1">#{internationalization.email}</label>
-                            <h:inputText  value="#{registerBean.email}" class="form-control" id="registerEmail" />
+                            <h:inputText  value="#{registerBean.email}" class="form-control registerEmail" id="registerEmail" required="true" requiredMessage="#{internationalization.emailRequired}" validatorMessage="#{internationalization.invalidFormat}">
+                                <f:validateRegex pattern=".+\@.+\..+"/>
+                            </h:inputText>
                             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                         </div>
 
+                        <h:message for="registerPassword" class="alert alert-danger"></h:message><br/>
                         <div class="form-group">
                             <label for="exampleInputPassword1">#{internationalization.password}</label>
-                            <h:inputSecret value="#{registerBean.password}" class="form-control" id="registerPassword" />
+                            <h:inputSecret value="#{registerBean.password}" class="form-control registerPassword" id="registerPassword" required="true" requiredMessage="#{internationalization.passwordRequired}"/>
                         </div>
 
-                        <h:commandButton type="submit" class="btn btn-primary formbutton" value="#{internationalization.signup}" action="#{registerBean.addUser}"/>
+                        <h:commandButton type="submit" class="btn btn-primary formbutton signupBtn" value="#{internationalization.signup}" id="signupBtn" action="#{registerBean.addUser}"/>
                     </fieldset>
                 </h:form>
             </div>

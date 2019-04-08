@@ -47,12 +47,12 @@ and open the template in the editor.
                     </li>
                     <li class="nav-item">
                         <h:form>
-                            <h:commandLink class="nav-link" value="#{internationalization.albums}" action="/albums?faces-redirect=true"/>
+                            <h:commandLink class="nav-link albumLink" id="albumLink" value="#{internationalization.albums}" action="/albums?faces-redirect=true"/>
                         </h:form>
                     </li>
                     <li class="nav-item">
                         <h:form>
-                            <h:commandLink class="nav-link" value="#{internationalization.tracks}" action="/tracks?faces-redirect=true"/>
+                            <h:commandLink class="nav-link" id="trackLink" value="#{internationalization.tracks}" action="/tracks?faces-redirect=true"/>
                         </h:form>
                     </li>
                     <li class="nav-item">
@@ -78,7 +78,14 @@ and open the template in the editor.
                         </li>
                     </h:panelGroup>
                     <li class="nav-item">
-                        <h:link class="nav-link" value="#{internationalization.cart}" outcome="manager/manager"/>
+<<<<<<< HEAD
+                        <h:link class="nav-link checkout" value="#{internationalization.cart}" outcome="checkout"/>
+=======
+                        <h:link class="nav-link" value="#{internationalization.cart}" outcome="cart"/>
+                    </li>
+                    <li class="nav-item">
+                        <h:link class="nav-link" value="#{internationalization.help}" outcome="help"/>
+>>>>>>> c54b40f4a9ff38f390fcd1ff01f07808c726fd8c
                     </li>
                 </ul>
 
