@@ -30,7 +30,7 @@ public class Artist implements EntityModel, Serializable {
     private String name;
     private String image;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int artist_id;
 
     @ManyToMany(cascade = {CascadeType.ALL}, mappedBy = "artists")
