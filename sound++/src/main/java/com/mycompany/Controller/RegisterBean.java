@@ -98,7 +98,6 @@ public class RegisterBean implements Serializable {
             Roles roles = new Roles(user.getEmail(), role);
             DAO.write(roles);
             invalidEmail = false;
-
             return "index.xhtml?faces-redirect=true";
         } else {
             invalidEmail = true;
