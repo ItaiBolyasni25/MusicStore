@@ -23,8 +23,8 @@ import javax.servlet.http.Part;
 public class BannerAddBean implements Serializable, EntityModel {
 
     private Part uploadedFile;
-    private String folder = "D:\\cygwin\\projects_w19\\TeamA\\banners\\";
-    //private String folder = "C:\\Users\\austi\\Desktop\\SchoolStuff\\JavaServerSide\\Project\\csdmusicstore\\sound++\\src\\main\\webapp\\assets\\banners";
+    //private String folder = "D:\\cygwin\\projects_w19\\TeamA\\banners\\";
+    private String folder = "C:\\Users\\austi\\Desktop\\SchoolStuff\\JavaServerSide\\Project\\csdmusicstore\\sound++\\src\\main\\webapp\\assets\\banners";
     //private String folder = "D:\\cygwin\\projects_w19\\TeamA\\banners\\";
     //private String folder = "C:\\Users\\maian\\Desktop\\csdmusicstore\\sound++\\src\\main\\webapp\\assets\\banners\\";
 

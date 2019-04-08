@@ -34,7 +34,7 @@ import org.junit.runner.RunWith;
  * @author aantoine97
  */
 @RunWith(Arquillian.class)
-public class ReviewBeanTest {
+public class InventoryBeanTest {
 
     @Inject
     DAO dao;
@@ -68,57 +68,9 @@ public class ReviewBeanTest {
                         "META-INF/persistence.xml");//.addAsLibraries(dependencies);
         return webArchive;
     }
-
+    
     @Test
-    public void testSaveReview() {
-        User user = new User("Bob", "Bob", "something", "blahblah", "Mr");
-
-        if (dao.find(new User(), "email = 'something'").isEmpty()) {
-            dao.write(user);
-        }
-
-        Track track = dao.findAll(new Track()).get(0);
-        SelectedTrack selected = new SelectedTrack(dao);
-        selected.setSelectedTrack(track);
-
-        ReviewBean reviewer = new ReviewBean(dao, selected, null);
-        reviewer.setTrackOrAlbum("track");
-        reviewer.setRating(3);
-        reviewer.setText("AMAZING SONG");
-
-        reviewer.saveReview(user);
-        List<Review> reviews = dao.findAll(new Review());
-        Review latest = reviews.get(reviews.size() - 1);
-        Assert.assertEquals("AMAZING SONG", latest.getText());
-    }
-
-    @Test
-    public void approveReview() {
-        ReviewBean reviewer = new ReviewBean();
-        reviewer.setDao(dao);
-        Review firstUnapproved = dao.find(new Review(), "isApproved = 0").get(0);
-
-        reviewer.approveReview(firstUnapproved.getReview_id());
-        Review shouldBeApproved = dao.read(new Review(), firstUnapproved.getReview_id()).get(0);
-        Assert.assertTrue(shouldBeApproved.getIsApproved() == true);
-    }
-
-    @Test
-    public void deleteReview() {
-        ReviewBean reviewer = new ReviewBean();
-        reviewer.setDao(dao);
-        List<Review> reviews = dao.findAll(new Review());
-        int id = reviews.get(reviews.size() - 1).getReview_id();
-
-        try {
-            transaction.begin();
-            reviewer.deleteReview(id);
-            transaction.commit();
-        } catch (NotSupportedException | SystemException | RollbackException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException ex) {
-            Logger.getLogger(ReviewBeanTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        List<Review> shouldBeNull = dao.read(new Review(), id);
-        Assert.assertTrue(shouldBeNull.isEmpty());
+    public void testAddTrack1(){
+        
     }
 }
