@@ -42,7 +42,6 @@ import org.junit.runner.RunWith;
  *
  * @author aantoine97
  */
-@Ignore
 @RunWith(Arquillian.class)
 public class InventoryBeanTest {
 
