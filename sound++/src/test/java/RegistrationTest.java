@@ -16,12 +16,15 @@ import org.openqa.selenium.chrome.ChromeDriver;
  */
 public class RegistrationTest {
     
-        @BeforeClass
-    public void init() {
+    private static WebDriver driver;
+
+    @BeforeClass
+    public static void init() {
         ChromeDriverManager.getInstance().setup();
-        WebDriver driver = new ChromeDriver();
+        driver = new ChromeDriver();
         driver.get("http://localhost:8080/sound%20%20/");
     }
+
     
     @Test
     public void runTest() throws InterruptedException {
@@ -102,7 +105,7 @@ public class RegistrationTest {
     }
 
         @AfterClass
-    public void close() {
+    public static void close() {
         driver.close();
     }
 }
