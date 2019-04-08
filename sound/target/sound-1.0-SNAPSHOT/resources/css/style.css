@@ -272,6 +272,11 @@ section .section-title {
     border-radius: 50%;
 }
 
+.managerimgs{
+    max-height: auto;
+    max-width: 150px;
+}
+
 #logomanager{
     height: 100%;
     margin-top: 100%;
