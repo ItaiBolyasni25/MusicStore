@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.2.1/lux/bootstrap.min.css" />
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+        <h:outputStylesheet library="css" name="style.css"  />
+        <title>Sound++</title>
+    </h:head>
+    <h:body class="backgroundcolor body">
+        <ui:include src="navbar.xhtml"/>
+        <section class='container'>
+            <h1>Checkout</h1>
+            <hr/>
+            <section style='padding-top:0'>
+                <section class='col-md-9 pt-0'>
+                    <h3>#{internationalization.fullAlbum}</h3>
+                    <br/>
+                        <ul style='list-style-type:none' id="list">
+                            <ui:repeat var="album" value="#{cartController.getCartAlbum(userObj)}">
+                                <li style='height: 50px'>
+
+
+                                    <span style='font-size:18px;' class='pr-5 pt-3'>#{album.title}</span>
+                                    <h:form>
+                                        <h:commandLink class = "btn btn-danger float-right" action="#{cartController.removeAlbum(album, userObj)}" value="Remove">
+                                        </h:commandLink>
+                                    </h:form>
+
+
+                                    <span class='pr-5' style='font-size: 14px; float:right'>#{album.list_Price}</span>                                
+                                </li>
+                            </ui:repeat>
+                        </ul>
+                </section>
+                <section class='col-md-9 pt-0'>
+                    <h3>#{internationalization.indvTracks}</h3>
+                    <br/>
+                    <ul style='list-style-type:none' id="list2" class="list2">
+                        <ui:repeat var="track" value="#{cartController.getCartTracks(userObj)}">
+                            <li style='height: 50px'>
+                                <span style='font-size:18px;' class='pr-5 pt-3'>#{track.title}</span>
+                                <h:form>
+                                    <h:commandLink class = "btn btn-danger float-right" action="#{cartController.removeTrack(track, userObj)}" value="Remove">
+                                    </h:commandLink>
+                                </h:form>
+                                <span class='pr-5' style='font-size: 14px; float:right'>#{track.list_price}</span>                                
+                            </li>
+                        </ui:repeat>
+                    </ul>
+                </section>
+            </section>
+            <h:link class='btn btn-success col-md-9 proceed' value="#{internationalization.proceed}" outcome="cart"/>
+        </section>
+
+        <ui:include src="footer.xhtml"/>
+    </h:body>
+</html>

@@ -1,0 +1,510 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.2.1/lux/bootstrap.min.css" />
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.min.js" integrity="sha384-F13mJAeqdsVJS5kJv7MZ4PzYmJ+yXXZkt/gEnamJGTXZFzYgAcVtNg5wBDrRgLg9" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js" integrity="sha384-2Tnqs3x0ucZkxYqJ3UX1R/fkSRkMaDsdYWsUNc0hZVikDXRHamRor+AsNJ7Pi2DA" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" integrity="sha384-3J4adb6KqO9u+ZgVfdmUqKDG4qWyG2qxGdXYoCXh3YmBQURWveIDgFh22pw1E3a9" crossorigin="anonymous"></link>
+
+        <h:outputStylesheet library="css" name="style.css"  />
+        <h:outputScript library="js" name="jquery-1.12.4.js" target="head" />
+        <h:outputScript library="js" name="report.js" target="head"/>
+        <title>Sound++</title>
+    </h:head>
+    <h:body class="backgroundcolor">
+        <ui:include src="../navbarmanager.xhtml" />
+
+        <!-- Total sales -->
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#totalSales">#{internationalization.totalSales}</a>
+                    </h4></div>
+
+                <div id="totalSales" class="panel-collapse collapse">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <h:form class="searchForm" id="totalSalesForm" >
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label" for="daterange">Range: </label>
+                                    <div class="col-sm-6"><h:inputText id ="dateTotalSales" class="form-control daterange" value="#{reportBean.dateRange}">
+                                            <f:ajax execute="daterange"></f:ajax></h:inputText>
+                                    </div>
+                                </div>
+                                <h:commandButton class="btn btn-primary formbutton" value="#{internationalization.submit}" action="#{reportBean.getTotalSales()}"><f:ajax execute="@form" render="dataTotalSales"/></h:commandButton>                   
+                            </h:form>
+                        </div>
+                    </div>
+                    <h:panelGroup id="dataTotalSales">
+                        <c:if test="#{not empty reportBean.totalSales}">
+                            <table class="table text-centered">
+                                <thead>
+                                    <tr>
+                                        <th>#{internationalization.inventory}</th>
+                                        <th>#{internationalization.title}</th>
+                                        <th>#{internationalization.sales}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <ui:repeat value="#{reportBean.getTotalSales()}" var="sale">
+                                        <tr>
+                                            <td>#{sale.type}</td>
+                                            <td>#{sale.name}</td>
+                                            <td>#{sale.sales}</td>
+                                        </tr>
+                                    </ui:repeat>  
+                                </tbody>    
+                            </table>           
+                        </c:if>
+                    </h:panelGroup>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sales by artist -->
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#salesByArtist">Sales by Artist</a>
+                    </h4></div>
+
+                <div id="salesByArtist" class="panel-collapse collapse">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <h:form class="searchForm" id="artistForm" >
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label" for="artistForm:patternArtist">Artists:</label>
+                                    <div class="col-sm-6">
+                                        <h:inputText onfocus="showSearchList();" autocomplete="off" id="patternArtist" class="form-control patternTextBox" title="#{internationalization.search}" value="#{reportBean.artist}" >
+                                            <f:ajax event="keyup" listener="#{reportBean.patternArtistChanged()}" execute="patternArtist" render="searchList"></f:ajax>
+                                        </h:inputText></div>
+
+                                    <h:panelGroup id="searchList" class="resultSearch">
+                                        <ul class="list-group">
+                                            <ui:repeat value="#{reportBean.artists}" var="artist">
+                                                <li class="list-group-item d-flex justify-content-between align-items-center searchItem"> 
+                                                    <h:commandLink  value="#{artist.name}" onclick="setPattern(this);">           
+                                                        <f:ajax />
+                                                    </h:commandLink>
+                                                    <span class="badge badge-primary badge-pill">Sales by artist:</span> 
+                                                </li>
+                                            </ui:repeat></ul> </h:panelGroup></div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label" for="daterange">Range: </label>
+                                    <div class="col-sm-6"><h:inputText id ="daterange" class="form-control daterange" value="#{reportBean.dateRange}">
+                                            <f:ajax execute="daterange"></f:ajax></h:inputText>
+                                    </div>
+                                </div>
+                                <h:commandButton class="btn btn-primary formbutton" value="#{internationalization.submit}" action="#{reportBean.getSalesByArtist()}"><f:ajax execute="@form" render="dataArtist"/></h:commandButton>                   
+                            </h:form>
+                        </div>
+                    </div>
+                    <h:panelGroup id="dataArtist">
+                        <c:if test="#{not empty reportBean.salesByArtist}">
+                            <table class="table text-centered">
+                                <thead>
+                                    <tr>
+                                        <th>#{internationalization.inventory}</th>
+                                        <th>#{internationalization.title}</th>
+                                        <th>#{internationalization.sales}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <ui:repeat value="#{reportBean.getSalesByArtist()}" var="artist">
+                                        <tr>
+                                            <td>#{artist.type}</td>
+                                            <td>#{artist.name}</td>
+                                            <td>#{artist.sales}</td>
+                                        </tr>
+                                    </ui:repeat>  
+                                </tbody>    
+                            </table>           
+                        </c:if>
+                    </h:panelGroup>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sales by client -->
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#salesByClient">Sales by client</a>
+                    </h4></div>
+
+                <div id="salesByClient" class="panel-collapse collapse">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <h:form class="searchForm" id="clientForm" >
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label" for="clientForm:patternClient">Clients:</label>
+                                    <div class="col-sm-6">
+                                        <h:inputText onfocus="showSearchList();" autocomplete="off" id="patternClient" class="form-control patternTextBox" title="#{internationalization.search}" value="#{reportBean.email}" >
+                                            <f:ajax event="keyup" listener="#{reportBean.patternClientChanged()}" execute="patternClient" render="searchList"></f:ajax>
+                                        </h:inputText></div>
+
+                                    <h:panelGroup id="searchList" class="resultSearch">
+                                        <ul class="list-group">
+                                            <ui:repeat value="#{reportBean.clients}" var="client">
+                                                <li class="list-group-item d-flex justify-content-between align-items-center searchItem"> 
+                                                    <h:commandLink  value="#{client.email}" onclick="setPattern(this);">           
+                                                        <f:ajax />
+                                                    </h:commandLink>
+                                                    <span class="badge badge-primary badge-pill">Sales by client:</span> 
+                                                </li>
+                                            </ui:repeat></ul> </h:panelGroup></div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label" for="daterange">Range: </label>
+                                    <div class="col-sm-6"><h:inputText id ="daterange" class="form-control daterange" value="#{reportBean.dateRange}">
+                                            <f:ajax execute="daterange"></f:ajax></h:inputText>
+                                    </div>
+                                </div>
+                                <h:commandButton class="btn btn-primary formbutton" value="#{internationalization.submit}" action="#{reportBean.getSalesByClient()}"><f:ajax execute="@form" render="dataClient"/></h:commandButton>                   
+                            </h:form>
+                        </div>
+                    </div>
+                    <h:panelGroup id="dataClient">
+                        <c:if test="#{not empty reportBean.salesByClient}">
+                            <table class="table text-centered">
+                                <thead>
+                                    <tr>
+                                        <th>#{internationalization.inventory}</th>
+                                        <th>#{internationalization.title}</th>
+                                        <th>#{internationalization.sales}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <ui:repeat value="#{reportBean.getSalesByClient()}" var="client">
+                                        <tr>
+                                            <td>#{client.type}</td>
+                                            <td>#{client.name}</td>
+                                            <td>#client.sales}</td>
+                                        </tr>
+                                    </ui:repeat>  
+                                </tbody>    
+                            </table>           
+                        </c:if>
+                    </h:panelGroup>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sales by track -->
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#salesByTrack">Sales by Track</a>
+                    </h4></div>
+
+                <div id="salesByTrack" class="panel-collapse collapse">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <h:form class="searchForm" id="trackForm" >
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label" for="trackForm:patternTrack">Tracks:</label>
+                                    <div class="col-sm-6">
+                                        <h:inputText onfocus="showSearchList();" autocomplete="off" id="patternTrack" class="form-control patternTextBox" title="#{internationalization.search}" value="#{reportBean.trackTitle}" >
+                                            <f:ajax event="keyup" listener="#{reportBean.patternTrackChanged()}" execute="patternTrack" render="searchList"></f:ajax>
+                                        </h:inputText></div>
+
+                                    <h:panelGroup id="searchList" class="resultSearch">
+                                        <ul class="list-group">
+                                            <ui:repeat value="#{reportBean.tracks}" var="track">
+                                                <li class="list-group-item d-flex justify-content-between align-items-center searchItem"> 
+                                                    <h:commandLink  value="#{track.title}" onclick="setPattern(this);">           
+                                                        <f:ajax />
+                                                    </h:commandLink>
+                                                    <span class="badge badge-primary badge-pill">Sales by track:</span> 
+                                                </li>
+                                            </ui:repeat></ul> </h:panelGroup></div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label" for="daterange">Range: </label>
+                                    <div class="col-sm-6"><h:inputText id ="daterange" class="form-control daterange" value="#{reportBean.dateRange}">
+                                            <f:ajax execute="daterange"></f:ajax></h:inputText>
+                                    </div>
+                                </div>
+                                <h:commandButton class="btn btn-primary formbutton" value="#{internationalization.submit}" action="#{reportBean.getSalesByTrack()}"><f:ajax execute="@form" render="dataTrack"/></h:commandButton>                   
+                            </h:form>
+                        </div>
+                    </div>
+                    <h:panelGroup id="dataTrack">
+                        <c:if test="#{not empty reportBean.salesByTrack}">
+                            <table class="table text-centered">
+                                <thead>
+                                    <tr>
+                                        <th>#{internationalization.inventory}</th>
+                                        <th>#{internationalization.title}</th>
+                                        <th>#{internationalization.sales}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <ui:repeat value="#{reportBean.getSalesByTrack()}" var="track">
+                                        <tr>
+                                            <td>#{track.type}</td>
+                                            <td>#{track.name}</td>
+                                            <td>#{track.sales}</td>
+                                        </tr>
+                                    </ui:repeat>  
+                                </tbody>    
+                            </table>           
+                        </c:if>
+                    </h:panelGroup>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sales by album -->
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#salesByAlbum">Sales by album</a>
+                    </h4></div>
+
+                <div id="salesByAlbum" class="panel-collapse collapse">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <h:form class="searchForm" id="albumForm" >
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label" for="albumForm:patternAlbum">Albums:</label>
+                                    <div class="col-sm-6">
+                                        <h:inputText onfocus="showSearchList();" autocomplete="off" id="patternAlbum" class="form-control patternTextBox" title="#{internationalization.search}" value="#{reportBean.albumTitle}" >
+                                            <f:ajax event="keyup" listener="#{reportBean.patternAlbumChanged()}" execute="patternAlbum" render="searchList"></f:ajax>
+                                        </h:inputText></div>
+
+                                    <h:panelGroup id="searchList" class="resultSearch">
+                                        <ul class="list-group">
+                                            <ui:repeat value="#{reportBean.albums}" var="album">
+                                                <li class="list-group-item d-flex justify-content-between align-items-center searchItem"> 
+                                                    <h:commandLink  value="#{album.title}" onclick="setPattern(this);">           
+                                                        <f:ajax />
+                                                    </h:commandLink>
+                                                    <span class="badge badge-primary badge-pill">Sales by album:</span> 
+                                                </li>
+                                            </ui:repeat></ul> </h:panelGroup></div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label" for="daterange">Range: </label>
+                                    <div class="col-sm-6"><h:inputText id ="daterange" class="form-control daterange" value="#{reportBean.dateRange}">
+                                            <f:ajax execute="daterange"></f:ajax></h:inputText>
+                                    </div>
+                                </div>
+                                <h:commandButton class="btn btn-primary formbutton" value="#{internationalization.submit}" action="#{reportBean.getSalesByAlbum()}"><f:ajax execute="@form" render="dataAlbum"/></h:commandButton>                   
+                            </h:form>
+                        </div>
+                    </div>
+                    <h:panelGroup id="dataAlbum">
+                        <c:if test="#{not empty reportBean.salesByAlbum}">
+                            <table class="table text-centered">
+                                <thead>
+                                    <tr>
+                                        <th>#{internationalization.inventory}</th>
+                                        <th>#{internationalization.title}</th>
+                                        <th>#{internationalization.sales}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <ui:repeat value="#{reportBean.getSalesByAlbum()}" var="album">
+                                        <tr>
+                                            <td>#{album.type}</td>
+                                            <td>#{album.name}</td>
+                                            <td>#{album.sales}</td>
+                                        </tr>
+                                    </ui:repeat>  
+                                </tbody>    
+                            </table>           
+                        </c:if>
+                    </h:panelGroup>
+                </div>
+            </div>
+        </div>
+
+        <!-- Top sellers  -->
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#topseller">Top Sellers</a>
+                    </h4></div>
+
+                <div id="topseller" class="panel-collapse collapse">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <h:form class="searchForm" id="topsellerForm" >
+                                <div class="form-group row"><label class="col-sm-2 col-form-label" for="daterange">Range: </label>
+                                    <div class="col-sm-6"><h:inputText id="rangeTopSell" class="form-control daterange" value="#{reportBean.dateRange}">
+                                            <f:ajax execute="rangeTopSell"></f:ajax></h:inputText>
+                                    </div></div>
+                                <h:commandButton class="btn btn-primary formbutton" value="#{internationalization.submit}" action="#{reportBean.getTopSellers()}"><f:ajax execute="@form" render="dataTopSell" /></h:commandButton>                        
+                            </h:form>
+                        </div>
+                    </div>
+                    <h:panelGroup id="dataTopSell">
+                        <c:if test="#{reportBean.topSellers != null}">
+                            <table class="table text-centered">
+                                <thead>
+                                    <tr>
+                                        <th>#{internationalization.inventory}</th>
+                                        <th>#{internationalization.title}</th>
+                                        <th>#{internationalization.sales}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <ui:repeat value="#{reportBean.topSellers}" var="record">
+                                        <tr>
+                                            <td>#{record.type}</td>
+                                            <td>#{record.name}</td>  
+                                            <td>#{record.sales}</td>
+                                        </tr>
+                                    </ui:repeat>  
+                                </tbody>    
+                            </table>             
+                        </c:if> </h:panelGroup>
+                </div>
+            </div>
+        </div>
+        
+         <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#topclient">Top Clients</a>
+                    </h4></div>
+
+                <div id="topclient" class="panel-collapse collapse">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <h:form class="searchForm" id="topclientForm" >
+                                <div class="form-group row"><label class="col-sm-2 col-form-label" for="daterange">Range: </label>
+                                    <div class="col-sm-6"><h:inputText id="rangeclient" class="form-control daterange" value="#{reportBean.dateRange}">
+                                            <f:ajax execute="rangeClient"></f:ajax></h:inputText>
+                                    </div></div>
+                                <h:commandButton class="btn btn-primary formbutton" value="#{internationalization.submit}" action="#{reportBean.getTopClient()}"><f:ajax execute="@form" render="dataTopClient" /></h:commandButton>                        
+                            </h:form>
+                        </div>
+                    </div>
+                    <h:panelGroup id="dataTopClient">
+                        <c:if test="#{reportBean.topClient != null}">
+                            <table class="table text-centered">
+                                <thead>
+                                    <tr>
+                                        <th>Email</th>
+                                        <th>Total Purchase</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <ui:repeat value="#{reportBean.topClient}" var="record">
+                                        <tr>
+                                            <td>#{record.user}</td>
+                                            <td>#{record.totalPurchase}</td>
+                                        </tr>
+                                    </ui:repeat>  
+                                </tbody>    
+                            </table>             
+                        </c:if> </h:panelGroup>
+                </div>
+            </div>
+        </div>
+         <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#trackZR">Zero Tracks</a>
+                    </h4>
+                </div>
+
+                <div id="trackZR" class="panel-collapse collapse">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <h:form class="searchForm" id="zezotrackForm" >
+                                <div class="form-group row"><label class="col-sm-2 col-form-label" for="daterange">Range: </label>
+                                    <div class="col-sm-6"><h:inputText id="rangetrack" class="form-control daterange" value="#{reportBean.dateRange}">
+                                            <f:ajax execute="rangetrack"></f:ajax></h:inputText>
+                                    </div></div>
+                                <h:commandButton class="btn btn-primary formbutton" value="#{internationalization.submit}" action="#{reportBean.getZeroTracks()}"><f:ajax execute="@form" render="datazezoTrack" /></h:commandButton>                        
+                            </h:form>
+                        </div>
+                    </div>
+                    <h:panelGroup id="datazezoTrack">
+                        <c:if test="#{reportBean.zeroTracks != null}">
+                            <table class="table text-centered">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Track</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <ui:repeat value="#{reportBean.zeroTracks}" var="record">
+                                        <tr>
+                                            <td>#{record.id}</td>
+                                            <td>#{record.title}</td>
+                                        </tr>
+                                    </ui:repeat>  
+                                </tbody>    
+                            </table>             
+                        </c:if> </h:panelGroup>
+                </div>
+            </div>
+        </div>
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#clientZR">Zero Clients</a>
+                    </h4>
+                </div>
+
+                <div id="clientZR" class="panel-collapse collapse">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <h:form class="searchForm" id="zeroclientForm" >
+                                <div class="form-group row"><label class="col-sm-2 col-form-label" for="daterange">Range: </label>
+                                    <div class="col-sm-6"><h:inputText id="rangeclientk" class="form-control daterange" value="#{reportBean.dateRange}">
+                                            <f:ajax execute="rangetrack"></f:ajax></h:inputText>
+                                    </div></div>
+                                <h:commandButton class="btn btn-primary formbutton" value="#{internationalization.submit}" action="#{reportBean.getZeroClient()}"><f:ajax execute="@form" render="dataClientZr" /></h:commandButton>                        
+                            </h:form>
+                        </div>
+                    </div>
+                    <h:panelGroup id="dataClientZr">
+                        <c:if test="#{reportBean.zeroClient != null}">
+                            <table class="table text-centered">
+                                <thead>
+                                    <tr>
+                                        <th>Email</th>
+                                        <th>Last Name</th>
+                                        <th>First Name</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <ui:repeat value="#{reportBean.zeroClient}" var="record">
+                                        <tr>
+                                            <td>#{record.email}</td>
+                                            <td>#{record.lastname}</td>
+                                            <td>#{record.firstname}</td>
+                                        </tr>
+                                    </ui:repeat>  
+                                </tbody>    
+                            </table>             
+                        </c:if> </h:panelGroup>
+                </div>
+            </div>
+        </div>
+
+
+
+    </h:body>
+</html>

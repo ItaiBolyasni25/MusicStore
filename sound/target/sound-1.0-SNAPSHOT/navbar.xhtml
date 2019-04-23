@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.2.1/lux/bootstrap.min.css"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"></link>
+        <h:outputStylesheet library="css" name="style.css"  />
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.min.js" integrity="sha384-F13mJAeqdsVJS5kJv7MZ4PzYmJ+yXXZkt/gEnamJGTXZFzYgAcVtNg5wBDrRgLg9" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js" integrity="sha384-2Tnqs3x0ucZkxYqJ3UX1R/fkSRkMaDsdYWsUNc0hZVikDXRHamRor+AsNJ7Pi2DA" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" integrity="sha384-3J4adb6KqO9u+ZgVfdmUqKDG4qWyG2qxGdXYoCXh3YmBQURWveIDgFh22pw1E3a9" crossorigin="anonymous"></link>
+        <title>Sound++</title>
+    </h:head>
+    <ui:composition>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.min.js" integrity="sha384-F13mJAeqdsVJS5kJv7MZ4PzYmJ+yXXZkt/gEnamJGTXZFzYgAcVtNg5wBDrRgLg9" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js" integrity="sha384-2Tnqs3x0ucZkxYqJ3UX1R/fkSRkMaDsdYWsUNc0hZVikDXRHamRor+AsNJ7Pi2DA" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" integrity="sha384-3J4adb6KqO9u+ZgVfdmUqKDG4qWyG2qxGdXYoCXh3YmBQURWveIDgFh22pw1E3a9" crossorigin="anonymous"></link>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top" id="navsound">
+
+            <h:link class="navbar-brand" outcome="index">
+                <h:graphicImage class="logo" value="../assets/logonav.PNG" />
+            </h:link> 
+            <h:outputScript library="js" name="jquery-1.12.4.js" target="head" />
+            <h:outputScript library="js" name="search.js" target="head"/>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarColor03">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <h:link class="nav-link" value="#{internationalization.home}" outcome="index"/>
+                    </li>
+                    <li class="nav-item">
+                        <h:form>
+                            <h:commandLink class="nav-link albumLink" id="albumLink" value="#{internationalization.albums}" action="/albums?faces-redirect=true"/>
+                        </h:form>
+                    </li>
+                    <li class="nav-item">
+                        <h:form>
+                            <h:commandLink class="nav-link trackLink" id="trackLink" value="#{internationalization.tracks}" action="/tracks?faces-redirect=true"/>
+                        </h:form>
+                    </li>
+                    <li class="nav-item">
+                        <h:link class="nav-link" value="#{internationalization.about}" outcome="about"/>
+                    </li>
+                    <h:panelGroup rendered="#{empty user}">
+                        <li class="nav-item">
+                            <h:link class="nav-link" value="#{internationalization.signup}" outcome="register"/>
+                        </li>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{empty user}">
+                        <li class="nav-item">
+                            <h:link class="nav-link" value="#{internationalization.login}" outcome="login"/>
+                        </li>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{not empty user}">
+                        <li class="nav-item">
+                            <h:form>
+                                <h:commandLink class="nav-link" value="#{internationalization.signOut}" action="#{request.logout()}">
+                                    <f:actionListener binding="#{registerBean.signOut()}"/>
+                                </h:commandLink>
+                            </h:form>
+                        </li>
+                    </h:panelGroup>
+                    <li class="nav-item">
+<<<<<<< HEAD
+                        <h:link class="nav-link checkout" value="#{internationalization.cart}" outcome="checkout" rendered="#{!empty user}" />
+=======
+                        <h:link class="nav-link checkout" value="#{internationalization.cart}" outcome="checkout"/>
+>>>>>>> dcde734fc144539cc597f0a87f6d615bba82760a
+                    </li>
+                    <li class="nav-item">
+                        <h:link class="nav-link" value="#{internationalization.help}" outcome="help"/>
+                    </li>
+                </ul>
+
+                <li class="nav-item dropdown" style="list-style-type:none">
+                    <div class="form-group">
+                        <h:form class="form-inline my-2 my-lg-0 ml-2">
+                            <h:selectOneMenu onchange="submit()" valueChangeListener="#{internationalization.languageChange}"  class="custom-select mr-sm-3 ml-4">
+                                <f:selectItem itemValue="en" itemLabel="#{internationalization.english}" />
+                                <f:selectItem itemValue="fr" itemLabel="#{internationalization.french}" />
+                            </h:selectOneMenu>                            
+                        </h:form>
+                    </div>
+                </li>
+                <h:form class="form-inline my-2 my-lg-0 searchForm" id="searchform" >
+                    <h:panelGroup id="input">
+                        <h:inputText onfocus="showSearchList();" autocomplete="off" id="pattern" class="form-control mr-sm-2 patternTextBox" title="#{internationalization.search}" value="#{AlbumTrackBean.pattern}" >
+                            <f:ajax event="keyup" listener="#{AlbumTrackBean.patternChanged()}" execute="pattern" render="searchList"></f:ajax>
+                        </h:inputText>
+                    </h:panelGroup>
+                    <h:panelGroup id="searchList" class="searchList">
+                        <ul class="list-group">
+                            <ui:repeat value="#{AlbumTrackBean.albums}" var="album">
+                                <li class="list-group-item d-flex justify-content-between align-items-center searchItem"> 
+                                    <h:commandLink  value="#{album.title}" onclick="setPattern(this);">           
+                                        <f:ajax />
+                                    </h:commandLink>
+                                    <span class="badge badge-primary badge-pill">Album</span> 
+                                </li>
+                            </ui:repeat>
+                            <ui:repeat  value="#{AlbumTrackBean.tracks}" var="track">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <h:commandLink  value="#{track.title}" onclick="setPattern(this);">           
+                                        <f:ajax />
+                                    </h:commandLink>
+                                    <span class="badge badge-primary badge-pill">Track</span>
+                                </li>
+                            </ui:repeat>
+                            <ui:repeat  value="#{AlbumTrackBean.artists}" var="artist">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <h:commandLink  value="#{artist.name}" onclick="setPattern(this);">           
+                                        <f:ajax />
+                                    </h:commandLink>
+                                    <span class="badge badge-primary badge-pill">Artist</span>
+                                </li>
+                            </ui:repeat>
+                        </ul>
+                    </h:panelGroup>
+                    <h:panelGroup>
+                        <input type="hidden" id="filter" value="#{AlbumTrackBean.filter}"/>
+                         <h:commandLink id="filterLink">      
+                               <h:graphicImage value="../assets/iconfinder_common-calendar-month-glyph_763272.png" class="dateSymbol" />
+                             <f:ajax event="click" listener="#{AlbumTrackBean.filterChanged()}" />
+                         </h:commandLink>
+                    </h:panelGroup>
+                    <h:commandButton class="btn btn-outline-primary" value="#{internationalization.search}"  action="#{AlbumTrackBean.redirect()}" />
+                </h:form>
+            </div>
+        </nav>
+    </ui:composition>
+</html>

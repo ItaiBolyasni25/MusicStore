@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      >
+    <h:head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.2.1/lux/bootstrap.min.css" />
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+        <h:outputStylesheet library="css" name="style.css"  />
+        <title>Sound++</title>
+    </h:head>
+    <h:body class="backgroundcolor body">
+        <ui:include src="navbar.xhtml"/>
+        <div class="container">
+            <div class="card">
+                <div class="card-header">
+                    Invoice
+
+
+                </div>
+                <div class="card-body">
+                    <div class="row mb-4">
+                        <div class="col-sm-6">
+                            <h6 class="mb-3">From:</h6>
+                            <div>
+                                <strong>Sound++</strong>
+                            </div>
+                            <div>Dawson College</div>
+                            <div>Quebec, Montreal</div>
+                            <div>#{internationalization.email}: info@sound++.com</div>
+                            <div>Phone: 514-558-6969</div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <h6 class="mb-3">To: </h6>
+                            <div>
+                                <strong>#{userObj.firstname} #{userObj.lastname}</strong>
+                            </div>
+                            <div>#{userObj.address1}</div>
+                            <div>#{internationalization.email}: #{userObj.email}</div>
+                            <div>Phone: +48 123 456 789</div>
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="table-responsive-sm">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#{internationalization.item}</th>
+                                    <th>#{internationalization.description}</th>
+
+                                    <th class="right">#{internationalization.listPrice}</th>
+                                    <th class="center">#{internationalization.cost}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+
+
+                                <ui:repeat value="#{invoiceController.cartItems}" var="item">
+                                    <h:panelGroup rendered="#{item.track != null}">
+                                        <tr>
+                                            <td>#{item.track.title}</td>
+                                            <td>#{internationalization.indvTracks}</td>
+
+                                            <td>#{item.track.list_price}</td>
+                                            <td>#{item.track.cost}</td>
+                                        </tr>
+                                    </h:panelGroup>
+                                </ui:repeat>
+                                <ui:repeat value="#{invoiceController.cartItems}" var="item">
+                                    <h:panelGroup rendered="#{item.album != null}">
+                                        <tr>
+                                            <td>#{item.album.title}</td>
+                                            <td>#{internationalization.fullAlbum}</td>
+
+                                            <td>#{item.album.list_Price}</td>
+                                            <td>#{item.album.cost}</td>
+                                        </tr>
+                                    </h:panelGroup>
+                                </ui:repeat>
+
+
+
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-sm-5">
+
+                        </div>
+
+                        <div class="col-lg-4 col-sm-5 ml-auto">
+                            <table class="table table-clear">
+                                <tbody>
+                                    <tr>
+                                        <td class="left">
+                                            <strong>Subtotal</strong>
+                                        </td>
+                                        <td class="right">#{invoiceController.total_gross}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="left">
+                                            <strong>GST (7%)</strong>
+                                        </td>
+                                        <td class="right">#{0.07 * invoiceController.total_gross}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="left">
+                                            <strong>PST (8%)</strong>
+                                        </td>
+                                        <td class="right">#{0.08 * invoiceController.total_gross}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="left">
+                                            <strong>Total</strong>
+                                        </td>
+                                        <td class="right">
+                                            <strong>#{invoiceController.total_cost}</strong>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                    <button class="btn btn-success ml-3 float-right">Download Invoice</button>
+                    <button class="btn btn-success float-right">Print Invoice</button>
+                </div>
+            </div>
+        </div>
+        <ui:include src="footer.xhtml"/>
+    </h:body>
+</html>
