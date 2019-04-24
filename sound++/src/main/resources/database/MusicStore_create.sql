@@ -1,7 +1,4 @@
 SET GLOBAL time_zone = '+5:00';
-drop database if exists songstore;
-create database songstore;
-Use songstore;
     
 CREATE TABLE Album (
     album_id int NOT NULL auto_increment,

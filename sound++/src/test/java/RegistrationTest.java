@@ -19,7 +19,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
  * @author GamingDanik
  */
 
-@Ignore
 public class RegistrationTest {
     
     private static WebDriver driver;
