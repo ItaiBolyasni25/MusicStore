@@ -35,10 +35,13 @@ a{
 }
 
 .ads{
-    width: 70%;
-    height: 10%;
-    margin-left: 15%;
-    float: left;
+    width: 500px;
+    height: 300px;
+}
+.adsImage{
+    display: block !important;
+    width: 500px;
+    height: auto;
 }
 
 #genretitle{

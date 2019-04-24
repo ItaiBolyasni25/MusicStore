@@ -21,18 +21,13 @@
         <h:outputStylesheet library="css" name="style.css"  />
         <h:outputStylesheet library="css" name="bamboo.min.css"/>
         <script src="resources/js/bamboo.min.js"></script>  
-        
-
         <title>Sound++</title>
-    </h:head>
-    <h:body class="backgroundcolor">
-        <f:view>
+         <f:view>
             <f:event type="preRenderView" listener="#{SongParser.onLoad()}"/>
         </f:view>
-        <f:metadata>
-            
-            <f:viewAction action="#{IndexMusicBean.init}" />
-        </f:metadata>
+    </h:head>
+    <h:body class="backgroundcolor">
+       
         <script>
             $(document).ready(function () {
                 //Call news function to request the latest news of the moment when page is loaded
@@ -107,7 +102,7 @@
                     <br/><br/>
                     <div class="row">
                         <div class="col-md-9">
-                             <h:panelGroup id="albumtable" class="col-md-9">
+                            <h:panelGroup id="albumtable" class="col-md-9">
                                 <h1 class="display-5 customFont">#{internationalization.popularAlbums}</h1>
                                 <div class="row">  
                                     <c:if  test="#{IndexMusicBean.albumCurrentPage != 1}">
@@ -233,7 +228,7 @@
                                         <div class="thumb"></div>
                                         <article>
                                             <h1></h1>
-                                            
+
                                             <span></span>
                                         </article>
                                     </a>
@@ -267,7 +262,7 @@
                                     </a>
                                 </div>
                             </div>
-                           
+
                         </div>
 
                         <div class="col-md-3">
@@ -332,10 +327,10 @@
                         </div>
                     </div>
 
-
-                    <div id="ads" class="card mb-3">
-                        <h:graphicImage style="height: 100px; width: 100%; display: block;" value="/banners/#{bannerAddBean.currentBannerUsed}" alt="Card image"/> />
-                    </div>
+                    <div class="row">
+                    <div class="ads">
+                        <h:graphicImage class="adsImage" value="assets/banners/#{bannerAddBean.currentBannerUsed.banner}" alt="Card image"/> 
+                    </div>  </div>
 
                 </div>
 
@@ -406,6 +401,5 @@
         </div>
         <ui:include src="footer.xhtml"/>
         <br />
-        <h:link outcome="welcomePrimefaces" value="Primefaces welcome page" />
     </h:body>
 </html>

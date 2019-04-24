@@ -9,6 +9,7 @@ import com.mycompany.Model.Track;
 import com.mycompany.Persistence.DAO;
 import java.io.Serializable;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -37,7 +38,7 @@ public class IndexMusicBean implements Serializable  {
     public List<Album> getRecentAlbum(){
         return dao.findRecent(new Album());
     }
-     
+      @PostConstruct
     public void init(){
         albumPagination.initialTotalRow();
         trackPagination.initialTotalRow();
@@ -45,6 +46,7 @@ public class IndexMusicBean implements Serializable  {
         allTracks = dao.findLimitRandom(new Track(),9);
         updateAlbumsView();
         updateTrackView();
+           System.out.println("hi");
     }
       public void albumNext(){
         if (albumPagination.getAlbumCurrentPage() < albumPagination.getTotalPages()) {
@@ -54,6 +56,7 @@ public class IndexMusicBean implements Serializable  {
     }
 
     public List<Album> getAlbums() {
+        System.out.println("hi" +albums.size());
         return albums;
     }
     public List<Album> getRecent(){
@@ -132,8 +135,6 @@ public class IndexMusicBean implements Serializable  {
         }
          updateTrackView();
     }
-       public String createGreeting(String name) {
-        return "Hello, " + name + "!";
-    }
+    
 
 }

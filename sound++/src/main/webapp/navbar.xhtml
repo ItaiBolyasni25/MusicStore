@@ -31,7 +31,7 @@ and open the template in the editor.
         <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top" id="navsound">
 
             <h:link class="navbar-brand" outcome="index">
-                <h:graphicImage class="logo" value="../assets/logonav.PNG" />
+                <h:graphicImage class="logo" value="/assets/logonav.PNG" />
             </h:link> 
             <h:outputScript library="js" name="jquery-1.12.4.js" target="head" />
             <h:outputScript library="js" name="search.js" target="head"/>
@@ -132,7 +132,7 @@ and open the template in the editor.
                     <h:panelGroup>
                         <input type="hidden" id="filter" value="#{AlbumTrackBean.filter}"/>
                          <h:commandLink id="filterLink">      
-                               <h:graphicImage value="../assets/iconfinder_common-calendar-month-glyph_763272.png" class="dateSymbol" />
+                               <h:graphicImage value="/assets/iconfinder_common-calendar-month-glyph_763272.png" class="dateSymbol" />
                              <f:ajax event="click" listener="#{AlbumTrackBean.filterChanged()}" />
                          </h:commandLink>
                     </h:panelGroup>
