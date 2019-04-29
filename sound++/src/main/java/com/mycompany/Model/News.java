@@ -29,7 +29,7 @@ public class News implements Serializable, EntityModel {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+       @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer news_id;
     private String feed;
     private String used;

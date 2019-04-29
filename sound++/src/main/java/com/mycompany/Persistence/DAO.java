@@ -56,7 +56,7 @@ public class DAO {
 
     public <E extends EntityModel> List<E> findWithLimit(E entityModel, int offset, int display) {
         String className = entityModel.getClass().getName().substring(entityModel.getClass().getName().lastIndexOf(".") + 1);
-        Query q = em.createQuery("SELECT a FROM " + className + " a ORDER BY a.title ASC");
+        Query q = em.createQuery("SELECT indentifier FROM " + className + " indentifier ORDER BY indentifier.title ASC");
         q.setFirstResult(offset);
         q.setMaxResults(display);
         return q.getResultList();

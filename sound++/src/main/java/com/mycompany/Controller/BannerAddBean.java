@@ -23,9 +23,9 @@ import javax.servlet.http.Part;
 public class BannerAddBean implements Serializable, EntityModel {
 
     private Part uploadedFile;
-   private String folder = "D:\\cygwin\\projects_w19\\TeamA\\banners\\";
-    //private String folder = "C:\\Users\\austi\\Desktop\\SchoolStuff\\JavaServerSide\\Project\\csdmusicstore\\sound++\\src\\main\\webapp\\assets\\banners";
-    //private String folder = "D:\\cygwin\\projects_w19\\TeamA\\banners\\";
+   //private String folder = "D:\\cygwin\\projects_w19\\TeamA\\banners\\";
+    private String folder = "src\\main\\webapp\\assets\\banners\\";
+   //private String folder = "C:\\Users\\maian\\Desktop\\csdmusicstore\\sound++\\src\\main\\webapp\\assets\\banners\\";
     //private String folder = "C:\\Users\\austi\\Desktop\\SchoolStuff\\JavaServerSide\\Project\\csdmusicstore\\sound++\\src\\main\\webapp\\assets\\banners";
     //private String folder = "D:\\cygwin\\projects_w19\\TeamA\\banners\\";
 
@@ -67,10 +67,8 @@ public class BannerAddBean implements Serializable, EntityModel {
                 banner.setBanner(fileName);
                 dao.write(banner);
                 this.messageError = null;
-                System.out.println("hello 1");
             } catch (IOException e) {
                 e.printStackTrace();
-                System.out.println("hello 2");
                 this.messageError = "";
                 return "manager/bannerad.xhtml";
             }

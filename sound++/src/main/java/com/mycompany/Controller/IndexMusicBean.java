@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.Controller;
 import com.mycompany.Model.Album;
 import com.mycompany.Model.Track;
@@ -132,8 +127,4 @@ public class IndexMusicBean implements Serializable  {
         }
          updateTrackView();
     }
-       public String createGreeting(String name) {
-        return "Hello, " + name + "!";
-    }
-
 }

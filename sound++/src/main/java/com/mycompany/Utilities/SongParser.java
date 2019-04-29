@@ -38,8 +38,10 @@ public class SongParser implements Serializable {
     private DAO dao;
     Album album;
     Artist artist;
-    private boolean isLoaded = false;
-
+    private boolean isLoaded;
+    public SongParser(){
+         isLoaded = false;
+    }
     public void onLoad() throws Exception {
         if (!isIsLoaded()) {
             readCSVFile();
@@ -120,7 +122,6 @@ public class SongParser implements Serializable {
     public void readCSVFile() throws IOException, ParseException {
         InputStream inputStream
                 = getClass().getClassLoader().getResourceAsStream("dataPoints.csv");
-        System.out.println(Boolean.toString(inputStream == null));
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         String line;
         int counter = 0;
