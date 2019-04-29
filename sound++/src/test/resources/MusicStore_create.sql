@@ -1,20 +1,7 @@
 
-Use songstore;
-DROP TABLE IF EXISTs review;
-DROP TABLE IF EXISTs Cart;
-DROP TABLE IF EXISTS album_artist;
-DROP TABLE IF EXISTs Track;
-DROP TABLE IF EXISTs Album;
-DROP TABLE IF EXISTs Artist;
-DROP TABLE IF EXISTs Orders;
-DROP TABLE IF EXISTs Invoice;
-DROP TABLE IF EXISTs News;
-DROP TABLE IF EXISTs survey_result;
-DROP TABLE IF EXISTs Survey;
-DROP TABLE IF EXISTs roles;
-DROP TABLE IF EXISTs User;
-DROP TABLE IF EXISTs Banner;
-
+drop database if exists songstore;
+create database songstore;
+use songstore;   
 CREATE TABLE Album (
     album_id int NOT NULL auto_increment,
     title varchar(256) NOT NULL,
